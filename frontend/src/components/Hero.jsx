@@ -15,7 +15,7 @@ export const Hero = ({ onBookConsultation }) => {
       </div>
 
       {/* Hero Content */}
-      <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-10 w-full flex flex-col items-start justify-center pt-12">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-start justify-center pt-12">
         {/* Hero Title */}
         <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.1] max-w-4xl mb-6">
           Build Your Dream. <br />
@@ -31,7 +31,7 @@ export const Hero = ({ onBookConsultation }) => {
         <div className="flex flex-wrap items-center gap-5">
           <a
             href="#projects"
-            className="rounded-full bg-[#C9A063] px-8 py-4 text-xs font-semibold uppercase tracking-[3px] text-white transition-all duration-300 hover:bg-[#B88C4D] hover:-translate-y-1 hover:shadow-2xl active:scale-95 flex items-center gap-2 cursor-pointer"
+            className="rounded-full bg-[#B9935A] px-8 py-4 text-xs font-semibold uppercase tracking-[3px] text-white transition-all duration-300 hover:bg-gradient-to-r hover:from-[#B9935A] hover:to-[#8B6732] hover:border-transparent hover:-translate-y-1 hover:shadow-2xl active:scale-95 flex items-center gap-2 cursor-pointer"
           >
             <span>Explore Projects</span>
             <span className="material-symbols-outlined text-sm">arrow_forward</span>
@@ -40,34 +40,34 @@ export const Hero = ({ onBookConsultation }) => {
       </div>
 
       {/* Floating Spotlight Card (Bottom Right Overlay) */}
-      <div className="hidden lg:flex absolute bottom-10 right-10 z-20 max-w-md bg-white/90 backdrop-blur-xl border border-[#C9A063]/30 p-5 rounded-2xl shadow-2xl items-center gap-5 hover:-translate-y-1 transition-all duration-300">
+      <div className="hidden lg:flex absolute bottom-10 right-10 z-20 max-w-md bg-white/90 backdrop-blur-xl border border-[#B9935A]/30 p-5 rounded-2xl shadow-2xl items-center gap-5 hover:-translate-y-1 transition-all duration-300">
         <div className="w-24 h-24 rounded-xl overflow-hidden shrink-0 relative">
           <img
             src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=300&q=80"
             alt="Mangalmurti Residency"
             className="w-full h-full object-cover"
           />
-          <span className="absolute top-1 left-1 bg-[#C9A063] text-white text-[9px] font-bold px-1.5 py-0.5 rounded uppercase">
+          <span className="absolute top-1 left-1 bg-[#B9935A] text-white text-[9px] font-bold px-1.5 py-0.5 rounded uppercase">
             Featured
           </span>
         </div>
         <div>
-          <span className="text-[10px] font-bold uppercase tracking-widest text-[#C9A063]">
+          <span className="text-[10px] font-bold uppercase tracking-widest text-[#B9935A]">
             Featured Residence
           </span>
           <h4 className="text-base font-bold text-[#172235] leading-tight">
             Mangalmurti Residency
           </h4>
           <p className="text-xs text-gray-600 mt-1">
-            3 BHK & 4 BHK Luxury Apartments • Nashik
+            3 BHK &amp; 4 BHK Luxury Apartments • Nagpur
           </p>
           <div className="flex items-center justify-between mt-3">
             <span className="text-xs font-semibold text-[#172235]">
-              Starting at <strong className="text-[#C9A063]">₹1.2 Cr*</strong>
+              Starting at <strong className="text-[#B9935A]">₹1.2 Cr*</strong>
             </span>
             <a
-              href="#featured-project"
-              className="text-xs font-semibold text-[#C9A063] hover:underline flex items-center gap-1"
+              href="#projects"
+              className="text-xs font-semibold text-[#B9935A] hover:underline flex items-center gap-1"
             >
               <span>Details</span>
               <span className="material-symbols-outlined text-xs">arrow_forward</span>

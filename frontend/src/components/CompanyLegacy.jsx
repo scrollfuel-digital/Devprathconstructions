@@ -1,4 +1,5 @@
-import React from "react";
+import React, { memo } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 
 const PILLARS = [
   {
@@ -24,26 +25,57 @@ const PILLARS = [
   },
 ];
 
-export const CompanyLegacy = () => {
+// Magical Depth-Blur Motion Variant (Emerging from Background, Zero Delay, Slow Pace)
+const magicalBehindVariant = (shouldReduceMotion) => ({
+  hidden: {
+    opacity: 0,
+    scale: shouldReduceMotion ? 1 : 0.88,
+    y: shouldReduceMotion ? 0 : 35,
+    filter: shouldReduceMotion ? "none" : "blur(6px)",
+  },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: {
+      duration: 1.25,
+      delay: 0,
+      ease: [0.25, 1, 0.5, 1],
+    },
+  },
+});
+
+export const CompanyLegacy = memo(() => {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section id="about" className="py-20 md:py-28 bg-[#F8F5EF] relative overflow-hidden">
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Left Column - High End Image Frame */}
-          <div className="lg:col-span-6 relative">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-[#C9A063]/30 group">
+          
+          {/* Left Column - High End Image Frame (Magical Emergence) */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.05 }}
+            variants={magicalBehindVariant(shouldReduceMotion)}
+            style={{ willChange: "transform, opacity, filter" }}
+            className="lg:col-span-6 relative"
+          >
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-[#B9935A]/30 group">
               <img
                 src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
                 alt="Devprath Architectural Excellence"
                 className="w-full h-[450px] sm:h-[550px] object-cover group-hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#172235]/60 via-transparent to-transparent" />
-              
+
               {/* Floating Badge */}
-              <div className="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-md p-6 rounded-2xl border border-[#C9A063]/30 shadow-xl">
+              <div className="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-md p-6 rounded-2xl border border-[#B9935A]/30 shadow-xl">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-[#C9A063]/15 flex items-center justify-center shrink-0">
-                    <span className="material-symbols-outlined text-[#C9A063] text-2xl">
+                  <div className="w-12 h-12 rounded-full bg-[#B9935A]/15 flex items-center justify-center shrink-0">
+                    <span className="material-symbols-outlined text-[#B9935A] text-2xl">
                       domain
                     </span>
                   </div>
@@ -58,34 +90,43 @@ export const CompanyLegacy = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Right Column - Narrative Content */}
-          <div className="lg:col-span-6 flex flex-col justify-center">
-            {/* Section Tag */}
-            <span className="text-xs font-bold uppercase tracking-[3px] text-[#C9A063] mb-3">
-              Who We Are
-            </span>
+          {/* Right Column - Narrative Content & Key Pillars (Per-Item Magical Emergence) */}
+          <div className="lg:col-span-6 flex flex-col justify-center space-y-6">
+            {/* Header Block */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.05 }}
+              variants={magicalBehindVariant(shouldReduceMotion)}
+              style={{ willChange: "transform, opacity, filter" }}
+            >
+              <span className="text-xs font-bold uppercase tracking-[3px] text-[#B9935A] mb-3 inline-block">
+                Who We Are
+              </span>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#172235] leading-tight mb-4 font-heading">
+                Building Trust Through <br />
+                <span className="gold-gradient-text">Excellence</span>
+              </h2>
+              <p className="text-base text-gray-700 leading-relaxed font-light">
+                At Devprath Constructions LLP, we build spaces that combine luxury, innovation, and enduring strength. Our philosophy bridges the gap between ambitious architectural vision and meticulous engineering precision, crafting homes that stand as legacies for generations.
+              </p>
+            </motion.div>
 
-            {/* Main Section Heading */}
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#172235] leading-tight mb-6">
-              Building Trust Through <br />
-              <span className="gold-gradient-text">Excellence</span>
-            </h2>
-
-            {/* Narrative Body Text */}
-            <p className="text-base text-gray-700 leading-relaxed font-light mb-8">
-              At Devprath Constructions LLP, we build spaces that combine luxury, innovation, and enduring strength. Our philosophy bridges the gap between ambitious architectural vision and meticulous engineering precision, crafting homes that stand as legacies for generations.
-            </p>
-
-            {/* Key Pillars List */}
-            <div className="space-y-6">
+            {/* Key Pillars List - Per-Item Magical Emergence */}
+            <div className="space-y-4">
               {PILLARS.map((pillar) => (
-                <div
+                <motion.div
                   key={pillar.id}
-                  className="flex items-start gap-4 p-4 rounded-xl bg-white/70 border border-[#C9A063]/20 hover:border-[#C9A063]/60 transition-colors shadow-sm"
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: false, amount: 0.05 }}
+                  variants={magicalBehindVariant(shouldReduceMotion)}
+                  style={{ willChange: "transform, opacity, filter" }}
+                  className="flex items-start gap-4 p-4 rounded-xl bg-white/80 border border-[#B9935A]/20 hover:border-[#B9935A]/60 transition-colors shadow-sm"
                 >
-                  <div className="w-10 h-10 rounded-full bg-[#C9A063] text-white flex items-center justify-center shrink-0 mt-0.5">
+                  <div className="w-10 h-10 rounded-full bg-[#B9935A] text-white flex items-center justify-center shrink-0 mt-0.5 shadow-md">
                     <span className="material-symbols-outlined text-xl">
                       {pillar.icon}
                     </span>
@@ -98,14 +139,15 @@ export const CompanyLegacy = () => {
                       {pillar.description}
                     </p>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
+
         </div>
       </div>
     </section>
   );
-};
+});
 
 export default CompanyLegacy;
