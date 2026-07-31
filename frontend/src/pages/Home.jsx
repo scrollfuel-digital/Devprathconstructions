@@ -13,6 +13,7 @@ import ContactSection from "../components/ContactSection";
 import Footer from "../components/Footer";
 import ConsultationModal from "../components/ConsultationModal";
 
+
 export const Home = () => {
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
 
@@ -60,8 +61,9 @@ export const Home = () => {
         <ContactSection />
       </main>
 
-      {/* Footer */}
-      <Footer />
+      
+        
+
 
       {/* Interactive Modals */}
       <ConsultationModal

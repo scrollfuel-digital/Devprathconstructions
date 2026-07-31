@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import logo from "../assets/logo/logo.png";
+import { Link } from "react-router-dom";
 
 const NAV_LINKS = [
-  { id: 1, title: "About", href: "#about" },
-  { id: 2, title: "Projects", href: "#projects" },
-  { id: 3, title: "Floor Plans", href: "#floor-plans" },
-  { id: 4, title: "Amenities", href: "#amenities" },
-  { id: 5, title: "Location", href: "#location" },
-  { id: 6, title: "Testimonials", href: "#testimonials" },
+  { id: 1, title: "Home", path: "/" },
+  { id: 2, title: "About", path: "/about-us" },
+  { id: 3, title: "Projects", path: "/projects" },
+  { id: 4, title: "Gallery", path: "/gallery" },
+  { id: 5, title: "Blog", path: "/blog" },
+  { id: 6, title: "Contact", path: "/contact" },
 ];
 
 const SCROLL_OFFSET = 80;
@@ -37,7 +38,7 @@ export default function Navbar({ onBookConsultation }) {
     >
       <div className="max-w-[1400px] mx-auto flex items-center justify-between px-6 lg:px-10">
         {/* ================= Logo ================= */}
-        <a href="#" className="flex items-center group">
+        <Link to="/" className="flex items-center group">
           <img
             src={logo}
             alt="Devprath Constructions LLP"
@@ -45,7 +46,7 @@ export default function Navbar({ onBookConsultation }) {
               isScrolled ? "h-16" : "h-20"
             }`}
           />
-        </a>
+        </Link>
 
         {/* ================= Navigation ================= */}
         <nav className="hidden lg:block">
@@ -88,14 +89,14 @@ export default function Navbar({ onBookConsultation }) {
       {mobileMenuOpen && (
         <div className="lg:hidden bg-white/98 backdrop-blur-xl border-b border-[#C9A063]/20 px-6 py-6 shadow-2xl flex flex-col gap-4 animate-fadeIn">
           {NAV_LINKS.map((item) => (
-            <a
+            <Link
               key={item.id}
-              href={item.href}
+              to={item.path}
               onClick={() => setMobileMenuOpen(false)}
               className="text-sm font-semibold uppercase tracking-[2px] text-[#172235] hover:text-[#C9A063] py-2 border-b border-gray-100 transition-colors"
             >
               {item.title}
-            </a>
+            </Link>
           ))}
           <button
             onClick={() => {
@@ -121,13 +122,13 @@ function NavItem({ item, isScrolled, activeSection, setActiveSection }) {
 
   return (
     <li>
-      <a
-        href={item.href}
+      <Link
+        to={item.path}
         className={className}
         onClick={() => setActiveSection(item.title.toLowerCase())}
       >
         {item.title}
-      </a>
+      </Link>
     </li>
   );
 }
