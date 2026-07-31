@@ -1,6 +1,7 @@
-import React from "react";
+import React, { memo } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 
-const AMENITIES_LIST = [
+const amenitiesData = [
   {
     id: 1,
     title: "Infinity Pool",
@@ -51,43 +52,86 @@ const AMENITIES_LIST = [
   },
 ];
 
-export const LuxuryAmenities = () => {
+// Magical Depth-Blur Motion Variant (Emerging from Background, Zero Delay, Slow Pace)
+const magicalBehindVariant = (shouldReduceMotion) => ({
+  hidden: {
+    opacity: 0,
+    scale: shouldReduceMotion ? 1 : 0.88,
+    y: shouldReduceMotion ? 0 : 35,
+    filter: shouldReduceMotion ? "none" : "blur(6px)",
+  },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: {
+      duration: 1.25,
+      delay: 0,
+      ease: [0.25, 1, 0.5, 1],
+    },
+  },
+});
+
+export const LuxuryAmenities = memo(() => {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
-    <section id="amenities" className="py-24 bg-[#FCF9F4] border-t border-[#C9A063]/20">
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-        {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-xs font-bold uppercase tracking-[3px] text-[#C9A063] mb-3 block">
+    <section
+      id="amenities"
+      className="py-24 bg-[#F8F5EF] border-t border-[#B9935A]/20 overflow-hidden"
+    >
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header (Magical Emergence) */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.15 }}
+          variants={magicalBehindVariant(shouldReduceMotion)}
+          style={{ willChange: "transform, opacity, filter" }}
+          className="text-center max-w-2xl mx-auto mb-16"
+        >
+          <span className="text-xs font-bold uppercase tracking-[3px] text-[#B9935A] mb-3 block">
             Our Amenities
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#172235] tracking-tight mb-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#172235] tracking-tight mb-4 font-heading">
             Resort-Style <span className="gold-gradient-text">Amenities</span>
           </h2>
           <p className="text-sm text-gray-600 font-light">
             Indulge in a curated collection of world-class leisure and wellness facilities designed for an unparalleled lifestyle.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Responsive Grid of Amenity Cards */}
+        {/* Responsive Grid of Amenity Cards (Independent Per-Card Magical Emergence) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {AMENITIES_LIST.map((item) => (
-            <div
+          {amenitiesData.map((item) => (
+            <motion.div
               key={item.id}
-              className="group relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl border border-[#C9A063]/20 bg-white hover:-translate-y-2 transition-all duration-300 flex flex-col justify-end min-h-[320px]"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.2, margin: "0px 0px -30px 0px" }}
+              variants={magicalBehindVariant(shouldReduceMotion)}
+              style={{ willChange: "transform, opacity, filter" }}
+              whileHover={
+                shouldReduceMotion
+                  ? undefined
+                  : { scale: 1.02, transition: { duration: 0.3 } }
+              }
+              className="group relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl border border-[#B9935A]/20 bg-white flex flex-col justify-end min-h-[320px] cursor-pointer"
             >
-              {/* Background Image */}
-              <div className="absolute inset-0 z-0">
+              {/* Background Image Container */}
+              <div className="absolute inset-0 z-0 overflow-hidden">
                 <img
                   src={item.image}
                   alt={item.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#172235]/90 via-[#172235]/40 to-transparent" />
               </div>
 
               {/* Card Content Overlay */}
               <div className="relative z-10 p-6 sm:p-8">
-                <div className="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-md border border-white/40 flex items-center justify-center text-white mb-4 group-hover:bg-[#C9A063] group-hover:border-[#C9A063] transition-colors">
+                <div className="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-md border border-white/40 flex items-center justify-center text-white mb-4 group-hover:bg-[#B9935A] group-hover:border-[#B9935A] transition-colors duration-300">
                   <span className="material-symbols-outlined text-2xl">
                     {item.icon}
                   </span>
@@ -99,12 +143,12 @@ export const LuxuryAmenities = () => {
                   {item.title}
                 </h3>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
     </section>
   );
-};
+});
 
 export default LuxuryAmenities;

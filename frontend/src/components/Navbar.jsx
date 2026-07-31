@@ -32,18 +32,20 @@ export default function Navbar({ onBookConsultation }) {
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
         isScrolled
-          ? "bg-white/95 backdrop-blur-md shadow-lg py-3 border-b border-[#C9A063]/20"
+          ? "bg-white/95 backdrop-blur-md shadow-lg py-3 border-b border-[#B9935A]/20"
           : "bg-transparent py-5"
       }`}
     >
-      <div className="max-w-[1400px] mx-auto flex items-center justify-between px-6 lg:px-10">
+      <div className="w-full max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* ================= Logo ================= */}
         <Link to="/" className="flex items-center group">
           <img
             src={logo}
             alt="Devprath Constructions LLP"
             className={`object-contain transition-all duration-300 ${
-              isScrolled ? "h-16" : "h-20"
+              isScrolled
+                ? "h-18 sm:h-20 max-h-[72px] w-[210px] sm:w-[250px]"
+                : "h-24 sm:h-28 max-h-[96px] w-[260px] sm:w-[320px]"
             }`}
           />
         </Link>
@@ -67,7 +69,7 @@ export default function Navbar({ onBookConsultation }) {
         <div className="hidden md:flex items-center gap-4">
           <button
             onClick={onBookConsultation}
-            className="rounded-full bg-[#C9A063] px-7 py-3 text-xs font-semibold uppercase tracking-[2px] text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#B88C4D] hover:shadow-xl active:scale-95 cursor-pointer"
+            className="rounded-full bg-[#B9935A] px-7 py-3 text-xs font-semibold uppercase tracking-[2px] text-white transition-all duration-300 hover:bg-gradient-to-r hover:from-[#B9935A] hover:to-[#8B6732] hover:border-transparent hover:shadow-xl active:scale-95 cursor-pointer"
           >
             Enquire Now
           </button>
@@ -76,7 +78,7 @@ export default function Navbar({ onBookConsultation }) {
         {/* ================= Mobile Hamburger ================= */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="lg:hidden p-2 text-[#C9A063] focus:outline-none cursor-pointer"
+          className="lg:hidden p-2 text-[#B9935A] focus:outline-none cursor-pointer"
           aria-label="Toggle menu"
         >
           <span className="material-symbols-outlined text-3xl">
@@ -87,13 +89,17 @@ export default function Navbar({ onBookConsultation }) {
 
       {/* ================= Mobile Menu Drawer ================= */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-white/98 backdrop-blur-xl border-b border-[#C9A063]/20 px-6 py-6 shadow-2xl flex flex-col gap-4 animate-fadeIn">
+        <div className="lg:hidden bg-white/98 backdrop-blur-xl border-b border-[#B9935A]/20 px-6 py-6 shadow-2xl flex flex-col gap-4 animate-fadeIn">
           {NAV_LINKS.map((item) => (
             <Link
               key={item.id}
               to={item.path}
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-sm font-semibold uppercase tracking-[2px] text-[#172235] hover:text-[#C9A063] py-2 border-b border-gray-100 transition-colors"
+              style={{ color: "#B9935A" }}
+              onClick={() => {
+                setActiveSection(item.title.toLowerCase());
+                setMobileMenuOpen(false);
+              }}
+              className="text-sm font-bold uppercase tracking-[2px] py-2 border-b border-gray-100 transition-colors duration-300 hover:opacity-80"
             >
               {item.title}
             </Link>
@@ -103,7 +109,7 @@ export default function Navbar({ onBookConsultation }) {
               setMobileMenuOpen(false);
               onBookConsultation && onBookConsultation();
             }}
-            className="w-full mt-2 rounded-full bg-[#C9A063] py-3 text-xs font-semibold uppercase tracking-[2px] text-white transition-all hover:bg-[#B88C4D]"
+            className="w-full mt-2 rounded-full bg-[#B9935A] py-3 text-xs font-semibold uppercase tracking-[2px] text-white transition-all duration-300 hover:bg-gradient-to-r hover:from-[#B9935A] hover:to-[#8B6732]"
           >
             Enquire Now
           </button>
@@ -114,18 +120,17 @@ export default function Navbar({ onBookConsultation }) {
 }
 
 function NavItem({ item, isScrolled, activeSection, setActiveSection }) {
-  const className = `relative uppercase tracking-[2px] text-xs font-semibold transition-all duration-300 after:absolute after:left-0 after:-bottom-2 after:h-[2px] after:bg-[#C9A063] after:transition-all after:duration-300 ${
-    isScrolled
-      ? "text-[#172235] hover:text-[#C9A063]"
-      : "text-white hover:text-[#C9A063]"
-  } after:w-0 hover:after:w-full`;
+  const isActive = activeSection === item.title.toLowerCase();
 
   return (
     <li>
       <Link
         to={item.path}
-        className={className}
+        style={{ color: "#B9935A" }}
         onClick={() => setActiveSection(item.title.toLowerCase())}
+        className={`relative uppercase tracking-[2px] text-xs font-bold transition-all duration-300 after:absolute after:left-0 after:-bottom-2 after:h-[2.5px] after:bg-[#B9935A] after:transition-all after:duration-300 ${
+          isActive ? "after:w-full font-extrabold" : "after:w-0 hover:after:w-full"
+        }`}
       >
         {item.title}
       </Link>
