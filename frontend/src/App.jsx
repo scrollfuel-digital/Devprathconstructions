@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import Lenis from 'lenis';
-import Home from './pages/Home';
+import AppRoutes from './routes/AppRoutes';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 /**
  * Main App Component
- * Initializes Lenis smooth scrolling engine and renders the Home page.
+ * Initializes Lenis smooth scrolling engine and renders pages via React Router.
  */
 export function App() {
   useEffect(() => {
@@ -34,7 +37,15 @@ export function App() {
     };
   }, []);
 
-  return <Home />;
+  return (
+    <BrowserRouter>
+      <>
+      <Navbar />
+      <AppRoutes />
+      <Footer />
+      </>
+    </BrowserRouter>
+  );
 }
 
 export default App;

@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import logo from "../assets/logo/logo.png";
+import { Link } from "react-router-dom";
 
 const NAV_LINKS = [
-  { id: 1, title: "About", href: "#about" },
-  { id: 2, title: "Projects", href: "#projects" },
-  { id: 3, title: "Floor Plans", href: "#floor-plans" },
-  { id: 4, title: "Amenities", href: "#amenities" },
-  { id: 5, title: "Location", href: "#location" },
-  { id: 6, title: "Testimonials", href: "#testimonials" },
+  { id: 1, title: "Home", path: "/" },
+  { id: 2, title: "About", path: "/about-us" },
+  { id: 3, title: "Projects", path: "/projects" },
+  { id: 4, title: "Gallery", path: "/gallery" },
+  { id: 5, title: "Blog", path: "/blog" },
+  { id: 6, title: "Contact", path: "/contact" },
 ];
 
 const SCROLL_OFFSET = 80;
@@ -37,7 +38,7 @@ export default function Navbar({ onBookConsultation }) {
     >
       <div className="w-full max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* ================= Logo ================= */}
-        <a href="#" className="flex items-center group">
+        <Link to="/" className="flex items-center group">
           <img
             src={logo}
             alt="Devprath Constructions LLP"
@@ -47,7 +48,7 @@ export default function Navbar({ onBookConsultation }) {
                 : "h-24 sm:h-28 max-h-[96px] w-[260px] sm:w-[320px]"
             }`}
           />
-        </a>
+        </Link>
 
         {/* ================= Navigation ================= */}
         <nav className="hidden lg:block">
@@ -90,9 +91,9 @@ export default function Navbar({ onBookConsultation }) {
       {mobileMenuOpen && (
         <div className="lg:hidden bg-white/98 backdrop-blur-xl border-b border-[#B9935A]/20 px-6 py-6 shadow-2xl flex flex-col gap-4 animate-fadeIn">
           {NAV_LINKS.map((item) => (
-            <a
+            <Link
               key={item.id}
-              href={item.href}
+              to={item.path}
               style={{ color: "#B9935A" }}
               onClick={() => {
                 setActiveSection(item.title.toLowerCase());
@@ -101,7 +102,7 @@ export default function Navbar({ onBookConsultation }) {
               className="text-sm font-bold uppercase tracking-[2px] py-2 border-b border-gray-100 transition-colors duration-300 hover:opacity-80"
             >
               {item.title}
-            </a>
+            </Link>
           ))}
           <button
             onClick={() => {
@@ -123,8 +124,8 @@ function NavItem({ item, isScrolled, activeSection, setActiveSection }) {
 
   return (
     <li>
-      <a
-        href={item.href}
+      <Link
+        to={item.path}
         style={{ color: "#B9935A" }}
         onClick={() => setActiveSection(item.title.toLowerCase())}
         className={`relative uppercase tracking-[2px] text-xs font-bold transition-all duration-300 after:absolute after:left-0 after:-bottom-2 after:h-[2.5px] after:bg-[#B9935A] after:transition-all after:duration-300 ${
@@ -132,7 +133,7 @@ function NavItem({ item, isScrolled, activeSection, setActiveSection }) {
         }`}
       >
         {item.title}
-      </a>
+      </Link>
     </li>
   );
 }
