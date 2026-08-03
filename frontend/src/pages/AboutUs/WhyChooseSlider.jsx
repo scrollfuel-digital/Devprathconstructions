@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import {
   Building2,
   MapPin,
@@ -10,6 +11,7 @@ import {
   ChevronRight,
   ArrowUpRight,
 } from "lucide-react";
+import { magicalBehindVariant } from "./magicalBehindVariant";
 
 const cards = [
   {
@@ -74,6 +76,15 @@ export default function WhyChooseSlider() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const trackRef = useRef(null);
+  const shouldReduceMotion = useReducedMotion();
+  const animationVariant = magicalBehindVariant(shouldReduceMotion);
+  const magicalInViewProps = {
+    initial: "hidden",
+    whileInView: "visible",
+    viewport: { once: false, amount: 0.05 },
+    variants: animationVariant,
+    style: { willChange: "transform, opacity, filter" },
+  };
 
   const getCardsPerView = () => {
     if (typeof window === "undefined") return 1;
@@ -121,13 +132,14 @@ export default function WhyChooseSlider() {
   }, [isPaused, totalSlides]);
 
   return (
-    <div
+    <motion.div
       className="relative w-full py-1"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
+      {...magicalInViewProps}
     >
       {/* Slider Viewport */}
-      <div className="overflow-hidden rounded-3xl py-1 px-1">
+      <motion.div className="overflow-hidden rounded-3xl py-1 px-1" {...magicalInViewProps}>
         <div
           ref={trackRef}
           className="flex transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
@@ -198,10 +210,10 @@ export default function WhyChooseSlider() {
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
 
       {/* Navigation Controls Row */}
-      <div className="flex items-center justify-between mt-5 px-2">
+      <motion.div className="flex items-center justify-between mt-5 px-2" {...magicalInViewProps}>
         {/* Left: Progress Bar Indicator */}
         <div className="flex items-center gap-3">
           <div className="flex gap-2">
@@ -241,7 +253,7 @@ export default function WhyChooseSlider() {
             <ChevronRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
           </button>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
