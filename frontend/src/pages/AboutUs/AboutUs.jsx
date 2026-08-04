@@ -1,6 +1,6 @@
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import aboutus1 from "../../assets/AboutUsImg/firstimg.png";
+import aboutus1 from "../../assets/AboutUsImg/HomePage.jpg";
 import aboutus2 from "../../assets/AboutUsImg/secimg.png";
 import leaderSunil from "../../assets/AboutUsImg/sunil.png";
 import leaderHemal from "../../assets/AboutUsImg/hemal.png";
@@ -83,14 +83,38 @@ export default function About() {
 
   return (
     <div className="bg-[#f8f5ef] text-[#172235] selection:bg-[#c9a063] selection:text-white font-sans overflow-hidden pt-20">
-      
+
       {/* =========================================================================
           OUR STORY & ARCHITECTURAL PHILOSOPHY (TWO COLUMN SHOWCASE)
          ========================================================================= */}
       <section id="our-story" className="py-20 lg:py-28 bg-[#f8f5ef] relative">
         <div className="container-custom">
+          {/* Centered Top Header Alignment */}
+          <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
+            <motion.span
+              className="text-xs font-bold uppercase tracking-[3px] text-[#c9a063] mb-3 block"
+              {...magicalInViewProps}
+            >
+              ABOUT DEVPRATH CONSTRUCTIONS
+            </motion.span>
+
+            <motion.h1
+              className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#172235] leading-tight mb-5 font-heading"
+              {...magicalInViewProps}
+            >
+              Creating Homes That <span className="gold-gradient-text">Inspire Generations</span>
+            </motion.h1>
+
+            <motion.p
+              className="text-base text-gray-600 font-light leading-relaxed max-w-2xl mx-auto"
+              {...magicalInViewProps}
+            >
+              Devprath Constructions LLP develops vibrant residential communities in Nagpur that merge modern aesthetics, meticulous spatial planning, and superior structural engineering.
+            </motion.p>
+          </div>
+
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            
+
             {/* Left Image Stack Framing */}
             <motion.div className="lg:col-span-6 relative" {...magicalInViewProps}>
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-[#c9a063]/30 group">
@@ -100,7 +124,7 @@ export default function About() {
                   className="w-full h-[480px] sm:h-[560px] object-cover group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#172235]/70 via-transparent to-transparent" />
-                
+
                 {/* Floating Bottom Badge */}
                 <div className="absolute bottom-6 left-6 right-6 bg-[#f8f5ef]/95 backdrop-blur-md p-6 rounded-2xl border border-[#c9a063]/30 shadow-xl">
                   <div className="flex items-center gap-4">
@@ -135,23 +159,15 @@ export default function About() {
                 className="text-xs font-bold uppercase tracking-[3px] text-[#c9a063] mb-3 block"
                 {...magicalInViewProps}
               >
-                OUR STORY & VISION
+                OUR PHILOSOPHY
               </motion.span>
 
               <motion.h2
-                className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#172235] leading-tight mb-6 font-heading"
+                className="text-2xl sm:text-3xl font-extrabold text-[#172235] leading-tight mb-6 font-heading"
                 {...magicalInViewProps}
               >
-                Creating Homes That <br />
-                <span className="gold-gradient-text">Inspire Generations</span>
+                Building Trust & <span className="gold-gradient-text">Unmatched Quality</span>
               </motion.h2>
-
-              <motion.p
-                className="text-base text-gray-700 leading-relaxed font-light mb-6"
-                {...magicalInViewProps}
-              >
-                Devprath Constructions LLP develops vibrant residential communities in Nagpur that merge modern aesthetics, meticulous spatial planning, and superior structural engineering.
-              </motion.p>
 
               <motion.p
                 className="text-base text-gray-600 leading-relaxed font-light mb-10"
@@ -175,24 +191,24 @@ export default function About() {
 
               {/* Side-by-Side Vision & Mission Cards */}
               <div className="grid md:grid-cols-2 gap-6">
-                
+
                 {/* Vision Card */}
                 <motion.div
-                  className="bg-[#172235] text-white rounded-2xl p-6 border border-[#c9a063]/40 shadow-xl relative overflow-hidden group"
+                  className="bg-[#f8f5ef] text-white rounded-2xl p-6 border border-[#c9a063]/40 shadow-xl relative overflow-hidden group"
                   {...magicalInViewProps}
                 >
                   <div className="absolute top-0 right-0 w-24 h-24 bg-[#c9a063]/10 rounded-bl-full pointer-events-none" />
-                  
+
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-10 h-10 rounded-xl bg-[#c9a063]/20 flex items-center justify-center text-[#c9a063]">
                       <Eye className="w-5 h-5 text-[#c9a063]" />
                     </div>
-                    <h3 className="text-lg font-bold text-white font-heading">
+                    <h3 className="text-lg font-bold text-[#172235] font-heading">
                       Our Vision
                     </h3>
                   </div>
 
-                  <p className="text-xs text-gray-500 leading-relaxed">
+                  <p className="text-md text-gray-500 ">
                     To redefine residential living in Nagpur by delivering iconic homes that harmonize luxury, engineering excellence, and customer trust.
                   </p>
                 </motion.div>
@@ -233,7 +249,7 @@ export default function About() {
          ========================================================================= */}
       <section className="py-20 lg:py-28 bg-[#f8f5ef] relative">
         <div className="container-custom">
-          
+
           <div className="text-center max-w-3xl mx-auto mb-16">
             <motion.span
               className="text-xs font-bold uppercase tracking-[3px] text-[#c9a063] mb-3 block"
@@ -254,45 +270,14 @@ export default function About() {
             </motion.p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 lg:gap-12 max-w-5xl mx-auto">
-            
-            {/* Founder 1: Sunil */}
+          <div className="grid md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
+
+            {/* Founder 1: Hemal */}
             <motion.div
-              className="group rounded-3xl bg-[#f8f5ef] border border-[#c9a063]/30 p-8 shadow-lg hover:shadow-2xl hover:border-[#c9a063] transition-all duration-500 flex flex-col sm:flex-row items-center gap-6"
+              className="group rounded-3xl bg-[#f8f5ef] border border-[#c9a063]/30 px-8 py-12 sm:px-10 sm:py-16 min-h-[360px] sm:min-h-[400px] shadow-lg hover:shadow-2xl hover:border-[#c9a063] transition-all duration-500 flex flex-col sm:flex-row items-center gap-6 sm:gap-8 justify-center"
               {...magicalInViewProps}
             >
-              <div className="w-36 h-36 sm:w-44 sm:h-44 rounded-2xl overflow-hidden shrink-0 border-2 border-[#c9a063]/40 shadow-md">
-                <img
-                  src={leaderSunil}
-                  alt="Sunil - Director"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-
-              <div>
-                <span className="text-[11px] font-bold uppercase tracking-widest text-[#c9a063]">
-                  Director & Co-Founder
-                </span>
-                <h3 className="text-2xl font-bold text-[#172235] font-heading mt-1 mb-2">
-                  Sunil
-                </h3>
-                <p className="text-xs text-gray-600 leading-relaxed font-normal mb-4">
-                  Championing structural strength, material standards, and strategic growth. Committed to delivering homes that stand the test of time.
-                </p>
-
-                <div className="flex items-center gap-2 text-xs font-semibold text-[#172235]">
-                  <Quote className="w-4 h-4 text-[#c9a063]" />
-                  <span className="italic text-gray-500">"Excellence is never an accident; it is always the result of high intention."</span>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Founder 2: Hemal */}
-            <motion.div
-              className="group rounded-3xl bg-[#f8f5ef] border border-[#c9a063]/30 p-8 shadow-lg hover:shadow-2xl hover:border-[#c9a063] transition-all duration-500 flex flex-col sm:flex-row items-center gap-6"
-              {...magicalInViewProps}
-            >
-              <div className="w-36 h-36 sm:w-44 sm:h-44 rounded-2xl overflow-hidden shrink-0 border-2 border-[#c9a063]/40 shadow-md">
+              <div className="w-44 h-44 sm:w-52 sm:h-52 lg:w-56 lg:h-56 rounded-2xl overflow-hidden shrink-0 border-2 border-[#c9a063]/40 shadow-md">
                 <img
                   src={leaderHemal}
                   alt="Hemal - Director"
@@ -300,20 +285,51 @@ export default function About() {
                 />
               </div>
 
-              <div>
-                <span className="text-[11px] font-bold uppercase tracking-widest text-[#c9a063]">
+              <div className="flex flex-col justify-center">
+                <span className="text-xs font-bold uppercase tracking-widest text-[#c9a063]">
                   Director & Co-Founder
                 </span>
-                <h3 className="text-2xl font-bold text-[#172235] font-heading mt-1 mb-2">
+                <h3 className="text-2xl sm:text-3xl font-bold text-[#172235] font-heading mt-1.5 mb-3">
                   Hemal
                 </h3>
-                <p className="text-xs text-gray-600 leading-relaxed font-normal mb-4">
+                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed font-normal mb-6">
                   Fostering architectural creativity, customer-first service, and modern living space design across all our premier residential developments.
                 </p>
 
-                <div className="flex items-center gap-2 text-xs font-semibold text-[#172235]">
-                  <Quote className="w-4 h-4 text-[#c9a063]" />
+                <div className="flex items-start gap-2.5 text-xs sm:text-sm font-semibold text-[#172235]">
+                  <Quote className="w-4 h-4 sm:w-5 sm:h-5 text-[#c9a063] shrink-0 mt-0.5" />
                   <span className="italic text-gray-500">"We don't just build apartments; we craft spaces where families thrive."</span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Founder 2: Sunil */}
+            <motion.div
+              className="group rounded-3xl bg-[#f8f5ef] border border-[#c9a063]/30 px-8 py-12 sm:px-10 sm:py-16 min-h-[360px] sm:min-h-[400px] shadow-lg hover:shadow-2xl hover:border-[#c9a063] transition-all duration-500 flex flex-col sm:flex-row items-center gap-6 sm:gap-8 justify-center"
+              {...magicalInViewProps}
+            >
+              <div className="w-44 h-44 sm:w-52 sm:h-52 lg:w-56 lg:h-56 rounded-2xl overflow-hidden shrink-0 border-2 border-[#c9a063]/40 shadow-md">
+                <img
+                  src={leaderSunil}
+                  alt="Sunil - Director"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+
+              <div className="flex flex-col justify-center">
+                <span className="text-xs font-bold uppercase tracking-widest text-[#c9a063]">
+                  Director & Co-Founder
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-bold text-[#172235] font-heading mt-1.5 mb-3">
+                  Sunil
+                </h3>
+                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed font-normal mb-6">
+                  Championing structural strength, material standards, and strategic growth. Committed to delivering homes that stand the test of time.
+                </p>
+
+                <div className="flex items-start gap-2.5 text-xs sm:text-sm font-semibold text-[#172235]">
+                  <Quote className="w-4 h-4 sm:w-5 sm:h-5 text-[#c9a063] shrink-0 mt-0.5" />
+                  <span className="italic text-gray-500">"Excellence is never an accident; it is always the result of high intention."</span>
                 </div>
               </div>
             </motion.div>
@@ -328,7 +344,7 @@ export default function About() {
          ========================================================================= */}
       <section className="py-20 lg:py-28 bg-[#f8f5ef] relative">
         <div className="container-custom">
-          
+
           {/* Header */}
           <div className="text-center max-w-3xl mx-auto mb-16">
             <motion.span
@@ -337,7 +353,7 @@ export default function About() {
             >
               OUR CORE VALUES
             </motion.span>
-            
+
             <motion.h2
               className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#172235] mb-5 font-heading"
               {...magicalInViewProps}
@@ -394,7 +410,7 @@ export default function About() {
          ========================================================================= */}
       <section className="py-12 lg:py-16 bg-[#f8f5ef] relative overflow-hidden">
         <div className="container-custom">
-          
+
           <div className="text-center max-w-3xl mx-auto mb-8">
             <motion.span
               className="text-xs font-bold uppercase tracking-[3px] text-[#c9a063] mb-2 block"
@@ -421,56 +437,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* =========================================================================
-          7. SIGNATURE CONSULTATION CALL-TO-ACTION (CTA) BANNER
-         ========================================================================= */}
-      <section id="contact" className="py-20 bg-[#f8f5ef]">
-        <div className="container-custom">
-          <motion.div
-            className="relative rounded-3xl bg-[#172235] border border-[#c9a063]/40 p-10 sm:p-16 text-center text-white overflow-hidden shadow-2xl"
-            {...magicalInViewProps}
-          >
-            
-            {/* Background Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#c9a063]/15 rounded-full blur-3xl pointer-events-none" />
-
-            <div className="relative z-10 max-w-3xl mx-auto">
-              <span className="text-xs font-bold uppercase tracking-[3px] text-[#c9a063] mb-4 block">
-                BEGIN YOUR HOMEOWNERSHIP JOURNEY
-              </span>
-
-              <h2 className="text-3xl sm:text-5xl font-extrabold font-heading text-white leading-tight mb-6">
-                Ready to Find Your <br />
-                <span className="gold-gradient-text">Dream Home in Nagpur?</span>
-              </h2>
-
-              <p className="text-base text-gray-300 font-light leading-relaxed mb-10">
-                Connect with our residential specialists today for private project walkthroughs, floor plan consultations, and transparent pricing.
-              </p>
-
-              <div className="flex flex-wrap items-center justify-center gap-4">
-                <motion.a
-                  href="/#contact"
-                  className="px-9 py-4 rounded-full bg-[#c9a063] text-white text-xs font-bold uppercase tracking-[2px] hover:bg-[#b58c52] transition-all duration-300 shadow-xl hover:-translate-y-1 active:scale-95 flex items-center gap-2"
-                  {...magicalInViewProps}
-                >
-                  <span>Schedule Private Tour</span>
-                  <ArrowRight className="w-4 h-4" />
-                </motion.a>
-
-                <motion.a
-                  href="tel:+919876543210"
-                  className="px-9 py-4 rounded-full bg-[#f8f5ef]/10 border border-[#c9a063]/40 text-white text-xs font-bold uppercase tracking-[2px] hover:bg-[#f8f5ef] hover:text-[#172235] transition-all duration-300 hover:-translate-y-1"
-                  {...magicalInViewProps}
-                >
-                  Call Our Sales Team
-                </motion.a>
-              </div>
-            </div>
-
-          </motion.div>
-        </div>
-      </section>
 
     </div>
   );
