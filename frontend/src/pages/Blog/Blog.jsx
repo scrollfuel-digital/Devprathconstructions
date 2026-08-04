@@ -437,47 +437,7 @@ export default function Blog() {
         </div>
       </section>
 
-      {/* =========================================================================
-          CTA NEWSLETTER SECTION
-         ========================================================================= */}
-      <section className="py-20 bg-[#f8f5ef]">
-        <div className="container-custom">
-          <motion.div
-            className="relative rounded-3xl bg-[#172235] border border-[#c9a063]/40 p-10 sm:p-16 text-center text-white overflow-hidden shadow-2xl"
-            {...magicalInViewProps}
-          >
-            {/* Background Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#c9a063]/15 rounded-full blur-3xl pointer-events-none" />
-
-            <div className="relative z-10 max-w-3xl mx-auto">
-              <span className="text-xs font-bold uppercase tracking-[3px] text-[#c9a063] mb-4 block">
-                STAY INFORMED
-              </span>
-
-              <h2 className="text-3xl sm:text-5xl font-extrabold font-heading text-white leading-tight mb-6">
-                Never Miss an <br />
-                <span className="gold-gradient-text">Expert Insight</span>
-              </h2>
-
-              <p className="text-base text-gray-300 font-light leading-relaxed mb-10">
-                Subscribe to our newsletter for the latest real estate trends, home buying guides, and exclusive updates from Devprath Constructions.
-              </p>
-
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto">
-                <input
-                  type="email"
-                  placeholder="Enter your email address"
-                  className="w-full sm:flex-1 bg-white/10 border border-[#c9a063]/30 focus:border-[#c9a063] text-white rounded-full px-6 py-4 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#c9a063]/20 transition-all duration-300"
-                />
-                <button className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#c9a063] text-white text-xs font-bold uppercase tracking-[2px] hover:bg-[#b58c52] transition-all duration-300 shadow-xl hover:-translate-y-1 active:scale-95 shrink-0 flex items-center justify-center gap-2">
-                  <span>Subscribe</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+     
 
     </div>
   );
