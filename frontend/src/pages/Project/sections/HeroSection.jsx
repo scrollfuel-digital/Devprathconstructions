@@ -101,13 +101,13 @@ export default function HeroSection() {
             Discover an architectural masterpiece in Nagpur. A harmonious blend of premium commercial spaces and ultra-luxury residential living designed for the elite.
           </motion.p>
 
-          {/* Action Buttons */}
+          {/* Action Buttons (Side-by-side in single line on mobile, full size on PC) */}
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: false, amount: 0.1 }}
             variants={smoothEmergenceVariant(shouldReduceMotion, 0.55)}
-            className="flex flex-wrap justify-center md:justify-end gap-3 sm:gap-4 pt-2 w-full"
+            className="flex flex-row flex-nowrap items-center justify-center md:justify-end gap-2 sm:gap-4 pt-2 w-full max-w-full overflow-x-auto no-scrollbar"
           >
             <Button href="#phases" variant="primary">
               Explore Project

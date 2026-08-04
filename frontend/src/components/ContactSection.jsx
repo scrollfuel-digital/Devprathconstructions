@@ -1,7 +1,8 @@
 import React, { useState, memo } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { SocialConnectBar } from "./SocialConnectBar";
 
-// Magical Depth-Blur Motion Variant (Emerging from Background, Zero Delay, Unhurried Slow Pace)
+// Depth-Blur Motion Variant for Smooth Emergence
 const magicalBehindVariant = (shouldReduceMotion) => ({
   hidden: {
     opacity: 0,
@@ -49,30 +50,10 @@ const formFieldVariant = (shouldReduceMotion) => ({
 });
 
 const HQ_INFO_ITEMS = [
-  {
-    id: "phone",
-    icon: "call",
-    title: "Phone Call",
-    content: "+91 9923203281, +91 9921141299",
-  },
-  {
-    id: "email",
-    icon: "mail",
-    title: "Email Us",
-    content: "devprathconstructions@gmail.com",
-  },
-  {
-    id: "hours",
-    icon: "schedule",
-    title: "Working Time",
-    content: "Mon-Fri 10.30:AM-07.00:PM",
-  },
-  {
-    id: "address",
-    icon: "location_on",
-    title: "SITE ADD",
-    content: "Plot No. 365/2, Opp. MIDAS Hospital, Parsodi, Wardha Road, Nagpur",
-  },
+  { id: "phone", icon: "call", title: "Phone Call", content: "+91 9923203281, +91 9921141299" },
+  { id: "email", icon: "mail", title: "Email Us", content: "devprathconstructions@gmail.com" },
+  { id: "hours", icon: "schedule", title: "Working Time", content: "Mon-Fri 10.30:AM-07.00:PM" },
+  { id: "address", icon: "location_on", title: "SITE ADD", content: "Plot No. 365/2, Opp. MIDAS Hospital, Parsodi, Wardha Road, Nagpur" },
 ];
 
 export const ContactSection = memo(() => {
@@ -110,7 +91,7 @@ export const ContactSection = memo(() => {
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
-          {/* Left Column - Split-Screen Form (Magical Emergence) */}
+          {/* Left Column - Contact Form */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -119,7 +100,6 @@ export const ContactSection = memo(() => {
             style={{ willChange: "transform, opacity, filter" }}
             className="lg:col-span-7 bg-white p-8 sm:p-10 rounded-3xl border border-[#B9935A]/25 shadow-xl relative"
           >
-            {/* Header Text of Contact Form */}
             <div className="mb-8">
               <span className="text-xs font-bold uppercase tracking-[3px] text-[#B9935A] mb-2 block">
                 Get In Touch
@@ -154,7 +134,7 @@ export const ContactSection = memo(() => {
                 onSubmit={handleSubmit}
                 className="space-y-5"
               >
-                {/* Full Name Field */}
+                {/* Name */}
                 <motion.div variants={formFieldVariant(shouldReduceMotion)}>
                   <label className="block text-xs font-bold uppercase tracking-wider text-[#172235] mb-2">
                     Full Name *
@@ -164,14 +144,12 @@ export const ContactSection = memo(() => {
                     required
                     placeholder="Enter your full name"
                     value={formData.name}
-                    onChange={(e) =>
-                      setFormData({ ...formData, name: e.target.value })
-                    }
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-[#B9935A] focus:ring-4 focus:ring-[#B9935A]/15 focus:outline-none text-sm transition-all duration-300 bg-white text-gray-900 shadow-sm"
                   />
                 </motion.div>
 
-                {/* Email & Phone Fields */}
+                {/* Email & Phone */}
                 <motion.div
                   variants={formFieldVariant(shouldReduceMotion)}
                   className="grid grid-cols-1 sm:grid-cols-2 gap-5"
@@ -185,9 +163,7 @@ export const ContactSection = memo(() => {
                       required
                       placeholder="name@domain.com"
                       value={formData.email}
-                      onChange={(e) =>
-                        setFormData({ ...formData, email: e.target.value })
-                      }
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-[#B9935A] focus:ring-4 focus:ring-[#B9935A]/15 focus:outline-none text-sm transition-all duration-300 bg-white text-gray-900 shadow-sm"
                     />
                   </div>
@@ -201,24 +177,20 @@ export const ContactSection = memo(() => {
                       required
                       placeholder="+91 99232 03281"
                       value={formData.phone}
-                      onChange={(e) =>
-                        setFormData({ ...formData, phone: e.target.value })
-                      }
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-[#B9935A] focus:ring-4 focus:ring-[#B9935A]/15 focus:outline-none text-sm transition-all duration-300 bg-white text-gray-900 shadow-sm"
                     />
                   </div>
                 </motion.div>
 
-                {/* Project Preference Selection */}
+                {/* Project Preference */}
                 <motion.div variants={formFieldVariant(shouldReduceMotion)}>
                   <label className="block text-xs font-bold uppercase tracking-wider text-[#172235] mb-2">
                     Project Preference
                   </label>
                   <select
                     value={formData.interest}
-                    onChange={(e) =>
-                      setFormData({ ...formData, interest: e.target.value })
-                    }
+                    onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
                     className="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-[#B9935A] focus:ring-4 focus:ring-[#B9935A]/15 focus:outline-none text-sm transition-all duration-300 bg-white text-gray-900 shadow-sm"
                   >
                     <option value="Mangalmurti Residency - 3 BHK">
@@ -236,12 +208,12 @@ export const ContactSection = memo(() => {
                   </select>
                 </motion.div>
 
-                {/* Dynamic Interactive Submit Button */}
+                {/* Submit Button */}
                 <motion.div variants={formFieldVariant(shouldReduceMotion)}>
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full rounded-full bg-[#B9935A] py-4 text-xs font-semibold uppercase tracking-[3px] text-white transition-all duration-300 hover:bg-gradient-to-r hover:from-[#B9935A] hover:to-[#8B6732] hover:border-transparent hover:shadow-xl active:scale-95 flex items-center justify-center gap-2 cursor-pointer shadow-md mt-4 disabled:opacity-80"
+                    className="w-full rounded-full bg-[#B9935A] py-4 text-xs font-semibold uppercase tracking-[3px] text-white transition-all duration-300 hover:bg-gradient-to-r hover:from-[#B9935A] hover:to-[#8B6732] hover:shadow-xl active:scale-95 flex items-center justify-center gap-2 cursor-pointer shadow-md mt-4 disabled:opacity-80"
                   >
                     {isSubmitting ? (
                       <>
@@ -262,10 +234,9 @@ export const ContactSection = memo(() => {
             )}
           </motion.div>
 
-          {/* Right Column - HQ Information & Social Connect Action Box */}
+          {/* Right Column - HQ Information & Shared Social Connect Bar */}
           <div className="lg:col-span-5 flex flex-col justify-between space-y-6">
             <div>
-              {/* Right Column Header */}
               <motion.div
                 initial="hidden"
                 whileInView="visible"
@@ -281,7 +252,7 @@ export const ContactSection = memo(() => {
                 </h3>
               </motion.div>
 
-              {/* 4 HQ Info Items - Independent Per-Item Viewport Observers */}
+              {/* HQ Info Items */}
               <div className="space-y-4 text-sm text-gray-700">
                 {HQ_INFO_ITEMS.map((item) => (
                   <motion.div
@@ -309,7 +280,7 @@ export const ContactSection = memo(() => {
               </div>
             </div>
 
-            {/* Social Media & Direct Quick Connect Block (All Matching SVG Icons) */}
+            {/* Social & Contact Bar using Reusable SocialConnectBar Component */}
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -318,73 +289,7 @@ export const ContactSection = memo(() => {
               style={{ willChange: "transform, opacity, filter" }}
               className="mt-6 pt-4 border-t border-[#B9935A]/20"
             >
-              <div className="flex items-center gap-6 flex-wrap">
-                {/* Facebook Link */}
-                <a
-                  href="https://www.facebook.com/devprathconstructions/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Facebook"
-                  title="Follow us on Facebook"
-                  className="inline-flex items-center justify-center text-[#172235] hover:text-[#B9935A] transition-all duration-300 hover:scale-115 shrink-0"
-                >
-                  <svg className="w-7 h-7 fill-current" viewBox="0 0 24 24">
-                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                  </svg>
-                </a>
-
-                {/* Instagram Link */}
-                <a
-                  href="https://www.instagram.com/devprathconstructions/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram"
-                  title="Follow us on Instagram"
-                  className="inline-flex items-center justify-center text-[#172235] hover:text-[#B9935A] transition-all duration-300 hover:scale-115 shrink-0"
-                >
-                  <svg className="w-7 h-7 fill-current" viewBox="0 0 24 24">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                  </svg>
-                </a>
-
-                {/* WhatsApp Link */}
-                <a
-                  href="https://wa.me/919923203281?text=Hi%20Devprath%20Team,%20I%20am%20interested%20in%20Mangalmurti%20Residency."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="WhatsApp"
-                  title="Chat on WhatsApp (+91 99232 03281)"
-                  className="inline-flex items-center justify-center text-[#172235] hover:text-[#25D366] transition-all duration-300 hover:scale-115 shrink-0"
-                >
-                  <svg className="w-7 h-7 fill-current" viewBox="0 0 24 24">
-                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-1.151 4.204 4.234-1.111zm12.355-6.59c-.273-.137-1.616-.797-1.866-.888-.25-.092-.432-.137-.615.137-.182.273-.706.888-.865 1.07-.159.183-.318.205-.591.069-.273-.137-1.155-.426-2.201-1.359-.814-.726-1.363-1.623-1.523-1.896-.159-.273-.017-.421.12-.557.123-.122.273-.318.41-.477.136-.159.182-.273.273-.456.091-.182.046-.341-.023-.477-.068-.137-.615-1.482-.843-2.029-.222-.533-.448-.46-.615-.468-.159-.008-.341-.01-.523-.01s-.477.068-.727.341c-.25.273-.956.934-.956 2.28 0 1.346.979 2.646 1.116 2.828.137.182 1.927 2.943 4.668 4.126 2.741 1.183 2.741.789 3.242.744.501-.046 1.616-.66 1.844-1.298.228-.637.228-1.183.159-1.298-.068-.115-.25-.183-.523-.32z"/>
-                  </svg>
-                </a>
-
-                {/* Email Link (Clean Vector SVG, Working mailto:) */}
-                <a
-                  href="mailto:devprathconstructions@gmail.com"
-                  aria-label="Email"
-                  title="Email devprathconstructions@gmail.com"
-                  className="inline-flex items-center justify-center text-[#172235] hover:text-[#B9935A] transition-all duration-300 hover:scale-115 shrink-0"
-                >
-                  <svg className="w-7 h-7 fill-current" viewBox="0 0 24 24">
-                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                  </svg>
-                </a>
-
-                {/* Call / Phone Link (Clean Vector SVG, Working tel:) */}
-                <a
-                  href="tel:+919923203281"
-                  aria-label="Call Us"
-                  title="Call +91 99232 03281"
-                  className="inline-flex items-center justify-center text-[#172235] hover:text-[#B9935A] transition-all duration-300 hover:scale-115 shrink-0"
-                >
-                  <svg className="w-7 h-7 fill-current" viewBox="0 0 24 24">
-                    <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
-                  </svg>
-                </a>
-              </div>
+              <SocialConnectBar containerClassName="flex items-center justify-between w-full px-6 sm:px-10" iconSizeClass="w-7 h-7" />
             </motion.div>
           </div>
 
