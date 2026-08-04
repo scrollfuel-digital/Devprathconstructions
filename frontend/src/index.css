@@ -190,6 +190,12 @@ section {
   -webkit-text-fill-color: transparent;
 }
 
+/* Gold Button Gradient Utility (Solid & Opaque) */
+.gold-btn-gradient {
+  background: linear-gradient(135deg, #B9935A 0%, #785926 100%) !important;
+  background-color: #B9935A;
+}
+
 /* ===========================
    CONTAINER UTILITIES
 =========================== */
