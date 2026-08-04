@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 @import "tailwindcss";
 
@@ -38,12 +38,12 @@
   --color-inverse-surface: #1a1a1a;
 
   /* ===========================
-     TYPOGRAPHY (POPPINS ONLY)
+     TYPOGRAPHY
   =========================== */
 
   --font-heading: "Poppins", sans-serif;
   --font-body: "Poppins", sans-serif;
-  --font-serif: "Poppins", sans-serif;
+  --font-serif: "Playfair Display", serif;
   --font-sans: "Poppins", sans-serif;
 
   /* Font Aliases */

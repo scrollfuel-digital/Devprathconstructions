@@ -12,22 +12,22 @@ import Project from "../pages/Project/Project";
  * Central route mapping configuration.
  */
 const AppRoutes = () => {
-  return (
-    <Routes>
-      <Route path="/" element={<Home />} />
+    return (
+        <Routes>
+            <Route path="/" element={<Home />} />
 
-      <Route path="/about-us" element={<AboutUs />} />
-      <Route path="/aboutus" element={<AboutUs />} />
+            <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/aboutus" element={<AboutUs />} />
 
-      <Route path="/project" element={<Project />} />
-      <Route path="/projects" element={<Project />} />
+            <Route path="/project" element={<Project />} />
+            <Route path="/projects" element={<Project />} />
 
       <Route path="/blog" element={<Blog />} />
       <Route path="/contact" element={<Contact />} />
 
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
-  );
+            <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+    );
 };
 
 export default AppRoutes;
