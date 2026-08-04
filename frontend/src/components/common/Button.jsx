@@ -14,13 +14,13 @@ export default function Button({
   ...props
 }) {
   const baseClasses =
-    'rounded-full transition-all duration-300 text-xs font-semibold uppercase flex items-center justify-center cursor-pointer active:scale-95 text-center shadow-md';
+    'rounded-full transition-all duration-300 text-[10px] sm:text-xs font-semibold uppercase flex items-center justify-center cursor-pointer active:scale-95 text-center shadow-md whitespace-nowrap shrink-0';
 
   const variants = {
     primary:
-      'bg-[#B9935A] py-3.5 px-8 tracking-[2px] text-white hover:bg-gradient-to-r hover:from-[#B9935A] hover:to-[#8B6732] hover:border-transparent',
+      'bg-[#B9935A] py-2.5 sm:py-3.5 px-3.5 sm:px-8 tracking-[1px] sm:tracking-[2px] text-white hover:bg-gradient-to-r hover:from-[#B9935A] hover:to-[#8B6732] hover:border-transparent',
     secondary:
-      'bg-white text-[#B9935A] border border-[#B9935A] py-3.5 px-8 tracking-[1px] hover:bg-[#B9935A] hover:text-white shadow-sm',
+      'bg-white text-[#B9935A] border border-[#B9935A] py-2.5 sm:py-3.5 px-3.5 sm:px-8 tracking-[0.5px] sm:tracking-[1px] hover:bg-[#B9935A] hover:text-white shadow-sm',
   };
 
   const combinedClasses = `${baseClasses} ${variants[variant] || variants.primary} ${className}`;

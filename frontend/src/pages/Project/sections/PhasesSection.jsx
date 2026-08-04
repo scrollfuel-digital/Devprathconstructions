@@ -18,60 +18,127 @@ const HIGHLIGHT_IMAGES = [
   'https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=800&q=80', // 7: Clubhouse & Swimming Pool
 ];
 
+// Helper to compute 3D circular deck transform properties cleanly
+const getDeckTransform = (isFront, cardId, idx) => {
+  if (isFront) {
+    return { zIndex: 30, scale: 1, rotate: 0, x: 0, y: 0, opacity: 1 };
+  }
+  const offsets = {
+    phase1: { rotate: -12, x: -35, y: -15, zIndex: 20, opacity: 0.8 },
+    phase2_3: { rotate: 12, x: 35, y: -15, zIndex: 20, opacity: 0.8 },
+    default: { rotate: -6, x: -20, y: -25, zIndex: 10, opacity: 0.65 },
+  };
+  return {
+    scale: 0.88,
+    ...(offsets[cardId] || { rotate: idx === 1 ? 12 : -12, x: idx === 1 ? 40 : -40, y: -20, zIndex: 10, opacity: 0.7 }),
+  };
+};
+
+/**
+ * TownshipFeatureCard Sub-Component
+ * Fully isolated per-element hover/tap state rendering interactive image emergence and smooth card growth.
+ */
+function TownshipFeatureCard({ highlight, bgImageUrl }) {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <div
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onClick={() => setIsHovered((prev) => !prev)}
+      className={`relative bg-white p-6 rounded-2xl border transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] min-h-[220px] flex flex-col justify-between cursor-pointer overflow-hidden ${
+        isHovered
+          ? 'scale-[1.08] -translate-y-3 shadow-[0_30px_60px_rgba(185,147,90,0.35)] border-[#B9935A] ring-2 ring-[#B9935A]/30 z-30'
+          : 'border-[#B9935A]/25 shadow-md z-10'
+      }`}
+    >
+      {/* Layer 0: White Background Base */}
+      <div
+        className={`absolute inset-0 bg-white z-0 transition-opacity duration-600 pointer-events-none ${
+          isHovered ? 'opacity-0' : 'opacity-100'
+        }`}
+      />
+
+      {/* Layer 1: Image Overlay Container */}
+      <div
+        className={`absolute inset-0 z-10 transition-opacity duration-600 overflow-hidden pointer-events-none ${
+          isHovered ? 'opacity-100' : 'opacity-0'
+        }`}
+      >
+        <img
+          src={bgImageUrl}
+          alt={highlight.title}
+          className={`w-full h-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            isHovered ? 'scale-100' : 'scale-115'
+          }`}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/60 to-black/30" />
+      </div>
+
+      {/* Layer 2: Text & Icon Content */}
+      <div className="relative z-20 flex flex-col justify-between h-full pointer-events-none">
+        <div>
+          <div
+            className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-500 mb-4 shadow-sm ${
+              isHovered
+                ? 'bg-[#B9935A] text-white scale-115 shadow-[0_8px_20px_rgba(185,147,90,0.4)]'
+                : 'bg-[#B9935A]/15 text-[#B9935A]'
+            }`}
+          >
+            <span className="material-symbols-outlined text-2xl">{highlight.icon}</span>
+          </div>
+
+          <h4
+            className={`font-heading text-lg font-bold transition-colors duration-500 mb-1.5 leading-snug ${
+              isHovered ? 'text-white' : 'text-[#1B1C1C]'
+            }`}
+          >
+            {highlight.title}
+          </h4>
+        </div>
+
+        <p
+          className={`text-xs transition-colors duration-500 leading-relaxed font-light mt-2 ${
+            isHovered ? 'text-gray-200' : 'text-[#4E453A]'
+          }`}
+        >
+          {highlight.description}
+        </p>
+      </div>
+    </div>
+  );
+}
+
 /**
  * PhasesSection Component
- * Center-aligned header, 2-column layout (left: hover-expandable accordion phase boxes with Wing A open by default,
- * right: infinite automatic 3D circular arc stacked card deck animation), followed by a clean, static township feature grid
- * featuring interactive hover background image fade-up overlays.
+ * Architectural phase overview featuring independent 3D deck rotation and Township amenity features.
  */
 export default function PhasesSection() {
-  const [activePhaseId, setActivePhaseId] = useState('phase1'); // Wing A open by default!
-  const [isHoveringLeft, setIsHoveringLeft] = useState(false);
+  const [activePhaseId, setActivePhaseId] = useState('phase1'); // Wing A open by default
   const [autoDeckIdx, setAutoDeckIdx] = useState(0);
   const shouldReduceMotion = useReducedMotion();
 
-  // Full-sized 3D stacked deck images using requested project assets
   const deckCards = [
-    {
-      id: 'phase1',
-      title: 'Phase 1: Wing A',
-      subtitle: '64+ Commercial Outlets Top Side View',
-      image: topSideViewImg,
-    },
-    {
-      id: 'phase2_3',
-      title: 'Phases 2 & 3: Wings B & C',
-      subtitle: '168 Luxury 2BHK Homes Top View',
-      image: topViewImg,
-    },
-    {
-      id: 'default',
-      title: 'Mangalmurti Residency',
-      subtitle: 'Master Micro Township Side View',
-      image: sideViewImg,
-    },
+    { id: 'phase1', title: 'Phase 1: Wing A', subtitle: '64+ Commercial Outlets Top Side View', image: topSideViewImg },
+    { id: 'phase2_3', title: 'Phases 2 & 3: Wings B & C', subtitle: '168 Luxury 2BHK Homes Top View', image: topViewImg },
+    { id: 'default', title: 'Mangalmurti Residency', subtitle: 'Master Micro Township Side View', image: sideViewImg },
   ];
 
-  // Infinite automatic 3D circular deck cycling when idle
+  // Continuous independent 3D circular deck rotation
   useEffect(() => {
-    if (isHoveringLeft) return;
-
     const timer = setInterval(() => {
       setAutoDeckIdx((prev) => (prev + 1) % deckCards.length);
     }, 3500);
 
     return () => clearInterval(timer);
-  }, [isHoveringLeft, deckCards.length]);
+  }, [deckCards.length]);
 
-  // Determine active card ID (manual hover on left takes priority over auto deck cycle)
-  const currentFrontCardId = isHoveringLeft
-    ? activePhaseId
-    : deckCards[autoDeckIdx].id;
+  const currentFrontCardId = deckCards[autoDeckIdx].id;
 
   return (
     <section className="py-24 bg-gradient-to-b from-[#F8F5EF] via-[#FCF9F4] to-[#F8F5EF] relative overflow-hidden border-y border-[#B9935A]/20" id="phases">
       <div className="relative z-10 px-6 md:px-20 max-w-[1440px] mx-auto">
-        {/* Top Header - Centered */}
+        {/* Header */}
         <div className="max-w-3xl mx-auto mb-16 text-center">
           <motion.div
             initial="hidden"
@@ -115,17 +182,10 @@ export default function PhasesSection() {
           </motion.p>
         </div>
 
-        {/* Main Grid Layout: Left 2 Accordion Phase Boxes, Right Full-Sized 3D Circular Card Deck */}
+        {/* Phase Grid Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16">
-          {/* Left Column: Hover-Expandable Accordion Phase Boxes (Wing A open by default) */}
-          <div
-            className="lg:col-span-7 space-y-4"
-            onMouseEnter={() => setIsHoveringLeft(true)}
-            onMouseLeave={() => {
-              setIsHoveringLeft(false);
-              setActivePhaseId('phase1');
-            }}
-          >
+          {/* Left: Accordion Phase Cards */}
+          <div className="lg:col-span-7 space-y-4">
             {PHASES_DATA.map((phase, idx) => {
               const isActive = activePhaseId === phase.id;
 
@@ -136,30 +196,17 @@ export default function PhasesSection() {
                   whileInView="visible"
                   viewport={{ once: false, amount: 0.2 }}
                   variants={smoothEmergenceVariant(shouldReduceMotion, 0.3 + idx * 0.15)}
-                  onMouseEnter={() => {
-                    setIsHoveringLeft(true);
-                    setActivePhaseId(phase.id);
-                  }}
-                  onClick={() => {
-                    setIsHoveringLeft(true);
-                    setActivePhaseId(phase.id);
-                  }}
+                  onMouseEnter={() => setActivePhaseId(phase.id)}
+                  onClick={() => setActivePhaseId(phase.id)}
                   className={`rounded-2xl p-5 md:p-6 transition-colors transition-shadow duration-300 cursor-pointer border overflow-hidden ${
                     isActive
                       ? 'bg-white border-[#B9935A] shadow-[0_12px_30px_rgba(185,147,90,0.15)] ring-1 ring-[#B9935A]/40'
                       : 'bg-white/80 backdrop-blur-md border-[#B9935A]/25 hover:border-[#B9935A]/60 hover:bg-white/95 shadow-sm'
                   }`}
                 >
-                  {/* Card Header (Headline) */}
                   <div className="flex items-center justify-between gap-4">
                     <div className="flex items-center gap-3.5">
-                      <div
-                        className={`p-3 rounded-xl transition-colors duration-300 ${
-                          isActive
-                            ? 'bg-[#B9935A] text-white shadow-md'
-                            : 'bg-[#B9935A]/15 text-[#B9935A]'
-                        }`}
-                      >
+                      <div className={`p-3 rounded-xl transition-colors duration-300 ${isActive ? 'bg-[#B9935A] text-white shadow-md' : 'bg-[#B9935A]/15 text-[#B9935A]'}`}>
                         <span className="material-symbols-outlined text-xl md:text-2xl">{phase.icon}</span>
                       </div>
                       <div>
@@ -181,27 +228,16 @@ export default function PhasesSection() {
                           {phase.statLabel}
                         </span>
                       </div>
-                      <span
-                        className={`material-symbols-outlined text-gray-400 transition-transform duration-300 ${
-                          isActive ? 'rotate-180 text-[#B9935A]' : ''
-                        }`}
-                      >
+                      <span className={`material-symbols-outlined text-gray-400 transition-transform duration-300 ${isActive ? 'rotate-180 text-[#B9935A]' : ''}`}>
                         keyboard_arrow_down
                       </span>
                     </div>
                   </div>
 
-                  {/* Smooth Animated Body Container */}
                   <motion.div
                     initial={false}
-                    animate={{
-                      height: isActive ? 'auto' : 0,
-                      opacity: isActive ? 1 : 0,
-                    }}
-                    transition={{
-                      duration: 0.35,
-                      ease: [0.16, 1, 0.3, 1],
-                    }}
+                    animate={{ height: isActive ? 'auto' : 0, opacity: isActive ? 1 : 0 }}
+                    transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                     className="overflow-hidden"
                   >
                     <div className="mt-5 pt-5 border-t border-[#B9935A]/20">
@@ -214,19 +250,11 @@ export default function PhasesSection() {
                       </h5>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         {phase.highlights.map((item, hIdx) => (
-                          <div
-                            key={hIdx}
-                            className="flex items-center gap-2.5 bg-[#F8F5EF] p-2.5 rounded-lg border border-[#B9935A]/20"
-                          >
-                            <span
-                              className="material-symbols-outlined text-[#B9935A] text-lg shrink-0"
-                              style={{ fontVariationSettings: "'FILL' 1" }}
-                            >
+                          <div key={hIdx} className="flex items-center gap-2.5 bg-[#F8F5EF] p-2.5 rounded-lg border border-[#B9935A]/20">
+                            <span className="material-symbols-outlined text-[#B9935A] text-lg shrink-0" style={{ fontVariationSettings: "'FILL' 1" }}>
                               check_circle
                             </span>
-                            <span className="text-xs font-medium text-[#1B1C1C] leading-snug">
-                              {item}
-                            </span>
+                            <span className="text-xs font-medium text-[#1B1C1C] leading-snug">{item}</span>
                           </div>
                         ))}
                       </div>
@@ -237,7 +265,7 @@ export default function PhasesSection() {
             })}
           </div>
 
-          {/* Right Column: Infinite 3D Circular Arc Stacked Image Deck Showcase (lg:col-span-5) */}
+          {/* Right: Independent 3D Circular Deck */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -247,89 +275,27 @@ export default function PhasesSection() {
           >
             {deckCards.map((card, idx) => {
               const isFront = currentFrontCardId === card.id;
-
-              // Calculate visible 3D circular arc transform offset & rotation values
-              let zIndex = 10;
-              let scale = 0.88;
-              let rotate = idx === 0 ? 0 : idx === 1 ? 12 : -12;
-              let x = idx === 0 ? 0 : idx === 1 ? 40 : -40;
-              let y = idx === 0 ? 0 : idx === 1 ? -15 : -25;
-              let opacity = 0.7;
-
-              if (isFront) {
-                zIndex = 30;
-                scale = 1;
-                rotate = 0;
-                x = 0;
-                y = 0;
-                opacity = 1;
-              } else {
-                if (card.id === 'phase1') {
-                  rotate = -12;
-                  x = -35;
-                  y = -15;
-                  zIndex = 20;
-                  opacity = 0.8;
-                } else if (card.id === 'phase2_3') {
-                  rotate = 12;
-                  x = 35;
-                  y = -15;
-                  zIndex = 20;
-                  opacity = 0.8;
-                } else if (card.id === 'default') {
-                  rotate = -6;
-                  x = -20;
-                  y = -25;
-                  zIndex = 10;
-                  opacity = 0.65;
-                }
-              }
+              const transform = getDeckTransform(isFront, card.id, idx);
 
               return (
                 <motion.div
                   key={card.id}
-                  animate={{
-                    zIndex,
-                    scale,
-                    rotate,
-                    x,
-                    y,
-                    opacity,
-                  }}
-                  transition={{
-                    duration: 0.8,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
-                  onClick={() => {
-                    if (card.id !== 'default') {
-                      setIsHoveringLeft(true);
-                      setActivePhaseId(card.id);
-                    }
-                  }}
-                  className={`absolute w-full h-[450px] md:h-[500px] rounded-2xl overflow-hidden border transition-shadow duration-500 cursor-pointer ${
-                    isFront
-                      ? 'border-[#B9935A] shadow-[0_25px_50px_rgba(185,147,90,0.25)] ring-1 ring-[#B9935A]/50'
-                      : 'border-[#B9935A]/30 shadow-lg hover:border-[#B9935A]/70'
+                  animate={transform}
+                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                  className={`absolute w-full h-[450px] md:h-[500px] rounded-2xl overflow-hidden border transition-shadow duration-500 ${
+                    isFront ? 'border-[#B9935A] shadow-[0_25px_50px_rgba(185,147,90,0.25)] ring-1 ring-[#B9935A]/50' : 'border-[#B9935A]/30 shadow-lg'
                   }`}
                 >
-                  <img
-                    alt={card.title}
-                    className="w-full h-full object-cover"
-                    src={card.image}
-                  />
+                  <img alt={card.title} className="w-full h-full object-cover" src={card.image} />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent pointer-events-none" />
 
-                  {/* Card Label Overlay */}
-                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white pointer-events-none">
-                    <span className="font-label-caps text-[10px] font-bold tracking-widest text-[#F0D060] uppercase mb-1 block">
-                      {isFront ? 'Active Phase View' : 'Phase Perspective'}
+                  <div className="absolute bottom-6 left-6 right-6 text-white z-20 pointer-events-none">
+                    <span className="font-label-caps text-[10px] uppercase tracking-[0.2em] text-[#F0D060] bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-[#B9935A]/40 inline-block mb-2">
+                      {card.subtitle}
                     </span>
-                    <h4 className="font-heading text-xl md:text-2xl font-bold text-white leading-tight">
+                    <h4 className="font-heading text-xl md:text-2xl font-bold drop-shadow-md">
                       {card.title}
                     </h4>
-                    <p className="text-xs md:text-sm text-white/80 mt-0.5">
-                      {card.subtitle}
-                    </p>
                   </div>
                 </motion.div>
               );
@@ -337,64 +303,28 @@ export default function PhasesSection() {
           </motion.div>
         </div>
 
-        {/* 8 Comprehensive Township Amenities Highlights Grid - Clean Static Grid Layout */}
-        <div className="mt-16 pt-16 border-t border-[#B9935A]/25">
+        {/* Township Features Section */}
+        <div className="mt-20 pt-16 border-t border-[#B9935A]/20">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="font-label-caps text-xs font-semibold text-[#785926] bg-[#B9935A]/10 px-3.5 py-1 rounded-full border border-[#B9935A]/30 uppercase tracking-widest inline-block">
-              Elevated Living Experience
+            <span className="text-xs font-bold uppercase tracking-[3px] text-[#B9935A] block mb-2">
+              World-Class Experience
             </span>
-
-            <h3 className="font-heading text-2xl md:text-4xl font-bold text-[#1B1C1C] mt-3">
-              Township Features &amp; World-Class Amenities
+            <h3 className="font-heading text-2xl md:text-4xl font-bold text-[#1B1C1C]">
+              Township Features &amp; Amenities
             </h3>
+            <p className="text-xs sm:text-sm text-[#4E453A] mt-2 font-light">
+              Crafted for luxury, security, and sustainable micro-township living in Nagpur.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {PHASE_HIGHLIGHTS.map((item, idx) => {
-              const bgImage = HIGHLIGHT_IMAGES[idx];
-
-              return (
-                <div
-                  key={idx}
-                  className="relative group p-5 rounded-2xl border border-[#B9935A]/25 hover:border-[#B9935A] hover:shadow-[0_20px_40px_rgba(185,147,90,0.2)] transition-all duration-500 overflow-hidden flex flex-col justify-between cursor-pointer min-h-[210px]"
-                >
-                  {/* Layer 1: Base Solid White Background (fades out on hover) */}
-                  <div className="absolute inset-0 bg-white/95 backdrop-blur-md group-hover:opacity-0 transition-opacity duration-500 z-0 pointer-events-none" />
-
-                  {/* Layer 2: Animated Hover Background Image (fades in and zooms on hover) */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none overflow-hidden">
-                    <img
-                      src={bgImage}
-                      alt={item.title}
-                      className="w-full h-full object-cover transform scale-110 group-hover:scale-100 transition-transform duration-700 ease-out"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/65 to-black/35" />
-                  </div>
-
-                  {/* Layer 3: Foreground Content (z-20 on top of image) */}
-                  <div className="relative z-20 flex flex-col justify-between h-full">
-                    <div>
-                      <div className="w-12 h-12 rounded-xl bg-[#B9935A]/15 text-[#B9935A] flex items-center justify-center mb-4 group-hover:bg-[#B9935A] group-hover:text-white transition-colors duration-300 shadow-sm">
-                        <span className="material-symbols-outlined text-2xl">{item.icon}</span>
-                      </div>
-                      <h4 className="font-heading font-bold text-base text-[#1B1C1C] group-hover:text-white transition-colors duration-300 mb-2 leading-snug">
-                        {item.title}
-                      </h4>
-                      <p className="text-xs text-[#666666] group-hover:text-white/90 transition-colors duration-300 leading-relaxed">
-                        {item.description}
-                      </p>
-                    </div>
-
-                    <div className="mt-4 pt-3 border-t border-[#B9935A]/20 group-hover:border-white/30 transition-colors duration-300 flex items-center gap-1.5 text-[11px] font-semibold text-[#B9935A] group-hover:text-[#F0D060]">
-                      <span className="material-symbols-outlined text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>
-                        check_circle
-                      </span>
-                      <span>Included in Township</span>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+            {PHASE_HIGHLIGHTS.map((highlight, idx) => (
+              <TownshipFeatureCard
+                key={highlight.id}
+                highlight={highlight}
+                bgImageUrl={HIGHLIGHT_IMAGES[idx % HIGHLIGHT_IMAGES.length]}
+              />
+            ))}
           </div>
         </div>
       </div>

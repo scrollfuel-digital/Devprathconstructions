@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { SocialConnectBar } from "../../components/SocialConnectBar";
 import {
   Mail,
   Phone,
@@ -17,24 +18,6 @@ import {
   ShieldCheck,
   Compass,
 } from "lucide-react";
-
-function InstagramIcon({ className = "w-5 h-5" }) {
-  return (
-    <svg
-      className={className}
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      viewBox="0 0 24 24"
-    >
-      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-    </svg>
-  );
-}
 
 export default function Contact() {
   const prefersReducedMotion = useReducedMotion();
@@ -279,24 +262,9 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Social Links Card */}
-            <div className="bg-gradient-to-r from-[#172235] to-[#202d44] text-white rounded-2xl p-6 shadow-xl flex items-center justify-between">
-              <div>
-                <span className="text-xs text-[#B9935A] font-bold uppercase tracking-widest block mb-1">
-                  Connect With Us
-                </span>
-                <p className="text-sm text-gray-300">
-                  Follow our latest projects & updates
-                </p>
-              </div>
-
-              <a
-                href="#instagram"
-                aria-label="Instagram"
-                className="w-11 h-11 rounded-xl bg-white/10 hover:bg-[#B9935A] hover:text-white flex items-center justify-center border border-white/15 transition-all duration-300 cursor-pointer shadow-md group"
-              >
-                <InstagramIcon className="w-5 h-5 group-hover:scale-110 transition-transform" />
-              </a>
+            {/* Social Channels Bar matching Home Page layout exactly (no card box) */}
+            <div className="mt-6 pt-4 border-t border-[#B9935A]/20">
+              <SocialConnectBar containerClassName="flex items-center justify-between w-full px-6 sm:px-10" iconSizeClass="w-7 h-7" />
             </div>
           </div>
 
