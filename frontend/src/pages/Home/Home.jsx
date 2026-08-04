@@ -37,10 +37,10 @@ export const Home = () => {
         <FeaturedProjectSection onBookConsultation={() => setIsConsultationOpen(true)} />
 
         {/* Unit Floor Plans & Layout Selector */}
-        <FloorPlansSection onBookConsultation={() => setIsConsultationOpen(true)} />
+        {/* <FloorPlansSection onBookConsultation={() => setIsConsultationOpen(true)} /> */}
 
         {/* Resort Style Amenities */}
-        <LuxuryAmenitiesSection />
+        {/* <LuxuryAmenitiesSection /> */}
 
         {/* Location & Connectivity Timeline (Leaflet Map) */}
         <HubOfExcellenceSection />
