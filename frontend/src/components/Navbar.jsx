@@ -45,11 +45,10 @@ export default function Navbar({ onBookConsultation }) {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-        isScrolled
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${isScrolled
           ? "bg-white/95 backdrop-blur-md shadow-lg py-3 border-b border-[#B9935A]/20"
           : "bg-transparent py-5"
-      }`}
+        }`}
     >
       <div className="w-full max-w-[1440px] mx-auto flex items-center justify-between px-6 md:px-20">
         {/* ================= Logo ================= */}
@@ -57,11 +56,10 @@ export default function Navbar({ onBookConsultation }) {
           <img
             src={logo}
             alt="Devprath Constructions LLP"
-            className={`object-contain object-left transition-all duration-300 ${
-              isScrolled
+            className={`object-contain transition-all duration-300 ${isScrolled
                 ? "h-18 sm:h-20 max-h-[72px] w-[210px] sm:w-[250px]"
                 : "h-24 sm:h-28 max-h-[96px] w-[260px] sm:w-[320px]"
-            }`}
+              }`}
           />
         </Link>
 
@@ -140,9 +138,9 @@ function NavItem({ item, isActive }) {
       <Link
         to={item.path}
         style={{ color: "#B9935A" }}
-        className={`relative uppercase tracking-[2px] text-xs font-bold transition-all duration-300 after:absolute after:left-0 after:-bottom-2 after:h-[2.5px] after:bg-[#B9935A] after:transition-all after:duration-300 ${
-          isActive ? "after:w-full font-extrabold" : "after:w-0 hover:after:w-full"
-        }`}
+        onClick={() => setActiveSection(item.title.toLowerCase())}
+        className={`relative uppercase tracking-[2px] text-xs font-bold transition-all duration-300 after:absolute after:left-0 after:-bottom-2 after:h-[2.5px] after:bg-[#B9935A] after:transition-all after:duration-300 ${isActive ? "after:w-full font-extrabold" : "after:w-0 hover:after:w-full"
+          }`}
       >
         {item.title}
       </Link>
