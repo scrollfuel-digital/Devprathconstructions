@@ -35,8 +35,11 @@ export const Home = () => {
         {/* Featured Residence Showcase */}
         <FeaturedProjectSection onBookConsultation={() => setIsConsultationOpen(true)} />
 
+        {/* Unit Floor Plans & Layout Selector */}
+        {/* <FloorPlansSection onBookConsultation={() => setIsConsultationOpen(true)} /> */}
+
         {/* Resort Style Amenities */}
-        <LuxuryAmenitiesSection />
+        {/* <LuxuryAmenitiesSection /> */}
 
         {/* Location & Connectivity Timeline (Leaflet Map) */}
         <HubOfExcellenceSection />
