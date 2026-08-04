@@ -1,21 +1,22 @@
 import clubImg from '../assets/Amenities/club.png';
 import gymImg from '../assets/Amenities/gym.png';
-import chessImg from '../assets/Amenities/chess.jpg';
 import poolImg from '../assets/Amenities/pool2.png';
 import ttImg from '../assets/Amenities/table-tennis.jpg';
 import yogaImg from '../assets/Amenities/yoga.png';
-import cardsImg from '../assets/Amenities/cards.jpg';
+import gardenSeniorsImg from '../assets/Amenities/garden-seniors.png';
+import indoorGamesImg from '../assets/Amenities/indoor-games.png';
+import kidsPlayImg from '../assets/Amenities/kids-play.png';
 
 export const AMENITIES_CATEGORIES = [
   { id: 'all', label: 'All Amenities', image: clubImg, icon: 'apps', description: 'Comprehensive township features' },
-  { id: 'special', label: 'Special Features', image: clubImg, icon: 'nightlife', description: 'Exclusive community areas & party lawns' },
+  { id: 'special', label: 'Special Features', image: gardenSeniorsImg, icon: 'nightlife', description: 'Exclusive community areas, party lawns & senior zones' },
   { id: 'health', label: 'Health & Fitness', image: gymImg, icon: 'fitness_center', description: 'Gymnasium, yoga decks & jogging track' },
-  { id: 'sports', label: 'Sports', image: poolImg, icon: 'sports_tennis', description: 'Swimming pool, table tennis, chess & carrom' },
-  { id: 'entertainment', label: 'Entertainment', image: clubImg, icon: 'child_care', description: 'Kids play area & family recreation' },
+  { id: 'sports', label: 'Sports', image: indoorGamesImg, icon: 'sports_tennis', description: 'Swimming pool, table tennis & indoor games lounge' },
+  { id: 'entertainment', label: 'Entertainment', image: kidsPlayImg, icon: 'child_care', description: 'Kids play area & family recreation' },
 ];
 
 export const AMENITIES_ITEMS = [
-  // Amenities & Special Features
+  // Special Features
   {
     id: 1,
     categoryId: 'special',
@@ -29,19 +30,10 @@ export const AMENITIES_ITEMS = [
     id: 2,
     categoryId: 'special',
     categoryName: 'Special Features',
-    title: 'Garden walkways',
-    icon: 'directions_walk',
-    image: yogaImg,
-    description: 'Scenic tree-lined pathways for morning walks and peaceful strolls.',
-  },
-  {
-    id: 3,
-    categoryId: 'special',
-    categoryName: 'Special Features',
-    title: 'Senior Citizens Interactive Area',
+    title: 'Garden Walkways & Senior Citizens Interactive Area',
     icon: 'elderly',
-    image: clubImg,
-    description: 'Dedicated quiet seating zones and social spaces for seniors.',
+    image: gardenSeniorsImg,
+    description: 'Scenic tree-lined pathways with dedicated quiet seating and interactive zones for seniors.',
   },
   {
     id: 4,
@@ -62,7 +54,7 @@ export const AMENITIES_ITEMS = [
     description: 'Manicured lawns equipped for private events and celebrations.',
   },
 
-  // Health and Fitness
+  // Health & Fitness
   {
     id: 6,
     categoryId: 'health',
@@ -114,28 +106,10 @@ export const AMENITIES_ITEMS = [
     id: 11,
     categoryId: 'sports',
     categoryName: 'Sports',
-    title: 'Chess',
+    title: 'Chess, Carrom & Cards',
     icon: 'extension',
-    image: chessImg,
-    description: 'Dedicated quiet indoor area for strategic chess games.',
-  },
-  {
-    id: 12,
-    categoryId: 'sports',
-    categoryName: 'Sports',
-    title: 'Carom',
-    icon: 'sports_esports',
-    image: chessImg,
-    description: 'Recreational carrom lounge for indoor family entertainment.',
-  },
-  {
-    id: 13,
-    categoryId: 'sports',
-    categoryName: 'Sports',
-    title: 'Cards',
-    icon: 'style',
-    image: cardsImg,
-    description: 'Exclusive club room for card games and leisure socializing.',
+    image: indoorGamesImg,
+    description: 'Exclusive indoor games lounge featuring chess, carrom, and card gaming tables.',
   },
 
   // Entertainment
@@ -145,7 +119,7 @@ export const AMENITIES_ITEMS = [
     categoryName: 'Entertainment',
     title: 'Play area for kids',
     icon: 'child_care',
-    image: clubImg,
+    image: kidsPlayImg,
     description: 'Safe, rubberized outdoor play park with modern swings and slides.',
   },
 ];
