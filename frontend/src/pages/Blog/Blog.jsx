@@ -50,7 +50,7 @@ const BLOG_POSTS = [
     date: "July 22, 2026",
     readTime: "6 min read",
     author: "Devprath Editorial",
-    image: heroImg2,
+    image: null,
   },
   {
     id: 3,
