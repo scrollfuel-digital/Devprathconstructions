@@ -1,11 +1,26 @@
-import React from "react";
+import React from 'react';
+import HeroSection from './sections/HeroSection';
+import AmenitiesSection from './sections/AmenitiesSection';
+import PhasesSection from './sections/PhasesSection';
+import LegacySection from './sections/LegacySection';
 
-const Project = () => {
+/**
+ * Main Project Page Component (Mangalmurti Residency)
+ * Clean modular architecture assembling page sections.
+ * 
+ * Sections:
+ * 1. HeroSection (#hero)
+ * 2. AmenitiesSection (#amenities)
+ * 3. PhasesSection (#phases)
+ * 4. LegacySection (#legacy)
+ */
+export default function Project() {
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <h1 className="text-3xl font-bold">Projects</h1>
+    <div className="bg-[#F8F5EF] text-[#1B1C1C] font-body overflow-x-hidden min-h-screen">
+      <HeroSection />
+      <PhasesSection />
+      <AmenitiesSection />
+      <LegacySection />
     </div>
   );
-};
-
-export default Project;
+}
