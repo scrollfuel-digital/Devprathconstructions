@@ -75,8 +75,8 @@ export const FeaturedProjectSection = memo(({ onBookConsultation }) => {
               </p>
             </motion.div>
 
-            {/* Key Spec Badges */}
-            <div className="flex flex-wrap items-center gap-4 py-2">
+            {/* Key Spec Badges — Equal 3-Column Grid on Mobile, Flex on PC */}
+            <div className="grid grid-cols-3 gap-2.5 sm:flex sm:flex-wrap items-stretch sm:items-center py-2 w-full">
               {FEATURED_PROJECT_BADGES.map((badge) => (
                 <motion.div
                   key={badge.id}
@@ -85,12 +85,12 @@ export const FeaturedProjectSection = memo(({ onBookConsultation }) => {
                   viewport={{ once: false, amount: 0.15 }}
                   variants={magicalBehindVariant(shouldReduceMotion)}
                   style={{ willChange: "transform, opacity, filter" }}
-                  className="bg-white/80 backdrop-blur-md border border-[#B9935A]/30 shadow-md px-5 py-3 rounded-xl"
+                  className="bg-white/90 backdrop-blur-md border border-[#B9935A]/30 shadow-md p-3 sm:px-5 sm:py-3.5 rounded-xl text-center sm:text-left flex flex-col justify-center transition-all duration-300 hover:border-[#B9935A]"
                 >
-                  <span className="block text-xs font-bold uppercase tracking-widest text-[#B9935A]">
+                  <span className="block text-[9px] sm:text-xs font-bold uppercase tracking-wider sm:tracking-widest text-[#B9935A] leading-tight mb-1">
                     {badge.label}
                   </span>
-                  <span className="text-sm font-semibold text-[#172235]">
+                  <span className="text-xs sm:text-sm font-bold text-[#172235] leading-snug">
                     {badge.value}
                   </span>
                 </motion.div>
@@ -104,10 +104,11 @@ export const FeaturedProjectSection = memo(({ onBookConsultation }) => {
               viewport={{ once: false, amount: 0.15 }}
               variants={magicalBehindVariant(shouldReduceMotion)}
               style={{ willChange: "transform, opacity, filter" }}
+              className="pt-2"
             >
               <a
-                href="/projects"
-                className="rounded-full bg-[#B9935A] px-9 py-4 text-xs font-semibold uppercase tracking-[3px] text-white transition-all duration-300 hover:bg-gradient-to-r hover:from-[#B9935A] hover:to-[#8B6732] hover:border-transparent hover:shadow-2xl cursor-pointer flex items-center gap-3 w-fit shadow-md active:scale-95"
+                href="/project"
+                className="rounded-full bg-[#B9935A] px-7 sm:px-9 py-3.5 sm:py-4 text-xs font-semibold uppercase tracking-[2px] sm:tracking-[3px] text-white transition-all duration-300 hover:bg-gradient-to-r hover:from-[#B9935A] hover:to-[#8B6732] hover:border-transparent hover:shadow-2xl cursor-pointer flex items-center justify-center sm:justify-start gap-2.5 sm:gap-3 w-full sm:w-fit shadow-md active:scale-95"
               >
                 <span>Explore Project Details</span>
                 <span className="material-symbols-outlined text-sm">

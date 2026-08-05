@@ -12,6 +12,7 @@ import { smoothEmergenceVariant } from '../../../utils/animations';
 export default function AmenitiesSection() {
   const [selectedTab, setSelectedTab] = useState('all');
   const [currentCategory, setCurrentCategory] = useState('special');
+  const [selectedAmenity, setSelectedAmenity] = useState(null);
   const [isHovered, setIsHovered] = useState(false);
   const [scrollDirection, setScrollDirection] = useState(1); // 1 = down, -1 = up
   const scrollRef = useRef(null);
@@ -41,8 +42,8 @@ export default function AmenitiesSection() {
         setScrollDirection(1);
       }
 
-      container.scrollTop += scrollDirection * 2;
-    }, 18);
+      container.scrollTop += scrollDirection * 1;
+    }, 28);
 
     return () => clearInterval(interval);
   }, [isHovered, selectedTab, scrollDirection]);
@@ -66,12 +67,14 @@ export default function AmenitiesSection() {
 
     if (visibleCatId !== currentCategory) {
       setCurrentCategory(visibleCatId);
+      setSelectedAmenity(null);
     }
   };
 
   // Tab change handler
   const handleTabChange = (tabId) => {
     setSelectedTab(tabId);
+    setSelectedAmenity(null);
     if (tabId !== 'all') {
       setCurrentCategory(tabId);
     } else {
@@ -85,6 +88,25 @@ export default function AmenitiesSection() {
   // Determine active category object for left landscape banner
   const activeCategoryObj =
     AMENITIES_CATEGORIES.find((cat) => cat.id === currentCategory) || AMENITIES_CATEGORIES[0];
+
+  // Active showcase banner object (amenity item click overrides category)
+  const activeBannerObj = selectedAmenity
+    ? {
+        id: selectedAmenity.id,
+        label: selectedAmenity.title,
+        image: selectedAmenity.image,
+        description: selectedAmenity.description,
+        icon: selectedAmenity.icon,
+        badgeTag: selectedAmenity.categoryName || activeCategoryObj.label,
+      }
+    : {
+        id: activeCategoryObj.id,
+        label: activeCategoryObj.label,
+        image: activeCategoryObj.image,
+        description: activeCategoryObj.description,
+        icon: activeCategoryObj.icon,
+        badgeTag: activeCategoryObj.label,
+      };
 
   const displayedItems =
     selectedTab === 'all'
@@ -110,7 +132,7 @@ export default function AmenitiesSection() {
           whileInView="visible"
           viewport={{ once: false, amount: 0.15 }}
           variants={smoothEmergenceVariant(shouldReduceMotion, 0.1)}
-          className="font-heading text-2xl sm:text-3xl md:text-5xl font-bold text-[#1B1C1C] mt-2 md:mt-3 mb-6 md:mb-8"
+          className="font-heading text-lg sm:text-3xl md:text-5xl font-bold text-[#1B1C1C] mt-2 md:mt-3 mb-6 md:mb-8 leading-tight whitespace-nowrap"
         >
           The Signature Amenities
         </motion.h2>
@@ -145,7 +167,7 @@ export default function AmenitiesSection() {
 
       {/* Main Showcase Layout: Left Landscape Card (7 cols) + Right Auto-Scroll Cards (5 cols) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch h-[640px] sm:h-[680px] lg:h-[500px]">
-        {/* Left Column: Landscape Image Showcase updating with active scroll category */}
+        {/* Left Column: Landscape Image Showcase updating with active scroll category or clicked amenity */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -155,7 +177,7 @@ export default function AmenitiesSection() {
         >
           <AnimatePresence mode="wait">
             <motion.div
-              key={activeCategoryObj.id}
+              key={activeBannerObj.id}
               initial={{ opacity: 0, scale: 1.02 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.98 }}
@@ -163,8 +185,8 @@ export default function AmenitiesSection() {
               className="absolute inset-0 w-full h-full"
             >
               <img
-                src={activeCategoryObj.image}
-                alt={activeCategoryObj.label}
+                src={activeBannerObj.image}
+                alt={activeBannerObj.label}
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent" />
@@ -174,19 +196,19 @@ export default function AmenitiesSection() {
                 <div>
                   <div className="flex items-center gap-2 mb-1.5">
                     <span className="font-label-caps text-[9px] sm:text-[10px] font-bold tracking-widest text-[#F0D060] bg-black/40 backdrop-blur-md px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full uppercase border border-[#B9935A]/40">
-                      {selectedTab === 'all' ? 'Auto-Scrolling Showcase' : 'Category Showcase'}
+                      {activeBannerObj.badgeTag}
                     </span>
                   </div>
                   <h3 className="font-heading text-xl sm:text-2xl md:text-4xl font-bold text-white mb-1 leading-tight">
-                    {activeCategoryObj.label}
+                    {activeBannerObj.label}
                   </h3>
                   <p className="text-[11px] sm:text-xs md:text-sm text-white/80 max-w-md font-body line-clamp-2 sm:line-clamp-none">
-                    {activeCategoryObj.description}
+                    {activeBannerObj.description}
                   </p>
                 </div>
 
                 <div className="bg-white/90 backdrop-blur-md text-[#B9935A] p-2.5 sm:p-3.5 rounded-full border border-[#B9935A]/40 shadow-lg shrink-0 hidden sm:block">
-                  <span className="material-symbols-outlined text-xl sm:text-2xl">{activeCategoryObj.icon}</span>
+                  <span className="material-symbols-outlined text-xl sm:text-2xl">{activeBannerObj.icon}</span>
                 </div>
               </div>
             </motion.div>
@@ -226,7 +248,10 @@ export default function AmenitiesSection() {
                 {group.items.map((item) => (
                   <div
                     key={item.id}
-                    className="h-[200px] w-full rounded-2xl bg-white/95 backdrop-blur-md border border-[#B9935A]/30 overflow-hidden shadow-[0_6px_20px_rgba(185,147,90,0.08)] hover:border-[#B9935A] hover:shadow-lg transition-colors transition-shadow duration-300 flex flex-col shrink-0 group"
+                    onClick={() => setSelectedAmenity(item)}
+                    className={`h-[200px] w-full rounded-2xl bg-white/95 backdrop-blur-md border overflow-hidden shadow-[0_6px_20px_rgba(185,147,90,0.08)] hover:border-[#B9935A] hover:shadow-lg transition-colors transition-shadow duration-300 flex flex-col shrink-0 group cursor-pointer ${
+                      selectedAmenity?.id === item.id ? 'border-[#B9935A] ring-2 ring-[#B9935A]/30' : 'border-[#B9935A]/30'
+                    }`}
                   >
                     <div className="h-[115px] relative overflow-hidden bg-[#1B1C1C] shrink-0">
                       <img
@@ -269,7 +294,10 @@ export default function AmenitiesSection() {
               {displayedItems.map((item) => (
                 <div
                   key={item.id}
-                  className="h-[200px] w-full rounded-2xl bg-white/95 backdrop-blur-md border border-[#B9935A]/30 overflow-hidden shadow-[0_6px_20px_rgba(185,147,90,0.08)] hover:border-[#B9935A] hover:shadow-lg transition-colors transition-shadow duration-300 flex flex-col shrink-0 group"
+                  onClick={() => setSelectedAmenity(item)}
+                  className={`h-[200px] w-full rounded-2xl bg-white/95 backdrop-blur-md border overflow-hidden shadow-[0_6px_20px_rgba(185,147,90,0.08)] hover:border-[#B9935A] hover:shadow-lg transition-colors transition-shadow duration-300 flex flex-col shrink-0 group cursor-pointer ${
+                    selectedAmenity?.id === item.id ? 'border-[#B9935A] ring-2 ring-[#B9935A]/30' : 'border-[#B9935A]/30'
+                  }`}
                 >
                   <div className="h-[115px] relative overflow-hidden bg-[#1B1C1C] shrink-0">
                     <img

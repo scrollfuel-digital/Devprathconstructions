@@ -96,7 +96,7 @@ export default function HeroSection() {
             whileInView="visible"
             viewport={{ once: false, amount: 0.1 }}
             variants={smoothEmergenceVariant(shouldReduceMotion, 0.4)}
-            className="text-white/95 font-body text-sm sm:text-base md:text-lg max-w-lg leading-relaxed text-center md:text-right mx-auto md:ml-auto drop-shadow-sm"
+            className="text-white/95 font-body text-sm sm:text-base md:text-lg max-w-lg leading-relaxed text-center md:text-right mx-auto md:mr-0 drop-shadow-sm"
           >
             Discover an architectural masterpiece in Nagpur. A harmonious blend of premium commercial spaces and ultra-luxury residential living designed for the elite.
           </motion.p>

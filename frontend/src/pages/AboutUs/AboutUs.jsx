@@ -283,7 +283,7 @@ export default function About() {
                   <img
                     src={leaderHemal}
                     alt="Mr. Hemal H. Nadiyana"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
                 <h3 className="text-xl sm:text-2xl font-bold text-[#172235] font-heading max-w-[230px]">
@@ -318,7 +318,7 @@ export default function About() {
                   <img
                     src={leaderSunil}
                     alt="Dr. Sunil N. Patil"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
                 <h3 className="text-xl sm:text-2xl font-bold text-[#172235] font-heading max-w-[230px]">

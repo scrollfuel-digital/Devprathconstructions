@@ -48,7 +48,7 @@ export const Home = () => {
         <ClientVoicesSection />
 
         {/* Contact Form & Corporate HQ */}
-        <ContactSection />
+        {/* <ContactSection /> */}
       </main>
 
       {/* Interactive Modals */}

@@ -256,4 +256,4 @@ export default function WhyChooseSlider() {
       </motion.div>
     </motion.div>
   );
-}
+}

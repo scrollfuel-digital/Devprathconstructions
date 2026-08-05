@@ -1,15 +1,36 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import React, { useEffect, useRef } from 'react';
+import { BrowserRouter, useLocation } from 'react-router-dom';
 import Lenis from 'lenis';
 import AppRoutes from './routes/AppRoutes';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
 /**
+ * ScrollToTop Sub-component
+ * Automatically scrolls window and Lenis engine to top (0, 0) on route change.
+ */
+function ScrollToTop({ lenisRef }) {
+  const { pathname, hash } = useLocation();
+
+  useEffect(() => {
+    if (!hash) {
+      window.scrollTo(0, 0);
+      if (lenisRef.current) {
+        lenisRef.current.scrollTo(0, { immediate: true });
+      }
+    }
+  }, [pathname, hash, lenisRef]);
+
+  return null;
+}
+
+/**
  * Main App Component
  * Initializes Lenis smooth scrolling engine and renders pages via React Router.
  */
 export function App() {
+  const lenisRef = useRef(null);
+
   useEffect(() => {
     // Initialize Lenis Smooth Scroll engine
     const lenis = new Lenis({
@@ -23,6 +44,8 @@ export function App() {
       touchMultiplier: 2,
     });
 
+    lenisRef.current = lenis;
+
     let animationFrameId;
     function raf(time) {
       lenis.raf(time);
@@ -34,16 +57,16 @@ export function App() {
     return () => {
       if (animationFrameId) cancelAnimationFrame(animationFrameId);
       lenis.destroy();
+      lenisRef.current = null;
     };
   }, []);
 
   return (
     <BrowserRouter>
-      <>
+      <ScrollToTop lenisRef={lenisRef} />
       <Navbar />
       <AppRoutes />
       <Footer />
-      </>
     </BrowserRouter>
   );
 }
