@@ -1,6 +1,6 @@
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import aboutus1 from "../../assets/AboutUsImg/HomePage.jpg";
+import aboutus1 from "../../assets/AboutUsImg/img1.png";
 import aboutus2 from "../../assets/AboutUsImg/secimg.png";
 import leaderSunil from "../../assets/AboutUsImg/sunil.png";
 import leaderHemal from "../../assets/AboutUsImg/hemal.png";
@@ -270,28 +270,32 @@ export default function About() {
             </motion.p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 lg:gap-12 max-w-7xl mx-auto">
 
             {/* Founder 1: Hemal */}
             <motion.div
-              className="group rounded-3xl bg-[#f8f5ef] border border-[#c9a063]/30 px-8 py-12 sm:px-10 sm:py-16 min-h-[360px] sm:min-h-[400px] shadow-lg hover:shadow-2xl hover:border-[#c9a063] transition-all duration-500 flex flex-col sm:flex-row items-center gap-6 sm:gap-8 justify-center"
+              className="group rounded-3xl bg-[#f8f5ef] border border-[#c9a063]/30 px-9 py-13 sm:px-12 sm:py-16 lg:px-14 min-h-[380px] sm:min-h-[420px] shadow-lg hover:shadow-2xl hover:border-[#c9a063] transition-all duration-500 flex flex-col sm:flex-row items-center gap-6 sm:gap-8 justify-center"
               {...magicalInViewProps}
             >
-              <div className="w-44 h-44 sm:w-52 sm:h-52 lg:w-56 lg:h-56 rounded-2xl overflow-hidden shrink-0 border-2 border-[#c9a063]/40 shadow-md">
-                <img
-                  src={leaderHemal}
-                  alt="Hemal - Director"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-
-              <div className="flex flex-col justify-center">
-                <span className="text-xs font-bold uppercase tracking-widest text-[#c9a063]">
+              {/* Profile Image & Title/Name below image */}
+              <div className="flex flex-col items-center text-center shrink-0">
+                <div className="w-48 h-48 sm:w-56 sm:h-56 lg:w-60 lg:h-60 rounded-2xl overflow-hidden border-2 border-[#c9a063]/40 shadow-md mb-3.5">
+                  <img
+                    src={leaderHemal}
+                    alt="Mr. Hemal H. Nadiyana"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold text-[#172235] font-heading max-w-[230px]">
+                  Mr. Hemal H. Nadiyana
+                </h3>
+                <span className="text-xs font-bold uppercase tracking-widest text-[#c9a063] mt-1">
                   Director & Co-Founder
                 </span>
-                <h3 className="text-2xl sm:text-3xl font-bold text-[#172235] font-heading mt-1.5 mb-3">
-                  Hemal
-                </h3>
+              </div>
+
+              {/* Bio & Quote Details */}
+              <div className="flex flex-col justify-center sm:border-l sm:border-[#c9a063]/20 sm:pl-7">
                 <p className="text-xs sm:text-sm text-gray-600 leading-relaxed font-normal mb-6">
                   Fostering architectural creativity, customer-first service, and modern living space design across all our premier residential developments.
                 </p>
@@ -305,24 +309,28 @@ export default function About() {
 
             {/* Founder 2: Sunil */}
             <motion.div
-              className="group rounded-3xl bg-[#f8f5ef] border border-[#c9a063]/30 px-8 py-12 sm:px-10 sm:py-16 min-h-[360px] sm:min-h-[400px] shadow-lg hover:shadow-2xl hover:border-[#c9a063] transition-all duration-500 flex flex-col sm:flex-row items-center gap-6 sm:gap-8 justify-center"
+              className="group rounded-3xl bg-[#f8f5ef] border border-[#c9a063]/30 px-9 py-13 sm:px-12 sm:py-16 lg:px-14 min-h-[380px] sm:min-h-[420px] shadow-lg hover:shadow-2xl hover:border-[#c9a063] transition-all duration-500 flex flex-col sm:flex-row items-center gap-6 sm:gap-8 justify-center"
               {...magicalInViewProps}
             >
-              <div className="w-44 h-44 sm:w-52 sm:h-52 lg:w-56 lg:h-56 rounded-2xl overflow-hidden shrink-0 border-2 border-[#c9a063]/40 shadow-md">
-                <img
-                  src={leaderSunil}
-                  alt="Sunil - Director"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-
-              <div className="flex flex-col justify-center">
-                <span className="text-xs font-bold uppercase tracking-widest text-[#c9a063]">
+              {/* Profile Image & Title/Name below image */}
+              <div className="flex flex-col items-center text-center shrink-0">
+                <div className="w-48 h-48 sm:w-56 sm:h-56 lg:w-60 lg:h-60 rounded-2xl overflow-hidden border-2 border-[#c9a063]/40 shadow-md mb-3.5">
+                  <img
+                    src={leaderSunil}
+                    alt="Dr. Sunil N. Patil"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold text-[#172235] font-heading max-w-[230px]">
+                  Dr. Sunil N. Patil
+                </h3>
+                <span className="text-xs font-bold uppercase tracking-widest text-[#c9a063] mt-1">
                   Director & Co-Founder
                 </span>
-                <h3 className="text-2xl sm:text-3xl font-bold text-[#172235] font-heading mt-1.5 mb-3">
-                  Sunil
-                </h3>
+              </div>
+
+              {/* Bio & Quote Details */}
+              <div className="flex flex-col justify-center sm:border-l sm:border-[#c9a063]/20 sm:pl-7">
                 <p className="text-xs sm:text-sm text-gray-600 leading-relaxed font-normal mb-6">
                   Championing structural strength, material standards, and strategic growth. Committed to delivering homes that stand the test of time.
                 </p>
