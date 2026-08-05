@@ -2,8 +2,7 @@ import React, { useEffect } from 'react';
 
 /**
  * ProjectDetailModal Component
- * Renders a vertical rectangular popup card (matching the exact shape and layout of the scrolling marquee cards).
- * Includes top-right 'X' close button, backdrop overlay, ESC key listener, and full project description.
+ * Renders a vertical rectangular popup card with a top-right 'X' close button.
  */
 export default function ProjectDetailModal({ project, onClose }) {
   useEffect(() => {
@@ -24,7 +23,7 @@ export default function ProjectDetailModal({ project, onClose }) {
       {/* Vertical Rectangular Card Popup */}
       <div
         onClick={(e) => e.stopPropagation()}
-        className="relative w-[360px] sm:w-[420px] bg-white/98 rounded-xl border border-[#B9935A]/35 p-4 sm:p-5 shadow-[0_20px_50px_rgba(185,147,90,0.25)] flex flex-col justify-between max-h-[90vh] overflow-y-auto"
+        className="relative w-[360px] sm:w-[420px] bg-white/98 rounded-xl border border-[#B9935A]/35 p-4 sm:p-5 shadow-[0_25px_60px_rgba(185,147,90,0.3)] flex flex-col justify-between max-h-[85vh] overflow-y-auto"
       >
         {/* Image Container (Matching Card Proportions) */}
         <div className="relative h-[240px] sm:h-[260px] w-full rounded-lg overflow-hidden mb-4 shrink-0">
@@ -74,12 +73,6 @@ export default function ProjectDetailModal({ project, onClose }) {
             <span className="font-medium bg-[#B9935A]/10 text-[#785926] px-3 py-1 rounded-md border border-[#B9935A]/20">
               {project.type}
             </span>
-            <button
-              onClick={onClose}
-              className="rounded-full bg-[#B9935A] px-5 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-white hover:bg-gradient-to-r hover:from-[#B9935A] hover:to-[#8B6732] transition-all cursor-pointer shadow-sm active:scale-95"
-            >
-              Close
-            </button>
           </div>
         </div>
       </div>

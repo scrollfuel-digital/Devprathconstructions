@@ -265,9 +265,9 @@ export const HubOfExcellence = memo(() => {
                       : "bg-white border-gray-200/80 hover:border-[#B9935A]/50 hover:bg-white"
                   }`}
                 >
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-3.5 min-w-0 flex-1">
                     <div
-                      className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${
+                      className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 transition-colors ${
                         isSelected
                           ? "bg-[#B9935A] text-white"
                           : "bg-[#F8F5EF] text-[#B9935A]"
@@ -277,18 +277,18 @@ export const HubOfExcellence = memo(() => {
                         {item.icon}
                       </span>
                     </div>
-                    <div>
-                      <h4 className="text-sm font-bold text-gray-900">
+                    <div className="min-w-0 flex-1">
+                      <h4 className="text-xs sm:text-sm font-bold text-gray-900 truncate leading-snug">
                         {item.title}
                       </h4>
-                      <span className="text-[10px] text-gray-500 font-medium">
+                      <span className="text-[10px] text-gray-500 font-medium truncate block mt-0.5">
                         {item.category} • {distance} km away
                       </span>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs font-bold px-3 py-1 rounded-full bg-[#B9935A]/15 text-[#B9935A]">
+                  <div className="flex items-center gap-2 shrink-0 ml-2">
+                    <span className="text-xs font-bold px-3 py-1 rounded-full bg-[#B9935A]/15 text-[#B9935A] whitespace-nowrap shrink-0">
                       {time}
                     </span>
                   </div>

@@ -1,18 +1,22 @@
-import clubImg from '../assets/Amenities/club.png';
-import gymImg from '../assets/Amenities/gym.png';
-import poolImg from '../assets/Amenities/pool2.png';
-import ttImg from '../assets/Amenities/table-tennis.jpg';
-import yogaImg from '../assets/Amenities/yoga.png';
+import clubPoolImg from '../assets/Township Features/club and poolarea.png';
+import gymNewImg from '../assets/Township Features/gymnasium.png';
+import poolNewImg from '../assets/Township Features/swmmingpool.png';
+import ttNewImg from '../assets/Township Features/table tennis.png';
+import chessNewImg from '../assets/Township Features/chess.png';
+import yogaNewImg from '../assets/Township Features/yogaarea.png';
+import joggingNewImg from '../assets/Township Features/jogging.png';
+import lawnNewImg from '../assets/Township Features/lawn.png';
+import waterfallNewImg from '../assets/Township Features/waterfall.png';
+import openSpaceNewImg from '../assets/Township Features/openspace.png';
+import kidsPlayNewImg from '../assets/Township Features/children playarea.png';
 import gardenSeniorsImg from '../assets/Amenities/garden-seniors.png';
-import indoorGamesImg from '../assets/Amenities/indoor-games.png';
-import kidsPlayImg from '../assets/Amenities/kids-play.png';
 
 export const AMENITIES_CATEGORIES = [
-  { id: 'all', label: 'All Amenities', image: clubImg, icon: 'apps', description: 'Comprehensive township features' },
-  { id: 'special', label: 'Special Features', image: gardenSeniorsImg, icon: 'nightlife', description: 'Exclusive community areas, party lawns & senior zones' },
-  { id: 'health', label: 'Health & Fitness', image: gymImg, icon: 'fitness_center', description: 'Gymnasium, yoga decks & jogging track' },
-  { id: 'sports', label: 'Sports', image: indoorGamesImg, icon: 'sports_tennis', description: 'Swimming pool, table tennis & indoor games lounge' },
-  { id: 'entertainment', label: 'Entertainment', image: kidsPlayImg, icon: 'child_care', description: 'Kids play area & family recreation' },
+  { id: 'all', label: 'All Amenities', image: clubPoolImg, icon: 'apps', description: 'Comprehensive township features' },
+  { id: 'special', label: 'Special Features', image: openSpaceNewImg, icon: 'nightlife', description: 'Exclusive community areas, party lawns & senior zones' },
+  { id: 'health', label: 'Health & Fitness', image: gymNewImg, icon: 'fitness_center', description: 'Gymnasium, yoga decks & jogging track' },
+  { id: 'sports', label: 'Sports', image: poolNewImg, icon: 'sports_tennis', description: 'Swimming pool, table tennis & indoor games lounge' },
+  { id: 'entertainment', label: 'Entertainment', image: kidsPlayNewImg, icon: 'child_care', description: 'Kids play area & family recreation' },
 ];
 
 export const AMENITIES_ITEMS = [
@@ -23,7 +27,7 @@ export const AMENITIES_ITEMS = [
     categoryName: 'Special Features',
     title: 'Open Space with Club House and Garden',
     icon: 'deck',
-    image: clubImg,
+    image: openSpaceNewImg,
     description: 'Expansive landscaped greens and private luxury clubhouse.',
   },
   {
@@ -41,7 +45,7 @@ export const AMENITIES_ITEMS = [
     categoryName: 'Special Features',
     title: 'Water Walls and Fountains',
     icon: 'water_drop',
-    image: poolImg,
+    image: waterfallNewImg,
     description: 'Architectural cascade water features creating a serene ambiance.',
   },
   {
@@ -50,7 +54,7 @@ export const AMENITIES_ITEMS = [
     categoryName: 'Special Features',
     title: 'Party Lawns',
     icon: 'celebration',
-    image: clubImg,
+    image: lawnNewImg,
     description: 'Manicured lawns equipped for private events and celebrations.',
   },
 
@@ -61,7 +65,7 @@ export const AMENITIES_ITEMS = [
     categoryName: 'Health & Fitness',
     title: 'Jogging Track',
     icon: 'directions_run',
-    image: gymImg,
+    image: joggingNewImg,
     description: 'Dedicated rubberized track for safe running and jogging.',
   },
   {
@@ -70,7 +74,7 @@ export const AMENITIES_ITEMS = [
     categoryName: 'Health & Fitness',
     title: 'Yoga/Meditation Space',
     icon: 'self_improvement',
-    image: yogaImg,
+    image: yogaNewImg,
     description: 'Peaceful open-air deck for mindfulness and meditation.',
   },
   {
@@ -79,7 +83,7 @@ export const AMENITIES_ITEMS = [
     categoryName: 'Health & Fitness',
     title: 'Gymnasium',
     icon: 'fitness_center',
-    image: gymImg,
+    image: gymNewImg,
     description: 'State-of-the-art fitness center with personal training gear.',
   },
 
@@ -90,7 +94,7 @@ export const AMENITIES_ITEMS = [
     categoryName: 'Sports',
     title: 'Swimming Pool',
     icon: 'pool',
-    image: poolImg,
+    image: poolNewImg,
     description: 'Temperature-controlled swimming pool with splash area.',
   },
   {
@@ -99,7 +103,7 @@ export const AMENITIES_ITEMS = [
     categoryName: 'Sports',
     title: 'Table Tennis',
     icon: 'sports_tennis',
-    image: ttImg,
+    image: ttNewImg,
     description: 'Indoor TT arena with professional tournament tables.',
   },
   {
@@ -108,7 +112,7 @@ export const AMENITIES_ITEMS = [
     categoryName: 'Sports',
     title: 'Chess, Carrom & Cards',
     icon: 'extension',
-    image: indoorGamesImg,
+    image: chessNewImg,
     description: 'Exclusive indoor games lounge featuring chess, carrom, and card gaming tables.',
   },
 
@@ -119,7 +123,7 @@ export const AMENITIES_ITEMS = [
     categoryName: 'Entertainment',
     title: 'Play area for kids',
     icon: 'child_care',
-    image: kidsPlayImg,
+    image: kidsPlayNewImg,
     description: 'Safe, rubberized outdoor play park with modern swings and slides.',
   },
 ];

@@ -1,153 +1,111 @@
-import React, { useState } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 import logo from "../assets/logo/logo.png";
+import SocialConnectBar from "./SocialConnectBar";
 
 export const Footer = () => {
-  const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
-
-  const handleSubscribe = (e) => {
-    e.preventDefault();
-    setSubscribed(true);
-    setTimeout(() => {
-      setSubscribed(false);
-      setEmail("");
-    }, 3500);
-  };
-
   return (
-    <footer className="bg-[#EBE6DF] text-[#172235] pt-20 pb-10 border-t border-[#B9935A]/30">
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer className="bg-[#EBE6DF] text-[#172235] pt-12 sm:pt-14 pb-8 border-t border-[#B9935A]/30">
+      <div className="w-full max-w-[1440px] mx-auto px-6 md:px-20">
         {/* Top Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-16 border-b border-[#B9935A]/20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 pb-10 border-b border-[#B9935A]/20">
           {/* Brand Info (4 cols) */}
           <div className="lg:col-span-4 flex flex-col items-start">
-            <a href="#" className="mb-6 block">
+            <Link to="/" className="mb-3 block">
               <img
                 src={logo}
                 alt="Devprath Constructions LLP"
-                className="h-28 sm:h-32 w-auto object-contain"
+                className="h-16 sm:h-20 w-auto object-contain object-left -ml-1"
               />
-            </a>
-            <p className="text-xs text-gray-700 leading-relaxed font-light mb-6 max-w-sm">
-              DEVPRATH CONSTRUCTIONS LLP is committed to crafting ultra-luxury residential landmarks with uncompromised engineering quality, RERA compliance, and timeless aesthetics.
+            </Link>
+            <p className="text-xs sm:text-sm text-[#4E453A] leading-relaxed font-normal max-w-sm">
+              DEVPRATH CONSTRUCTIONS LLP is committed to crafting ultra-luxury residential landmarks with uncompromised engineering quality, RERA compliance, and timeless aesthetics in Nagpur.
             </p>
-            <div className="flex items-center gap-3">
-              <span className="text-[10px] font-bold uppercase tracking-widest text-[#B9935A]">
-                RERA Reg No: P51600012345
-              </span>
-            </div>
           </div>
 
           {/* Quick Links (2 cols) */}
           <div className="lg:col-span-2">
-            <h4 className="text-xs font-bold uppercase tracking-[2px] text-[#B9935A] mb-6">
+            <h4 className="text-xs sm:text-sm font-bold uppercase tracking-[2px] text-[#B9935A] mb-4">
               Quick Links
             </h4>
-            <ul className="space-y-3 text-xs text-gray-700 font-light">
+            <ul className="space-y-2.5 text-xs sm:text-sm text-[#4E453A] font-normal">
               <li>
-                <a href="#about" className="hover:text-[#B9935A] transition-colors duration-300">
-                  About Us
-                </a>
+                <Link to="/" className="hover:text-[#B9935A] transition-colors duration-300 block">
+                  Home
+                </Link>
               </li>
               <li>
-                <a href="#projects" className="hover:text-[#B9935A] transition-colors duration-300">
+                <Link to="/project" className="hover:text-[#B9935A] transition-colors duration-300 block">
                   Projects Spotlight
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#floor-plans" className="hover:text-[#B9935A] transition-colors duration-300">
-                  Floor Plans
-                </a>
+                <Link to="/aboutus" className="hover:text-[#B9935A] transition-colors duration-300 block">
+                  About Us
+                </Link>
               </li>
               <li>
-                <a href="#amenities" className="hover:text-[#B9935A] transition-colors duration-300">
-                  Resort Amenities
-                </a>
+                <Link to="/contact" className="hover:text-[#B9935A] transition-colors duration-300 block">
+                  Contact Us
+                </Link>
               </li>
               <li>
-                <a href="#location" className="hover:text-[#B9935A] transition-colors duration-300">
-                  Prime Location
-                </a>
+                <Link to="/blog" className="hover:text-[#B9935A] transition-colors duration-300 block">
+                  Blog &amp; Media
+                </Link>
               </li>
             </ul>
           </div>
 
           {/* Featured Projects (3 cols) */}
           <div className="lg:col-span-3">
-            <h4 className="text-xs font-bold uppercase tracking-[2px] text-[#B9935A] mb-6">
+            <h4 className="text-xs sm:text-sm font-bold uppercase tracking-[2px] text-[#B9935A] mb-4">
               Landmark Projects
             </h4>
-            <ul className="space-y-3 text-xs text-gray-700 font-light">
+            <ul className="space-y-2.5 text-xs sm:text-sm text-[#4E453A] font-normal">
               <li>
-                <a href="#projects" className="hover:text-[#B9935A] transition-colors duration-300">
+                <Link to="/project" className="hover:text-[#B9935A] transition-colors duration-300 block">
                   Mangalmurti Residency (Nagpur)
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-[#B9935A] transition-colors duration-300">
-                  Riddhi Siddhi Heights
-                </a>
+                <Link to="/project#phases" className="hover:text-[#B9935A] transition-colors duration-300 block">
+                  Commercial Outlets
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-[#B9935A] transition-colors duration-300">
-                  Vignaharta Luxury Enclave
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-[#B9935A] transition-colors duration-300">
-                  The Penthouse Collection
-                </a>
+                <Link to="/project#phases" className="hover:text-[#B9935A] transition-colors duration-300 block">
+                  Luxury 2BHK Homes
+                </Link>
               </li>
             </ul>
           </div>
 
-          {/* Newsletter Signup (3 cols) */}
+          {/* Social Media Connect (3 cols) */}
           <div className="lg:col-span-3">
-            <h4 className="text-xs font-bold uppercase tracking-[2px] text-[#B9935A] mb-6">
-              Newsletter
+            <h4 className="text-xs sm:text-sm font-bold uppercase tracking-[2px] text-[#B9935A] mb-4">
+              Connect With Us
             </h4>
-            <p className="text-xs text-gray-700 font-light mb-4">
-              Subscribe to receive exclusive project updates and preview invites.
+            <p className="text-xs sm:text-sm text-[#4E453A] font-normal leading-relaxed mb-4">
+              Follow Devprath Constructions for live site progress updates, luxury project launches, and architectural media highlights.
             </p>
-
-            {subscribed ? (
-              <div className="p-3 rounded-xl bg-[#B9935A]/20 border border-[#B9935A] text-xs text-center text-[#8B6732]">
-                Thank you for subscribing!
-              </div>
-            ) : (
-              <form onSubmit={handleSubscribe} className="space-y-3">
-                <input
-                  type="email"
-                  required
-                  placeholder="Enter your email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl bg-white border border-[#B9935A]/30 text-xs text-[#172235] placeholder-gray-500 focus:outline-none focus:border-[#B9935A]"
-                />
-                <button
-                  type="submit"
-                  className="w-full rounded-full bg-[#B9935A] py-3 text-xs font-semibold uppercase tracking-[2px] text-white transition-all duration-300 hover:bg-gradient-to-r hover:from-[#B9935A] hover:to-[#8B6732] hover:border-transparent cursor-pointer shadow-md"
-                >
-                  Subscribe
-                </button>
-              </form>
-            )}
+            <SocialConnectBar
+              containerClassName="flex items-center justify-between w-full pt-1"
+              iconSizeClass="w-5 h-5 sm:w-6 sm:h-6"
+            />
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-600 font-light">
+        <div className="pt-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs sm:text-sm text-[#4E453A] font-normal">
           <p>© {new Date().getFullYear()} DEVPRATH CONSTRUCTIONS LLP. All Rights Reserved.</p>
-          <div className="flex items-center gap-6">
-            <a href="#" className="hover:text-[#B9935A] transition-colors duration-300">
+          <div className="flex items-center gap-6 font-normal">
+            <Link to="/privacy" className="hover:text-[#B9935A] transition-colors duration-300">
               Privacy Policy
-            </a>
-            <a href="#" className="hover:text-[#B9935A] transition-colors duration-300">
+            </Link>
+            <Link to="/terms" className="hover:text-[#B9935A] transition-colors duration-300">
               Terms of Service
-            </a>
-            <a href="#" className="hover:text-[#B9935A] transition-colors duration-300">
-              RERA Disclaimer
-            </a>
+            </Link>
           </div>
         </div>
       </div>

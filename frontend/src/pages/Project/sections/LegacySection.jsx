@@ -32,7 +32,7 @@ export default function LegacySection() {
           whileInView="visible"
           viewport={{ once: false, amount: 0.2 }}
           variants={smoothEmergenceVariant(shouldReduceMotion, 0.25)}
-          className="font-heading text-3xl md:text-5xl font-bold text-[#1B1C1C] mt-3"
+          className="font-heading text-lg sm:text-3xl md:text-5xl font-bold text-[#1B1C1C] mt-3 leading-tight whitespace-nowrap"
         >
           A Legacy of Excellence
         </motion.h2>
