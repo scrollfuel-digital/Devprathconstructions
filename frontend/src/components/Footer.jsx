@@ -36,7 +36,7 @@ export const Footer = () => {
               </li>
               <li>
                 <Link to="/project" className="hover:text-[#B9935A] transition-colors duration-300 block">
-                  Projects Spotlight
+                  Projects
                 </Link>
               </li>
               <li>
@@ -51,7 +51,7 @@ export const Footer = () => {
               </li>
               <li>
                 <Link to="/blog" className="hover:text-[#B9935A] transition-colors duration-300 block">
-                  Blog &amp; Media
+                  Blogs
                 </Link>
               </li>
             </ul>
