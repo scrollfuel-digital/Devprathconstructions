@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { SocialConnectBar } from "../../components/SocialConnectBar";
+import SocialConnectBar from "../../components/SocialConnectBar";
 import {
   Mail,
   PhoneCall,
@@ -16,51 +16,10 @@ import {
 import {
   OFFICES,
   CONTACT_CHANNELS,
-  CONTACT_STATS,
 } from "../../constants/contactData";
 import ContactMap from "./components/ContactMap";
 import ContactForm from "./components/ContactForm";
-
-/**
- * AnimatedCounter — counts smoothly from 0 to `end` when visible
- */
-function AnimatedCounter({ end, suffix = "", duration = 2000 }) {
-  const ref = useRef(null);
-  const [count, setCount] = useState(0);
-  const [started, setStarted] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !started) setStarted(true);
-      },
-      { threshold: 0.4 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [started]);
-
-  useEffect(() => {
-    if (!started) return;
-    let frame;
-    const start = performance.now();
-    const step = (now) => {
-      const progress = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setCount(Math.floor(eased * end));
-      if (progress < 1) frame = requestAnimationFrame(step);
-    };
-    frame = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(frame);
-  }, [started, end, duration]);
-
-  return (
-    <span ref={ref}>
-      {count}
-      {suffix}
-    </span>
-  );
-}
+import StatsBar from "../../components/common/StatsBar";
 
 /**
  * Contact Page Component
@@ -124,22 +83,8 @@ export default function Contact() {
           </motion.div>
 
           {/* Stats Row */}
-          <motion.div
-            variants={mv(0.35)}
-            initial="hidden"
-            animate="visible"
-            className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-0 md:divide-x md:divide-[#B9935A]/20"
-          >
-            {CONTACT_STATS.map((s, i) => (
-              <div key={i} className="text-center px-4 py-2">
-                <div className="text-3xl sm:text-4xl font-extrabold text-[#B9935A] font-heading">
-                  <AnimatedCounter end={s.value} suffix={s.suffix} />
-                </div>
-                <div className="text-[11px] uppercase tracking-[2px] text-[#4E453A] mt-1 font-semibold">
-                  {s.label}
-                </div>
-              </div>
-            ))}
+          <motion.div variants={mv(0.35)} initial="hidden" animate="visible">
+            <StatsBar className="mt-14" />
           </motion.div>
         </div>
       </section>

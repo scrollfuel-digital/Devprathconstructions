@@ -1,15 +1,7 @@
 import React, { useEffect, useState } from "react";
 import logo from "../assets/logo/logo.png";
-import { Link, useLocation } from "react-router-dom";
-
-// Removed Gallery as requested
-const NAV_LINKS = [
-  { id: 1, title: "Home", path: "/" },
-  { id: 2, title: "About", path: "/about-us" },
-  { id: 3, title: "Projects", path: "/projects" },
-  { id: 5, title: "Blog", path: "/blog" },
-  { id: 6, title: "Contact", path: "/contact" },
-];
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { NAV_LINKS } from "../constants/navigationData";
 
 const SCROLL_OFFSET = 80;
 
@@ -17,6 +9,7 @@ export default function Navbar({ onBookConsultation }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,6 +20,14 @@ export default function Navbar({ onBookConsultation }) {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleEnquireClick = () => {
+    if (onBookConsultation) {
+      onBookConsultation();
+    } else {
+      navigate("/contact");
+    }
+  };
 
   // Helper to determine exact route match
   const isLinkActive = (path) => {
@@ -81,7 +82,7 @@ export default function Navbar({ onBookConsultation }) {
         {/* ================= CTA Button ================= */}
         <div className="hidden md:flex items-center gap-4">
           <button
-            onClick={onBookConsultation}
+            onClick={handleEnquireClick}
             className="rounded-full bg-[#B9935A] px-7 py-3 text-xs font-semibold uppercase tracking-[2px] text-white transition-all duration-300 hover:bg-gradient-to-r hover:from-[#B9935A] hover:to-[#8B6732] hover:border-transparent hover:shadow-xl active:scale-95 cursor-pointer"
           >
             Enquire Now
@@ -122,7 +123,7 @@ export default function Navbar({ onBookConsultation }) {
           <button
             onClick={() => {
               setMobileMenuOpen(false);
-              onBookConsultation && onBookConsultation();
+              handleEnquireClick();
             }}
             className="w-full mt-2 rounded-full bg-[#B9935A] py-3 text-xs font-semibold uppercase tracking-[2px] text-white transition-all duration-300 hover:bg-gradient-to-r hover:from-[#B9935A] hover:to-[#8B6732]"
           >

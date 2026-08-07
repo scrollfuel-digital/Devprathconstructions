@@ -160,7 +160,7 @@ export default function WhyChooseSlider() {
                   return (
                     <div key={card.title} className="flex-1 px-1 py-1">
                       <div className="group relative h-full rounded-2xl bg-white/90 backdrop-blur-md border border-[#c9a063]/25 p-6 shadow-[0_10px_25px_rgba(23,34,53,0.05)] hover:shadow-[0_18px_35px_rgba(201,160,99,0.18)] hover:border-[#c9a063] hover:-translate-y-1 transition-all duration-500 flex flex-col justify-between overflow-hidden">
-                        
+
                         {/* Top Decorative Card Number & Accent Gradient */}
                         <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-[#c9a063]/10 via-transparent to-transparent rounded-bl-full pointer-events-none group-hover:from-[#c9a063]/20 transition-all duration-500" />
 
@@ -221,11 +221,10 @@ export default function WhyChooseSlider() {
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`h-2 rounded-full transition-all duration-500 ${
-                  activeIndex === index
+                className={`h-2 rounded-full transition-all duration-500 ${activeIndex === index
                     ? "w-8 bg-[#c9a063] shadow-[0_0_10px_rgba(201,160,99,0.5)]"
                     : "w-2 bg-gray-300 hover:bg-[#c9a063]/50"
-                }`}
+                  }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
             ))}

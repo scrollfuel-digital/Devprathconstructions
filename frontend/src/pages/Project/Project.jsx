@@ -1,8 +1,8 @@
 import React from 'react';
 import HeroSection from './sections/HeroSection';
-import AmenitiesSection from './sections/AmenitiesSection';
-import PhasesSection from './sections/PhasesSection';
-import LegacySection from './sections/LegacySection';
+import AmenitiesSection from './sections/SignatureAmenitiesSection';
+import PhasesSection from './sections/PhasesOverviewSection';
+import LegacySection from './sections/CompletedProjectsMarqueeSection';
 
 /**
  * Main Project Page Component (Mangalmurti Residency)
@@ -10,8 +10,8 @@ import LegacySection from './sections/LegacySection';
  * 
  * Sections:
  * 1. HeroSection (#hero)
- * 2. AmenitiesSection (#amenities)
- * 3. PhasesSection (#phases)
+ * 2. PhasesSection (#phases)
+ * 3. AmenitiesSection (#amenities)
  * 4. LegacySection (#legacy)
  */
 export default function Project() {

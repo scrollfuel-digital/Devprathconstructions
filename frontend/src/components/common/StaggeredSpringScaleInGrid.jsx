@@ -2,26 +2,18 @@ import React, { useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { PHASE_HIGHLIGHTS } from '../../constants/phasesData';
 import entranceLobbyImg from '../../assets/Township Features/Grand Entrance Lobby.png';
-import guestRoomImg from '../../assets/Township Features/guestroom.png';
 import ecoFriendlyImg from '../../assets/Township Features/Eco-friendly.png';
-import playAreaImg from '../../assets/Township Features/children playarea.png';
 import landscapeImg from '../../assets/Township Features/Landscaped Vicinity.png';
-import securityImg from '../../assets/Township Features/security.png';
 import backupImg from '../../assets/Township Features/Backup.png';
-import poolAreaImg from '../../assets/Township Features/club and poolarea.png';
 
 /**
- * 8 High-Res Asset Images matching township feature items
+ * 4 High-Res Asset Images matching township feature items
  */
 const DEFAULT_IMAGES = [
   entranceLobbyImg,
-  guestRoomImg,
   ecoFriendlyImg,
-  playAreaImg,
   landscapeImg,
-  securityImg,
   backupImg,
-  poolAreaImg,
 ];
 
 /**
@@ -165,7 +157,7 @@ function GridCard({ item, index, shouldReduceMotion }) {
  */
 export default function StaggeredSpringScaleInGrid({
   items = PHASE_HIGHLIGHTS,
-  title = 'Township Features & Amenities',
+  title = 'Township Features',
   subtitle = 'Crafted for luxury, security, and sustainable micro-township living in Nagpur.',
 }) {
   const shouldReduceMotion = useReducedMotion();

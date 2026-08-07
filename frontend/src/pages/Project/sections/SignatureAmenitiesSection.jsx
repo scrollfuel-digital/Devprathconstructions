@@ -92,21 +92,21 @@ export default function AmenitiesSection() {
   // Active showcase banner object (amenity item click overrides category)
   const activeBannerObj = selectedAmenity
     ? {
-        id: selectedAmenity.id,
-        label: selectedAmenity.title,
-        image: selectedAmenity.image,
-        description: selectedAmenity.description,
-        icon: selectedAmenity.icon,
-        badgeTag: selectedAmenity.categoryName || activeCategoryObj.label,
-      }
+      id: selectedAmenity.id,
+      label: selectedAmenity.title,
+      image: selectedAmenity.image,
+      description: selectedAmenity.description,
+      icon: selectedAmenity.icon,
+      badgeTag: selectedAmenity.categoryName || activeCategoryObj.label,
+    }
     : {
-        id: activeCategoryObj.id,
-        label: activeCategoryObj.label,
-        image: activeCategoryObj.image,
-        description: activeCategoryObj.description,
-        icon: activeCategoryObj.icon,
-        badgeTag: activeCategoryObj.label,
-      };
+      id: activeCategoryObj.id,
+      label: activeCategoryObj.label,
+      image: activeCategoryObj.image,
+      description: activeCategoryObj.description,
+      icon: activeCategoryObj.icon,
+      badgeTag: activeCategoryObj.label,
+    };
 
   const displayedItems =
     selectedTab === 'all'
@@ -151,11 +151,10 @@ export default function AmenitiesSection() {
               <button
                 key={category.id}
                 onClick={() => handleTabChange(category.id)}
-                className={`px-4 md:px-5 py-2 md:py-2.5 rounded-full text-[11px] md:text-xs font-semibold uppercase tracking-[1.2px] md:tracking-[1.5px] transition-all duration-300 cursor-pointer flex items-center gap-1.5 md:gap-2 active:scale-95 shrink-0 shadow-sm ${
-                  isActive
+                className={`px-4 md:px-5 py-2 md:py-2.5 rounded-full text-[11px] md:text-xs font-semibold uppercase tracking-[1.2px] md:tracking-[1.5px] transition-all duration-300 cursor-pointer flex items-center gap-1.5 md:gap-2 active:scale-95 shrink-0 shadow-sm ${isActive
                     ? 'bg-[#B9935A] text-white border border-[#B9935A] shadow-md'
                     : 'bg-white/90 text-[#4E453A] border border-[#B9935A]/30 hover:border-[#B9935A] hover:text-[#B9935A]'
-                }`}
+                  }`}
               >
                 <span className="material-symbols-outlined text-sm">{category.icon}</span>
                 <span className="whitespace-nowrap">{category.label}</span>
@@ -249,9 +248,8 @@ export default function AmenitiesSection() {
                   <div
                     key={item.id}
                     onClick={() => setSelectedAmenity(item)}
-                    className={`h-[200px] w-full rounded-2xl bg-white/95 backdrop-blur-md border overflow-hidden shadow-[0_6px_20px_rgba(185,147,90,0.08)] hover:border-[#B9935A] hover:shadow-lg transition-colors transition-shadow duration-300 flex flex-col shrink-0 group cursor-pointer ${
-                      selectedAmenity?.id === item.id ? 'border-[#B9935A] ring-2 ring-[#B9935A]/30' : 'border-[#B9935A]/30'
-                    }`}
+                    className={`h-[200px] w-full rounded-2xl bg-white/95 backdrop-blur-md border overflow-hidden shadow-[0_6px_20px_rgba(185,147,90,0.08)] hover:border-[#B9935A] hover:shadow-lg transition-colors transition-shadow duration-300 flex flex-col shrink-0 group cursor-pointer ${selectedAmenity?.id === item.id ? 'border-[#B9935A] ring-2 ring-[#B9935A]/30' : 'border-[#B9935A]/30'
+                      }`}
                   >
                     <div className="h-[115px] relative overflow-hidden bg-[#1B1C1C] shrink-0">
                       <img
@@ -295,9 +293,8 @@ export default function AmenitiesSection() {
                 <div
                   key={item.id}
                   onClick={() => setSelectedAmenity(item)}
-                  className={`h-[200px] w-full rounded-2xl bg-white/95 backdrop-blur-md border overflow-hidden shadow-[0_6px_20px_rgba(185,147,90,0.08)] hover:border-[#B9935A] hover:shadow-lg transition-colors transition-shadow duration-300 flex flex-col shrink-0 group cursor-pointer ${
-                    selectedAmenity?.id === item.id ? 'border-[#B9935A] ring-2 ring-[#B9935A]/30' : 'border-[#B9935A]/30'
-                  }`}
+                  className={`h-[200px] w-full rounded-2xl bg-white/95 backdrop-blur-md border overflow-hidden shadow-[0_6px_20px_rgba(185,147,90,0.08)] hover:border-[#B9935A] hover:shadow-lg transition-colors transition-shadow duration-300 flex flex-col shrink-0 group cursor-pointer ${selectedAmenity?.id === item.id ? 'border-[#B9935A] ring-2 ring-[#B9935A]/30' : 'border-[#B9935A]/30'
+                    }`}
                 >
                   <div className="h-[115px] relative overflow-hidden bg-[#1B1C1C] shrink-0">
                     <img

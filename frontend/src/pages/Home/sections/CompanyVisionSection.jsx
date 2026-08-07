@@ -1,5 +1,7 @@
 import React, { memo } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import mangalmurtiImg from '../../../assets/home page/who_are_we.png';
+
 
 const PILLARS = [
   {
@@ -52,7 +54,7 @@ export const CompanyLegacySection = memo(() => {
     <section id="about" className="py-20 md:py-28 bg-[#F8F5EF] relative overflow-hidden">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          
+
           {/* Left Column - High End Image Frame */}
           <motion.div
             initial="hidden"
@@ -64,7 +66,7 @@ export const CompanyLegacySection = memo(() => {
           >
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-[#B9935A]/30 group">
               <img
-                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
+                src={mangalmurtiImg}
                 alt="Devprath Architectural Excellence"
                 className="w-full h-[450px] sm:h-[550px] object-cover group-hover:scale-105 transition-transform duration-700"
               />

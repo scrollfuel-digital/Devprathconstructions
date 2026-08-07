@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import HeroSection from "./sections/HeroSection";
-import StatsBarSection from "./sections/StatsBarSection";
-import CompanyLegacySection from "./sections/CompanyLegacySection";
-import DevprathAdvantageSection from "./sections/DevprathAdvantageSection";
-import FeaturedProjectSection from "./sections/FeaturedProjectSection";
+import StatsBar from "../../components/common/StatsBar";
+import CompanyLegacySection from "./sections/CompanyVisionSection";
+import DevprathAdvantageSection from "./sections/CoreAdvantagesSection";
+import FeaturedProjectSection from "./sections/FeaturedResidenceSection";
 import LuxuryAmenitiesSection from "./sections/LuxuryAmenitiesSection";
 import HubOfExcellenceSection from "../../components/HubOfExcellence";
 import ClientVoicesSection from "../../components/ClientVoices";
@@ -24,7 +24,7 @@ export const Home = () => {
         <HeroSection onBookConsultation={() => setIsConsultationOpen(true)} />
 
         {/* Metric Statistics Bar */}
-        <StatsBarSection />
+        <StatsBar isSection={true} />
 
         {/* Company Legacy & Vision */}
         <CompanyLegacySection />
