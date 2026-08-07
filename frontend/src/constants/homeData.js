@@ -1,12 +1,5 @@
 // Home Page Datasets & Static Configurations
 
-export const STATS_DATA = [
-  { id: 1, value: "15+", label: "Years of Excellence" },
-  { id: 2, value: "25+", label: "Completed Landmarks" },
-  { id: 3, value: "100%", label: "On-Time Delivery" },
-  { id: 4, value: "5000+", label: "Happy Families" },
-];
-
 export const COMPANY_VISION_POINTS = [
   {
     id: 1,
@@ -57,8 +50,8 @@ export const ADVANTAGES_DATA = [
 
 export const FEATURED_PROJECT_BADGES = [
   { id: 1, label: "RERA", value: "Approved Project" },
-  { id: 2, label: "80%", value: "Open Green Space" },
-  { id: 3, label: "Possession", value: "Dec '25" },
+  { id: 2, label: "Architecture", value: "Innovative Designs" },
+  { id: 3, label: "Quality", value: "Unmatched Expertise" },
 ];
 
 export const FLOOR_PLANS_DATA = [

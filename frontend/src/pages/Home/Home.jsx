@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import HeroSection from "./sections/HeroSection";
-import StatsBarSection from "./sections/StatsBarSection";
+import StatsBar from "../../components/common/StatsBar";
 import CompanyLegacySection from "./sections/CompanyVisionSection";
 import DevprathAdvantageSection from "./sections/CoreAdvantagesSection";
 import FeaturedProjectSection from "./sections/FeaturedResidenceSection";
@@ -24,7 +24,7 @@ export const Home = () => {
         <HeroSection onBookConsultation={() => setIsConsultationOpen(true)} />
 
         {/* Metric Statistics Bar */}
-        <StatsBarSection />
+        <StatsBar isSection={true} />
 
         {/* Company Legacy & Vision */}
         <CompanyLegacySection />

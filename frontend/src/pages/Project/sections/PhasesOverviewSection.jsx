@@ -230,7 +230,7 @@ export default function PhasesSection() {
         {/* Township Features Section using Staggered Spring Scale-In Grid */}
         <div className="mt-20 pt-8 border-t border-[#B9935A]/20">
           <StaggeredSpringScaleInGrid
-            title="Township Features & Amenities"
+            title="Township Features"
             subtitle="Crafted for luxury, security, and sustainable micro-township living in Nagpur."
           />
         </div>

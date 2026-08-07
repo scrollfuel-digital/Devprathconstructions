@@ -47,7 +47,7 @@ export default function ContactMap({ activeOfficeId, onSelectOffice }) {
             Interactive Satellite Map
           </span>
           <h3 className="text-lg sm:text-2xl font-bold font-heading text-[#1B1C1C] leading-snug">
-            Devprath Constructions Headquarters
+            Devprath Constructions Locations
           </h3>
         </div>
 

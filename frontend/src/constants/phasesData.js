@@ -1,12 +1,8 @@
 // Strategic Phases Data & Comprehensive Project Highlights for Mangalmurti Residency
 import entranceLobbyImg from '../assets/Township Features/Grand Entrance Lobby.png';
-import guestRoomImg from '../assets/Township Features/guestroom.png';
 import ecoFriendlyImg from '../assets/Township Features/Eco-friendly.png';
-import playAreaImg from '../assets/Township Features/children playarea.png';
 import landscapeImg from '../assets/Township Features/Landscaped Vicinity.png';
-import securityImg from '../assets/Township Features/security.png';
 import backupImg from '../assets/Township Features/Backup.png';
-import poolAreaImg from '../assets/Township Features/club and poolarea.png';
 
 export const PROJECT_OVERVIEW = {
   welcomeTag: 'Your Dream Home Awaits',
@@ -71,22 +67,10 @@ export const PHASE_HIGHLIGHTS = [
     image: entranceLobbyImg,
   },
   {
-    icon: 'hotel',
-    title: 'Guest Rooms & Drivers Dormitory',
-    description: 'Ensuring comfort and convenience for everyone.',
-    image: guestRoomImg,
-  },
-  {
     icon: 'eco',
     title: 'Eco-Friendly Facilities',
     description: 'Sewage Treatment Plant (STP) & Rainwater Harvesting System for sustainable living.',
     image: ecoFriendlyImg,
-  },
-  {
-    icon: 'fitness_center',
-    title: 'Green Gym & Children’s Play Area',
-    description: 'Promote a healthy lifestyle with outdoor fitness facilities and safe play zones.',
-    image: playAreaImg,
   },
   {
     icon: 'park',
@@ -95,21 +79,9 @@ export const PHASE_HIGHLIGHTS = [
     image: landscapeImg,
   },
   {
-    icon: 'shield_moon',
-    title: 'Advanced Security',
-    description: 'Stay secure with boom barriers and 24/7 surveillance.',
-    image: securityImg,
-  },
-  {
     icon: 'power',
     title: 'Reliable Power Backup',
     description: 'Uninterrupted power supply for lifts and common areas.',
     image: backupImg,
-  },
-  {
-    icon: 'pool',
-    title: 'Clubhouse & Swimming Pool',
-    description: 'Perfect for relaxation and leisure.',
-    image: poolAreaImg,
   },
 ];
