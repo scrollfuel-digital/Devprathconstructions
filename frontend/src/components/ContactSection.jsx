@@ -90,7 +90,7 @@ export const ContactSection = memo(() => {
     <section id="contact" className="py-24 bg-[#F8F5EF] relative overflow-hidden border-t border-[#B9935A]/20">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          
+
           {/* Left Column - Contact Form */}
           <motion.div
             initial="hidden"

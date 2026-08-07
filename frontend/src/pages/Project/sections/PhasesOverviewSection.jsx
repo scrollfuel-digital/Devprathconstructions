@@ -108,11 +108,10 @@ export default function PhasesSection() {
                   variants={smoothEmergenceVariant(shouldReduceMotion, 0.3 + idx * 0.15)}
                   onMouseEnter={() => setActivePhaseId(phase.id)}
                   onClick={() => setActivePhaseId(phase.id)}
-                  className={`rounded-2xl p-5 md:p-6 transition-colors transition-shadow duration-300 cursor-pointer border overflow-hidden ${
-                    isActive
+                  className={`rounded-2xl p-5 md:p-6 transition-colors transition-shadow duration-300 cursor-pointer border overflow-hidden ${isActive
                       ? 'bg-white border-[#B9935A] shadow-[0_12px_30px_rgba(185,147,90,0.15)] ring-1 ring-[#B9935A]/40'
                       : 'bg-white/80 backdrop-blur-md border-[#B9935A]/25 hover:border-[#B9935A]/60 hover:bg-white/95 shadow-sm'
-                  }`}
+                    }`}
                 >
                   {/* Mobile Header View */}
                   <div className="flex sm:hidden flex-col gap-2.5">
@@ -208,9 +207,8 @@ export default function PhasesSection() {
                   animate={transform}
                   transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                   onClick={() => setAutoDeckIdx((prev) => (idx === prev ? (prev + 1) % deckCards.length : idx))}
-                  className={`absolute w-full h-[450px] md:h-[500px] rounded-2xl overflow-hidden border transition-shadow duration-500 cursor-pointer ${
-                    isFront ? 'border-[#B9935A] shadow-[0_25px_50px_rgba(185,147,90,0.25)] ring-1 ring-[#B9935A]/50' : 'border-[#B9935A]/30 shadow-lg'
-                  }`}
+                  className={`absolute w-full h-[450px] md:h-[500px] rounded-2xl overflow-hidden border transition-shadow duration-500 cursor-pointer ${isFront ? 'border-[#B9935A] shadow-[0_25px_50px_rgba(185,147,90,0.25)] ring-1 ring-[#B9935A]/50' : 'border-[#B9935A]/30 shadow-lg'
+                    }`}
                 >
                   <img alt={card.title} className="w-full h-full object-cover" src={card.image} />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent pointer-events-none" />

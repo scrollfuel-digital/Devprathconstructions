@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { SocialConnectBar } from "../../components/SocialConnectBar";
+import SocialConnectBar from "../../components/SocialConnectBar";
 import {
   Mail,
   PhoneCall,

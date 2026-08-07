@@ -2,6 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo/logo.png";
 import SocialConnectBar from "./SocialConnectBar";
+import {
+  FOOTER_QUICK_LINKS,
+  FOOTER_LANDMARK_PROJECTS,
+  FOOTER_LEGAL_LINKS,
+} from "../constants/navigationData";
 
 export const Footer = () => {
   return (
@@ -29,31 +34,13 @@ export const Footer = () => {
               Quick Links
             </h4>
             <ul className="space-y-2.5 text-xs sm:text-sm text-[#4E453A] font-normal">
-              <li>
-                <Link to="/" className="hover:text-[#B9935A] transition-colors duration-300 block">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link to="/project" className="hover:text-[#B9935A] transition-colors duration-300 block">
-                  Projects
-                </Link>
-              </li>
-              <li>
-                <Link to="/aboutus" className="hover:text-[#B9935A] transition-colors duration-300 block">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link to="/contact" className="hover:text-[#B9935A] transition-colors duration-300 block">
-                  Contact Us
-                </Link>
-              </li>
-              <li>
-                <Link to="/blog" className="hover:text-[#B9935A] transition-colors duration-300 block">
-                  Blogs
-                </Link>
-              </li>
+              {FOOTER_QUICK_LINKS.map((link) => (
+                <li key={link.id}>
+                  <Link to={link.path} className="hover:text-[#B9935A] transition-colors duration-300 block">
+                    {link.title}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -63,21 +50,13 @@ export const Footer = () => {
               Landmark Projects
             </h4>
             <ul className="space-y-2.5 text-xs sm:text-sm text-[#4E453A] font-normal">
-              <li>
-                <Link to="/project" className="hover:text-[#B9935A] transition-colors duration-300 block">
-                  Mangalmurti Residency (Nagpur)
-                </Link>
-              </li>
-              <li>
-                <Link to="/project#phases" className="hover:text-[#B9935A] transition-colors duration-300 block">
-                  Commercial Outlets
-                </Link>
-              </li>
-              <li>
-                <Link to="/project#phases" className="hover:text-[#B9935A] transition-colors duration-300 block">
-                  Luxury 2BHK Homes
-                </Link>
-              </li>
+              {FOOTER_LANDMARK_PROJECTS.map((proj) => (
+                <li key={proj.id}>
+                  <Link to={proj.path} className="hover:text-[#B9935A] transition-colors duration-300 block">
+                    {proj.title}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -100,12 +79,11 @@ export const Footer = () => {
         <div className="pt-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs sm:text-sm text-[#4E453A] font-normal">
           <p>© {new Date().getFullYear()} DEVPRATH CONSTRUCTIONS LLP. All Rights Reserved.</p>
           <div className="flex items-center gap-6 font-normal">
-            <Link to="/privacy" className="hover:text-[#B9935A] transition-colors duration-300">
-              Privacy Policy
-            </Link>
-            <Link to="/terms" className="hover:text-[#B9935A] transition-colors duration-300">
-              Terms of Service
-            </Link>
+            {FOOTER_LEGAL_LINKS.map((legal) => (
+              <Link key={legal.id} to={legal.path} className="hover:text-[#B9935A] transition-colors duration-300">
+                {legal.title}
+              </Link>
+            ))}
           </div>
         </div>
       </div>

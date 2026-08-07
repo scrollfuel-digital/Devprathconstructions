@@ -70,9 +70,9 @@ const calculateDistance = (lat1, lon1, lat2, lon2) => {
   const a =
     Math.sin(dLat / 2) * Math.sin(dLat / 2) +
     Math.cos((lat1 * Math.PI) / 180) *
-      Math.cos((lat2 * Math.PI) / 180) *
-      Math.sin(dLon / 2) *
-      Math.sin(dLon / 2);
+    Math.cos((lat2 * Math.PI) / 180) *
+    Math.sin(dLon / 2) *
+    Math.sin(dLon / 2);
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   return (R * c).toFixed(1);
 };
@@ -211,7 +211,7 @@ export const HubOfExcellence = memo(() => {
     >
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          
+
           {/* Left Column - Magical Depth Blur Emergence */}
           <div className="lg:col-span-1 text-left space-y-3.5">
             {/* Header Block */}
@@ -259,19 +259,17 @@ export const HubOfExcellence = memo(() => {
                       ? undefined
                       : { scale: 1.02, transition: { duration: 0.2 } }
                   }
-                  className={`flex items-center justify-between p-4 rounded-2xl border transition-all cursor-pointer shadow-sm ${
-                    isSelected
+                  className={`flex items-center justify-between p-4 rounded-2xl border transition-all cursor-pointer shadow-sm ${isSelected
                       ? "bg-[#FDFBF7] border-[#B9935A] ring-2 ring-[#B9935A]/20 shadow-md"
                       : "bg-white border-gray-200/80 hover:border-[#B9935A]/50 hover:bg-white"
-                  }`}
+                    }`}
                 >
                   <div className="flex items-center gap-3.5 min-w-0 flex-1">
                     <div
-                      className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 transition-colors ${
-                        isSelected
+                      className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 transition-colors ${isSelected
                           ? "bg-[#B9935A] text-white"
                           : "bg-[#F8F5EF] text-[#B9935A]"
-                      }`}
+                        }`}
                     >
                       <span className="material-symbols-outlined text-xl">
                         {item.icon}
