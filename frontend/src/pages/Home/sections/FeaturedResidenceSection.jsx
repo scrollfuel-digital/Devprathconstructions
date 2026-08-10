@@ -52,7 +52,7 @@ export const FeaturedProjectSection = memo(({ onBookConsultation }) => {
   return (
     <section
       id="projects"
-      className="py-20 md:py-28 bg-[#EBE6DF] text-[#172235] relative overflow-hidden border-t border-[#B9935A]/20"
+      className="py-20 md:py-28 bg-[#EBE6DF] text-black relative overflow-hidden border-t border-[#B9935A]/20"
     >
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
@@ -66,19 +66,22 @@ export const FeaturedProjectSection = memo(({ onBookConsultation }) => {
               variants={magicalBehindVariant(shouldReduceMotion)}
               style={{ willChange: "transform, opacity, filter" }}
             >
-              <span className="text-xs font-bold uppercase tracking-[3px] text-[#B9935A] mb-3 block">
+              <span className="text-xs font-bold uppercase tracking-[3px] text-[#B9935A] mb-2 block font-sans">
                 Featured Project
               </span>
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#172235] tracking-tight mb-4 leading-tight font-heading">
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-black tracking-tight mb-3 leading-tight font-heading">
                 Mangalmurti <br />
                 <span className="gold-gradient-text">Residency</span>
               </h2>
-              <p className="text-base sm:text-lg text-gray-700 font-light max-w-xl">
+              <p className="text-sm sm:text-base text-[#785926] font-semibold uppercase tracking-wider mb-4">
                 Where Comfort Meets Contemporary Living
+              </p>
+              <p className="text-sm sm:text-base text-gray-800 font-light leading-relaxed max-w-xl">
+                Mangalmurti Residency is a premium residential project by Devprath Constructions LLP offering thoughtfully designed homes for modern families. Crafted with contemporary architecture and efficient layouts, every apartment provides spacious living areas, excellent natural light, ventilation, and premium finishes.
               </p>
             </motion.div>
 
-            {/* Key Spec Badges — Equal 3-Column Grid on Mobile, Flex on PC */}
+            {/* Key Spec Badges — Clean Grid */}
             <div className="grid grid-cols-3 gap-2 sm:gap-3.5 sm:flex sm:flex-wrap items-stretch sm:items-center py-2 w-full">
               {FEATURED_PROJECT_BADGES.map((badge) => (
                 <motion.div
@@ -93,7 +96,7 @@ export const FeaturedProjectSection = memo(({ onBookConsultation }) => {
                   <span className="block text-[9px] sm:text-xs font-bold uppercase tracking-wider sm:tracking-widest text-[#B9935A] leading-tight mb-1">
                     {badge.label}
                   </span>
-                  <span className="text-[11px] sm:text-sm font-bold text-[#172235] leading-snug">
+                  <span className="text-[11px] sm:text-sm font-bold text-black leading-snug">
                     {badge.value}
                   </span>
                 </motion.div>
@@ -110,7 +113,7 @@ export const FeaturedProjectSection = memo(({ onBookConsultation }) => {
               className="pt-2"
             >
               <a
-                href="/project"
+                href="/projects"
                 className="rounded-full bg-[#B9935A] px-7 sm:px-9 py-3.5 sm:py-4 text-xs font-semibold uppercase tracking-[2px] sm:tracking-[3px] text-white transition-all duration-300 hover:bg-gradient-to-r hover:from-[#B9935A] hover:to-[#8B6732] hover:border-transparent hover:shadow-2xl cursor-pointer flex items-center justify-center sm:justify-start gap-2.5 sm:gap-3 w-full sm:w-fit shadow-md active:scale-95"
               >
                 <span>Explore Project Details</span>
@@ -160,3 +163,5 @@ export const FeaturedProjectSection = memo(({ onBookConsultation }) => {
 });
 
 export default FeaturedProjectSection;
+
+

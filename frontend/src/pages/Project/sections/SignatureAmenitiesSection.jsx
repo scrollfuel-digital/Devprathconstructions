@@ -113,6 +113,61 @@ export default function AmenitiesSection() {
       ? AMENITIES_ITEMS
       : AMENITIES_ITEMS.filter((item) => item.categoryId === selectedTab);
 
+  const renderAmenityCard = (item) => {
+    const isSelected = selectedAmenity?.id === item.id;
+    return (
+      <div
+        key={item.id}
+        onClick={() => setSelectedAmenity(item)}
+        className={`h-[185px] w-full rounded-2xl relative overflow-hidden shadow-[0_8px_25px_rgba(0,0,0,0.18)] hover:border-[#B9935A] hover:shadow-xl transition-all duration-300 flex flex-col justify-between shrink-0 group cursor-pointer border ${
+          isSelected
+            ? 'border-[#B9935A] ring-2 ring-[#B9935A]/50'
+            : 'border-[#B9935A]/30'
+        }`}
+      >
+        {/* Full-Bleed Background Image */}
+        <img
+          src={item.image}
+          alt={item.title}
+          className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+        />
+
+        {/* Gradient Overlay (No white strip background!) */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20 group-hover:from-black/95 transition-opacity duration-300" />
+
+        {/* Top Badge & Icon */}
+        <div className="relative z-10 p-3 flex items-center justify-between">
+          <span className="text-[9px] font-bold uppercase tracking-widest bg-[#B9935A] text-white px-2.5 py-0.5 rounded-full shadow-md font-sans">
+            {item.categoryName}
+          </span>
+          <div className="bg-black/50 backdrop-blur-md text-[#F0D060] p-1.5 rounded-lg border border-white/20 shadow-md flex items-center justify-center">
+            <span className="material-symbols-outlined text-base">{item.icon}</span>
+          </div>
+        </div>
+
+        {/* Bottom Details directly ON Image */}
+        <div className="relative z-10 p-3.5">
+          <h4 className="font-heading font-bold text-sm md:text-base text-white leading-snug truncate drop-shadow-sm">
+            {item.title}
+          </h4>
+          <p className="text-xs text-gray-200 mt-0.5 line-clamp-1 leading-relaxed font-light">
+            {item.description}
+          </p>
+
+          <div className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-[#F0D060] mt-2">
+            <span
+              className="material-symbols-outlined text-xs text-[#B9935A]"
+              style={{ fontVariationSettings: "'FILL' 1" }}
+            >
+              check_circle
+            </span>
+            <span className="text-gray-300 font-medium">Township Amenity</span>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <section className="py-16 md:py-24 px-4 sm:px-8 md:px-20 max-w-[1440px] mx-auto overflow-hidden" id="amenities">
       {/* Header & Category Filters */}
@@ -233,103 +288,13 @@ export default function AmenitiesSection() {
                 ref={(el) => categoryRefs.current.set(group.id, el)}
                 className="space-y-4"
               >
-                {/* Category Header Tag in Right Column */}
-                <div className="sticky top-0 z-10 bg-[#F8F5EF]/95 backdrop-blur-md py-1.5 px-3 rounded-lg border border-[#B9935A]/20 flex items-center justify-between shadow-sm">
-                  <span className="text-xs font-bold text-[#785926] uppercase tracking-wider">
-                    {group.label}
-                  </span>
-                  <span className="text-[10px] font-semibold text-[#B9935A] bg-[#B9935A]/10 px-2 py-0.5 rounded-full">
-                    {group.items.length} items
-                  </span>
-                </div>
-
-                {/* Group Amenities Cards (Fixed-size layout blocks) */}
-                {group.items.map((item) => (
-                  <div
-                    key={item.id}
-                    onClick={() => setSelectedAmenity(item)}
-                    className={`h-[200px] w-full rounded-2xl bg-white/95 backdrop-blur-md border overflow-hidden shadow-[0_6px_20px_rgba(185,147,90,0.08)] hover:border-[#B9935A] hover:shadow-lg transition-colors transition-shadow duration-300 flex flex-col shrink-0 group cursor-pointer ${selectedAmenity?.id === item.id ? 'border-[#B9935A] ring-2 ring-[#B9935A]/30' : 'border-[#B9935A]/30'
-                      }`}
-                  >
-                    <div className="h-[115px] relative overflow-hidden bg-[#1B1C1C] shrink-0">
-                      <img
-                        src={item.image}
-                        alt={item.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                      <span className="absolute top-2.5 left-3 text-[9px] font-bold uppercase tracking-widest bg-[#B9935A] text-white px-2.5 py-0.5 rounded-full shadow-sm">
-                        {item.categoryName}
-                      </span>
-                      <div className="absolute bottom-2 right-3 bg-white/90 text-[#B9935A] p-1.5 rounded-lg shadow-md">
-                        <span className="material-symbols-outlined text-base">{item.icon}</span>
-                      </div>
-                    </div>
-
-                    <div className="p-3.5 flex-1 flex flex-col justify-between bg-white overflow-hidden">
-                      <div>
-                        <h4 className="font-heading font-bold text-sm md:text-base text-[#1B1C1C] leading-snug truncate">
-                          {item.title}
-                        </h4>
-                        <p className="text-xs text-[#666666] mt-0.5 line-clamp-1 leading-relaxed">
-                          {item.description}
-                        </p>
-                      </div>
-
-                      <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-[#B9935A]">
-                        <span className="material-symbols-outlined text-xs" style={{ fontVariationSettings: "'FILL' 1" }}>
-                          check_circle
-                        </span>
-                        <span>Township Amenity</span>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+                {/* Group Amenities Cards */}
+                {group.items.map((item) => renderAmenityCard(item))}
               </div>
             ))
           ) : (
             <div className="space-y-4">
-              {displayedItems.map((item) => (
-                <div
-                  key={item.id}
-                  onClick={() => setSelectedAmenity(item)}
-                  className={`h-[200px] w-full rounded-2xl bg-white/95 backdrop-blur-md border overflow-hidden shadow-[0_6px_20px_rgba(185,147,90,0.08)] hover:border-[#B9935A] hover:shadow-lg transition-colors transition-shadow duration-300 flex flex-col shrink-0 group cursor-pointer ${selectedAmenity?.id === item.id ? 'border-[#B9935A] ring-2 ring-[#B9935A]/30' : 'border-[#B9935A]/30'
-                    }`}
-                >
-                  <div className="h-[115px] relative overflow-hidden bg-[#1B1C1C] shrink-0">
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    <span className="absolute top-2.5 left-3 text-[9px] font-bold uppercase tracking-widest bg-[#B9935A] text-white px-2.5 py-0.5 rounded-full shadow-sm">
-                      {item.categoryName}
-                    </span>
-                    <div className="absolute bottom-2 right-3 bg-white/90 text-[#B9935A] p-1.5 rounded-lg shadow-md">
-                      <span className="material-symbols-outlined text-base">{item.icon}</span>
-                    </div>
-                  </div>
-
-                  <div className="p-3.5 flex-1 flex flex-col justify-between bg-white overflow-hidden">
-                    <div>
-                      <h4 className="font-heading font-bold text-sm md:text-base text-[#1B1C1C] leading-snug truncate">
-                        {item.title}
-                      </h4>
-                      <p className="text-xs text-[#666666] mt-0.5 line-clamp-1 leading-relaxed">
-                        {item.description}
-                      </p>
-                    </div>
-
-                    <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-[#B9935A]">
-                      <span className="material-symbols-outlined text-xs" style={{ fontVariationSettings: "'FILL' 1" }}>
-                        check_circle
-                      </span>
-                      <span>Township Amenity</span>
-                    </div>
-                  </div>
-                </div>
-              ))}
+              {displayedItems.map((item) => renderAmenityCard(item))}
             </div>
           )}
         </motion.div>

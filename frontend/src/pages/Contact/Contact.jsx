@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import SocialConnectBar from "../../components/SocialConnectBar";
 import {
@@ -21,11 +21,6 @@ import ContactMap from "./components/ContactMap";
 import ContactForm from "./components/ContactForm";
 import StatsBar from "../../components/common/StatsBar";
 
-/**
- * Contact Page Component
- * Modular, production-grade contact hub with signature golden theme (#B9935A)
- * and interactive Leaflet satellite map with Devprath office markers.
- */
 export default function Contact() {
   const prefersReducedMotion = useReducedMotion();
   const [copiedEmail, setCopiedEmail] = useState(false);
@@ -45,11 +40,61 @@ export default function Contact() {
     setTimeout(() => setter(false), 2200);
   };
 
+  const quickContactCards = [
+    {
+      id: "email",
+      label: "Email",
+      value: CONTACT_CHANNELS.email,
+      href: `mailto:${CONTACT_CHANNELS.email}`,
+      Icon: Mail,
+      isCopyable: true,
+      copiedState: copiedEmail,
+      onCopy: () => copyToClipboard(CONTACT_CHANNELS.email, setCopiedEmail),
+      copyTitle: "Copy email address",
+    },
+    {
+      id: "phone",
+      label: "Phone",
+      value: CONTACT_CHANNELS.phonePrimary,
+      href: `tel:${CONTACT_CHANNELS.phonePrimary}`,
+      Icon: PhoneCall,
+      isCopyable: true,
+      copiedState: copiedPhone,
+      onCopy: () => copyToClipboard(`${CONTACT_CHANNELS.phonePrimary}, ${CONTACT_CHANNELS.phoneSecondary}`, setCopiedPhone),
+      copyTitle: "Copy phone numbers",
+    },
+    {
+      id: "hours",
+      label: "Working Hours",
+      value: CONTACT_CHANNELS.workingHours,
+      href: null,
+      Icon: CalendarClock,
+      isCopyable: false,
+    },
+  ];
+
+  const officeCards = [
+    {
+      id: "registered",
+      label: "Registered Office",
+      subtitle: "Devprath Constructions LLP",
+      address: OFFICES.registered.address,
+      Icon: Building2,
+      iconBg: "bg-[#B9935A]/15 text-[#B9935A]",
+    },
+    {
+      id: "operations",
+      label: "Operations Office",
+      subtitle: "Site & Administrative Hub",
+      address: OFFICES.operations.address,
+      Icon: MapPinned,
+      iconBg: "bg-[#B9935A] text-white shadow-sm",
+    },
+  ];
+
   return (
     <div className="bg-[#F8F5EF] text-[#1B1C1C] font-sans antialiased selection:bg-[#B9935A] selection:text-white">
-      {/* ═══════════════════════════════════════════════════════════════════════
-          SECTION 1 — HERO HEADER BANNER
-         ═══════════════════════════════════════════════════════════════════════ */}
+      {/* SECTION 1 — HERO HEADER BANNER */}
       <section className="relative bg-gradient-to-b from-[#F8F5EF] via-[#FCF9F4] to-[#F8F5EF] text-[#1B1C1C] overflow-hidden pt-32 sm:pt-40 pb-24 border-b border-[#B9935A]/20">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/4 -left-32 w-[500px] h-[500px] rounded-full bg-[#B9935A]/10 blur-[120px]" />
@@ -58,13 +103,11 @@ export default function Contact() {
 
         <div className="relative z-10 max-w-6xl mx-auto px-5 sm:px-8">
           <motion.div initial="hidden" animate="visible" className="text-center space-y-5">
-            {/* Top Badge */}
             <motion.div variants={mv()} className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-[#B9935A]/30 bg-white/80 backdrop-blur-md shadow-sm">
               <Sparkles className="w-4 h-4 text-[#B9935A]" />
               <span className="text-[11px] font-bold uppercase tracking-[4px] text-[#785926]">Contact Devprath</span>
             </motion.div>
 
-            {/* Main Heading */}
             <motion.h1 variants={mv(0.1)} className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight font-heading text-[#1B1C1C]">
               Let's Build Your <br className="hidden sm:block" />
               <span className="text-[#B9935A]">Dream Together</span>
@@ -82,16 +125,13 @@ export default function Contact() {
             </motion.div>
           </motion.div>
 
-          {/* Stats Row */}
           <motion.div variants={mv(0.35)} initial="hidden" animate="visible">
             <StatsBar className="mt-14" />
           </motion.div>
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════════════
-          SECTION 2 — QUICK CONTACT FLOATING CARDS
-         ═══════════════════════════════════════════════════════════════════════ */}
+      {/* SECTION 2 — QUICK CONTACT FLOATING CARDS */}
       <section className="relative z-20 max-w-5xl mx-auto px-5 sm:px-8 -mt-12">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -100,75 +140,47 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
           className="grid grid-cols-1 sm:grid-cols-3 gap-5"
         >
-          {/* Email Card */}
-          <div className="bg-white rounded-2xl p-5 shadow-xl border border-[#B9935A]/20 hover:border-[#B9935A] transition-all duration-300 group flex items-center justify-between gap-4">
-            <div className="flex items-center gap-3.5 min-w-0 flex-1">
-              <div className="w-11 h-11 rounded-xl bg-[#B9935A]/15 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-                <Mail className="w-5 h-5 text-[#B9935A]" />
-              </div>
-              <div className="min-w-0 flex-1">
-                <span className="text-[10px] font-bold uppercase tracking-[2px] text-[#785926] block">Email</span>
-                <a
-                  href={`mailto:${CONTACT_CHANNELS.email}`}
-                  className="text-[12px] sm:text-[13px] font-semibold text-[#1B1C1C] hover:text-[#B9935A] transition-colors truncate block"
-                >
-                  {CONTACT_CHANNELS.email}
-                </a>
-              </div>
-            </div>
-            <button
-              onClick={() => copyToClipboard(CONTACT_CHANNELS.email, setCopiedEmail)}
-              title="Copy email address"
-              className="p-2 rounded-lg text-gray-400 hover:text-[#B9935A] hover:bg-[#B9935A]/10 transition-all cursor-pointer shrink-0"
+          {quickContactCards.map(({ id, label, value, href, Icon, isCopyable, copiedState, onCopy, copyTitle }) => (
+            <div
+              key={id}
+              className="bg-white rounded-2xl p-5 shadow-xl border border-[#B9935A]/20 hover:border-[#B9935A] transition-all duration-300 group flex items-center justify-between gap-4"
             >
-              {copiedEmail ? <Check className="w-4 h-4 text-[#B9935A]" /> : <Copy className="w-4 h-4" />}
-            </button>
-          </div>
-
-          {/* Phone Card */}
-          <div className="bg-white rounded-2xl p-5 shadow-xl border border-[#B9935A]/20 hover:border-[#B9935A] transition-all duration-300 group flex items-center justify-between gap-4">
-            <div className="flex items-center gap-3.5 min-w-0 flex-1">
-              <div className="w-11 h-11 rounded-xl bg-[#B9935A]/15 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-                <PhoneCall className="w-5 h-5 text-[#B9935A]" />
+              <div className="flex items-center gap-3.5 min-w-0 flex-1">
+                <div className="w-11 h-11 rounded-xl bg-[#B9935A]/15 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                  <Icon className="w-5 h-5 text-[#B9935A]" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <span className="text-[10px] font-bold uppercase tracking-[2px] text-[#785926] block">{label}</span>
+                  {href ? (
+                    <a
+                      href={href}
+                      className="text-[12px] sm:text-[13px] font-semibold text-[#1B1C1C] hover:text-[#B9935A] transition-colors truncate block"
+                    >
+                      {value}
+                    </a>
+                  ) : (
+                    <span className="text-[12px] sm:text-[13px] font-semibold text-[#1B1C1C] block">{value}</span>
+                  )}
+                </div>
               </div>
-              <div className="min-w-0 flex-1">
-                <span className="text-[10px] font-bold uppercase tracking-[2px] text-[#785926] block">Phone</span>
-                <a
-                  href={`tel:${CONTACT_CHANNELS.phonePrimary}`}
-                  className="text-[12px] sm:text-[13px] font-semibold text-[#1B1C1C] hover:text-[#B9935A] transition-colors block"
+
+              {isCopyable && (
+                <button
+                  onClick={onCopy}
+                  title={copyTitle}
+                  className="p-2 rounded-lg text-gray-400 hover:text-[#B9935A] hover:bg-[#B9935A]/10 transition-all cursor-pointer shrink-0"
                 >
-                  {CONTACT_CHANNELS.phonePrimary}
-                </a>
-              </div>
+                  {copiedState ? <Check className="w-4 h-4 text-[#B9935A]" /> : <Copy className="w-4 h-4" />}
+                </button>
+              )}
             </div>
-            <button
-              onClick={() => copyToClipboard(`${CONTACT_CHANNELS.phonePrimary}, ${CONTACT_CHANNELS.phoneSecondary}`, setCopiedPhone)}
-              title="Copy phone numbers"
-              className="p-2 rounded-lg text-gray-400 hover:text-[#B9935A] hover:bg-[#B9935A]/10 transition-all cursor-pointer shrink-0"
-            >
-              {copiedPhone ? <Check className="w-4 h-4 text-[#B9935A]" /> : <Copy className="w-4 h-4" />}
-            </button>
-          </div>
-
-          {/* Working Hours Card */}
-          <div className="bg-white rounded-2xl p-5 shadow-xl border border-[#B9935A]/20 flex items-center gap-3.5">
-            <div className="w-11 h-11 rounded-xl bg-[#B9935A]/15 flex items-center justify-center shrink-0">
-              <CalendarClock className="w-5 h-5 text-[#B9935A]" />
-            </div>
-            <div className="flex-1 min-w-0">
-              <span className="text-[10px] font-bold uppercase tracking-[2px] text-[#785926] block">Working Hours</span>
-              <span className="text-[12px] sm:text-[13px] font-semibold text-[#1B1C1C] block">{CONTACT_CHANNELS.workingHours}</span>
-            </div>
-          </div>
+          ))}
         </motion.div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════════════
-          SECTION 3 — FORM & OFFICE INFO (2-Column Grid)
-         ═══════════════════════════════════════════════════════════════════════ */}
+      {/* SECTION 3 — FORM & OFFICE INFO */}
       <section className="max-w-6xl mx-auto px-5 sm:px-8 py-20 lg:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-14 items-stretch">
-          {/* Left: Contact Form (3 cols) */}
           <motion.div
             variants={mv()}
             initial="hidden"
@@ -179,7 +191,6 @@ export default function Contact() {
             <ContactForm />
           </motion.div>
 
-          {/* Right: Offices & Social Links (2 cols) */}
           <motion.div
             variants={mv(0.15)}
             initial="hidden"
@@ -187,57 +198,33 @@ export default function Contact() {
             viewport={{ once: true, amount: 0.15 }}
             className="lg:col-span-2 order-1 lg:order-2 space-y-6 flex flex-col justify-between"
           >
-            {/* Registered Office Card */}
-            <div
-              onClick={() => setActiveOffice("registered")}
-              className={`bg-white rounded-2xl p-6 border transition-all duration-300 cursor-pointer shadow-md hover:shadow-xl hover:border-[#B9935A] hover:bg-[#FCF9F4] active:scale-[0.98] ${
-                activeOffice === "registered"
-                  ? "border-[#B9935A] ring-2 ring-[#B9935A]/30 bg-[#FCF9F4]"
-                  : "border-[#B9935A]/20"
-              }`}
-            >
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 rounded-xl bg-[#B9935A]/15 flex items-center justify-center">
-                  <Building2 className="w-5 h-5 text-[#B9935A]" />
+            {officeCards.map(({ id, label, subtitle, address, Icon, iconBg }) => (
+              <div
+                key={id}
+                onClick={() => setActiveOffice(id)}
+                className={`bg-white rounded-2xl p-6 border transition-all duration-300 cursor-pointer shadow-md hover:shadow-xl hover:border-[#B9935A] hover:bg-[#FCF9F4] active:scale-[0.98] ${
+                  activeOffice === id
+                    ? "border-[#B9935A] ring-2 ring-[#B9935A]/30 bg-[#FCF9F4]"
+                    : "border-[#B9935A]/20"
+                }`}
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${iconBg}`}>
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-bold uppercase tracking-[2px] text-[#785926] block">
+                      {label}
+                    </span>
+                    <span className="text-xs text-[#666666]">{subtitle}</span>
+                  </div>
                 </div>
-                <div>
-                  <span className="text-[10px] font-bold uppercase tracking-[2px] text-[#785926] block">
-                    Registered Office
-                  </span>
-                  <span className="text-xs text-[#666666]">Devprath Constructions LLP</span>
-                </div>
+                <p className="text-xs sm:text-sm font-medium text-[#1B1C1C] leading-relaxed">
+                  {address}
+                </p>
               </div>
-              <p className="text-xs sm:text-sm font-medium text-[#1B1C1C] leading-relaxed">
-                {OFFICES.registered.address}
-              </p>
-            </div>
+            ))}
 
-            {/* Operations Office Card */}
-            <div
-              onClick={() => setActiveOffice("operations")}
-              className={`bg-white rounded-2xl p-6 border transition-all duration-300 cursor-pointer shadow-md hover:shadow-xl hover:border-[#B9935A] hover:bg-[#FCF9F4] active:scale-[0.98] ${
-                activeOffice === "operations"
-                  ? "border-[#B9935A] ring-2 ring-[#B9935A]/30 bg-[#FCF9F4]"
-                  : "border-[#B9935A]/20"
-              }`}
-            >
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 rounded-xl bg-[#B9935A] flex items-center justify-center shadow-sm">
-                  <MapPinned className="w-5 h-5 text-white" />
-                </div>
-                <div>
-                  <span className="text-[10px] font-bold uppercase tracking-[2px] text-[#785926] block">
-                    Operations Office
-                  </span>
-                  <span className="text-xs text-[#666666]">Site &amp; Administrative Hub</span>
-                </div>
-              </div>
-              <p className="text-xs sm:text-sm font-medium text-[#1B1C1C] leading-relaxed">
-                {OFFICES.operations.address}
-              </p>
-            </div>
-
-            {/* Social Media Card */}
             <div className="bg-white rounded-2xl p-6 border border-[#B9935A]/25 shadow-md hover:shadow-xl hover:border-[#B9935A] transition-all duration-300 space-y-4">
               <span className="text-[10px] font-bold uppercase tracking-[2px] text-[#785926] block">
                 Connect With Us
@@ -248,7 +235,6 @@ export default function Contact() {
               />
             </div>
 
-            {/* Instant WhatsApp CTA */}
             <a
               href={CONTACT_CHANNELS.whatsappUrl}
               target="_blank"
@@ -265,9 +251,7 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════════════
-          SECTION 4 — INTERACTIVE SATELLITE MAP (Full Width)
-         ═══════════════════════════════════════════════════════════════════════ */}
+      {/* SECTION 4 — INTERACTIVE SATELLITE MAP */}
       <section className="max-w-6xl mx-auto px-5 sm:px-8 pb-24">
         <ContactMap activeOfficeId={activeOffice} onSelectOffice={setActiveOffice} />
       </section>

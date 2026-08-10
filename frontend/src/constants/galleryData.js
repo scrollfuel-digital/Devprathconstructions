@@ -25,7 +25,7 @@ import gall1_1 from "../assets/Gallery/Gallery1-1.jpg";
 import gall2 from "../assets/Gallery/Gallery2.jpg";
 import gall2_1 from "../assets/Gallery/Gallery2-1.jpg";
 import gall3 from "../assets/Gallery/Gall3.jpg";
-import mainImg from "../assets/AboutUsImg/HomePage.jpg"
+import mainImg from "../assets/AboutUsImg/HomePage.jpg";
 
 // Import Pooja images
 import pooja1 from "../assets/Gallery/Pooja.jpg";
@@ -58,40 +58,43 @@ export const firstSliderImages = [
 ];
 
 /**
- * Gallery Sections Data following Reference Image 1 Structure
+ * Separate Event Collections with Alternating (Zig-Zag) Metallic Headlines
  */
-export const gallerySections = [
+export const galleryEventSections = [
   {
-    id: "section-1",
-    badge: "GALLERY",
-    title: "Grand Launch of Sample Flat at Mangalmurti Residency",
-    hasSlider: true, // Indicates top line has the auto slider
+    id: "section-launch",
+    badge: "GRAND LAUNCH CEREMONY",
+    titleGold: "Mangalmurti Residency ",
+    titleRest: "Unveiling",
+    goldPos: "left",
     images: [
-      { id: "sec1-1", src: gall1, title: "Leadership & Guest Arrival", alt: "Guest Arrival at Mangalmurti Residency", aspect: "aspect-[4/3]" },
-      { id: "sec1-2", src: mainImg, title: "Ribbon Cutting & Grand Ceremony", alt: "Ribbon Cutting Grand Ceremony", aspect: "aspect-[3/4]" },
-      { id: "sec1-3", src: gall2, title: "Team & Director Group Photo", alt: "Team & Director Group Photo", aspect: "aspect-[4/3]" },
+      { id: "ev-1", src: gall1, title: "Leadership & Guest Arrival", aspect: "aspect-[4/3]" },
+      { id: "ev-2", src: mainImg, title: "Ribbon Cutting Ceremony", aspect: "aspect-[3/4]" },
+      { id: "ev-3", src: gall2, title: "Team & Director Gathering", aspect: "aspect-[4/3]" },
     ],
   },
   {
-    id: "section-2",
-    badge: "UNITY AND PROSPERITY",
-    title: "Inaugural Pooja With Team",
-    hasSlider: false,
+    id: "section-pooja",
+    badge: "INAUGURAL POOJA",
+    titleRest: "Auspicious Site Rituals & ",
+    titleGold: "Blessings",
+    goldPos: "right",
     images: [
-      { id: "sec2-1", src: pooja1, title: "Team Group Pooja Blessing", alt: "Devprath Team Group Pooja", aspect: "aspect-[4/3]" },
-      { id: "sec2-2", src: pooja3, title: "Auspicious Pooja Rituals", alt: "Sacred Pooja Rituals with Directors", aspect: "aspect-[3/4]" },
-      { id: "sec2-3", src: pooja2, title: "Founders & Staff Gathering", alt: "Founders & Staff Pooja Gathering", aspect: "aspect-[4/3]" },
+      { id: "ev-4", src: pooja1, title: "Team Group Pooja Blessing", aspect: "aspect-[4/3]" },
+      { id: "ev-5", src: pooja3, title: "Auspicious Pooja Rituals", aspect: "aspect-[3/4]" },
+      { id: "ev-6", src: pooja2, title: "Founders & Staff Gathering", aspect: "aspect-[4/3]" },
     ],
   },
   {
-    id: "section-3",
+    id: "section-team",
     badge: "TEAM BONDING",
-    title: "Fun-filled Picnic & Corporate Activities",
-    hasSlider: false,
+    titleGold: "Corporate Activities & ",
+    titleRest: "Milestones",
+    goldPos: "left",
     images: [
-      { id: "sec3-1", src: gall2_1, title: "Fun Tug-of-War Activity", alt: "Devprath Team Tug-of-War Game", aspect: "aspect-[4/3]" },
-      { id: "sec3-2", src: gall3, title: "Outdoor Team Outdoor Games", alt: "Outdoor Team Outdoor Activity", aspect: "aspect-[4/3]" },
-      { id: "sec3-3", src: gall1_1, title: "Celebration & Milestone Toast", alt: "Celebration & Milestone Group Photo", aspect: "aspect-[4/3]" },
+      { id: "ev-7", src: gall2_1, title: "Fun Tug-of-War Activity", aspect: "aspect-[4/3]" },
+      { id: "ev-8", src: gall3, title: "Outdoor Team Games", aspect: "aspect-[4/3]" },
+      { id: "ev-9", src: gall1_1, title: "Celebration & Milestone Toast", aspect: "aspect-[4/3]" },
     ],
   },
 ];
@@ -101,12 +104,13 @@ export const gallerySections = [
  */
 export const allGalleryImages = [
   ...firstSliderImages,
-  { id: "sec1-1", src: gall1, title: "Leadership & Guest Arrival", alt: "Guest Arrival at Mangalmurti Residency" },
-  { id: "sec1-2", src: gall1_1, title: "Ribbon Cutting & Grand Ceremony", alt: "Ribbon Cutting Grand Ceremony" },
-  { id: "sec1-3", src: gall2, title: "Team & Director Group Photo", alt: "Team & Director Group Photo" },
-  { id: "sec2-1", src: pooja1, title: "Team Group Pooja Blessing", alt: "Devprath Team Group Pooja" },
-  { id: "sec2-2", src: pooja2, title: "Auspicious Pooja Rituals", alt: "Sacred Pooja Rituals with Directors" },
-  { id: "sec2-3", src: pooja3, title: "Founders & Staff Gathering", alt: "Founders & Staff Pooja Gathering" },
-  { id: "sec3-1", src: gall2_1, title: "Fun Tug-of-War Activity", alt: "Devprath Team Tug-of-War Game" },
-  { id: "sec3-2", src: gall3, title: "Outdoor Team Outdoor Games", alt: "Outdoor Team Outdoor Activity" },
+  { id: "ev-1", src: gall1, title: "Leadership & Guest Arrival", alt: "Guest Arrival at Mangalmurti Residency" },
+  { id: "ev-2", src: mainImg, title: "Ribbon Cutting & Grand Ceremony", alt: "Ribbon Cutting Grand Ceremony" },
+  { id: "ev-3", src: gall2, title: "Team & Director Group Photo", alt: "Team & Director Group Photo" },
+  { id: "ev-4", src: pooja1, title: "Team Group Pooja Blessing", alt: "Devprath Team Group Pooja" },
+  { id: "ev-5", src: pooja3, title: "Auspicious Pooja Rituals", alt: "Sacred Pooja Rituals with Directors" },
+  { id: "ev-6", src: pooja2, title: "Founders & Staff Gathering", alt: "Founders & Staff Pooja Gathering" },
+  { id: "ev-7", src: gall2_1, title: "Fun Tug-of-War Activity", alt: "Devprath Team Tug-of-War Game" },
+  { id: "ev-8", src: gall3, title: "Outdoor Team Outdoor Games", alt: "Outdoor Team Outdoor Activity" },
+  { id: "ev-9", src: gall1_1, title: "Celebration & Milestone Toast", alt: "Celebration & Milestone Group Photo" },
 ];

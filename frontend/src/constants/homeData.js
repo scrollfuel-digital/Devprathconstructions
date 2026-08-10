@@ -73,33 +73,6 @@ export const FLOOR_PLANS_DATA = [
   },
 ];
 
-export const LUXURY_AMENITIES_DATA = [
-  {
-    id: 1,
-    title: "Rooftop Swimming Pool",
-    desc: "Infinity edge pool with panoramic skyline views of Nagpur.",
-    icon: "pool",
-  },
-  {
-    id: 2,
-    title: "State-of-the-Art Gym",
-    desc: "Fully equipped fitness center with personal trainer zones.",
-    icon: "fitness_center",
-  },
-  {
-    id: 3,
-    title: "Grand Clubhouse",
-    desc: "Multipurpose party hall and private lounge for gatherings.",
-    icon: "nightlife",
-  },
-  {
-    id: 4,
-    title: "Lush Landscaped Gardens",
-    desc: "Serene walking paths with zen meditation and yoga lawn.",
-    icon: "park",
-  },
-];
-
 export const CLIENT_VOICES_DATA = [
   {
     id: 1,
