@@ -15,12 +15,12 @@ export const Footer = () => {
         {/* Top Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 pb-10 border-b border-[#B9935A]/20">
           {/* Brand Info (4 cols) */}
-          <div className="lg:col-span-4 flex flex-col items-start">
-            <Link to="/" className="mb-3 block">
+          <div className="lg:col-span-4 flex flex-col items-start justify-start">
+            <Link to="/" className="mb-4 block -ml-3 -mt-1">
               <img
                 src={logo}
                 alt="Devprath Constructions LLP"
-                className="h-16 sm:h-20 w-auto object-contain object-left -ml-1"
+                className="h-[102px] sm:h-[128px] w-auto object-contain object-left"
               />
             </Link>
             <p className="text-xs sm:text-sm text-[#4E453A] leading-relaxed font-normal max-w-sm">

@@ -22,9 +22,14 @@ export default function ContactForm() {
     }
   };
 
+  const textFields = [
+    { name: "name", label: "Full Name", type: "text", required: true, placeholder: "Your full name", Icon: User },
+    { name: "email", label: "Email Address", type: "email", required: true, placeholder: "you@example.com", Icon: Mail },
+  ];
+
   return (
     <div className="bg-white rounded-3xl p-8 sm:p-10 shadow-xl border border-[#B9935A]/20 relative overflow-hidden h-full flex flex-col justify-between">
-      {/* Decorative Golden Corner & Accent */}
+      {/* Decorative Golden Accent */}
       <div className="absolute -top-1 -right-1 w-28 h-28 bg-gradient-to-bl from-[#B9935A]/15 to-transparent rounded-bl-[3rem] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-40 h-1 bg-gradient-to-r from-[#B9935A] to-transparent" />
 
@@ -37,7 +42,7 @@ export default function ContactForm() {
             Start a Conversation
           </h2>
           <p className="text-xs sm:text-sm text-[#4E453A] font-light">
-            Fill out the form below and our engineering & sales team will reach out within 24 hours.
+            Fill out the form below and our engineering &amp; sales team will reach out within 24 hours.
           </p>
         </div>
 
@@ -68,37 +73,22 @@ export default function ContactForm() {
               className="space-y-5"
             >
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                {/* Name */}
-                <div className="space-y-1.5">
-                  <label className="text-[10px] font-bold uppercase tracking-[2px] text-[#1B1C1C] flex items-center gap-1.5">
-                    <User className="w-3.5 h-3.5 text-[#B9935A]" /> Full Name
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    required
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    placeholder="Your full name"
-                    className="w-full bg-[#F8F5EF]/70 border border-[#B9935A]/25 focus:border-[#B9935A] focus:ring-2 focus:ring-[#B9935A]/15 rounded-xl px-4 py-3 text-xs sm:text-sm placeholder:text-gray-400 focus:outline-none transition-all"
-                  />
-                </div>
-
-                {/* Email */}
-                <div className="space-y-1.5">
-                  <label className="text-[10px] font-bold uppercase tracking-[2px] text-[#1B1C1C] flex items-center gap-1.5">
-                    <Mail className="w-3.5 h-3.5 text-[#B9935A]" /> Email Address
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    required
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    placeholder="you@example.com"
-                    className="w-full bg-[#F8F5EF]/70 border border-[#B9935A]/25 focus:border-[#B9935A] focus:ring-2 focus:ring-[#B9935A]/15 rounded-xl px-4 py-3 text-xs sm:text-sm placeholder:text-gray-400 focus:outline-none transition-all"
-                  />
-                </div>
+                {textFields.map(({ name, label, type, required, placeholder, Icon }) => (
+                  <div key={name} className="space-y-1.5">
+                    <label className="text-[10px] font-bold uppercase tracking-[2px] text-[#1B1C1C] flex items-center gap-1.5">
+                      <Icon className="w-3.5 h-3.5 text-[#B9935A]" /> {label}
+                    </label>
+                    <input
+                      type={type}
+                      name={name}
+                      required={required}
+                      value={formData[name]}
+                      onChange={handleInputChange}
+                      placeholder={placeholder}
+                      className="w-full bg-[#F8F5EF]/70 border border-[#B9935A]/25 focus:border-[#B9935A] focus:ring-2 focus:ring-[#B9935A]/15 rounded-xl px-4 py-3 text-xs sm:text-sm placeholder:text-gray-400 focus:outline-none transition-all"
+                    />
+                  </div>
+                ))}
               </div>
 
               {/* Phone */}

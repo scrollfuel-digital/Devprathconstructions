@@ -56,6 +56,13 @@ const HQ_INFO_ITEMS = [
   { id: "address", icon: "location_on", title: "SITE ADD", content: "Plot No. 365/2, Opp. MIDAS Hospital, Parsodi, Wardha Road, Nagpur" },
 ];
 
+const PROJECT_OPTIONS = [
+  { label: "Mangalmurti Residency — 3 BHK (Royal)", value: "Mangalmurti Residency - 3 BHK" },
+  { label: "Mangalmurti Residency — 4 BHK (Imperial)", value: "Mangalmurti Residency - 4 BHK" },
+  { label: "The Penthouse Collection", value: "Penthouse Collection" },
+  { label: "Commercial & Corporate Spaces", value: "Commercial Leasing" },
+];
+
 export const ContactSection = memo(() => {
   const [formData, setFormData] = useState({
     name: "",
@@ -85,6 +92,11 @@ export const ContactSection = memo(() => {
       }, 4000);
     }, 1200);
   };
+
+  const contactInputs = [
+    { name: "email", label: "Email Address *", type: "email", placeholder: "name@domain.com" },
+    { name: "phone", label: "Phone Number *", type: "tel", placeholder: "+91 99232 03281" },
+  ];
 
   return (
     <section id="contact" className="py-24 bg-[#F8F5EF] relative overflow-hidden border-t border-[#B9935A]/20">
@@ -154,33 +166,21 @@ export const ContactSection = memo(() => {
                   variants={formFieldVariant(shouldReduceMotion)}
                   className="grid grid-cols-1 sm:grid-cols-2 gap-5"
                 >
-                  <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-[#172235] mb-2">
-                      Email Address *
-                    </label>
-                    <input
-                      type="email"
-                      required
-                      placeholder="name@domain.com"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-[#B9935A] focus:ring-4 focus:ring-[#B9935A]/15 focus:outline-none text-sm transition-all duration-300 bg-white text-gray-900 shadow-sm"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-[#172235] mb-2">
-                      Phone Number *
-                    </label>
-                    <input
-                      type="tel"
-                      required
-                      placeholder="+91 99232 03281"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-[#B9935A] focus:ring-4 focus:ring-[#B9935A]/15 focus:outline-none text-sm transition-all duration-300 bg-white text-gray-900 shadow-sm"
-                    />
-                  </div>
+                  {contactInputs.map(({ name, label, type, placeholder }) => (
+                    <div key={name}>
+                      <label className="block text-xs font-bold uppercase tracking-wider text-[#172235] mb-2">
+                        {label}
+                      </label>
+                      <input
+                        type={type}
+                        required
+                        placeholder={placeholder}
+                        value={formData[name]}
+                        onChange={(e) => setFormData({ ...formData, [name]: e.target.value })}
+                        className="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-[#B9935A] focus:ring-4 focus:ring-[#B9935A]/15 focus:outline-none text-sm transition-all duration-300 bg-white text-gray-900 shadow-sm"
+                      />
+                    </div>
+                  ))}
                 </motion.div>
 
                 {/* Project Preference */}
@@ -193,18 +193,11 @@ export const ContactSection = memo(() => {
                     onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
                     className="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-[#B9935A] focus:ring-4 focus:ring-[#B9935A]/15 focus:outline-none text-sm transition-all duration-300 bg-white text-gray-900 shadow-sm"
                   >
-                    <option value="Mangalmurti Residency - 3 BHK">
-                      Mangalmurti Residency — 3 BHK (Royal)
-                    </option>
-                    <option value="Mangalmurti Residency - 4 BHK">
-                      Mangalmurti Residency — 4 BHK (Imperial)
-                    </option>
-                    <option value="Penthouse Collection">
-                      The Penthouse Collection
-                    </option>
-                    <option value="Commercial Leasing">
-                      Commercial &amp; Corporate Spaces
-                    </option>
+                    {PROJECT_OPTIONS.map((opt) => (
+                      <option key={opt.value} value={opt.value}>
+                        {opt.label}
+                      </option>
+                    ))}
                   </select>
                 </motion.div>
 

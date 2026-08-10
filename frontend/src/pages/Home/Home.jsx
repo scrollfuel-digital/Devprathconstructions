@@ -4,7 +4,6 @@ import StatsBar from "../../components/common/StatsBar";
 import CompanyLegacySection from "./sections/CompanyVisionSection";
 import DevprathAdvantageSection from "./sections/CoreAdvantagesSection";
 import FeaturedProjectSection from "./sections/FeaturedResidenceSection";
-import LuxuryAmenitiesSection from "./sections/LuxuryAmenitiesSection";
 import HubOfExcellenceSection from "../../components/HubOfExcellence";
 import ClientVoicesSection from "../../components/ClientVoices";
 import ContactSection from "../../components/ContactSection";
@@ -37,9 +36,6 @@ export const Home = () => {
 
         {/* Unit Floor Plans & Layout Selector */}
         {/* <FloorPlansSection onBookConsultation={() => setIsConsultationOpen(true)} /> */}
-
-        {/* Resort Style Amenities */}
-        {/* <LuxuryAmenitiesSection /> */}
 
         {/* Location & Connectivity Timeline (Leaflet Map) */}
         <HubOfExcellenceSection />
