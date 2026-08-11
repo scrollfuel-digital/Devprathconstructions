@@ -24,7 +24,7 @@ export const Footer = () => {
               />
             </Link>
             <p className="text-xs sm:text-sm text-[#4E453A] leading-relaxed font-normal max-w-sm">
-              DEVPRATH CONSTRUCTIONS LLP is committed to crafting ultra-luxury residential landmarks with uncompromised engineering quality, RERA compliance, and timeless aesthetics in Nagpur.
+              DEVPRATH CONSTRUCTIONS LLP is committed to crafting quality residential landmarks with uncompromised engineering quality, RERA compliance, and timeless aesthetics in Nagpur.
             </p>
           </div>
 

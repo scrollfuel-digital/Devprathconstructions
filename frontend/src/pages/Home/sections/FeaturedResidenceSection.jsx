@@ -10,19 +10,22 @@ const GALLERY_IMAGES = [
     id: 1,
     title: "Grand Living Lounge",
     src: grandLivingLounge,
-    size: "col-span-2 h-[320px] sm:h-[380px]",
+    size: "col-span-2 aspect-[3152/1344] w-full h-auto",
+    imgStyle: "object-cover object-center",
   },
   {
     id: 2,
     title: "Modular Italian Kitchen",
     src: ketchen,
-    size: "col-span-1 h-[180px] sm:h-[220px]",
+    size: "col-span-1 aspect-[4/3] sm:aspect-[16/11] w-full h-auto",
+    imgStyle: "object-cover object-center",
   },
   {
     id: 3,
     title: "Panoramic Skyline View",
     src: panoramicSkylineView,
-    size: "col-span-1 h-[180px] sm:h-[220px]",
+    size: "col-span-1 aspect-[4/3] sm:aspect-[16/11] w-full h-auto",
+    imgStyle: "object-cover object-center",
   },
 ];
 
@@ -144,7 +147,7 @@ export const FeaturedProjectSection = memo(({ onBookConsultation }) => {
                 <img
                   src={img.src}
                   alt={img.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className={`w-full h-full transition-transform duration-500 group-hover:scale-105 ${img.imgStyle || "object-cover"}`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-80" />
                 <div className="absolute bottom-4 left-4 right-4 text-white">

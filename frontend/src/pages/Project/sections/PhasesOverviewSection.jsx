@@ -29,9 +29,9 @@ export default function PhasesSection() {
   const shouldReduceMotion = useReducedMotion();
 
   const deckCards = [
-    { id: 'phase1', title: 'Phase 1', subtitle: 'Commercial Outlets Top Side View', image: topSideViewImg },
-    { id: 'phase2_3', title: 'Phases 2 & 3', subtitle: 'Luxury 2BHK Homes Top View', image: topViewImg },
-    { id: 'default', title: 'Mangalmurti Residency', subtitle: 'Master Micro Township Side View', image: sideViewImg },
+    { id: 'phase1', alt: 'Phase 1 - Commercial Outlets Top Side View', image: topSideViewImg },
+    { id: 'phase2_3', alt: 'Phases 2 & 3 - 2BHK Homes Top View', image: topViewImg },
+    { id: 'default', alt: 'Mangalmurti Residency - Micro Township Side View', image: sideViewImg },
   ];
 
   // Continuous independent 3D circular deck rotation
@@ -120,14 +120,9 @@ export default function PhasesSection() {
                         <span className="material-symbols-outlined text-xl block">{phase.icon}</span>
                       </div>
 
-                      <div className="flex items-center gap-2">
-                        <span className="text-[9px] font-bold uppercase tracking-widest bg-[#B9935A]/15 text-[#785926] px-2.5 py-0.5 rounded-full border border-[#B9935A]/30 inline-block">
-                          {phase.badge}
-                        </span>
-                        <span className={`material-symbols-outlined text-gray-400 transition-transform duration-300 text-lg ${isActive ? 'rotate-180 text-[#B9935A]' : ''}`}>
-                          keyboard_arrow_down
-                        </span>
-                      </div>
+                      <span className={`material-symbols-outlined text-gray-400 transition-transform duration-300 text-lg ${isActive ? 'rotate-180 text-[#B9935A]' : ''}`}>
+                        keyboard_arrow_down
+                      </span>
                     </div>
 
                     <h4 className="font-heading font-bold text-base text-[#1B1C1C] leading-snug">
@@ -147,11 +142,8 @@ export default function PhasesSection() {
                       </h4>
                     </div>
 
-                    {/* Right: Phase Badge & Chevron Arrow */}
-                    <div className="flex items-center gap-3 shrink-0">
-                      <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest bg-[#B9935A]/15 text-[#785926] px-3 py-1 rounded-full border border-[#B9935A]/30 inline-block">
-                        {phase.badge}
-                      </span>
+                    {/* Right: Chevron Arrow */}
+                    <div className="flex items-center shrink-0">
                       <span className={`material-symbols-outlined text-gray-400 transition-transform duration-300 text-xl shrink-0 ${isActive ? 'rotate-180 text-[#B9935A]' : ''}`}>
                         keyboard_arrow_down
                       </span>
@@ -210,17 +202,7 @@ export default function PhasesSection() {
                   className={`absolute w-full h-[450px] md:h-[500px] rounded-2xl overflow-hidden border transition-shadow duration-500 cursor-pointer ${isFront ? 'border-[#B9935A] shadow-[0_25px_50px_rgba(185,147,90,0.25)] ring-1 ring-[#B9935A]/50' : 'border-[#B9935A]/30 shadow-lg'
                     }`}
                 >
-                  <img alt={card.title} className="w-full h-full object-cover" src={card.image} />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent pointer-events-none" />
-
-                  <div className="absolute bottom-6 left-6 right-6 text-white z-20 pointer-events-none">
-                    <span className="font-label-caps text-[10px] uppercase tracking-[0.2em] text-[#F0D060] bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-[#B9935A]/40 inline-block mb-2">
-                      {card.subtitle}
-                    </span>
-                    <h4 className="font-heading text-xl md:text-2xl font-bold drop-shadow-md">
-                      {card.title}
-                    </h4>
-                  </div>
+                  <img alt={card.alt} className="w-full h-full object-cover" src={card.image} />
                 </motion.div>
               );
             })}
@@ -231,7 +213,7 @@ export default function PhasesSection() {
         <div className="mt-20 pt-8 border-t border-[#B9935A]/20">
           <StaggeredSpringScaleInGrid
             title="Township Features"
-            subtitle="Crafted for luxury, security, and sustainable micro-township living in Nagpur."
+            subtitle="Crafted for security, comfort, and sustainable micro-township living in Nagpur."
           />
         </div>
       </div>

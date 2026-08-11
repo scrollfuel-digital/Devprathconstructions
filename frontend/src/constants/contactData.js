@@ -41,8 +41,6 @@ export const CONTACT_CHANNELS = {
 };
 
 export const CONTACT_STATS = [
-  { value: 315, suffix: "+", label: "Happy Customers" },
-  { value: 17, suffix: "+", label: "Years Experience" },
-  { value: 10, suffix: "+", label: "Awards Gained" },
+  { value: 160, suffix: "+", label: "Happy Families" },
   { value: 9, suffix: "+", label: "Expert Team Members" },
 ];

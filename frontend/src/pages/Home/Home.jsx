@@ -20,7 +20,7 @@ export const Home = () => {
     <div className="bg-[#F8F5EF] text-[#172235] font-sans antialiased min-h-screen selection:bg-[#C9A063] selection:text-white">
       <main className="relative">
         {/* Full-Bleed Hero Banner */}
-        <HeroSection onBookConsultation={() => setIsConsultationOpen(true)} />
+        <HeroSection />
 
         {/* Metric Statistics Bar */}
         <StatsBar isSection={true} />

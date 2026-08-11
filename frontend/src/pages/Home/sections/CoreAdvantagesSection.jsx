@@ -12,10 +12,13 @@ const ADVANTAGES = [
   {
     id: 2,
     icon: "workspace_premium",
-    title: "Premium Quality",
+    title: "Superior Quality",
     description:
       "Sourcing top-tier construction materials and employing cutting-edge structural engineering techniques.",
   },
+  /* 
+   * Strategic Location Advantage - Commented out per location updates.
+   * Uncomment when location details are finalized.
   {
     id: 3,
     icon: "near_me",
@@ -23,6 +26,7 @@ const ADVANTAGES = [
     description:
       "Handpicking prime land parcels that offer excellent connectivity, high capital appreciation, and tranquil surroundings.",
   },
+  */
   {
     id: 4,
     icon: "gavel",
@@ -73,11 +77,11 @@ export const DevprathAdvantageSection = memo(() => {
             Defining the <span className="gold-gradient-text">Gold Standard</span>
           </h2>
           <p className="text-sm text-gray-600 font-light">
-            Every Devprath project embodies four non-negotiable pillars of architectural and operational excellence.
+            Every Devprath project embodies core non-negotiable pillars of architectural and operational excellence.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {ADVANTAGES.map((item) => (
             <motion.div
               key={item.id}

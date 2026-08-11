@@ -1,7 +1,7 @@
 // Strategic Phases Data & Comprehensive Project Highlights for Mangalmurti Residency
 import entranceLobbyImg from '../assets/Township Features/Grand Entrance Lobby.png';
 import ecoFriendlyImg from '../assets/Township Features/Eco-friendly.png';
-import landscapeImg from '../assets/Township Features/Landscaped Vicinity.png';
+import securityImg from '../assets/Township Features/security.png';
 import backupImg from '../assets/Township Features/Backup.png';
 
 export const PROJECT_OVERVIEW = {
@@ -17,19 +17,18 @@ export const PROJECT_OVERVIEW = {
 export const PHASES_DATA = [
   {
     id: 'phase1',
-    badge: 'Phase 1',
     wing: 'Wing A',
-    subtitleTag: 'A Commercial Haven',
-    title: 'Phase 1: Wing A – A Commercial Haven',
+    subtitleTag: 'A Commercial Hub',
+    title: 'Wing A – Commercial Hub',
     icon: 'storefront',
     stat: '64+',
     statLabel: 'Commercial Outlets',
     shortDescription:
-      'Home to 64 premium commercial outlets, Wing A offers an ideal space for businesses to thrive, ensuring a vibrant community atmosphere.',
+      'Home to 64 commercial outlets, Wing A offers an ideal space for businesses to thrive, ensuring a vibrant community atmosphere.',
     fullDescription:
-      'Wing A is thoughtfully designed to empower boutique retail, professional suites, and dining outlets. Situated with prime access, it establishes a bustling commercial ecosystem right at your doorstep.',
+      'Wing A is thoughtfully designed to empower boutique retail, professional suites, and dining outlets. Situated with prime access, it establishes a bustling commercial ecosystem for your everyday convenience.',
     highlights: [
-      '64 Premium Commercial Outlets',
+      '64 Commercial Outlets',
       'High-Visibility Road Frontage',
       'Ideal for Boutique Retail & Offices',
       'Vibrant Integrated Community Hub',
@@ -38,22 +37,21 @@ export const PHASES_DATA = [
   },
   {
     id: 'phase2_3',
-    badge: 'Phases 2 & 3',
     wing: 'Wings B & C',
-    subtitleTag: 'Affordable Luxury Living',
-    title: 'Phases 2 & 3: Wings B & C – Affordable Luxury Living',
+    subtitleTag: 'Small Family Living',
+    title: 'Wings B & C – Small Family Living',
     icon: 'apartment',
     stat: '168',
-    statLabel: 'Luxury 2BHKs',
+    statLabel: 'Modern 2BHKs',
     shortDescription:
-      'Discover 168 2BHK apartments in Wings B and C, thoughtfully designed to provide affordable luxury with a touch of elegance and upgraded living experience.',
+      'Discover 168 2BHK apartments in Wings B and C, thoughtfully designed for small families with a touch of elegance and upgraded living experience.',
     fullDescription:
-      'Wings B and C redefine modern residential architecture with spacious 2BHK apartments. Each home offers serene nature views right at your doorstep, upgraded living experience, and family-centric layouts crafted with care.',
+      'Wings B and C redefine modern residential architecture with 2BHK apartments crafted for small families. Each home offers serene nature views with breath trees, upgraded living experience, and thoughtful layouts crafted with care.',
     highlights: [
       '168 Thoughtfully Crafted 2BHK Homes',
-      'Affordable Luxury & Elegant Finishes',
-      'Serene Nature Views at Doorstep',
-      'Upgraded Modern Family Living',
+      'Affordable Living & Elegant Finishes',
+      'Serene Nature Views & Breath Trees',
+      'Upgraded Small Family Living',
     ],
     accentColor: '#B9935A',
   },
@@ -73,10 +71,10 @@ export const PHASE_HIGHLIGHTS = [
     image: ecoFriendlyImg,
   },
   {
-    icon: 'park',
-    title: 'Beautifully Landscaped Vicinity',
-    description: 'Enjoy paved pathways, decorative lights, and serene wall fountains.',
-    image: landscapeImg,
+    icon: 'security',
+    title: 'Advanced Security',
+    description: 'Stay secure with boom barriers and 24/7 surveillance.',
+    image: securityImg,
   },
   {
     icon: 'power',

@@ -8,11 +8,11 @@ import AnimatedCounter from "./AnimatedCounter";
  */
 export default function StatsBar({ className = "", isSection = false }) {
   const gridContent = (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-0 divide-y md:divide-y-0 md:divide-x divide-[#B9935A]/20">
+    <div className="grid grid-cols-1 sm:grid-cols-2 max-w-4xl mx-auto gap-6 sm:gap-0 divide-y sm:divide-y-0 sm:divide-x divide-[#B9935A]/20">
       {CONTACT_STATS.map((stat, idx) => (
         <div
           key={stat.label || idx}
-          className="flex flex-col items-center justify-center text-center px-4 py-3"
+          className="flex flex-col items-center justify-center text-center px-6 py-3"
         >
           <span className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#B9935A] tracking-tight mb-1 font-heading">
             <AnimatedCounter end={stat.value} suffix={stat.suffix} />
