@@ -8,7 +8,7 @@ const PILLARS = [
     id: 1,
     title: "Our Vision",
     description:
-      "Creating iconic architectural landmarks that harmonize ultra-luxury living with sustainable structural design.",
+      "Creating iconic architectural landmarks that harmonize modern residential living with sustainable structural design.",
     icon: "visibility",
   },
   {
@@ -110,7 +110,7 @@ export const CompanyLegacySection = memo(() => {
                 <span className="gold-gradient-text">Excellence</span>
               </h2>
               <p className="text-base text-gray-700 leading-relaxed font-light">
-                At Devprath Constructions LLP, we build spaces that combine luxury, innovation, and enduring strength. Our philosophy bridges the gap between ambitious architectural vision and meticulous engineering precision, crafting homes that stand as legacies for generations.
+                At Devprath Constructions LLP, we build spaces that combine quality, innovation, and enduring strength. Our philosophy bridges the gap between ambitious architectural vision and meticulous engineering precision, crafting homes that stand as legacies for generations.
               </p>
             </motion.div>
 

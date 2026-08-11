@@ -4,7 +4,6 @@ import aboutus1 from "../../assets/AboutUsImg/img1.png";
 import aboutus2 from "../../assets/AboutUsImg/secimg.png";
 import leaderSunil from "../../assets/AboutUsImg/sunil.png";
 import leaderHemal from "../../assets/AboutUsImg/hemal.png";
-import WhyChooseSlider from "./WhyChooseSlider";
 import { magicalBehindVariant } from "./magicalBehindVariant";
 
 import {
@@ -20,7 +19,6 @@ import {
   Building2,
   ArrowRight,
   MapPin,
-  Quote,
   Check,
   Building,
 } from "lucide-react";
@@ -280,8 +278,7 @@ export default function About() {
               </p>
 
               {/* Quote Capsule */}
-              <div className="flex items-start justify-center gap-2.5 text-xs sm:text-sm font-semibold text-[#172235] bg-[#c9a063]/10 px-5 py-3.5 rounded-2xl max-w-md w-full">
-                <Quote className="w-4 h-4 sm:w-5 sm:h-5 text-[#c9a063] shrink-0 mt-0.5" />
+              <div className="flex items-start justify-center text-xs sm:text-sm font-semibold text-[#172235] bg-[#c9a063]/10 px-5 py-3.5 rounded-2xl max-w-md w-full text-center">
                 <span className="italic text-gray-700">"We don't just build apartments; we craft spaces where families thrive."</span>
               </div>
             </motion.div>
@@ -314,8 +311,7 @@ export default function About() {
               </p>
 
               {/* Quote Capsule */}
-              <div className="flex items-start justify-center gap-2.5 text-xs sm:text-sm font-semibold text-[#172235] bg-[#c9a063]/10 px-5 py-3.5 rounded-2xl max-w-md w-full">
-                <Quote className="w-4 h-4 sm:w-5 sm:h-5 text-[#c9a063] shrink-0 mt-0.5" />
+              <div className="flex items-start justify-center text-xs sm:text-sm font-semibold text-[#172235] bg-[#c9a063]/10 px-5 py-3.5 rounded-2xl max-w-md w-full text-center">
                 <span className="italic text-gray-700">"Excellence is never an accident; it is always the result of high intention."</span>
               </div>
             </motion.div>
@@ -390,39 +386,6 @@ export default function About() {
 
         </div>
       </section>
-
-      {/* =========================================================================
-          WHY CHOOSE DEVPRATH SECTION (SLIDER EMBED)
-         ========================================================================= */}
-      <section className="py-12 lg:py-16 bg-[#f8f5ef] relative overflow-hidden">
-        <div className="container-custom">
-
-          <div className="text-center max-w-3xl mx-auto mb-8">
-            <motion.span
-              className="text-xs font-bold uppercase tracking-[3px] text-[#c9a063] mb-2 block"
-              {...magicalInViewProps}
-            >
-              WHY CHOOSE DEVPRATH CONSTRUCTIONS LLP
-            </motion.span>
-
-            <motion.h2
-              className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#172235] mb-3 font-heading"
-              {...magicalInViewProps}
-            >
-              Experience The <span className="gold-gradient-text">Devprath Advantage</span>
-            </motion.h2>
-
-            <motion.p className="text-base text-gray-600 font-light leading-relaxed" {...magicalInViewProps}>
-              Selecting your developer is one of the most critical decisions when investing in property. Here is why homeowners place their trust in Devprath Constructions.
-            </motion.p>
-          </div>
-
-          {/* Embedded Slider Component */}
-          <WhyChooseSlider />
-
-        </div>
-      </section>
-
 
     </div>
   );

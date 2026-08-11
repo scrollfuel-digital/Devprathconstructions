@@ -98,7 +98,7 @@ export default function HeroSection() {
             variants={smoothEmergenceVariant(shouldReduceMotion, 0.4)}
             className="text-white/95 font-body text-sm sm:text-base md:text-lg max-w-lg leading-relaxed text-center md:text-right mx-auto md:mr-0 drop-shadow-sm"
           >
-            Discover an architectural masterpiece in Nagpur. A harmonious blend of premium commercial spaces and ultra-luxury residential living designed for the elite.
+            Discover an architectural landmark in Nagpur. A harmonious blend of modern commercial spaces and quality residential living designed for modern families.
           </motion.p>
 
           {/* Action Buttons (Side-by-side in single line on mobile, full size on PC) */}

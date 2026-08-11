@@ -1,7 +1,7 @@
 import React from "react";
 import heroBg from "../../../assets/Hero/heroimg1.png";
 
-export const HeroSection = ({ onBookConsultation }) => {
+export const HeroSection = () => {
   return (
     <section className="relative min-h-screen w-full flex items-center justify-center pt-24 pb-16 overflow-hidden">
       {/* Background Architectural Image */}
@@ -16,6 +16,11 @@ export const HeroSection = ({ onBookConsultation }) => {
 
       {/* Hero Content */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-start justify-center pt-12">
+        {/* Category Tagline */}
+        <span className="text-xs sm:text-sm font-bold uppercase tracking-[3px] text-[#B9935A] mb-3 block">
+          Residential Projects in Nagpur by Devprath Constructions LLP
+        </span>
+
         {/* Hero Title */}
         <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.1] max-w-4xl mb-6">
           Build Your Dream. <br />
@@ -24,10 +29,10 @@ export const HeroSection = ({ onBookConsultation }) => {
 
         {/* Hero Subtitle */}
         <p className="text-base sm:text-xl text-gray-200 font-light max-w-2xl leading-relaxed mb-10">
-          Crafting ultra-luxury residential landmarks with timeless architectural elegance, sustainable design, and uncompromised quality.
+          Where thoughtful planning, quality construction, and modern design come together to create homes that inspire comfortable living.
         </p>
 
-        {/* Dual Action CTAs */}
+        {/* Action CTA */}
         <div className="flex flex-wrap items-center gap-5">
           <a
             href="/projects"
@@ -59,7 +64,7 @@ export const HeroSection = ({ onBookConsultation }) => {
             Mangalmurti Residency
           </h4>
           <p className="text-xs text-gray-600 mt-1">
-            3 BHK &amp; 4 BHK Luxury Apartments • Nagpur
+            3 BHK &amp; 4 BHK Modern Apartments • Nagpur
           </p>
           <div className="flex items-center justify-between mt-3">
             <span className="text-xs font-semibold text-[#172235]">

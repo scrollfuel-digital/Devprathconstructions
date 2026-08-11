@@ -7,7 +7,7 @@ import Blog from "../pages/Blog/Blog";
 import BlogDetail from "../pages/Blog/BlogDetail";
 import Contact from "../pages/Contact/Contact";
 import Project from "../pages/Project/Project";
-import Gallery from "../pages/Gallery/Gallery";
+// import Gallery from "../pages/Gallery/Gallery";
 import { getBlogBySlug } from "../constants/blogData";
 
 /**
@@ -39,7 +39,7 @@ const AppRoutes = () => {
       <Route path="/project" element={<Project />} />
       <Route path="/projects" element={<Project />} />
 
-      <Route path="/gallery" element={<Gallery />} />
+      {/* <Route path="/gallery" element={<Gallery />} /> */}
 
       <Route path="/blog" element={<Blog />} />
       <Route path="/blog/:slug" element={<BlogDetail />} />

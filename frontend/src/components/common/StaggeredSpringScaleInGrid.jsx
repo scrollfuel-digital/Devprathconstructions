@@ -3,7 +3,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { PHASE_HIGHLIGHTS } from '../../constants/phasesData';
 import entranceLobbyImg from '../../assets/Township Features/Grand Entrance Lobby.png';
 import ecoFriendlyImg from '../../assets/Township Features/Eco-friendly.png';
-import landscapeImg from '../../assets/Township Features/Landscaped Vicinity.png';
+import securityImg from '../../assets/Township Features/security.png';
 import backupImg from '../../assets/Township Features/Backup.png';
 
 /**
@@ -12,7 +12,7 @@ import backupImg from '../../assets/Township Features/Backup.png';
 const DEFAULT_IMAGES = [
   entranceLobbyImg,
   ecoFriendlyImg,
-  landscapeImg,
+  securityImg,
   backupImg,
 ];
 

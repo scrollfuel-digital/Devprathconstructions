@@ -9,8 +9,6 @@ import {
   CalendarClock,
   Sparkles,
   ChevronDown,
-  Copy,
-  Check,
   ArrowRight,
 } from "lucide-react";
 import {
@@ -23,8 +21,6 @@ import StatsBar from "../../components/common/StatsBar";
 
 export default function Contact() {
   const prefersReducedMotion = useReducedMotion();
-  const [copiedEmail, setCopiedEmail] = useState(false);
-  const [copiedPhone, setCopiedPhone] = useState(false);
   const [activeOffice, setActiveOffice] = useState("operations");
 
   const mv = (delay = 0) => ({
@@ -34,12 +30,6 @@ export default function Contact() {
       : { opacity: 1, y: 0, transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] } },
   });
 
-  const copyToClipboard = (text, setter) => {
-    navigator.clipboard.writeText(text);
-    setter(true);
-    setTimeout(() => setter(false), 2200);
-  };
-
   const quickContactCards = [
     {
       id: "email",
@@ -47,10 +37,6 @@ export default function Contact() {
       value: CONTACT_CHANNELS.email,
       href: `mailto:${CONTACT_CHANNELS.email}`,
       Icon: Mail,
-      isCopyable: true,
-      copiedState: copiedEmail,
-      onCopy: () => copyToClipboard(CONTACT_CHANNELS.email, setCopiedEmail),
-      copyTitle: "Copy email address",
     },
     {
       id: "phone",
@@ -58,10 +44,6 @@ export default function Contact() {
       value: CONTACT_CHANNELS.phonePrimary,
       href: `tel:${CONTACT_CHANNELS.phonePrimary}`,
       Icon: PhoneCall,
-      isCopyable: true,
-      copiedState: copiedPhone,
-      onCopy: () => copyToClipboard(`${CONTACT_CHANNELS.phonePrimary}, ${CONTACT_CHANNELS.phoneSecondary}`, setCopiedPhone),
-      copyTitle: "Copy phone numbers",
     },
     {
       id: "hours",
@@ -69,7 +51,6 @@ export default function Contact() {
       value: CONTACT_CHANNELS.workingHours,
       href: null,
       Icon: CalendarClock,
-      isCopyable: false,
     },
   ];
 
@@ -109,13 +90,12 @@ export default function Contact() {
             </motion.div>
 
             <motion.h1 variants={mv(0.1)} className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight font-heading text-[#1B1C1C]">
-              Let's Build Your <br className="hidden sm:block" />
-              <span className="text-[#B9935A]">Dream Together</span>
+              We Build <span className="text-[#B9935A]">For You</span>
             </motion.h1>
 
             <motion.p variants={mv(0.2)} className="text-[#4E453A] text-sm sm:text-base max-w-xl mx-auto leading-relaxed font-light">
-              Whether you are exploring luxury residential properties or planning a custom site visit,
-              our expert team is here to assist you at every step.
+              Whether you are exploring residential properties or planning a site visit,
+              our team is here to assist you at every step.
             </motion.p>
 
             <motion.div variants={mv(0.3)} className="pt-4 flex justify-center">
@@ -132,47 +112,35 @@ export default function Contact() {
       </section>
 
       {/* SECTION 2 — QUICK CONTACT FLOATING CARDS */}
-      <section className="relative z-20 max-w-5xl mx-auto px-5 sm:px-8 -mt-12">
+      <section className="relative z-20 max-w-6xl mx-auto px-5 sm:px-8 -mt-12">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="grid grid-cols-1 sm:grid-cols-3 gap-5"
+          className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5"
         >
-          {quickContactCards.map(({ id, label, value, href, Icon, isCopyable, copiedState, onCopy, copyTitle }) => (
+          {quickContactCards.map(({ id, label, value, href, Icon }) => (
             <div
               key={id}
-              className="bg-white rounded-2xl p-5 shadow-xl border border-[#B9935A]/20 hover:border-[#B9935A] transition-all duration-300 group flex items-center justify-between gap-4"
+              className="bg-white rounded-2xl px-5 sm:px-6 py-4 sm:py-5 shadow-xl border border-[#B9935A]/20 hover:border-[#B9935A] transition-all duration-300 group flex items-center gap-3.5 sm:gap-4 min-w-0"
             >
-              <div className="flex items-center gap-3.5 min-w-0 flex-1">
-                <div className="w-11 h-11 rounded-xl bg-[#B9935A]/15 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-                  <Icon className="w-5 h-5 text-[#B9935A]" />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <span className="text-[10px] font-bold uppercase tracking-[2px] text-[#785926] block">{label}</span>
-                  {href ? (
-                    <a
-                      href={href}
-                      className="text-[12px] sm:text-[13px] font-semibold text-[#1B1C1C] hover:text-[#B9935A] transition-colors truncate block"
-                    >
-                      {value}
-                    </a>
-                  ) : (
-                    <span className="text-[12px] sm:text-[13px] font-semibold text-[#1B1C1C] block">{value}</span>
-                  )}
-                </div>
+              <div className="w-10 h-10 lg:w-11 lg:h-11 rounded-xl bg-[#B9935A]/15 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-[#B9935A]" />
               </div>
-
-              {isCopyable && (
-                <button
-                  onClick={onCopy}
-                  title={copyTitle}
-                  className="p-2 rounded-lg text-gray-400 hover:text-[#B9935A] hover:bg-[#B9935A]/10 transition-all cursor-pointer shrink-0"
-                >
-                  {copiedState ? <Check className="w-4 h-4 text-[#B9935A]" /> : <Copy className="w-4 h-4" />}
-                </button>
-              )}
+              <div className="min-w-0 flex-1">
+                <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[2px] text-[#785926] block leading-none mb-1">{label}</span>
+                {href ? (
+                  <a
+                    href={href}
+                    className="text-[11px] sm:text-xs md:text-[13px] font-semibold text-[#1B1C1C] hover:text-[#B9935A] transition-colors whitespace-nowrap block leading-tight mt-0.5"
+                  >
+                    {value}
+                  </a>
+                ) : (
+                  <span className="text-[11px] sm:text-xs md:text-[13px] font-semibold text-[#1B1C1C] whitespace-nowrap block leading-tight mt-0.5">{value}</span>
+                )}
+              </div>
             </div>
           ))}
         </motion.div>
