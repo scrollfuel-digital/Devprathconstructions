@@ -10,7 +10,7 @@ import {
 
 export const Footer = () => {
   return (
-    <footer className="bg-[#EBE6DF] text-[#172235] pt-12 sm:pt-14 pb-8 border-t border-[#B9935A]/30">
+    <footer className="bg-[#EBE6DF] text-gray-900 pt-12 sm:pt-14 pb-8 border-t border-[#B9935A]/30">
       <div className="w-full max-w-[1440px] mx-auto px-6 md:px-20">
         {/* Top Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 pb-10 border-b border-[#B9935A]/20">

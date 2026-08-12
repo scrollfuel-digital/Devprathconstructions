@@ -12,7 +12,7 @@ export default function StatsBar({ className = "", isSection = false }) {
       {CONTACT_STATS.map((stat, idx) => (
         <div
           key={stat.label || idx}
-          className="flex flex-col items-center justify-center text-center px-6 py-3"
+          className="flex flex-col items-center justify-center text-center px-6 py-2"
         >
           <span className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#B9935A] tracking-tight mb-1 font-heading">
             <AnimatedCounter end={stat.value} suffix={stat.suffix} />
@@ -27,7 +27,7 @@ export default function StatsBar({ className = "", isSection = false }) {
 
   if (isSection) {
     return (
-      <section className={`w-full bg-[#F8F5EF] border-y border-[#B9935A]/20 py-8 md:py-10 relative z-20 ${className}`}>
+      <section className={`w-full bg-[#F8F5EF] border-y border-[#B9935A]/20 py-4 md:py-5 relative z-20 ${className}`}>
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {gridContent}
         </div>

@@ -70,7 +70,7 @@ export const ConsultationModal = ({ isOpen, onClose }) => {
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 w-9 h-9 rounded-full bg-gray-100 hover:bg-[#C9A063] hover:text-white text-[#172235] flex items-center justify-center transition-colors cursor-pointer z-10"
+          className="absolute top-5 right-5 w-9 h-9 rounded-full bg-gray-100 hover:bg-[#C9A063] hover:text-white text-gray-900 flex items-center justify-center transition-colors cursor-pointer z-10"
           aria-label="Close modal"
         >
           <span className="material-symbols-outlined text-xl">close</span>
@@ -80,7 +80,7 @@ export const ConsultationModal = ({ isOpen, onClose }) => {
         <span className="text-xs font-bold uppercase tracking-[3px] text-[#C9A063] mb-1 block">
           Private Appointment
         </span>
-        <h3 className="text-2xl font-extrabold text-[#172235] mb-1">
+        <h3 className="text-2xl font-extrabold text-gray-900 mb-1">
           Book Private Consultation
         </h3>
         <p className="text-xs text-gray-600 mb-5 leading-relaxed">
@@ -111,7 +111,7 @@ export const ConsultationModal = ({ isOpen, onClose }) => {
             <span className="material-symbols-outlined text-[#C9A063] text-5xl">
               verified
             </span>
-            <h4 className="text-xl font-bold text-[#172235]">Consultation Confirmed</h4>
+            <h4 className="text-xl font-bold text-gray-900">Consultation Confirmed</h4>
             <p className="text-xs text-gray-600">
               Our executive concierge will contact you to confirm your calendar invite.
             </p>
@@ -119,7 +119,7 @@ export const ConsultationModal = ({ isOpen, onClose }) => {
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-[#172235] mb-2">
+              <label className="block text-xs font-bold uppercase tracking-wider text-gray-900 mb-2">
                 Full Name
               </label>
               <input
@@ -127,13 +127,13 @@ export const ConsultationModal = ({ isOpen, onClose }) => {
                 required
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-[#172235] focus:border-[#C9A063] outline-none transition-all"
+                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-900 focus:border-[#C9A063] outline-none transition-all"
                 placeholder="Enter your full name"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-[#172235] mb-2">
+              <label className="block text-xs font-bold uppercase tracking-wider text-gray-900 mb-2">
                 Phone Number
               </label>
               <input
@@ -141,14 +141,14 @@ export const ConsultationModal = ({ isOpen, onClose }) => {
                 required
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-[#172235] focus:border-[#C9A063] outline-none transition-all"
+                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-900 focus:border-[#C9A063] outline-none transition-all"
                 placeholder="+91 98765 43210"
               />
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-[#172235] mb-2">
+                <label className="block text-xs font-bold uppercase tracking-wider text-gray-900 mb-2">
                   Preferred Date
                 </label>
                 <input
@@ -156,18 +156,18 @@ export const ConsultationModal = ({ isOpen, onClose }) => {
                   required
                   value={formData.date}
                   onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                  className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-3 text-xs text-[#172235] focus:border-[#C9A063] outline-none transition-all"
+                  className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-3 text-xs text-gray-900 focus:border-[#C9A063] outline-none transition-all"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-[#172235] mb-2">
+                <label className="block text-xs font-bold uppercase tracking-wider text-gray-900 mb-2">
                   Time Window
                 </label>
                 <select
                   value={formData.timeSlot}
                   onChange={(e) => setFormData({ ...formData, timeSlot: e.target.value })}
-                  className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-3 text-xs text-[#172235] focus:border-[#C9A063] outline-none transition-all"
+                  className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-3 text-xs text-gray-900 focus:border-[#C9A063] outline-none transition-all"
                 >
                   <option>Morning (10 AM - 1 PM)</option>
                   <option>Afternoon (1 PM - 4 PM)</option>

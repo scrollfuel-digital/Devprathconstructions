@@ -17,7 +17,7 @@ export const Home = () => {
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
 
   return (
-    <div className="bg-[#F8F5EF] text-[#172235] font-sans antialiased min-h-screen selection:bg-[#C9A063] selection:text-white">
+    <div className="bg-[#F8F5EF] text-gray-900 font-sans antialiased min-h-screen selection:bg-[#C9A063] selection:text-white">
       <main className="relative">
         {/* Full-Bleed Hero Banner */}
         <HeroSection />

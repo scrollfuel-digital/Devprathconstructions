@@ -45,9 +45,9 @@ const LOCATIONS_DATA = [
     title: "VCA Cricket Stadium (Jamtha)",
     category: "Sports & Entertainment",
     icon: "sports_cricket",
-    lat: 21.0267131,
-    lng: 79.0250162,
-    url: "https://www.google.com/maps/search/Vidarbha+Cricket+Association+Stadium+nagpur/@21.0267131,79.0250162",
+    lat: 21.013504,
+    lng: 79.039739,
+    url: "https://www.google.com/maps/place/Vidarbha+Cricket+Association+Stadium/@21.0145383,79.0395771",
   },
   {
     id: "airport",
