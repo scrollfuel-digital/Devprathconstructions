@@ -1,7 +1,7 @@
 import React, { memo, useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import homePageTestimonialVideo from "../assets/videos/Todkar_family_review.mp4";
-import { smoothEmergenceVariant, magicalBehindVariant } from "../utils/animations";
+import { smoothEmergenceVariant } from "../utils/animations";
 
 const REVIEWS = [
   {
@@ -95,19 +95,18 @@ export const ClientVoices = memo(() => {
           </p>
         </motion.div>
 
-        {/* Grid Layout: 1:1 Video Card on Left, Interactive Luxury Slider on Right */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center w-full">
+        {/* Merged Single Outer Wrapper Container surrounding both Video & Slider */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.2 }}
+          variants={smoothEmergenceVariant(shouldReduceMotion)}
+          className="p-3 sm:p-4 lg:p-5 bg-gradient-to-b from-[#B9935A]/30 via-[#B9935A]/10 to-[#B9935A]/30 rounded-[32px] sm:rounded-[36px] shadow-2xl backdrop-blur-md border border-[#B9935A]/30 w-full"
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center w-full">
 
-          {/* Left Column — 1:1 Square Video Card (5 Columns on Desktop) */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.2 }}
-            variants={magicalBehindVariant(shouldReduceMotion)}
-            style={{ willChange: "transform, opacity, filter" }}
-            className="lg:col-span-5 w-full max-w-[360px] sm:max-w-[400px] lg:max-w-none mx-auto"
-          >
-            <div className="p-2.5 bg-gradient-to-b from-[#B9935A]/30 via-[#B9935A]/10 to-[#B9935A]/30 rounded-[32px] shadow-2xl backdrop-blur-md border border-[#B9935A]/30">
+            {/* Left Column — 1:1 Square Video Card (5 Columns on Desktop) */}
+            <div className="lg:col-span-5 w-full max-w-[360px] sm:max-w-[400px] lg:max-w-none mx-auto">
               <div className="relative rounded-[24px] overflow-hidden bg-[#1A1A1A] aspect-square w-full group shadow-inner">
                 <video
                   src={homePageTestimonialVideo}
@@ -120,14 +119,6 @@ export const ClientVoices = memo(() => {
                   aria-label="Devprath Client Testimonial Video"
                   className="w-full h-full object-cover"
                 />
-
-                {/* Floating Top Badge */}
-                <div className="absolute top-3.5 left-3.5 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#785926]/90 backdrop-blur-md border border-[#B9935A]/40 shadow-lg pointer-events-none z-10">
-                  <span className="w-2 h-2 rounded-full bg-[#E8D5B7] animate-ping" />
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-[#E8D5B7]">
-                    Verified Video Story
-                  </span>
-                </div>
               </div>
 
               {/* Caption Text Below Video */}
@@ -145,19 +136,13 @@ export const ClientVoices = memo(() => {
                 </span>
               </div>
             </div>
-          </motion.div>
 
-          {/* Right Column — Interactive Luxury Testimonial Slider (7 Columns on Desktop) */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.2 }}
-            variants={smoothEmergenceVariant(shouldReduceMotion, 0.15)}
-            className="lg:col-span-7 w-full"
-            onMouseEnter={() => setIsAutoplayPaused(true)}
-            onMouseLeave={() => setIsAutoplayPaused(false)}
-          >
-            <div className="p-2.5 bg-gradient-to-b from-[#B9935A]/30 via-[#B9935A]/10 to-[#B9935A]/30 rounded-[32px] shadow-2xl backdrop-blur-md border border-[#B9935A]/30 h-full">
+            {/* Right Column — Interactive Luxury Testimonial Slider (7 Columns on Desktop) */}
+            <div
+              className="lg:col-span-7 w-full h-full"
+              onMouseEnter={() => setIsAutoplayPaused(true)}
+              onMouseLeave={() => setIsAutoplayPaused(false)}
+            >
               <div className="bg-white rounded-[24px] p-6 sm:p-8 lg:p-10 border border-[#B9935A]/20 shadow-inner h-full flex flex-col justify-between min-h-[360px]">
                 
                 {/* Slide Content with AnimatePresence */}
@@ -189,16 +174,11 @@ export const ClientVoices = memo(() => {
                         </span>
                       </div>
 
-                      {/* Quote Text */}
-                      <p className="text-base sm:text-lg lg:text-xl text-gray-900 font-light leading-relaxed italic">
-                        {activeReview.quote}
-                      </p>
-
-                      {/* Author Profile */}
-                      <div className="flex items-center gap-4 pt-4 border-t border-[#B9935A]/15">
-                        <div className="w-12 h-12 rounded-full p-0.5 bg-gradient-to-tr from-[#B9935A] to-[#d4af37] shrink-0 shadow-md">
+                      {/* Author Profile (First) */}
+                      <div className="flex items-center gap-4 py-2 border-b border-[#B9935A]/15">
+                        <div className="w-11 h-11 rounded-full p-0.5 bg-gradient-to-tr from-[#B9935A] to-[#d4af37] shrink-0 shadow-md">
                           <div className="w-full h-full rounded-full bg-[#B9935A] flex items-center justify-center text-white">
-                            <span className="material-symbols-outlined text-2xl">
+                            <span className="material-symbols-outlined text-xl">
                               person
                             </span>
                           </div>
@@ -212,6 +192,11 @@ export const ClientVoices = memo(() => {
                           </span>
                         </div>
                       </div>
+
+                      {/* Quote Text (Review comes after Name) */}
+                      <p className="text-base sm:text-lg lg:text-xl text-gray-900 font-light leading-relaxed italic pt-1">
+                        "{activeReview.quote}"
+                      </p>
                     </motion.div>
                   </AnimatePresence>
                 </div>
@@ -259,9 +244,9 @@ export const ClientVoices = memo(() => {
 
               </div>
             </div>
-          </motion.div>
 
-        </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

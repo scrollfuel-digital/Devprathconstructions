@@ -16,11 +16,15 @@ import LegacySection from './sections/CompletedProjectsMarqueeSection';
  */
 export default function Project() {
   return (
-    <div className="bg-[#F8F5EF] text-[#1B1C1C] font-body overflow-x-hidden min-h-screen">
+    <div
+      id='ongoing-project'
+      className="bg-[#F8F5EF] text-[#1B1C1C] font-body overflow-x-hidden min-h-screen">
       <HeroSection />
       <PhasesSection />
       <AmenitiesSection />
-      <LegacySection />
+      <section id='completed-project'>
+        <LegacySection />
+      </section>
     </div>
   );
 }

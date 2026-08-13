@@ -22,6 +22,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
-# avoid video 
-src/assets/videos/home_page_testimonial.mp4

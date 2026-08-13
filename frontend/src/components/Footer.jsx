@@ -2,9 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo/logo.png";
 import SocialConnectBar from "./SocialConnectBar";
+import { HashLink } from "react-router-hash-link";
 import {
   FOOTER_QUICK_LINKS,
-  FOOTER_LANDMARK_PROJECTS,
+  PROJECT_LINKS,
   FOOTER_LEGAL_LINKS,
 } from "../constants/navigationData";
 
@@ -47,14 +48,14 @@ export const Footer = () => {
           {/* Featured Projects (3 cols) */}
           <div className="lg:col-span-3">
             <h4 className="text-xs sm:text-sm font-bold uppercase tracking-[2px] text-[#B9935A] mb-4">
-              Landmark Projects
+              Projects
             </h4>
             <ul className="space-y-2.5 text-xs sm:text-sm text-[#4E453A] font-normal">
-              {FOOTER_LANDMARK_PROJECTS.map((proj) => (
+              {PROJECT_LINKS.map((proj) => (
                 <li key={proj.id}>
-                  <Link to={proj.path} className="hover:text-[#B9935A] transition-colors duration-300 block">
+                  <HashLink smooth to={proj.path} className="hover:text-[#B9935A] transition-colors duration-300 block">
                     {proj.title}
-                  </Link>
+                  </HashLink>
                 </li>
               ))}
             </ul>
