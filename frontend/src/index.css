@@ -27,13 +27,13 @@
   --color-cream: #f8f5ef;
   --color-cream-light: #fcf9f4;
   --color-background: #f8f5ef;
-  --color-dark-surface: #172235;
+  --color-dark-surface: #111827;
 
   /* Typography Colors */
-  --color-text-dark: #172235;
+  --color-text-dark: #111827;
   --color-text-light: #666666;
 
-  --color-on-surface: #172235;
+  --color-on-surface: #111827;
   --color-surface-variant: #c4c4c4;
   --color-inverse-surface: #1a1a1a;
 
@@ -158,6 +158,7 @@ label {
 .gold-gradient-text {
   background: linear-gradient(135deg, #d4af37 0%, #B9935A 50%, #8b6732 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -220,7 +221,7 @@ label {
 }
 
 .glass-card-dark {
-  background: rgba(23, 34, 53, 0.95);
+  background: rgba(17, 24, 39, 0.95);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(185, 147, 90, 0.25);

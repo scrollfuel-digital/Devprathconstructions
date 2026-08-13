@@ -20,6 +20,11 @@ export const FOOTER_QUICK_LINKS = [
   { id: "q-6", title: "Blogs", path: "/blog" },
 ];
 
+export const PROJECT_LINKS = [
+  { id: "p-1", title: "On Going Projects", path: "/projects/#ongoing-project" },
+  { id: "p-2", title: "Completed Projects", path: "/projects/#completed-project" }
+];
+
 export const FOOTER_LANDMARK_PROJECTS = [
   { id: "p-1", title: "Mangalmurti Residency (Nagpur)", path: "/projects" },
   { id: "p-2", title: "Commercial Outlets", path: "/projects#phases" },

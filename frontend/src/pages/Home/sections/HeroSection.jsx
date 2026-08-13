@@ -1,15 +1,20 @@
 import React from "react";
-import heroBg from "../../../assets/Hero/heroimg1.png";
+import heroVideo from "../../../assets/videos/home_page_hero_video.mp4";
 
 export const HeroSection = () => {
   return (
     <section className="relative min-h-screen w-full flex items-center justify-center pt-24 pb-16 overflow-hidden">
-      {/* Background Architectural Image */}
+      {/* Background Architectural Video */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <div
-          className="w-full h-full bg-cover bg-center transition-transform duration-[12s] scale-105 hover:scale-100"
-          style={{ backgroundImage: `url(${heroBg})` }}
-        />
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover object-center"
+        >
+          <source src={heroVideo} type="video/mp4" />
+        </video>
         {/* Dark Vignette Overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40" />
       </div>
@@ -18,7 +23,7 @@ export const HeroSection = () => {
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-start justify-center pt-12">
         {/* Category Tagline */}
         <span className="text-xs sm:text-sm font-bold uppercase tracking-[3px] text-[#B9935A] mb-3 block">
-          Residential Projects in Nagpur by Devprath Constructions LLP
+          Devprath Constructions LLP
         </span>
 
         {/* Hero Title */}

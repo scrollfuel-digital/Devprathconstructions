@@ -8,7 +8,6 @@ import {
   MapPinned,
   CalendarClock,
   Sparkles,
-  ChevronDown,
   ArrowRight,
 } from "lucide-react";
 import {
@@ -97,12 +96,6 @@ export default function Contact() {
               Whether you are exploring residential properties or planning a site visit,
               our team is here to assist you at every step.
             </motion.p>
-
-            <motion.div variants={mv(0.3)} className="pt-4 flex justify-center">
-              <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}>
-                <ChevronDown className="w-6 h-6 text-[#B9935A]" />
-              </motion.div>
-            </motion.div>
           </motion.div>
 
           <motion.div variants={mv(0.35)} initial="hidden" animate="visible">
