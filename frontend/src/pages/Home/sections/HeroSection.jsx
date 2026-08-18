@@ -21,10 +21,6 @@ export const HeroSection = () => {
 
       {/* Hero Content */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-start justify-center pt-12">
-        {/* Category Tagline */}
-        <span className="text-xs sm:text-sm font-bold uppercase tracking-[3px] text-[#B9935A] mb-3 block">
-          Devprath Constructions LLP
-        </span>
 
         {/* Hero Title */}
         <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.1] max-w-4xl mb-6">

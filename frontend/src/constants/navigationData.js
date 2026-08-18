@@ -7,7 +7,7 @@ export const NAV_LINKS = [
   { id: 1, title: "Home", path: "/" },
   { id: 2, title: "About", path: "/about-us" },
   { id: 3, title: "Projects", path: "/projects" },
-  // { id: 4, title: "Gallery", path: "/gallery" }, // Temporarily disabled while updating gallery page
+  // { id: 4, title: "Gallery", path: "/gallery" }, // Temporarily commented
   { id: 5, title: "Blog", path: "/blog" },
 ];
 
@@ -15,7 +15,7 @@ export const FOOTER_QUICK_LINKS = [
   { id: "q-1", title: "Home", path: "/" },
   { id: "q-2", title: "Projects", path: "/projects" },
   { id: "q-3", title: "About Us", path: "/about-us" },
-  // { id: "q-4", title: "Gallery", path: "/gallery" }, // Temporarily disabled while updating gallery page
+  // { id: "q-4", title: "Gallery", path: "/gallery" }, // Temporarily commented
   { id: "q-5", title: "Contact Us", path: "/contact" },
   { id: "q-6", title: "Blogs", path: "/blog" },
 ];
