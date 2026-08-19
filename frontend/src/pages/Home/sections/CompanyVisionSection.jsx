@@ -8,21 +8,21 @@ const PILLARS = [
     id: 1,
     title: "Our Vision",
     description:
-      "Creating iconic architectural landmarks that harmonize modern residential living with sustainable structural design.",
+      "Crafting well-planned residential communities in Nagpur for modern family living.",
     icon: "visibility",
   },
   {
     id: 2,
     title: "Our Mission",
     description:
-      "Delivering high-performance spaces built with cutting-edge engineering, premium materials, and absolute transparency.",
+      "Delivering durable, well-ventilated homes with quality construction and on-time completion.",
     icon: "flag",
   },
   {
     id: 3,
     title: "Our Values",
     description:
-      "Unwavering commitment to client trust, timely project execution, and 100% RERA compliant legal clarity.",
+      "Uncompromising customer trust, ethical transparency, and 100% RERA compliance.",
     icon: "verified",
   },
 ];
@@ -53,7 +53,7 @@ export const CompanyLegacySection = memo(() => {
   return (
     <section id="about" className="py-20 md:py-28 bg-[#F8F5EF] relative overflow-hidden">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
 
           {/* Left Column - High End Image Frame */}
           <motion.div
@@ -62,20 +62,20 @@ export const CompanyLegacySection = memo(() => {
             viewport={{ once: false, amount: 0.05 }}
             variants={magicalBehindVariant(shouldReduceMotion)}
             style={{ willChange: "transform, opacity, filter" }}
-            className="lg:col-span-6 relative"
+            className="lg:col-span-6 relative flex flex-col justify-center"
           >
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-[#B9935A]/30 group">
               <img
                 src={mangalmurtiImg}
                 alt="Devprath Architectural Excellence"
-                className="w-full h-[450px] sm:h-[550px] object-cover group-hover:scale-105 transition-transform duration-700"
+                className="w-full h-[460px] sm:h-[530px] object-cover group-hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#172235]/60 via-transparent to-transparent" />
 
               {/* Floating Badge */}
-              <div className="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-md p-6 rounded-2xl border border-[#B9935A]/30 shadow-xl">
+              <div className="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-md p-5 rounded-2xl border border-[#B9935A]/30 shadow-xl">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-[#B9935A]/15 flex items-center justify-center shrink-0">
+                  <div className="w-11 h-11 rounded-full bg-[#B9935A]/15 flex items-center justify-center shrink-0">
                     <span className="material-symbols-outlined text-[#B9935A] text-2xl">
                       domain
                     </span>
@@ -84,7 +84,7 @@ export const CompanyLegacySection = memo(() => {
                     <h4 className="text-base font-bold text-[#172235]">
                       Precision Structural Engineering
                     </h4>
-                    <p className="text-xs text-gray-600">
+                    <p className="text-xs text-gray-600 leading-relaxed mt-0.5">
                       Zero compromise on material strength and architectural perfection.
                     </p>
                   </div>
@@ -94,7 +94,7 @@ export const CompanyLegacySection = memo(() => {
           </motion.div>
 
           {/* Right Column - Narrative Content */}
-          <div className="lg:col-span-6 flex flex-col justify-center space-y-6">
+          <div className="lg:col-span-6 flex flex-col justify-center space-y-5">
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -102,20 +102,20 @@ export const CompanyLegacySection = memo(() => {
               variants={magicalBehindVariant(shouldReduceMotion)}
               style={{ willChange: "transform, opacity, filter" }}
             >
-              <span className="text-xs font-bold uppercase tracking-[3px] text-[#B9935A] mb-3 inline-block">
-                Who We Are
+              <span className="text-xs font-bold uppercase tracking-[3px] text-[#B9935A] mb-2.5 inline-block">
+                WHO WE ARE
               </span>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#172235] leading-tight mb-4 font-heading">
-                Building Trust Through <br />
+              <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#172235] leading-tight mb-3 font-heading">
+                Building Trust Through <br className="hidden sm:inline" />
                 <span className="gold-gradient-text">Excellence</span>
               </h2>
-              <p className="text-base text-gray-700 leading-relaxed font-light">
-                At Devprath Constructions LLP, we build spaces that combine quality, innovation, and enduring strength. Our philosophy bridges the gap between ambitious architectural vision and meticulous engineering precision, crafting homes that stand as legacies for generations.
+              <p className="text-sm sm:text-base text-gray-700 leading-relaxed font-light">
+                At Devprath Constructions LLP, we build residential spaces in Nagpur combining quality construction, structural durability, and lasting comfort for families.
               </p>
             </motion.div>
 
             {/* Key Pillars List */}
-            <div className="space-y-4">
+            <div className="space-y-3">
               {PILLARS.map((pillar) => (
                 <motion.div
                   key={pillar.id}
@@ -124,18 +124,18 @@ export const CompanyLegacySection = memo(() => {
                   viewport={{ once: false, amount: 0.05 }}
                   variants={magicalBehindVariant(shouldReduceMotion)}
                   style={{ willChange: "transform, opacity, filter" }}
-                  className="flex items-start gap-4 p-4 rounded-xl bg-white/80 border border-[#B9935A]/20 hover:border-[#B9935A]/60 transition-colors shadow-sm"
+                  className="flex items-start gap-3.5 p-3.5 sm:p-4 rounded-2xl bg-white/85 border border-[#B9935A]/20 hover:border-[#B9935A]/60 transition-colors shadow-sm"
                 >
-                  <div className="w-10 h-10 rounded-full bg-[#B9935A] text-white flex items-center justify-center shrink-0 mt-0.5 shadow-md">
+                  <div className="w-10 h-10 rounded-xl bg-[#B9935A] text-white flex items-center justify-center shrink-0 mt-0.5 shadow-md">
                     <span className="material-symbols-outlined text-xl">
                       {pillar.icon}
                     </span>
                   </div>
                   <div>
-                    <h3 className="text-base font-bold text-[#172235]">
+                    <h3 className="text-sm sm:text-base font-bold text-[#172235] font-heading">
                       {pillar.title}
                     </h3>
-                    <p className="text-xs text-gray-600 leading-relaxed mt-1">
+                    <p className="text-xs sm:text-sm text-gray-700 leading-relaxed mt-0.5 font-light">
                       {pillar.description}
                     </p>
                   </div>

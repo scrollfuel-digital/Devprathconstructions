@@ -81,7 +81,7 @@ export const DevprathAdvantageSection = memo(() => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
           {ADVANTAGES.map((item) => (
             <motion.div
               key={item.id}
@@ -95,17 +95,17 @@ export const DevprathAdvantageSection = memo(() => {
                   ? undefined
                   : { y: -6, transition: { duration: 0.2 } }
               }
-              className="bg-white p-8 rounded-2xl border border-[#B9935A]/20 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col items-start group cursor-pointer"
+              className="bg-white p-7 sm:p-8 rounded-2xl border border-[#B9935A]/20 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col items-start h-full group cursor-pointer"
             >
-              <div className="w-14 h-14 rounded-2xl bg-[#F8F5EF] border border-[#B9935A]/30 flex items-center justify-center text-[#B9935A] mb-6 group-hover:bg-[#B9935A] group-hover:text-white transition-colors duration-300">
+              <div className="w-14 h-14 rounded-2xl bg-[#F8F5EF] border border-[#B9935A]/30 flex items-center justify-center text-[#B9935A] mb-6 group-hover:bg-[#B9935A] group-hover:text-white transition-colors duration-300 shrink-0">
                 <span className="material-symbols-outlined text-3xl">
                   {item.icon}
                 </span>
               </div>
-              <h3 className="text-xl font-bold text-[#172235] mb-3">
+              <h3 className="text-xl sm:text-[22px] font-bold text-[#172235] mb-3 font-heading">
                 {item.title}
               </h3>
-              <p className="text-xs text-gray-600 leading-relaxed">
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed font-normal">
                 {item.description}
               </p>
             </motion.div>

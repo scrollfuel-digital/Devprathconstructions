@@ -1,6 +1,6 @@
-import clubPoolImg from '../assets/Township Features/club and poolarea.png';
+import clubPoolImg from '../assets/Township Features/Clubhouse_view.jpg';
 import gymNewImg from '../assets/Township Features/gymnasium.png';
-import poolNewImg from '../assets/Township Features/swmmingpool.png';
+import poolNewImg from '../assets/Township Features/Pool_deck (1).jpg';
 import ttNewImg from '../assets/Township Features/table tennis.png';
 import chessNewImg from '../assets/Township Features/chess.png';
 import yogaNewImg from '../assets/Township Features/yogaarea.png';
@@ -12,8 +12,8 @@ import kidsPlayNewImg from '../assets/Township Features/children playarea.png';
 import gardenSeniorsImg from '../assets/Amenities/garden-seniors.png';
 
 export const AMENITIES_CATEGORIES = [
-  { id: 'all', label: 'All Amenities', image: clubPoolImg, icon: 'apps', description: 'Comprehensive township features' },
-  { id: 'special', label: 'Special Features', image: openSpaceNewImg, icon: 'nightlife', description: 'Exclusive community areas, party lawns & senior zones' },
+  { id: 'all', label: 'All Amenities', image: clubPoolImg, icon: 'apps', description: 'Comprehensive township features and premium lifestyle recreation' },
+  { id: 'special', label: 'Special Features', image: openSpaceNewImg, icon: 'nightlife', description: 'Exclusive community areas, party lawns, water cascades & senior interactive zones' },
   { id: 'health', label: 'Health & Fitness', image: gymNewImg, icon: 'fitness_center', description: 'Gymnasium, yoga decks & jogging track' },
   { id: 'sports', label: 'Sports', image: poolNewImg, icon: 'sports_tennis', description: 'Swimming pool, table tennis & indoor games lounge' },
   { id: 'entertainment', label: 'Entertainment', image: kidsPlayNewImg, icon: 'child_care', description: 'Kids play area & family recreation' },
@@ -27,7 +27,7 @@ export const AMENITIES_ITEMS = [
     categoryName: 'Special Features',
     title: 'Open Space with Club House and Garden',
     icon: 'deck',
-    image: openSpaceNewImg,
+    image: clubPoolImg,
     description: 'Expansive landscaped greens and private luxury clubhouse.',
   },
   {

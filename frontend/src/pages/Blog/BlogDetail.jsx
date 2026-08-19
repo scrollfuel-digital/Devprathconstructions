@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowLeft, Tag, User, Quote, CheckCircle2, BookOpen, ChevronLeft, ChevronRight } from "lucide-react";
-import { magicalBehindVariant } from "../AboutUs/magicalBehindVariant";
+import { magicalBehindVariant } from "../../constants/magicalBehindVariant";
 import { getBlogBySlug, getRelatedBlogs } from "../../constants/blogData";
 import BlogCard from "./BlogCard";
 
@@ -74,20 +74,20 @@ export default function BlogDetail() {
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#B9935A]/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="container-custom max-w-6xl mx-auto px-4 sm:px-6">
-        {/* Back Button */}
-        <motion.div className="mb-8 relative z-20" {...magicalInViewProps}>
-          <button
-            type="button"
-            onClick={() => navigate("/blog")}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white hover:bg-white border border-[#c9a063]/30 text-xs font-bold uppercase tracking-[1.5px] text-[#B9935A] hover:text-[#8b6732] shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer group"
-          >
-            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300" />
-            <span>Back to All Blogs</span>
-          </button>
-        </motion.div>
-
         {/* Main Article Content Container */}
         <motion.div className="max-w-4xl mx-auto" {...magicalInViewProps}>
+          {/* Back Button - Icon only */}
+          <div className="mb-6">
+            <button
+              type="button"
+              onClick={() => navigate("/blog")}
+              aria-label="Back to blogs"
+              className="w-10 h-10 rounded-full bg-white border border-[#c9a063]/30 text-[#B9935A] hover:bg-[#c9a063] hover:text-white shadow-sm hover:shadow-md transition-all duration-300 flex items-center justify-center cursor-pointer group active:scale-95"
+            >
+              <ArrowLeft className="w-5 h-5 group-hover:-translate-x-0.5 transition-transform duration-300" />
+            </button>
+          </div>
+
           {/* Header Metadata */}
           <div className="flex flex-wrap items-center gap-4 mb-6">
             <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-[#c9a063]/15 text-[#8b6732] border border-[#c9a063]/30">

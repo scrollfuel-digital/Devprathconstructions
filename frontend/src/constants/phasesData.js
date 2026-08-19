@@ -18,19 +18,19 @@ export const PHASES_DATA = [
   {
     id: 'phase1',
     wing: 'Wing A',
-    subtitleTag: 'A Commercial Hub',
-    title: 'Wing A – Commercial Hub',
-    icon: 'storefront',
+    subtitleTag: 'Residential Units',
+    title: 'Wing A – Residential Units',
+    icon: 'home_work',
     stat: '64+',
-    statLabel: 'Commercial Outlets',
+    statLabel: 'Residential Units',
     shortDescription:
-      'Home to 64 commercial outlets, Wing A offers an ideal space for businesses to thrive, ensuring a vibrant community atmosphere.',
+      'Home to 64 residential units, Wing A offers an ideal space for families to thrive, ensuring a vibrant and peaceful community atmosphere.',
     fullDescription:
-      'Wing A is thoughtfully designed to empower boutique retail, professional suites, and dining outlets. Situated with prime access, it establishes a bustling commercial ecosystem for your everyday convenience.',
+      'Wing A is thoughtfully designed to provide spacious residential living with modern comforts, natural lighting, and prime connectivity for everyday family convenience.',
     highlights: [
-      '64 Commercial Outlets',
-      'High-Visibility Road Frontage',
-      'Ideal for Boutique Retail & Offices',
+      '64 Residential Units',
+      'Spacious & Well-Ventilated Layouts',
+      'Prime Accessibility & Serene Ambience',
       'Vibrant Integrated Community Hub',
     ],
     accentColor: '#B9935A',
@@ -48,9 +48,9 @@ export const PHASES_DATA = [
     fullDescription:
       'Wings B and C redefine modern residential architecture with 2BHK apartments crafted for small families. Each home offers serene nature views with breath trees, upgraded living experience, and thoughtful layouts crafted with care.',
     highlights: [
-      '168 Thoughtfully Crafted 2BHK Homes',
+      'Crafted 2BHK Homes',
       'Affordable Living & Elegant Finishes',
-      'Serene Nature Views & Breath Trees',
+      'Serene Nature Views & Breath Breeze',
       'Upgraded Small Family Living',
     ],
     accentColor: '#B9935A',

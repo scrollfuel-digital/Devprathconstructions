@@ -29,7 +29,7 @@ export default function PhasesSection() {
   const shouldReduceMotion = useReducedMotion();
 
   const deckCards = [
-    { id: 'phase1', alt: 'Phase 1 - Commercial Outlets Top Side View', image: topSideViewImg },
+    { id: 'phase1', alt: 'Phase 1 - Residential Units Top Side View', image: topSideViewImg },
     { id: 'phase2_3', alt: 'Phases 2 & 3 - 2BHK Homes Top View', image: topViewImg },
     { id: 'default', alt: 'Mangalmurti Residency - Micro Township Side View', image: sideViewImg },
   ];
