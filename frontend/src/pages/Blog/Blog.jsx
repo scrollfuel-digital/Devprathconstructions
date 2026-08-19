@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { magicalBehindVariant } from "../AboutUs/magicalBehindVariant";
+import { magicalBehindVariant } from "../../constants/magicalBehindVariant";
 import { Search } from "lucide-react";
 import { BLOG_POSTS, CATEGORIES } from "../../constants/blogData";
 import BlogCard from "./BlogCard";

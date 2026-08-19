@@ -4,7 +4,7 @@ import aboutus1 from "../../assets/AboutUsImg/img1.png";
 import aboutus2 from "../../assets/AboutUsImg/secimg.png";
 import leaderSunil from "../../assets/AboutUsImg/sunil.png";
 import leaderHemal from "../../assets/AboutUsImg/hemal.png";
-import { magicalBehindVariant } from "./magicalBehindVariant";
+import { magicalBehindVariant } from "../../constants/magicalBehindVariant";
 
 import {
   Eye,
@@ -14,13 +14,8 @@ import {
   Lightbulb,
   HeartHandshake,
   Star,
-  Sparkles,
   CheckCircle2,
   Building2,
-  ArrowRight,
-  MapPin,
-  Check,
-  Building,
 } from "lucide-react";
 
 export default function About() {
@@ -175,7 +170,7 @@ export default function About() {
                 </motion.h2>
 
                 <motion.p
-                  className="text-base sm:text-lg text-gray-700 leading-relaxed font-normal mb-8 sm:mb-10"
+                  className="text-base sm:text-lg text-gray-700 leading-relaxed font-light mb-8 sm:mb-10"
                   {...magicalInViewProps}
                 >
                   We view homeownership as one of life’s most significant milestones. By maintaining uncompromising construction standards and open client relationships, we ensure every homeowner experiences peace of mind, lasting value, and absolute pride of ownership.
@@ -202,10 +197,10 @@ export default function About() {
                         </h3>
                       </div>
 
-                      <ul className="space-y-3 text-[11px] sm:text-xs font-medium">
+                      <ul className="space-y-3 text-xs sm:text-sm font-medium">
                         {points.map((pt, i) => (
-                          <li key={i} className="flex items-start gap-2">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-[#c9a063] shrink-0 mt-0.5" />
+                          <li key={i} className="flex items-start gap-2.5">
+                            <CheckCircle2 className="w-4 h-4 text-[#c9a063] shrink-0 mt-0.5" />
                             <span className="leading-relaxed text-[#172235]">
                               {pt}
                             </span>
@@ -237,13 +232,16 @@ export default function About() {
             </motion.span>
 
             <motion.h2
-              className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#172235] mb-5 font-heading"
+              className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#172235] leading-tight mb-5 font-heading"
               {...magicalInViewProps}
             >
               Guided by <span className="gold-gradient-text">Visionary Leadership</span>
             </motion.h2>
 
-            <motion.p className="text-base text-gray-600 font-light leading-relaxed" {...magicalInViewProps}>
+            <motion.p
+              className="text-base sm:text-lg text-gray-700 font-light leading-relaxed max-w-2xl mx-auto"
+              {...magicalInViewProps}
+            >
               Meet the driving force behind Devprath Constructions LLP — dedicated directors bringing engineering discipline, innovation, and passion to Nagpur’s real estate landscape.
             </motion.p>
           </div>
@@ -337,13 +335,16 @@ export default function About() {
             </motion.span>
 
             <motion.h2
-              className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#172235] mb-5 font-heading"
+              className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#172235] leading-tight mb-5 font-heading"
               {...magicalInViewProps}
             >
               The Principles That <span className="gold-gradient-text">Define Us</span>
             </motion.h2>
 
-            <motion.p className="text-base text-gray-600 font-light leading-relaxed" {...magicalInViewProps}>
+            <motion.p
+              className="text-base sm:text-lg text-gray-700 font-light leading-relaxed max-w-2xl mx-auto"
+              {...magicalInViewProps}
+            >
               Our guiding values shape every blueprint we draw, every brick we lay, and every relationship we nurture.
             </motion.p>
           </div>
@@ -365,19 +366,14 @@ export default function About() {
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-lg font-bold text-[#172235] mb-3 group-hover:text-[#c9a063] transition-colors duration-300 font-heading">
+                    <h3 className="text-lg sm:text-xl font-bold text-[#172235] mb-3 group-hover:text-[#c9a063] transition-colors duration-300 font-heading">
                       {item.title}
                     </h3>
 
                     {/* Description */}
-                    <p className="text-xs text-gray-600 leading-relaxed">
+                    <p className="text-sm sm:text-[15px] text-gray-700 leading-relaxed font-light">
                       {item.desc}
                     </p>
-                  </div>
-
-                  <div className="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between text-[11px] font-semibold text-[#c9a063]">
-                    <span>Pillar 0{index + 1}</span>
-                    <div className="w-2 h-2 rounded-full bg-[#c9a063] opacity-50 group-hover:opacity-100 transition-opacity" />
                   </div>
                 </motion.div>
               );

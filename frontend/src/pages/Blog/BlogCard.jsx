@@ -17,35 +17,35 @@ export default function BlogCard({ post, isFeatured = false }) {
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
-            <div className="absolute top-6 left-6 flex items-center gap-2 bg-[#B9935A] text-white px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-md">
+            <div className="absolute top-6 left-6 flex items-center gap-2 bg-[#c9a063] text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-md">
               <span>Featured Article</span>
             </div>
           </div>
 
           {/* Featured Content */}
           <div className="lg:col-span-5 p-8 sm:p-10 lg:p-12 flex flex-col justify-center">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#c9a063]/15 text-[#8b6732] border border-[#c9a063]/25 w-fit mb-4">
-              <Tag className="w-3 h-3" />
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#c9a063]/15 text-[#8b6732] border border-[#c9a063]/25 w-fit mb-4">
+              <Tag className="w-3.5 h-3.5" />
               {post.category}
             </span>
 
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-black leading-tight mb-4 font-heading group-hover:text-[#B9935A] transition-colors duration-300">
+            <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-extrabold text-black leading-tight mb-4 font-heading group-hover:text-[#c9a063] transition-colors duration-300">
               <Link to={`/blog/${post.slug}`}>{post.title}</Link>
             </h2>
 
-            <p className="text-sm text-gray-600 leading-relaxed font-light mb-6 line-clamp-3">
+            <p className="text-base sm:text-lg text-gray-700 leading-relaxed font-light mb-6 line-clamp-3">
               {post.excerpt}
             </p>
 
             <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-              <span className="flex items-center gap-2 text-xs font-semibold text-black">
-                <User className="w-3.5 h-3.5 text-[#c9a063]" />
+              <span className="flex items-center gap-2 text-sm sm:text-base font-semibold text-black">
+                <User className="w-4 h-4 text-[#c9a063]" />
                 {post.author}
               </span>
 
               <Link
                 to={`/blog/${post.slug}`}
-                className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[1.5px] text-[#B9935A] hover:text-[#8b6732] transition-colors duration-300 group/btn"
+                className="inline-flex items-center gap-2 text-sm sm:text-[15px] font-bold uppercase tracking-[1.5px] text-[#c9a063] hover:text-[#8b6732] transition-colors duration-300 group/btn"
               >
                 <span>Read Article</span>
                 <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
@@ -72,7 +72,7 @@ export default function BlogCard({ post, isFeatured = false }) {
             </Link>
             <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent pointer-events-none" />
 
-            <span className="absolute top-3 left-3 inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white/95 text-[#8b6732] border border-[#c9a063]/30 backdrop-blur-md shadow-sm">
+            <span className="absolute top-3 left-3 inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-white/95 text-[#8b6732] border border-[#c9a063]/30 backdrop-blur-md shadow-sm">
               {post.category}
             </span>
           </div>
@@ -80,11 +80,11 @@ export default function BlogCard({ post, isFeatured = false }) {
 
         {/* Article Info */}
         <div className="px-5 pt-3 pb-4">
-          <h3 className="text-base sm:text-lg font-bold text-black leading-snug mb-2 font-heading group-hover:text-[#B9935A] transition-colors duration-300 line-clamp-2">
+          <h3 className="text-xl sm:text-[22px] font-bold text-black leading-snug mb-2.5 font-heading group-hover:text-[#c9a063] transition-colors duration-300 line-clamp-2">
             <Link to={`/blog/${post.slug}`}>{post.title}</Link>
           </h3>
 
-          <p className="text-xs text-gray-600 leading-relaxed font-light line-clamp-3">
+          <p className="text-[15px] sm:text-base text-gray-700 leading-relaxed font-light line-clamp-3">
             {post.excerpt}
           </p>
         </div>
@@ -94,10 +94,10 @@ export default function BlogCard({ post, isFeatured = false }) {
       <div className="px-5 pb-5 pt-0">
         <Link
           to={`/blog/${post.slug}`}
-          className="inline-flex items-center gap-1.5 text-xs font-bold text-[#B9935A] hover:text-[#8b6732] transition-colors duration-300 group/link"
+          className="inline-flex items-center gap-1.5 text-sm sm:text-[15px] font-bold text-[#c9a063] hover:text-[#8b6732] transition-colors duration-300 group/link"
         >
           <span>See more</span>
-          <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform duration-300" />
+          <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform duration-300" />
         </Link>
       </div>
     </article>

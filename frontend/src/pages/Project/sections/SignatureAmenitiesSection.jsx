@@ -11,7 +11,7 @@ import { smoothEmergenceVariant } from '../../../utils/animations';
  */
 export default function AmenitiesSection() {
   const [selectedTab, setSelectedTab] = useState('all');
-  const [currentCategory, setCurrentCategory] = useState('special');
+  const [currentCategory, setCurrentCategory] = useState('all');
   const [selectedAmenity, setSelectedAmenity] = useState(null);
   const [isHovered, setIsHovered] = useState(false);
   const [scrollDirection, setScrollDirection] = useState(1); // 1 = down, -1 = up
@@ -75,11 +75,7 @@ export default function AmenitiesSection() {
   const handleTabChange = (tabId) => {
     setSelectedTab(tabId);
     setSelectedAmenity(null);
-    if (tabId !== 'all') {
-      setCurrentCategory(tabId);
-    } else {
-      setCurrentCategory('special');
-    }
+    setCurrentCategory(tabId);
     if (scrollRef.current) {
       scrollRef.current.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -87,7 +83,7 @@ export default function AmenitiesSection() {
 
   // Determine active category object for left landscape banner
   const activeCategoryObj =
-    AMENITIES_CATEGORIES.find((cat) => cat.id === currentCategory) || AMENITIES_CATEGORIES[0];
+    AMENITIES_CATEGORIES.find((cat) => cat.id === selectedTab) || AMENITIES_CATEGORIES[0];
 
   // Active showcase banner object (amenity item click overrides category)
   const activeBannerObj = selectedAmenity
