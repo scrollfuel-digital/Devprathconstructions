@@ -266,7 +266,7 @@ export const HubOfExcellence = memo(() => {
                 >
                   <div className="flex items-center gap-3.5 min-w-0 flex-1">
                     <div
-                      className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 transition-colors ${isSelected
+                      className={`w-11 h-11 rounded-full flex items-center justify-center shrink-0 transition-colors ${isSelected
                           ? "bg-[#B9935A] text-white"
                           : "bg-[#F8F5EF] text-[#B9935A]"
                         }`}
@@ -276,17 +276,17 @@ export const HubOfExcellence = memo(() => {
                       </span>
                     </div>
                     <div className="min-w-0 flex-1">
-                      <h4 className="text-xs sm:text-sm font-bold text-gray-900 truncate leading-snug">
+                      <h4 className="text-sm sm:text-base font-bold text-gray-900 truncate leading-snug">
                         {item.title}
                       </h4>
-                      <span className="text-[10px] text-gray-500 font-medium truncate block mt-0.5">
+                      <span className="text-xs sm:text-[13px] text-gray-600 font-medium truncate block mt-0.5">
                         {item.category} • {distance} km away
                       </span>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-2 shrink-0 ml-2">
-                    <span className="text-xs font-bold px-3 py-1 rounded-full bg-[#B9935A]/15 text-[#B9935A] whitespace-nowrap shrink-0">
+                    <span className="text-xs sm:text-sm font-bold px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-[#B9935A]/15 text-[#785926] whitespace-nowrap shrink-0">
                       {time}
                     </span>
                   </div>

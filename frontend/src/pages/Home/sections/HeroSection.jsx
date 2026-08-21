@@ -1,5 +1,6 @@
 import React from "react";
 import heroVideo from "../../../assets/videos/home_page_hero_video.mp4";
+import mangalmurtiElevation from "../../../assets/Project/new-bg.jpeg";
 
 export const HeroSection = () => {
   return (
@@ -7,14 +8,14 @@ export const HeroSection = () => {
       {/* Background Architectural Video */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <video
+          src={heroVideo}
           autoPlay
           loop
           muted
           playsInline
+          preload="auto"
           className="w-full h-full object-cover object-center"
-        >
-          <source src={heroVideo} type="video/mp4" />
-        </video>
+        />
         {/* Dark Vignette Overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40" />
       </div>
@@ -23,14 +24,14 @@ export const HeroSection = () => {
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-start justify-center pt-12">
 
         {/* Hero Title */}
-        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.1] max-w-4xl mb-6">
-          Build Your Dream. <br />
-          <span className="gold-gradient-text">Live Your Legacy.</span>
+        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.15] max-w-4xl mb-6">
+          Thoughtfully Planned Residences. <br />
+          <span className="gold-gradient-text">Crafted for Modern Living.</span>
         </h1>
 
         {/* Hero Subtitle */}
-        <p className="text-base sm:text-xl text-gray-200 font-light max-w-2xl leading-relaxed mb-10">
-          Where thoughtful planning, quality construction, and modern design come together to create homes that inspire comfortable living.
+        <p className="text-base sm:text-lg text-gray-200 font-light max-w-2xl leading-relaxed mb-10">
+          Developing signature residential spaces where architectural precision, superior quality, and modern comfort come together.
         </p>
 
         {/* Action CTA */}
@@ -49,7 +50,7 @@ export const HeroSection = () => {
       <div className="hidden lg:flex absolute bottom-10 right-10 z-20 max-w-md bg-white/90 backdrop-blur-xl border border-[#B9935A]/30 p-5 rounded-2xl shadow-2xl items-center gap-5 hover:-translate-y-1 transition-all duration-300">
         <div className="w-24 h-24 rounded-xl overflow-hidden shrink-0 relative">
           <img
-            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=300&q=80"
+            src={mangalmurtiElevation}
             alt="Mangalmurti Residency"
             className="w-full h-full object-cover"
           />
@@ -65,11 +66,11 @@ export const HeroSection = () => {
             Mangalmurti Residency
           </h4>
           <p className="text-xs text-gray-600 mt-1">
-            3 BHK &amp; 4 BHK Modern Apartments • Nagpur
+            1 BHK &amp; 2 BHK Modern Apartments • Nagpur
           </p>
           <div className="flex items-center justify-between mt-3">
             <span className="text-xs font-semibold text-[#172235]">
-              Starting at <strong className="text-[#B9935A]">₹1.2 Cr*</strong>
+              Starting at <strong className="text-[#B9935A]">₹42 Lakh Onwards</strong>
             </span>
             <a
               href="/projects"
