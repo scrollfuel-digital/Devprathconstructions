@@ -1,5 +1,5 @@
 // Strategic Phases Data & Comprehensive Project Highlights for Mangalmurti Residency
-import entranceLobbyImg from '../assets/Township Features/Grand Entrance Lobby.png';
+import entranceLobbyImg from '../assets/AboutUsImg/secimg.png';
 import ecoFriendlyImg from '../assets/Township Features/Eco-friendly.png';
 import securityImg from '../assets/Township Features/security.png';
 import backupImg from '../assets/Township Features/Backup.png';

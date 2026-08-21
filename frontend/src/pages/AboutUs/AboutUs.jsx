@@ -63,9 +63,9 @@ export default function About() {
       title: "OUR VISION",
       Icon: Eye,
       points: [
-        "Redefining residential living in Nagpur with premium, innovative homes.",
-        "Delivering uncompromising construction quality and absolute customer satisfaction.",
-        "Building thriving, secure communities where modern families can grow.",
+        "Redefining residential living in Nagpur through planned modern communities.",
+        "Delivering high-quality construction, structural durability, and lasting comfort.",
+        "Creating secure, vibrant micro-townships where families thrive for generations.",
       ],
     },
     {
@@ -73,9 +73,9 @@ export default function About() {
       title: "OUR MISSION",
       Icon: Target,
       points: [
-        "Executing thoughtfully planned projects with smart architectural layouts.",
-        "Elevating modern living experiences through premium lifestyle amenities.",
-        "Ensuring ethical business practices, transparent communication, and timely delivery.",
+        "Developing quality residential projects with durable construction and on-time completion.",
+        "Designing master-planned layouts with functional spaces, ventilation, and amenities.",
+        "Upholding ethical standards, complete transparency, and clear legal documentation.",
       ],
     },
   ];
@@ -135,7 +135,7 @@ export default function About() {
                         Crafted for Generations
                       </h4>
                       <p className="text-[11px] sm:text-xs text-gray-600 leading-snug sm:leading-relaxed mt-0.5">
-                        Zero compromise on material strength, aesthetics, and structural safety.
+                        Developing premier residential communities with enduring quality and architectural excellence.
                       </p>
                     </div>
                   </div>

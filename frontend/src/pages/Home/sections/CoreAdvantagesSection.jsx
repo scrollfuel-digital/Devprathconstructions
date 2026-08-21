@@ -30,7 +30,7 @@ const ADVANTAGES = [
   {
     id: 4,
     icon: "gavel",
-    title: "Clear Title & RERA",
+    title: "Clear Title & RERA Registered Projects",
     description:
       "100% legal compliance, transparent documentation, and official RERA certification for total peace of mind.",
   },

@@ -1,31 +1,31 @@
 import React, { memo } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { FEATURED_PROJECT_BADGES } from "../../../constants/homeData";
-import ketchen from "../../../assets/home page/kitchen.png";
-import grandLivingLounge from "../../../assets/home page/grand_living_lounge.png";
-import panoramicSkylineView from "../../../assets/home page/panoramic_skyline_view.png";
+import ketchen from "../../../assets/home page/kitchen.JPG";
+import grandLivingLounge from "../../../assets/home page/grand_living_lounge.JPG";
+import panoramicSkylineView from "../../../assets/home page/bedroom.JPG";
 
 const GALLERY_IMAGES = [
   {
     id: 1,
     title: "Grand Living Lounge",
     src: grandLivingLounge,
-    size: "col-span-2 aspect-[3152/1344] w-full h-auto",
-    imgStyle: "object-cover object-center",
+    size: "col-span-2 aspect-[3152/1600] w-full h-auto",
+    imgStyle: "object-fit object-center",
   },
   {
     id: 2,
     title: "Modular Italian Kitchen",
     src: ketchen,
-    size: "col-span-1 aspect-[4/3] sm:aspect-[16/11] w-full h-auto",
-    imgStyle: "object-cover object-center",
+    size: "col-span-1 aspect-[4/3] sm:aspect-[20/14] w-full h-auto",
+    imgStyle: "object-fit object-center",
   },
   {
     id: 3,
-    title: "Panoramic Skyline View",
+    title: "Bed room",
     src: panoramicSkylineView,
-    size: "col-span-1 aspect-[4/3] sm:aspect-[16/11] w-full h-auto",
-    imgStyle: "object-cover object-center",
+    size: "col-span-1 aspect-[4/3] sm:aspect-[20/14] w-full h-auto",
+    imgStyle: "object-fit object-center",
   },
 ];
 
@@ -80,7 +80,7 @@ export const FeaturedProjectSection = memo(({ onBookConsultation }) => {
                 Where Comfort Meets Contemporary Living
               </p>
               <p className="text-sm sm:text-base text-gray-800 font-light leading-relaxed max-w-xl">
-                Mangalmurti Residency is a premium residential project by Devprath Constructions LLP offering thoughtfully designed homes for modern families. Crafted with contemporary architecture and efficient layouts, every apartment provides spacious living areas, excellent natural light, ventilation, and premium finishes.
+                Mangalmurti Residency is a planned real estate development by Devprath Constructions LLP located at Parsodi on Wardha Road, Nagpur (opposite MIDAS Hospital). Planned as a multi-phase development, it brings together commercial spaces in Wing A and modern 2BHK residences across Wings B and C with open spaces, lifestyle amenities, and excellent connectivity.
               </p>
             </motion.div>
 

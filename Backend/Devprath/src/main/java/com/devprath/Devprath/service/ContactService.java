@@ -39,7 +39,7 @@ public class ContactService {
         Contact contact = contactRequestToContact(contactRequestDto);
         contact = contactRepository.save(contact);
         ContactCreateResponseDto responseDto = new ContactCreateResponseDto();
-        responseDto.setDisplayMessage("Contact Request Created Successfully!");
+        responseDto.setDisplayMessage("Contact Request Created Successfully! 'Thank you, we'll be in touch within 24 hours");
         responseDto.setSuccess(true);
         responseDto.setReferenceId(contact.getId());
         return responseDto;
