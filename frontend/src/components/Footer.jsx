@@ -1,43 +1,49 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { MapPin, Clock, Phone, Mail } from "lucide-react";
 import logo from "../assets/logo/logo.png";
 import SocialConnectBar from "./SocialConnectBar";
-import { HashLink } from "react-router-hash-link";
-import {
-  FOOTER_QUICK_LINKS,
-  PROJECT_LINKS,
-  FOOTER_LEGAL_LINKS,
-} from "../constants/navigationData";
+import { FOOTER_QUICK_LINKS, FOOTER_LEGAL_LINKS } from "../constants/navigationData";
+
+const OFFICE = {
+  address:
+    "Arpitshrushti, Behind Ganpati Temple, Near Tatya Tope Hall, Surendra Nagar, Nagpur - 440015",
+  hours: "Mon-Fri, 10:30 AM - 07:00 PM",
+  phones: [
+    { label: "+91 99211 41299", href: "tel:+919921141299" },
+    { label: "+91 99232 03281", href: "tel:+919923203281" },
+  ],
+  email: "devprathconstructions@gmail.com",
+};
 
 export const Footer = () => {
   return (
-    <footer className="bg-[#EBE6DF] text-gray-900 pt-12 sm:pt-14 pb-8 border-t border-[#B9935A]/30">
-      <div className="w-full max-w-[1440px] mx-auto px-6 md:px-20">
+    <footer className="bg-[#F2EDE4] text-[#1F1E1C] font-body pt-8 sm:pt-10 pb-5 border-t border-[#B9935A]/30">
+      <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
+        
         {/* Top Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 pb-10 border-b border-[#B9935A]/20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 pb-6 border-b border-[#1F1E1C]/10 items-start">
+          
           {/* Brand Info (4 cols) */}
           <div className="lg:col-span-4 flex flex-col items-start justify-start">
-            <Link to="/" className="mb-4 block -ml-3 -mt-1">
+            <Link to="/" className="mb-3 block">
               <img
                 src={logo}
                 alt="Devprath Constructions LLP"
-                className="h-[102px] sm:h-[128px] w-auto object-contain object-left"
+                className="h-16 sm:h-20 w-auto object-contain object-left"
               />
             </Link>
-            <p className="text-xs sm:text-sm text-[#4E453A] leading-relaxed font-normal max-w-sm">
-              DEVPRATH CONSTRUCTIONS LLP is committed to crafting quality residential landmarks with uncompromised engineering quality, RERA compliance, and timeless aesthetics in Nagpur.
+            <p className="text-xs sm:text-sm text-[#4A453E] leading-relaxed font-medium max-w-sm">
+              DEVPRATH CONSTRUCTIONS LLP crafts quality residential landmarks with uncompromised structural engineering, transparent MahaRERA compliance, and enduring architectural design in Nagpur.
             </p>
           </div>
 
-          {/* Quick Links (2 cols) */}
-          <div className="lg:col-span-2">
-            <h4 className="text-xs sm:text-sm font-bold uppercase tracking-[2px] text-[#B9935A] mb-4">
-              Quick Links
-            </h4>
-            <ul className="space-y-2.5 text-xs sm:text-sm text-[#4E453A] font-normal">
+          {/* Navigation (2 cols) */}
+          <div className="lg:col-span-2 lg:pt-1">
+            <ul className="space-y-2 text-xs sm:text-sm text-[#2C2824] font-semibold">
               {FOOTER_QUICK_LINKS.map((link) => (
                 <li key={link.id}>
-                  <Link to={link.path} className="hover:text-[#B9935A] transition-colors duration-300 block">
+                  <Link to={link.path} className="hover:text-[#B9935A] transition-colors duration-200 block">
                     {link.title}
                   </Link>
                 </li>
@@ -45,48 +51,63 @@ export const Footer = () => {
             </ul>
           </div>
 
-          {/* Featured Projects (3 cols) */}
-          <div className="lg:col-span-3">
-            <h4 className="text-xs sm:text-sm font-bold uppercase tracking-[2px] text-[#B9935A] mb-4">
-              Projects
-            </h4>
-            <ul className="space-y-2.5 text-xs sm:text-sm text-[#4E453A] font-normal">
-              {PROJECT_LINKS.map((proj) => (
-                <li key={proj.id}>
-                  <HashLink smooth to={proj.path} className="hover:text-[#B9935A] transition-colors duration-300 block">
-                    {proj.title}
-                  </HashLink>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Social Media Connect (3 cols) */}
-          <div className="lg:col-span-3">
-            <h4 className="text-xs sm:text-sm font-bold uppercase tracking-[2px] text-[#B9935A] mb-4">
-              Connect With Us
-            </h4>
-            <p className="text-xs sm:text-sm text-[#4E453A] font-normal leading-relaxed mb-4">
-              Follow Devprath Constructions for live site progress updates, luxury project launches, and architectural media highlights.
+          {/* Connect With Us (3 cols) */}
+          <div className="lg:col-span-3 lg:pt-1">
+            <p className="text-xs sm:text-sm text-[#4A453E] font-medium leading-relaxed mb-4">
+              Follow Devprath Constructions for site progress updates, project launches, and architectural milestones.
             </p>
             <SocialConnectBar
               containerClassName="flex items-center justify-between w-full pt-1"
-              iconSizeClass="w-5 h-5 sm:w-6 sm:h-6"
+              iconSizeClass="w-5 h-5"
             />
+          </div>
+
+          {/* Operations Office (3 cols) */}
+          <div className="lg:col-span-3 lg:pt-1">
+            <address className="not-italic text-xs sm:text-sm text-[#2C2824] font-semibold leading-relaxed space-y-2.5">
+              <p className="flex items-start gap-2.5">
+                <MapPin className="w-4 h-4 text-[#B9935A] shrink-0 mt-0.5" />
+                <span className="font-medium text-[#3E3A34]">{OFFICE.address}</span>
+              </p>
+              <p className="flex items-center gap-2.5">
+                <Clock className="w-4 h-4 text-[#B9935A] shrink-0" />
+                <span>{OFFICE.hours}</span>
+              </p>
+              <p className="flex items-center gap-2.5">
+                <Phone className="w-4 h-4 text-[#B9935A] shrink-0" />
+                <span>
+                  {OFFICE.phones.map((phone, idx) => (
+                    <React.Fragment key={phone.href}>
+                      {idx > 0 && " · "}
+                      <a href={phone.href} className="hover:text-[#B9935A] transition-colors duration-200">
+                        {phone.label}
+                      </a>
+                    </React.Fragment>
+                  ))}
+                </span>
+              </p>
+              <p className="flex items-center gap-2.5">
+                <Mail className="w-4 h-4 text-[#B9935A] shrink-0" />
+                <a href={`mailto:${OFFICE.email}`} className="hover:text-[#B9935A] transition-colors duration-200">
+                  {OFFICE.email}
+                </a>
+              </p>
+            </address>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs sm:text-sm text-[#4E453A] font-normal">
-          <p>© {new Date().getFullYear()} DEVPRATH CONSTRUCTIONS LLP. All Rights Reserved.</p>
-          <div className="flex items-center gap-6 font-normal">
+        <div className="pt-4 flex flex-col md:flex-row items-center justify-between gap-3 text-[11px] sm:text-xs text-[#554F47] font-medium tracking-wide">
+          <p>© {new Date().getFullYear()} DEVPRATH CONSTRUCTIONS LLP. ALL RIGHTS RESERVED.</p>
+          <div className="flex items-center gap-6 uppercase tracking-wider text-[11px]">
             {FOOTER_LEGAL_LINKS.map((legal) => (
-              <Link key={legal.id} to={legal.path} className="hover:text-[#B9935A] transition-colors duration-300">
+              <Link key={legal.id} to={legal.path} className="hover:text-[#B9935A] transition-colors duration-200">
                 {legal.title}
               </Link>
             ))}
           </div>
         </div>
+        
       </div>
     </footer>
   );

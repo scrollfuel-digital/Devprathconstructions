@@ -16,8 +16,9 @@ export const FOOTER_QUICK_LINKS = [
   { id: "q-2", title: "Projects", path: "/projects" },
   { id: "q-3", title: "About Us", path: "/about-us" },
   // { id: "q-4", title: "Gallery", path: "/gallery" }, // Temporarily commented
-  { id: "q-5", title: "Contact Us", path: "/contact" },
   { id: "q-6", title: "Blogs", path: "/blog" },
+  { id: "q-5", title: "Contact Us", path: "/contact" },
+  
 ];
 
 export const PROJECT_LINKS = [

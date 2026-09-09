@@ -1,8 +1,8 @@
-import metroImg from '../assets/Blogs/Metro.jpg'
-import residentImg from '../assets/Blogs/Mangalmurti_resident_are.jpg'
-import articalImg from '../assets/Blogs/Artical1.jpg'
-import investmentImg from '../assets/Blogs/Invest.jpg'
-import investGrpImg from '../assets/Blogs/Investment-Grouth.jpg'
+import metroImg from '../assets/Blogs/Metro.jpeg'
+import residentImg from '../assets/Blogs/aprtment.jpeg'
+import articalImg from '../assets/Blogs/finance_trends.jpeg'
+import investmentImg from '../assets/Blogs/expert_profile.jpeg'
+import investGrpImg from '../assets/Blogs/market_trends.jpeg'
 
 export const BLOG_POSTS = [
   {

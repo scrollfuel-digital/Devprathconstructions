@@ -8,9 +8,9 @@ export const OPERATIONS_OFFICE = {
   label: "Operations Office",
   shortLabel: "Operations",
   address: "Arpitshrushti, Behind Ganpati Temple, Near Tatya Tope Hall, Surendra Nagar, Nagpur - 440015",
-  lat: 21.1151078,
-  lng: 79.0634154,
-  googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=21.1151078,79.0634154",
+  lat: 21.1149348,
+  lng: 79.0608019,
+  googleMapsUrl: "https://www.google.com/maps/place/Devprath+Constructions+LLP/@21.1149348,79.0608019,773m/",
   phoneNumbers: ["+91 9923203281", "+91 9921141299"],
   email: "devprathconstructions@gmail.com",
 };

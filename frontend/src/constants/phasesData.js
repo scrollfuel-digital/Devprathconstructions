@@ -1,8 +1,5 @@
 // Strategic Phases Data & Comprehensive Project Highlights for Mangalmurti Residency
-import entranceLobbyImg from '../assets/AboutUsImg/secimg.png';
-import ecoFriendlyImg from '../assets/Township Features/Eco-friendly.png';
-import securityImg from '../assets/Township Features/security.png';
-import backupImg from '../assets/Township Features/Backup.png';
+
 
 export const PROJECT_OVERVIEW = {
   welcomeTag: 'Your Dream Home Awaits',
@@ -55,31 +52,4 @@ export const PHASES_DATA = [
     ],
     accentColor: '#B9935A',
   },
-];
-
-export const PHASE_HIGHLIGHTS = [
-  {
-    icon: 'door_front',
-    title: 'Grand Entrance Lobby',
-    description: 'Impress your guests with a stylish and welcoming entrance.',
-    image: entranceLobbyImg,
-  },
-  {
-    icon: 'eco',
-    title: 'Eco-Friendly Facilities',
-    description: 'Sewage Treatment Plant (STP) & Rainwater Harvesting System for sustainable living.',
-    image: ecoFriendlyImg,
-  },
-  {
-    icon: 'security',
-    title: 'Advanced Security',
-    description: 'Stay secure with boom barriers and 24/7 surveillance.',
-    image: securityImg,
-  },
-  {
-    icon: 'power',
-    title: 'Reliable Power Backup',
-    description: 'Uninterrupted power supply for lifts and common areas.',
-    image: backupImg,
-  },
-];
+]

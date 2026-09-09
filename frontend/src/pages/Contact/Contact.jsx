@@ -1,220 +1,235 @@
-import React, { useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import React from "react";
 import SocialConnectBar from "../../components/SocialConnectBar";
-import {
-  Mail,
-  PhoneCall,
-  Building2,
-  MapPinned,
-  CalendarClock,
-  Sparkles,
-  ArrowRight,
-} from "lucide-react";
-import {
-  OFFICES,
-  CONTACT_CHANNELS,
-} from "../../constants/contactData";
+import { Mail, Phone, PhoneCall, CalendarClock } from "lucide-react";
+import { OFFICES, CONTACT_CHANNELS } from "../../constants/contactData";
 import ContactMap from "./components/ContactMap";
 import ContactForm from "./components/ContactForm";
-import StatsBar from "../../components/common/StatsBar";
+import CTAButton from "../../components/common/CTAButton";
 
 export default function Contact() {
-  const prefersReducedMotion = useReducedMotion();
-  const [activeOffice, setActiveOffice] = useState("operations");
 
-  const mv = (delay = 0) => ({
-    hidden: prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 30 },
-    visible: prefersReducedMotion
-      ? { opacity: 1 }
-      : { opacity: 1, y: 0, transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] } },
-  });
-
-  const quickContactCards = [
+  const quickContactItems = [
     {
       id: "email",
-      label: "Email",
+      label: "Direct Email",
       value: CONTACT_CHANNELS.email,
       href: `mailto:${CONTACT_CHANNELS.email}`,
       Icon: Mail,
     },
     {
       id: "phone",
-      label: "Phone",
+      label: "Phone Inquiry",
       value: CONTACT_CHANNELS.phonePrimary,
       href: `tel:${CONTACT_CHANNELS.phonePrimary}`,
       Icon: PhoneCall,
     },
     {
       id: "hours",
-      label: "Working Hours",
+      label: "Operational Hours",
       value: CONTACT_CHANNELS.workingHours,
       href: null,
       Icon: CalendarClock,
     },
   ];
 
-  const officeCards = [
-    {
-      id: "registered",
-      label: "Registered Office",
-      subtitle: "Devprath Constructions LLP",
-      address: OFFICES.registered.address,
-      Icon: Building2,
-      iconBg: "bg-[#B9935A]/15 text-[#B9935A]",
-    },
-    {
-      id: "operations",
-      label: "Operations Office",
-      subtitle: "Site & Administrative Hub",
-      address: OFFICES.operations.address,
-      Icon: MapPinned,
-      iconBg: "bg-[#B9935A] text-white shadow-sm",
-    },
-  ];
-
   return (
-    <div className="bg-[#F8F5EF] text-[#1B1C1C] font-sans antialiased selection:bg-[#B9935A] selection:text-white">
+    <div className="bg-[#FAF7F2] text-[#1F1E1C] font-body min-h-screen selection:bg-[#B9935A] selection:text-white">
       {/* SECTION 1 — HERO HEADER BANNER */}
-      <section className="relative bg-gradient-to-b from-[#F8F5EF] via-[#FCF9F4] to-[#F8F5EF] text-[#1B1C1C] overflow-hidden pt-32 sm:pt-40 pb-24 border-b border-[#B9935A]/20">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/4 -left-32 w-[500px] h-[500px] rounded-full bg-[#B9935A]/10 blur-[120px]" />
-          <div className="absolute bottom-0 right-0 w-[600px] h-[400px] rounded-full bg-[#B9935A]/8 blur-[100px]" />
-        </div>
+      <section className="pt-36 sm:pt-44 pb-14 sm:pb-20 border-b border-[#B9935A]/20 bg-[#FAF7F2]">
+        <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
+          <div className="max-w-3xl mx-auto text-center">
+            <span className="font-body text-[11px] sm:text-xs font-semibold uppercase tracking-[0.3em] text-[#B9935A] block mb-4">
+              Contact Devprath
+            </span>
+            <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-normal text-[#1F1E1C] tracking-tight leading-[1.08] mb-6">
+              We Build <span className="italic font-light text-[#8F6E3B]">For You.</span>
+            </h1>
+            <p className="font-body text-base sm:text-lg text-[#6D675E] font-light leading-relaxed">
+              Whether you are exploring residential properties at Mangalmurti Residency or planning a private site consultation, our leadership and sales team are here to guide you.
+            </p>
+          </div>
 
-        <div className="relative z-10 max-w-6xl mx-auto px-5 sm:px-8">
-          <motion.div initial="hidden" animate="visible" className="text-center space-y-5">
-            <motion.div variants={mv()} className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-[#B9935A]/30 bg-white/80 backdrop-blur-md shadow-sm">
-              <Sparkles className="w-4 h-4 text-[#B9935A]" />
-              <span className="text-[11px] font-bold uppercase tracking-[4px] text-[#785926]">Contact Devprath</span>
-            </motion.div>
-
-            <motion.h1 variants={mv(0.1)} className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight font-heading text-[#1B1C1C]">
-              We Build <span className="text-[#B9935A]">For You</span>
-            </motion.h1>
-
-            <motion.p variants={mv(0.2)} className="text-[#4E453A] text-sm sm:text-base max-w-xl mx-auto leading-relaxed font-light">
-              Whether you are exploring residential properties or planning a site visit,
-              our team is here to assist you at every step.
-            </motion.p>
-          </motion.div>
-
-          <motion.div variants={mv(0.35)} initial="hidden" animate="visible">
-            <StatsBar className="mt-14" />
-          </motion.div>
-        </div>
-      </section>
-
-      {/* SECTION 2 — QUICK CONTACT FLOATING CARDS */}
-      <section className="relative z-20 max-w-6xl mx-auto px-5 sm:px-8 -mt-12">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5"
-        >
-          {quickContactCards.map(({ id, label, value, href, Icon }) => (
-            <div
-              key={id}
-              className="bg-white rounded-2xl px-5 sm:px-6 py-4 sm:py-5 shadow-xl border border-[#B9935A]/20 hover:border-[#B9935A] transition-all duration-300 group flex items-center gap-3.5 sm:gap-4 min-w-0"
-            >
-              <div className="w-10 h-10 lg:w-11 lg:h-11 rounded-xl bg-[#B9935A]/15 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-                <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-[#B9935A]" />
-              </div>
-              <div className="min-w-0 flex-1">
-                <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[2px] text-[#785926] block leading-none mb-1">{label}</span>
-                {href ? (
-                  <a
-                    href={href}
-                    className="text-[11px] sm:text-xs md:text-[13px] font-semibold text-[#1B1C1C] hover:text-[#B9935A] transition-colors whitespace-nowrap block leading-tight mt-0.5"
-                  >
-                    {value}
-                  </a>
-                ) : (
-                  <span className="text-[11px] sm:text-xs md:text-[13px] font-semibold text-[#1B1C1C] whitespace-nowrap block leading-tight mt-0.5">{value}</span>
-                )}
-              </div>
-            </div>
-          ))}
-        </motion.div>
-      </section>
-
-      {/* SECTION 3 — FORM & OFFICE INFO */}
-      <section className="max-w-6xl mx-auto px-5 sm:px-8 py-20 lg:py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-14 items-stretch">
-          <motion.div
-            variants={mv()}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
-            className="lg:col-span-3 order-2 lg:order-1"
-          >
-            <ContactForm />
-          </motion.div>
-
-          <motion.div
-            variants={mv(0.15)}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
-            className="lg:col-span-2 order-1 lg:order-2 space-y-6 flex flex-col justify-between"
-          >
-            {officeCards.map(({ id, label, subtitle, address, Icon, iconBg }) => (
-              <div
-                key={id}
-                onClick={() => setActiveOffice(id)}
-                className={`bg-white rounded-2xl p-6 border transition-all duration-300 cursor-pointer shadow-md hover:shadow-xl hover:border-[#B9935A] hover:bg-[#FCF9F4] active:scale-[0.98] ${
-                  activeOffice === id
-                    ? "border-[#B9935A] ring-2 ring-[#B9935A]/30 bg-[#FCF9F4]"
-                    : "border-[#B9935A]/20"
-                }`}
-              >
-                <div className="flex items-center gap-3 mb-3">
-                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${iconBg}`}>
-                    <Icon className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <span className="text-[10px] font-bold uppercase tracking-[2px] text-[#785926] block">
-                      {label}
-                    </span>
-                    <span className="text-xs text-[#666666]">{subtitle}</span>
-                  </div>
+          {/* Quick Contact Row */}
+          <div className="mt-12 pt-8 border-t border-[#B9935A]/20 grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+            {quickContactItems.map(({ id, label, value, href, Icon }) => (
+              <div key={id} className="flex items-start gap-4">
+                <div className="w-10 h-10 border border-[#B9935A]/30 bg-[#F2EDE4] flex items-center justify-center shrink-0 mt-0.5">
+                  <Icon className="w-4 h-4 text-[#B9935A]" />
                 </div>
-                <p className="text-xs sm:text-sm font-medium text-[#1B1C1C] leading-relaxed">
-                  {address}
-                </p>
+                <div>
+                  <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] text-[#8F6E3B] block mb-1">
+                    {label}
+                  </span>
+                  {href ? (
+                    <a
+                      href={href}
+                      className="text-xs sm:text-sm font-medium text-[#1F1E1C] hover:text-[#B9935A] transition-colors leading-snug block"
+                    >
+                      {value}
+                    </a>
+                  ) : (
+                    <span className="text-xs sm:text-sm font-medium text-[#1F1E1C] leading-snug block">
+                      {value}
+                    </span>
+                  )}
+                </div>
               </div>
             ))}
-
-            <div className="bg-white rounded-2xl p-6 border border-[#B9935A]/25 shadow-md hover:shadow-xl hover:border-[#B9935A] transition-all duration-300 space-y-4">
-              <span className="text-[10px] font-bold uppercase tracking-[2px] text-[#785926] block">
-                Connect With Us
-              </span>
-              <SocialConnectBar
-                containerClassName="flex items-center justify-between w-full"
-                iconSizeClass="w-6 h-6"
-              />
-            </div>
-
-            <a
-              href={CONTACT_CHANNELS.whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center justify-between bg-[#B9935A] hover:bg-[#785926] text-white rounded-2xl px-6 py-5 shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-300 cursor-pointer"
-            >
-              <div>
-                <span className="text-[10px] font-bold uppercase tracking-[2px] text-white/80 block">Instant Inquiry</span>
-                <span className="text-sm font-bold block mt-0.5">Chat on WhatsApp</span>
-              </div>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </a>
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 4 — INTERACTIVE SATELLITE MAP */}
-      <section className="max-w-6xl mx-auto px-5 sm:px-8 pb-24">
-        <ContactMap activeOfficeId={activeOffice} onSelectOffice={setActiveOffice} />
+      {/* SECTION 2 — FORM & INQUIRIES */}
+      <section className="py-20 sm:py-28 lg:py-32">
+        <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+            {/* Left Column: Form */}
+            <div className="lg:col-span-7">
+              <ContactForm />
+            </div>
+
+            {/* Right Column: Direct Channels & Instant Inquiry */}
+            <div className="lg:col-span-5 space-y-8">
+              <div className="border border-[#B9935A]/25 bg-[#F2EDE4]/60 p-6 sm:p-8">
+                <span className="font-body text-[11px] font-semibold uppercase tracking-[0.25em] text-[#B9935A] block mb-3">
+                  Direct Inquiries
+                </span>
+                <h3 className="font-display text-2xl sm:text-3xl font-normal text-[#1F1E1C] mb-4">
+                  Contact Us Directly
+                </h3>
+                <p className="font-body text-xs sm:text-sm text-[#6D675E] font-light leading-relaxed mb-6">
+                  For urgent site visits, checking documents, or asking for project details, you can reach our partners directly on WhatsApp.
+                </p>
+                <CTAButton
+                  href={CONTACT_CHANNELS.whatsappUrl}
+                  label="CHAT ON WHATSAPP"
+                  className="!w-full !h-11 text-xs"
+                />
+              </div>
+
+              <div className="border border-[#B9935A]/25 bg-[#F2EDE4]/60 p-6 sm:p-8">
+                <span className="font-body text-[11px] font-semibold uppercase tracking-[0.25em] text-[#B9935A] block mb-3">
+                  Social Channels
+                </span>
+                <p className="font-body text-xs sm:text-sm text-[#6D675E] font-light leading-relaxed mb-5">
+                   Follow Devprath Constructions on social media for regular construction updates and project milestones.
+                </p>
+                <SocialConnectBar
+                  containerClassName="flex items-center justify-between w-full pt-1"
+                  iconSizeClass="w-5 h-5"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 3 — EXPERIENCE CENTERS (NAGPUR) */}
+      <section className="py-12 sm:py-16 border-t border-[#B9935A]/20 bg-[#F2EDE4]/40">
+        <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
+          {/* Section Header */}
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 sm:mb-8 border-b border-[#B9935A]/25 pb-4 sm:pb-6">
+            <div>
+              <span className="font-body text-[11px] sm:text-xs font-semibold uppercase tracking-[0.25em] text-[#B9935A] block mb-1.5">
+                Experience Centers
+              </span>
+              <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-normal text-[#1F1E1C] tracking-tight">
+                Nagpur
+              </h2>
+            </div>
+            <p className="font-body text-xs sm:text-sm text-[#6D675E] font-light max-w-sm leading-relaxed">
+              Visit our landmark offices in Nagpur for confidential consultations, masterplans, and architectural dossiers.
+            </p>
+          </div>
+
+          {/* Two Responsive Editorial Columns */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-14">
+            {/* Office 01: Operations Office */}
+            <div className="border-t border-[#B9935A]/30 pt-4 sm:pt-5">
+              <span className="font-display text-sm font-light text-[#B9935A] uppercase tracking-widest block mb-2">
+                Location 01
+              </span>
+              <h3 className="font-display text-2xl sm:text-3xl font-normal text-[#1F1E1C] mb-2">
+                {OFFICES.operations.label}
+              </h3>
+              <p className="font-body text-xs sm:text-sm text-[#6D675E] font-light leading-relaxed mb-4">
+                {OFFICES.operations.address}
+              </p>
+
+              <div className="space-y-2.5 font-body text-xs sm:text-sm text-[#1F1E1C] pt-3.5 border-t border-[#1F1E1C]/10">
+                <div className="flex items-start gap-2.5">
+                  <Phone className="w-4 h-4 text-[#B9935A] shrink-0 mt-0.5" />
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+                    {OFFICES.operations.phoneNumbers.map((phone) => (
+                      <a
+                        key={phone}
+                        href={`tel:${phone.replace(/\s+/g, "")}`}
+                        className="hover:text-[#B9935A] transition-colors"
+                      >
+                        {phone}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <Mail className="w-4 h-4 text-[#B9935A] shrink-0" />
+                  <a
+                    href={`mailto:${OFFICES.operations.email}`}
+                    className="hover:text-[#B9935A] transition-colors"
+                  >
+                    {OFFICES.operations.email}
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Office 02: Registered Office */}
+            <div className="border-t border-[#B9935A]/30 pt-4 sm:pt-5">
+              <span className="font-display text-sm font-light text-[#B9935A] uppercase tracking-widest block mb-2">
+                Location 02
+              </span>
+              <h3 className="font-display text-2xl sm:text-3xl font-normal text-[#1F1E1C] mb-2">
+                {OFFICES.registered.label}
+              </h3>
+              <p className="font-body text-xs sm:text-sm text-[#6D675E] font-light leading-relaxed mb-4">
+                {OFFICES.registered.address}
+              </p>
+
+              <div className="space-y-2.5 font-body text-xs sm:text-sm text-[#1F1E1C] pt-3.5 border-t border-[#1F1E1C]/10">
+                <div className="flex items-start gap-2.5">
+                  <Phone className="w-4 h-4 text-[#B9935A] shrink-0 mt-0.5" />
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+                    {OFFICES.registered.phoneNumbers.map((phone) => (
+                      <a
+                        key={phone}
+                        href={`tel:${phone.replace(/\s+/g, "")}`}
+                        className="hover:text-[#B9935A] transition-colors"
+                      >
+                        {phone}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <Mail className="w-4 h-4 text-[#B9935A] shrink-0" />
+                  <a
+                    href={`mailto:${OFFICES.registered.email}`}
+                    className="hover:text-[#B9935A] transition-colors"
+                  >
+                    {OFFICES.registered.email}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 4 — INTERACTIVE ARCHITECTURAL MAP */}
+      <section id="contact-map" className="py-16 sm:py-24 border-t border-[#B9935A]/20 bg-[#FAF7F2]">
+        <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
+          <ContactMap />
+        </div>
       </section>
     </div>
   );

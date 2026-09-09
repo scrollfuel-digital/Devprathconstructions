@@ -8,6 +8,37 @@ import {
 } from "../../constants/galleryData";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
+/**
+ * =============================================================================
+ * PAGE MANIFEST: GALLERY PAGE (Gallery.jsx)
+ * =============================================================================
+ * Route: "/gallery" (Currently commented in AppRoutes.jsx, ready for activation)
+ * 
+ * --- CURRENT / OLD COMPONENTS & SECTIONS PRESENT IN THIS FILE ---
+ * 1. GalleryHero
+ *    - Source: src/pages/Gallery/GalleryHero.jsx
+ *    - Role: Top visual header with title and gold decorative accents
+ * 
+ * 2. SECTION 1: Sample Flat & Interiors Spotlight Stage
+ *    - Role: Interactive large spotlight viewer for interior renders with Prev/Next buttons, zoom hover, and auto-scrolling thumbnail filmstrip
+ *    - Constants: firstSliderImages (src/constants/galleryData.js - 19 renders)
+ *    - State: spotlightIdx (number), thumbnailRefs
+ * 
+ * 3. SECTION 2: Elegant Event Showcase
+ *    - Role: Multi-section grid displaying corporate and customer events (Bhoomi Pujan, Customer Meet, Site Milestones)
+ *    - Constants: galleryEventSections (src/constants/galleryData.js)
+ * 
+ * 4. GalleryLightbox Modal
+ *    - Source: src/pages/Gallery/GalleryLightbox.jsx
+ *    - Role: Fullscreen scoped photo viewer modal with keyboard controls and image counter
+ *    - State: lightboxOpen (boolean), lightboxIdx (number), lightboxImages (array)
+ * 
+ * --- ROLLBACK GUIDE ---
+ * - If you replace any section with a newly developed component and want to revert,
+ *   simply comment out or delete the new component and restore the corresponding old section below.
+ * =============================================================================
+ */
+
 // Buttery smooth emergence variant for cards and sections
 const cardEmergenceVariant = (shouldReduceMotion, delay = 0) => ({
   hidden: {

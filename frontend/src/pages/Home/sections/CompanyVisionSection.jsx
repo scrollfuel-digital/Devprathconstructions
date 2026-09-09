@@ -1,102 +1,65 @@
-import React, { memo } from "react";
-import { motion, useReducedMotion } from "framer-motion";
-import mangalmurtiImg from '../../../assets/home page/who_are_we.png';
+import React from "react";
+import whoAreWeImg from "../../../assets/home page/who_are_we.png";
+import CTAButton from "../../../components/common/CTAButton";
+import ScrollReveal from "../../../components/common/ScrollReveal";
 
-const magicalBehindVariant = (shouldReduceMotion) => ({
-  hidden: {
-    opacity: 0,
-    scale: shouldReduceMotion ? 1 : 0.88,
-    y: shouldReduceMotion ? 0 : 35,
-    filter: shouldReduceMotion ? "none" : "blur(6px)",
-  },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: {
-      duration: 1.25,
-      delay: 0,
-      ease: [0.25, 1, 0.5, 1],
-    },
-  },
-});
-
-export const CompanyLegacySection = memo(() => {
-  const shouldReduceMotion = useReducedMotion();
-
+export const CompanyVisionSection = () => {
   return (
-    <section id="about" className="py-20 md:py-28 bg-[#F8F5EF] relative overflow-hidden">
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+    <section id="about" className="py-24 sm:py-32 bg-[#FAF7F2]">
+      <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
 
-          {/* Left Column - High End Image Frame */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.05 }}
-            variants={magicalBehindVariant(shouldReduceMotion)}
-            style={{ willChange: "transform, opacity, filter" }}
-            className="lg:col-span-6 relative flex flex-col justify-center"
-          >
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-[#B9935A]/30 group">
+          {/* Left Column: Dominant Architectural Imagery */}
+          <div className="lg:col-span-6 relative">
+            <div className="relative group">
               <img
-                src={mangalmurtiImg}
-                alt="Devprath Architectural Excellence"
-                className="w-full h-[460px] sm:h-[530px] object-cover group-hover:scale-105 transition-transform duration-700"
+                src={whoAreWeImg}
+                alt="Devprath Construction LLP Master Planning"
+                className="revealing-image w-full h-[480px] sm:h-[600px] object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.02]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#172235]/60 via-transparent to-transparent" />
-
-              {/* Floating Badge */}
-              <div className="absolute bottom-6 left-6 right-6 bg-white/80 backdrop-blur-md p-5 rounded-2xl border border-[#B9935A]/30 shadow-xl">
-                <div className="flex items-center gap-4">
-                  <div className="w-11 h-11 rounded-full bg-[#B9935A]/15 flex items-center justify-center shrink-0">
-                    <span className="material-symbols-outlined text-[#B9935A] text-2xl">
-                      domain
-                    </span>
-                  </div>
-                  <div>
-                    <h4 className="text-base font-bold text-[#172235]">
-                      Master-Planned Township
-                    </h4>
-                    <p className="text-xs text-gray-700 leading-relaxed mt-0.5">
-                      Developing thoughtfully planned residential landmarks with architectural excellence and enduring quality.
-                    </p>
-                  </div>
-                </div>
-              </div>
             </div>
-          </motion.div>
+          </div>
 
-          {/* Right Column - Narrative Content */}
-          <div className="lg:col-span-6 flex flex-col justify-center space-y-5">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: false, amount: 0.05 }}
-              variants={magicalBehindVariant(shouldReduceMotion)}
-              style={{ willChange: "transform, opacity, filter" }}
-            >
-              <span className="text-xs font-bold uppercase tracking-[3px] text-[#B9935A] mb-2.5 inline-block">
-                WHO WE ARE
-              </span>
-              <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#172235] leading-tight mb-4 font-heading">
-                Building Trust Through <br className="hidden sm:inline" />
-                <span className="gold-gradient-text">Excellence</span>
-              </h2>
-              <p className="text-sm sm:text-base text-gray-700 leading-relaxed font-light mb-4">
-                Devprath Constructions LLP is a Nagpur-based real estate developer established in 2018, focused exclusively on planning and developing its own residential and commercial projects. Centred on practical layouts, durable construction quality, and modern infrastructure, we create well-organised environments tailored to everyday living.
+          {/* Right Column: Editorial Architecture Narrative */}
+            <div className="lg:col-span-6 flex flex-col justify-center space-y-7">
+            <ScrollReveal>
+            <div>
+                <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.25em] text-[#B9935A] block mb-3">
+                  Who We Are
+                </span>
+                <h2 className="font-display text-3xl sm:text-5xl lg:text-[54px] font-normal text-[#1F1E1C] leading-[1.12] tracking-tight">
+                  Building Trust Through <br />
+                  <span className="italic font-light text-[#8F6E3B]">Excellence.</span>
+                </h2>
+            </div>
+          </ScrollReveal>
+            <ScrollReveal>
+              <p className="font-body text-base sm:text-lg text-[#6D675E] font-light leading-relaxed">
+                Devprath Construction LLP was founded on 28 November 2018. The company represents the partnership of Mr. Hemal Nadiyana and Mr. Sunil Patil, combining over 20 years of professional synergy in real estate, engineering, and master planning.
               </p>
-              <p className="text-sm sm:text-base text-gray-700 leading-relaxed font-light">
-                Our approach emphasizes functional spaces, natural ventilation, and essential lifestyle amenities with complete transparency. As a dedicated project developer. Devprath Constructions LLP delivers signature planned developments across Nagpur.
-              </p>
-            </motion.div>
+            </ScrollReveal>
+            <ScrollReveal>
+            <div className="space-y-4 pt-2 border-t border-[#1F1E1C]/10">
+                <p className="font-body text-sm sm:text-base text-[#1F1E1C] font-normal leading-relaxed">
+                  The company focuses on innovative and high-quality township developments in Nagpur — prioritizing structural permanence, clean spatial flow, natural ventilation, and uncompromised transparency.
+                </p>
+                <p className="font-body text-xs sm:text-sm text-[#6D675E] font-light italic">
+                  "We craft planned environments where multigenerational families flourish with enduring confidence."
+                </p>
+            </div>
+            </ScrollReveal>
+
+            <ScrollReveal>
+              <div className="pt-2">
+                <CTAButton to="/about-us" label="OUR STORY" />
+              </div>
+            </ScrollReveal>
           </div>
 
         </div>
       </div>
     </section>
   );
-});
+};
 
-export default CompanyLegacySection;
+export default CompanyVisionSection;

@@ -1,15 +1,17 @@
-import React, { useState, useEffect, memo } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import React, { useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import Button from "./common/Button";
+import CTAButton from "./common/CTAButton";
 
-// Project Coordinates: Mangalmurti Residency (Nagpur, MH)
+// =============================================================================
+// STRICT DATA SOURCE OF TRUTH (AS REQUESTED)
+// =============================================================================
 const MANGALMURTI_LOCATION = {
   name: "Mangalmurti Residency",
   lat: 21.0357708,
   lng: 79.0476286,
-  url: "https://maps.app.goo.gl/xoJxvjEaiTdhvUbNA",
 };
 
 const LOCATIONS_DATA = [
@@ -17,404 +19,373 @@ const LOCATIONS_DATA = [
     id: "metro",
     title: "Khapri Metro Station",
     category: "Rapid Transit",
-    icon: "directions_subway",
     lat: 21.0496483,
     lng: 79.0471023,
-    url: "https://www.google.com/maps/place/Khapri+Metro+Station/@21.0496483,79.0471023",
   },
   {
     id: "aiims",
     title: "AIIMS Nagpur",
     category: "Super-Specialty Healthcare",
-    icon: "local_hospital",
     lat: 21.0359743,
     lng: 79.0267258,
-    url: "https://www.google.com/maps/place/All+India+Institute+Of+Medical+Sciences+Nagpur/@21.0359743,79.0267258",
   },
   {
     id: "gcoen",
-    title: "Government College of Engineering (GCOEN)",
+    title: "Government College of Engineering",
     category: "Premier Institute",
-    icon: "school",
     lat: 21.0515686,
     lng: 79.0603312,
-    url: "https://www.google.com/maps/place/Government+College+of+Engineering,+Nagpur/@21.0515686,79.0603312",
   },
   {
     id: "stadium",
-    title: "VCA Cricket Stadium (Jamtha)",
+    title: "VCA Cricket Stadium",
     category: "Sports & Entertainment",
-    icon: "sports_cricket",
     lat: 21.013504,
     lng: 79.039739,
-    url: "https://www.google.com/maps/place/Vidarbha+Cricket+Association+Stadium/@21.0145383,79.0395771",
   },
   {
     id: "airport",
     title: "Dr. Babasaheb Ambedkar Airport",
     category: "International Airport",
-    icon: "flight_takeoff",
     lat: 21.0901569,
     lng: 79.0548086,
-    url: "https://www.google.com/maps/place/Dr.+Babasaheb+Ambedkar+International+Airport/@21.0901569,79.0548086",
   },
 ];
 
-/**
- * Calculates Haversine geodesic distance in KM between two (lat, lng) coordinates
- */
-const calculateDistance = (lat1, lon1, lat2, lon2) => {
-  const R = 6371;
-  const dLat = ((lat2 - lat1) * Math.PI) / 180;
-  const dLon = ((lon2 - lon1) * Math.PI) / 180;
-  const a =
-    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos((lat1 * Math.PI) / 180) *
-    Math.cos((lat2 * Math.PI) / 180) *
-    Math.sin(dLon / 2) *
-    Math.sin(dLon / 2);
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  return (R * c).toFixed(1);
-};
+// Nagpur & MIHAN Corridor Bounds (Locks map so user cannot zoom out past corridor)
+const NAGPUR_BOUNDS = [
+  [20.98, 78.96], // South-West
+  [21.14, 79.12], // North-East
+];
 
-const calculateTime = (distanceKm) => {
-  const mins = Math.max(3, Math.round((distanceKm / 30) * 60));
-  return `${mins} Mins`;
-};
-
-// Custom Leaflet DivIcon Generators for React
+// Custom HTML Markers for Leaflet (Devprath Architectural Palette)
 const mangalmurtiIcon = L.divIcon({
-  className: "custom-mangalmurti-pin",
+  className: "custom-mangalmurti-marker",
   html: `
-    <div style="position: relative; display: flex; flex-direction: column; align-items: center; transform: translate(-50%, -100%); font-family: 'Poppins', sans-serif;">
-      <div style="width: 40px; height: 40px; background-color: #B9935A; border: 3px solid #ffffff; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 16px rgba(0,0,0,0.3);">
-        <span class="material-symbols-outlined" style="color: #ffffff; font-size: 22px;">domain</span>
+    <div style="position: relative; display: flex; flex-direction: column; align-items: center; transform: translate(-50%, -100%);">
+      <div style="width: 24px; height: 24px; background: #B9935A; border: 2.5px solid #FAF7F2; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(31,30,28,0.35);">
+        <div style="width: 7px; height: 7px; background: #FAF7F2; border-radius: 50%;"></div>
       </div>
-      <div style="background: #172235; color: #ffffff; border: 1px solid #B9935A; font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 12px; margin-top: 4px; white-space: nowrap; box-shadow: 0 4px 12px rgba(0,0,0,0.25);">
+      <div style="background: #1F1E1C; color: #FAF7F2; border: 1px solid #B9935A; font-family: 'Manrope', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; padding: 2px 8px; border-radius: 2px; margin-top: 4px; white-space: nowrap; text-transform: uppercase; box-shadow: 0 4px 10px rgba(0,0,0,0.25);">
         Mangalmurti Residency
       </div>
     </div>
   `,
-  iconSize: [40, 64],
-  iconAnchor: [20, 44],
+  iconSize: [32, 50],
+  iconAnchor: [16, 50],
 });
 
-const createLandmarkIcon = (iconName, title) =>
-  L.divIcon({
-    className: "custom-landmark-pin",
-    html: `
-      <div style="position: relative; display: flex; flex-direction: column; align-items: center; transform: translate(-50%, -100%); font-family: 'Poppins', sans-serif;">
-        <div style="width: 36px; height: 36px; background-color: #172235; border: 2.5px solid #B9935A; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(0,0,0,0.3);">
-          <span class="material-symbols-outlined" style="color: #F0D060; font-size: 20px; font-weight: bold;">${iconName}</span>
-        </div>
-        <div style="background: #ffffff; color: #172235; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 12px; margin-top: 4px; white-space: nowrap; box-shadow: 0 3px 10px rgba(0,0,0,0.2); border: 1px solid #B9935A;">
-          ${title}
-        </div>
+const landmarkIcon = L.divIcon({
+  className: "custom-landmark-marker",
+  html: `
+    <div style="position: relative; display: flex; flex-direction: column; align-items: center; transform: translate(-50%, -100%);">
+      <div style="width: 18px; height: 18px; background: #1F1E1C; border: 2px solid #B9935A; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.25);">
+        <div style="width: 5px; height: 5px; background: #B9935A; border-radius: 50%;"></div>
       </div>
-    `,
-    iconSize: [36, 58],
-    iconAnchor: [18, 38],
-  });
+    </div>
+  `,
+  iconSize: [20, 20],
+  iconAnchor: [10, 20],
+});
 
-/**
- * Idiomatic React component using useMap hook to smoothly fit map bounds when route changes
- */
-const MapViewController = ({ bounds }) => {
+// Viewport controller to automatically fit route bounds on landmark selection
+function MapViewController({ bounds }) {
   const map = useMap();
   useEffect(() => {
-    if (bounds && bounds.length >= 2) {
-      map.fitBounds(bounds, { padding: [50, 50], maxZoom: 15, animate: true });
+    if (bounds && bounds.length > 0) {
+      map.fitBounds(bounds, {
+        padding: [50, 50],
+        maxZoom: 15,
+        animate: true,
+      });
     }
   }, [bounds, map]);
   return null;
-};
+}
 
-// Magical Depth-Blur Motion Variant (Emerging from Background, Zero Delay, Slow Pace)
-const magicalBehindVariant = (shouldReduceMotion) => ({
-  hidden: {
-    opacity: 0,
-    scale: shouldReduceMotion ? 1 : 0.88,
-    y: shouldReduceMotion ? 0 : 35,
-    filter: shouldReduceMotion ? "none" : "blur(6px)",
-  },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: {
-      duration: 1.25,
-      delay: 0,
-      ease: [0.25, 1, 0.5, 1],
-    },
-  },
-});
-
-export const HubOfExcellence = memo(() => {
-  const [selectedLandmark, setSelectedLandmark] = useState(LOCATIONS_DATA[0]);
+/**
+ * Section 7: Where Life Connects (Connectivity & React-Leaflet Map)
+ * - Zero third-party routing plugins (pure raw JS fetch to OSRM API)
+ * - Coordinate Bridging: [Origin, ...decoded_OSRM_coords, Destination] to connect right to markers
+ * - Fallback UI: draws direct straight dashed line if OSRM rate-limits or fails
+ * - Precise marker placement at exact hardcoded coordinates
+ * - CartoDB Positron tiles with .premium-map-filter sepia theming
+ * - Zoom & Pan locked to Nagpur corridor (minZoom={12}, maxBounds)
+ */
+export const HubOfExcellence = () => {
+  const [activeId, setActiveId] = useState(LOCATIONS_DATA[0].id);
   const [routeCoords, setRouteCoords] = useState([
     [MANGALMURTI_LOCATION.lat, MANGALMURTI_LOCATION.lng],
-    [selectedLandmark.lat, selectedLandmark.lng],
+    [LOCATIONS_DATA[0].lat, LOCATIONS_DATA[0].lng],
   ]);
+  const [isFallback, setIsFallback] = useState(false);
+  const [isMapActive, setIsMapActive] = useState(false);
+  const [routeMeta, setRouteMeta] = useState({
+    distance: "1.5 km",
+    duration: "3 MIN",
+  });
 
-  const shouldReduceMotion = useReducedMotion();
+  const activePoint =
+    LOCATIONS_DATA.find((p) => p.id === activeId) || LOCATIONS_DATA[0];
 
-  const mainLatLng = [MANGALMURTI_LOCATION.lat, MANGALMURTI_LOCATION.lng];
-  const activeLatLng = [selectedLandmark.lat, selectedLandmark.lng];
-
-  // Fetch real road driving route path from OSRM API
+  // Raw JavaScript Fetch to Free OSRM Routing API with Coordinate Bridging & Fallback
   useEffect(() => {
     let isMounted = true;
-    const fetchRoute = async () => {
-      try {
-        const url = `https://router.project-osrm.org/route/v1/driving/${MANGALMURTI_LOCATION.lng},${MANGALMURTI_LOCATION.lat};${selectedLandmark.lng},${selectedLandmark.lat}?overview=full&geometries=geojson`;
-        const res = await fetch(url);
-        const data = await res.json();
-        if (data && data.routes && data.routes[0] && data.routes[0].geometry) {
-          const coords = data.routes[0].geometry.coordinates.map(([lng, lat]) => [lat, lng]);
-          if (isMounted) {
-            setRouteCoords(coords);
-          }
-        } else {
-          if (isMounted) {
-            setRouteCoords([mainLatLng, activeLatLng]);
-          }
-        }
-      } catch {
-        if (isMounted) {
-          setRouteCoords([mainLatLng, activeLatLng]);
-        }
-      }
-    };
+    const originLng = MANGALMURTI_LOCATION.lng;
+    const originLat = MANGALMURTI_LOCATION.lat;
+    const destLng = activePoint.lng;
+    const destLat = activePoint.lat;
 
-    fetchRoute();
+    const osrmUrl = `https://router.project-osrm.org/route/v1/driving/${originLng},${originLat};${destLng},${destLat}?overview=full&geometries=geojson`;
+
+    fetch(osrmUrl)
+      .then((res) => {
+        if (!res.ok) throw new Error(`OSRM HTTP error: ${res.status}`);
+        return res.json();
+      })
+      .then((data) => {
+        if (!isMounted) return;
+        if (data.routes && data.routes.length > 0) {
+          const route = data.routes[0];
+          const decodedCoords = route.geometry.coordinates.map(([lng, lat]) => [
+            lat,
+            lng,
+          ]);
+
+          // Coordinate Bridging: Inject exact origin and destination coordinates
+          // to eliminate snapping gaps at start & end of the route
+          const bridgedCoords = [
+            [originLat, originLng],
+            ...decodedCoords,
+            [destLat, destLng],
+          ];
+
+          setRouteCoords(bridgedCoords);
+          setIsFallback(false);
+
+          const km = (route.distance / 1000).toFixed(1);
+          const mins = Math.max(1, Math.round(route.duration / 60));
+          setRouteMeta({
+            distance: `${km} km`,
+            duration: `${mins} MIN`,
+          });
+        } else {
+          throw new Error("No OSRM routes found");
+        }
+      })
+      .catch((err) => {
+        if (!isMounted) return;
+        console.warn("OSRM routing unavailable, using direct fallback line:", err);
+        // Fallback UI: direct straight dashed line between origin and destination
+        setRouteCoords([
+          [originLat, originLng],
+          [destLat, destLng],
+        ]);
+        setIsFallback(true);
+      });
 
     return () => {
       isMounted = false;
     };
-  }, [selectedLandmark]);
+  }, [activePoint.lat, activePoint.lng]);
 
-  const activeDistance = calculateDistance(
-    MANGALMURTI_LOCATION.lat,
-    MANGALMURTI_LOCATION.lng,
-    selectedLandmark.lat,
-    selectedLandmark.lng
-  );
-  const activeTime = calculateTime(parseFloat(activeDistance));
-
-  const directionsUrl = `https://www.google.com/maps/dir/?api=1&origin=${MANGALMURTI_LOCATION.lat},${MANGALMURTI_LOCATION.lng}&destination=${selectedLandmark.lat},${selectedLandmark.lng}`;
+  const externalMapUrl = `https://www.google.com/maps/dir/?api=1&origin=${MANGALMURTI_LOCATION.lat},${MANGALMURTI_LOCATION.lng}&destination=${activePoint.lat},${activePoint.lng}`;
 
   return (
     <section
       id="location"
-      className="py-24 bg-[#F8F5EF] border-t border-[#B9935A]/20 overflow-hidden"
+      className="py-24 sm:py-32 bg-[#FAF7F2] border-t border-[#B9935A]/20 overflow-hidden"
     >
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+      <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
+        
+        {/* Section Header */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16 sm:mb-20">
+          <div>
+            <span className="font-body text-[11px] sm:text-xs font-semibold uppercase tracking-[0.25em] text-[#B9935A] block mb-3">
+              Connectivity
+            </span>
+            <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl font-normal text-[#1F1E1C] tracking-tight leading-tight">
+              Where Life <span className="italic font-light text-[#8F6E3B]">Connects.</span>
+            </h2>
+          </div>
+          <div className="text-left lg:text-right">
+            <span className="font-body text-xs sm:text-sm text-[#1F1E1C] font-semibold tracking-wider uppercase block">
+              Parsodi · Wardha Road · Nagpur
+            </span>
+            <span className="text-xs text-[#6D675E] font-light block mt-1">
+              Adjacent to MIHAN SEZ &amp; Metro Corridor
+            </span>
+          </div>
+        </div>
 
-          {/* Left Column - Magical Depth Blur Emergence */}
-          <div className="lg:col-span-1 text-left space-y-3.5">
-            {/* Header Block */}
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: false, amount: 0.05 }}
-              variants={magicalBehindVariant(shouldReduceMotion)}
-              style={{ willChange: "transform, opacity, filter" }}
-              className="mb-8"
-            >
-              <span className="text-xs font-bold uppercase tracking-[3px] text-[#B9935A] mb-3 block text-left">
-                Prime Location &amp; Connectivity
-              </span>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#172235] tracking-tight mb-6 font-heading text-left">
-                Everything Within <span className="gold-gradient-text">Reach</span>
-              </h2>
-              <p className="text-sm text-gray-600 font-light text-left">
-                Located strategically in Nagpur's prime growth corridor near Wardha Road &amp; MIHAN, Mangalmurti Residency provides seamless access to transit, top institutes, healthcare, and sports centers.
-              </p>
-            </motion.div>
+        {/* Two-Column Interactive Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+          
+          {/* =====================================================================
+              LEFT COLUMN: INTERACTIVE CONNECTIVITY LIST
+              Ultra-thin 1px borders in --accent-gold-matte, no bulky boxes
+              ===================================================================== */}
+          <div className="lg:col-span-6 space-y-1">
+            <div className="border-t border-[#B9935A]/25">
+              {LOCATIONS_DATA.map((item, idx) => {
+                const isActive = item.id === activeId;
+                const num = `0${idx + 1}`;
 
-            {/* Individual Location Cards - Per-Item Magical Emergence */}
-            {LOCATIONS_DATA.map((item) => {
-              const distance = calculateDistance(
-                MANGALMURTI_LOCATION.lat,
-                MANGALMURTI_LOCATION.lng,
-                item.lat,
-                item.lng
-              );
-              const time = calculateTime(parseFloat(distance));
-              const isSelected = selectedLandmark.id === item.id;
-
-              return (
-                <motion.div
-                  key={item.id}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: false, amount: 0.05 }}
-                  variants={magicalBehindVariant(shouldReduceMotion)}
-                  style={{ willChange: "transform, opacity, filter" }}
-                  onClick={() => setSelectedLandmark(item)}
-                  whileHover={
-                    shouldReduceMotion
-                      ? undefined
-                      : { scale: 1.02, transition: { duration: 0.2 } }
-                  }
-                  className={`flex items-center justify-between p-4 rounded-2xl border transition-all cursor-pointer shadow-sm ${isSelected
-                      ? "bg-[#FDFBF7] border-[#B9935A] ring-2 ring-[#B9935A]/20 shadow-md"
-                      : "bg-white border-gray-200/80 hover:border-[#B9935A]/50 hover:bg-white"
-                    }`}
-                >
-                  <div className="flex items-center gap-3.5 min-w-0 flex-1">
-                    <div
-                      className={`w-11 h-11 rounded-full flex items-center justify-center shrink-0 transition-colors ${isSelected
-                          ? "bg-[#B9935A] text-white"
-                          : "bg-[#F8F5EF] text-[#B9935A]"
-                        }`}
-                    >
-                      <span className="material-symbols-outlined text-xl">
-                        {item.icon}
+                return (
+                  <div
+                    key={item.id}
+                    onClick={() => setActiveId(item.id)}
+                    className={`connectivity-item ${
+                      isActive ? "active" : ""
+                    } py-4 sm:py-5 flex items-center justify-between cursor-pointer`}
+                  >
+                    <div className="flex items-baseline gap-4 sm:gap-6 min-w-0 pr-4">
+                      <span className="connectivity-num font-display text-lg sm:text-xl font-light text-[#B9935A] shrink-0 transition-colors">
+                        {num}
                       </span>
+                      <div className="min-w-0 truncate">
+                        <span className="connectivity-title font-body text-sm sm:text-base font-medium uppercase tracking-[0.1em] block truncate text-[#1F1E1C] transition-colors">
+                          {item.title}
+                        </span>
+                        <span className="text-[11px] text-[#6D675E] font-light block mt-0.5">
+                          {item.category}
+                        </span>
+                      </div>
                     </div>
-                    <div className="min-w-0 flex-1">
-                      <h4 className="text-sm sm:text-base font-bold text-gray-900 truncate leading-snug">
-                        {item.title}
-                      </h4>
-                      <span className="text-xs sm:text-[13px] text-gray-600 font-medium truncate block mt-0.5">
-                        {item.category} • {distance} km away
+
+                    <div className="shrink-0 text-right">
+                      <span className="font-display text-base sm:text-lg font-normal tracking-wider text-[#8F6E3B]">
+                        {isActive ? routeMeta.duration : "VIEW ROUTE"}
                       </span>
                     </div>
                   </div>
+                );
+              })}
+            </div>
 
-                  <div className="flex items-center gap-2 shrink-0 ml-2">
-                    <span className="text-xs sm:text-sm font-bold px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-[#B9935A]/15 text-[#785926] whitespace-nowrap shrink-0">
-                      {time}
-                    </span>
-                  </div>
-                </motion.div>
-              );
-            })}
+            {/* External Directions CTA */}
+            <div className="pt-6">
+              <CTAButton
+                to={externalMapUrl}
+                label="VIEW ON GOOGLE MAPS"
+              >
+                
+              </CTAButton>
+            </div>
           </div>
 
-          {/* Right Column - Map Container Showcase */}
-          <div className="lg:col-span-1 sticky top-24 min-h-[500px]">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: false, amount: 0.05 }}
-              variants={magicalBehindVariant(shouldReduceMotion)}
-              style={{ willChange: "transform, opacity, filter" }}
-              className="relative rounded-3xl overflow-hidden bg-white text-gray-900 p-6 sm:p-8 flex flex-col justify-between shadow-xl shadow-black/5 border border-gray-100 min-h-[500px]"
+          {/* =====================================================================
+              RIGHT COLUMN: REACT-LEAFLET ARCHITECTURAL MAP
+              CartoDB Positron tiles, OSRM gold polyline, locked bounds
+              ===================================================================== */}
+          <div className="lg:col-span-6 relative">
+            <div 
+              onClick={() => setIsMapActive(true)}
+              onMouseLeave={() => setIsMapActive(false)}
+              className="relative w-full h-[320px] sm:h-[400px] lg:h-[480px] max-h-[400px] lg:max-h-none overflow-hidden border border-[#B9935A]/25 bg-[#F2EDE4]"
             >
-              {/* Header Bar */}
-              <div className="relative z-10 flex items-center justify-between border-b border-gray-100 pb-4 mb-4">
-                <div>
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-[#B9935A] block">
-                    Interactive Road Driving Route
-                  </span>
-                  <h4 className="text-sm font-bold text-gray-900 mt-0.5">
-                    Mangalmurti Residency &rarr; {selectedLandmark.title}
-                  </h4>
+              {/* Mobile Scroll-Trap Guard Overlay */}
+              {!isMapActive && (
+                <div 
+                  onClick={() => setIsMapActive(true)}
+                  className="absolute inset-0 z-[400] flex items-center justify-center bg-black/5 cursor-pointer lg:hidden"
+                >
+                  <div className="bg-[#FAF7F2]/95 backdrop-blur-md px-4 py-2 border border-[#B9935A]/40 text-[#1F1E1C] shadow-sm text-center">
+                    <span className="font-body text-[10px] uppercase tracking-[0.2em] font-semibold block text-[#8F6E3B]">
+                      Tap to interact with map
+                    </span>
+                  </div>
                 </div>
-                <div className="text-right">
-                  <span className="text-xs font-bold text-[#B9935A] block">
-                    {activeDistance} km
-                  </span>
-                  <span className="text-[10px] text-gray-500 font-medium">
-                    Est. {activeTime} Drive
-                  </span>
-                </div>
+              )}
+              
+              <MapContainer
+                center={[MANGALMURTI_LOCATION.lat, MANGALMURTI_LOCATION.lng]}
+                zoom={13}
+                minZoom={12}
+                maxZoom={17}
+                maxBounds={NAGPUR_BOUNDS}
+                maxBoundsViscosity={1.0}
+                scrollWheelZoom={false}
+                attributionControl={false}
+                className={`premium-map-tiles w-full h-full z-0 ${
+                  !isMapActive ? "pointer-events-none lg:pointer-events-auto" : "pointer-events-auto"
+                }`}
+              >
+                {/* Standard OpenStreetMap Tiles styled with .premium-map-tiles CSS filter */}
+                <TileLayer
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                  maxZoom={19}
+                />
+
+                <MapViewController bounds={routeCoords} />
+
+                {/* Mangalmurti Residency: Precise Exact Marker Placement */}
+                <Marker
+                  position={[MANGALMURTI_LOCATION.lat, MANGALMURTI_LOCATION.lng]}
+                  icon={mangalmurtiIcon}
+                >
+                  <Popup>
+                    <div className="font-sans text-xs">
+                      <strong>Mangalmurti Residency</strong>
+                      <p className="text-[10px] text-gray-600 mt-0.5">
+                        Parsodi, Wardha Road, Nagpur
+                      </p>
+                    </div>
+                  </Popup>
+                </Marker>
+
+                {/* Active Destination: Precise Exact Marker Placement from LOCATIONS_DATA */}
+                <Marker
+                  position={[activePoint.lat, activePoint.lng]}
+                  icon={landmarkIcon}
+                >
+                  <Popup>
+                    <div className="font-sans text-xs">
+                      <strong>{activePoint.title}</strong>
+                      <p className="text-[10px] text-gray-600 mt-0.5">
+                        {activePoint.category} · {routeMeta.distance}
+                      </p>
+                    </div>
+                  </Popup>
+                </Marker>
+
+                {/* Real Driving Route Polyline Styled in Brand Matte Gold with Coordinate Bridging */}
+                <Polyline
+                  positions={routeCoords}
+                  pathOptions={{
+                    color: "#B89C72", // Brand matte gold (--accent-gold-matte)
+                    weight: 4,
+                    opacity: 0.9,
+                    dashArray: isFallback ? "6, 8" : undefined,
+                    lineJoin: "round",
+                  }}
+                />
+              </MapContainer>
+
+              {/* Status Overlay Info Pill */}
+              <div className="absolute top-4 left-4 bg-[#FAF7F2]/95 backdrop-blur-md px-4 py-2.5 text-[#1F1E1C] border-l-2 border-[#B9935A] shadow-sm pointer-events-none z-[500]">
+                <span className="text-[9px] uppercase tracking-[0.2em] text-[#B9935A] font-semibold block">
+                  Driving Route · Wardha Road
+                </span>
+                <span className="text-xs font-medium text-[#1F1E1C]">
+                  {activePoint.title} · {routeMeta.duration} ({routeMeta.distance})
+                </span>
               </div>
 
-              {/* React-Leaflet Satellite Map Container */}
-              <div className="relative z-10 w-full h-[300px] sm:h-[320px] rounded-2xl overflow-hidden border border-gray-200 shadow-sm">
-                <MapContainer
-                  center={mainLatLng}
-                  zoom={14}
-                  scrollWheelZoom={false}
-                  attributionControl={false}
-                  className="w-full h-full z-0"
-                >
-                  <TileLayer
-                    url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-                    maxZoom={18}
-                  />
-
-                  <TileLayer
-                    url="https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}"
-                    maxZoom={18}
-                  />
-
-                  <MapViewController bounds={routeCoords} />
-
-                  <Marker position={mainLatLng} icon={mangalmurtiIcon}>
-                    <Popup>
-                      <div className="text-center font-sans text-xs">
-                        <strong>Mangalmurti Residency</strong>
-                        <p className="m-0 text-gray-600">Main Project Location</p>
-                      </div>
-                    </Popup>
-                  </Marker>
-
-                  <Marker
-                    position={activeLatLng}
-                    icon={createLandmarkIcon(selectedLandmark.icon, selectedLandmark.title)}
-                  >
-                    <Popup>
-                      <div className="text-center font-sans text-xs">
-                        <strong>{selectedLandmark.title}</strong>
-                        <p className="m-0 text-gray-600">
-                          {activeDistance} km • {activeTime} Drive
-                        </p>
-                      </div>
-                    </Popup>
-                  </Marker>
-
-                  <Polyline
-                    positions={routeCoords}
-                    pathOptions={{
-                      color: "#B9935A",
-                      weight: 4.5,
-                      opacity: 0.95,
-                      lineCap: "round",
-                      lineJoin: "round",
-                    }}
-                  />
-                </MapContainer>
+              {/* Sector Tag Accent */}
+              <div className="absolute bottom-4 right-4 bg-[#FAF7F2]/90 backdrop-blur-sm px-3 py-1 text-[9px] uppercase tracking-[0.2em] text-[#6D675E] font-semibold pointer-events-none z-[500] border border-[#B9935A]/20">
+                Origin: Mangalmurti Residency
               </div>
 
-              {/* Action Buttons */}
-              <div className="relative z-10 pt-4 flex flex-col sm:flex-row items-center gap-3">
-                <a
-                  href={directionsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 w-full rounded-full bg-[#B9935A] py-3.5 text-xs font-semibold uppercase tracking-[2px] text-white transition-all duration-300 hover:bg-gradient-to-r hover:from-[#B9935A] hover:to-[#8B6732] hover:border-transparent shadow-md text-center flex items-center justify-center gap-2 cursor-pointer"
-                >
-                  <span className="material-symbols-outlined text-base">
-                    directions
-                  </span>
-                  <span>View Route on Google Maps</span>
-                </a>
-
-                <a
-                  href={MANGALMURTI_LOCATION.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-full bg-white text-[#B9935A] border border-[#B9935A] transition-all duration-300 hover:bg-[#B9935A] hover:text-white py-3.5 px-6 text-xs font-semibold uppercase tracking-[1px] flex items-center justify-center gap-1 cursor-pointer text-center shadow-sm"
-                >
-                  <span className="material-symbols-outlined text-base">
-                    my_location
-                  </span>
-                  <span>Project Location</span>
-                </a>
-              </div>
-            </motion.div>
+            </div>
           </div>
 
         </div>
+
       </div>
     </section>
   );
-});
+};
 
 export default HubOfExcellence;
