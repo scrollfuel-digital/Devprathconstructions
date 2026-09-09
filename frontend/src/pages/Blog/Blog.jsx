@@ -1,27 +1,14 @@
 import React, { useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
-import { magicalBehindVariant } from "../../constants/magicalBehindVariant";
 import { Search } from "lucide-react";
 import { BLOG_POSTS, CATEGORIES } from "../../constants/blogData";
 import BlogCard from "./BlogCard";
 
 export default function Blog() {
-  const shouldReduceMotion = useReducedMotion();
-  const animationVariant = magicalBehindVariant(shouldReduceMotion);
-  const magicalInViewProps = {
-    initial: "hidden",
-    whileInView: "visible",
-    viewport: { once: false, amount: 0.05 },
-    variants: animationVariant,
-    style: { willChange: "transform, opacity, filter" },
-  };
-
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredPosts = BLOG_POSTS.filter((post) => {
-    const matchesCategory =
-      activeCategory === "All" || post.category === activeCategory;
+    const matchesCategory = activeCategory === "All" || post.category === activeCategory;
     const matchesSearch =
       !searchQuery ||
       post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -29,118 +16,77 @@ export default function Blog() {
     return matchesCategory && matchesSearch;
   });
 
-  const featuredPost = BLOG_POSTS[0]; // First blog as featured
-  const regularPosts = filteredPosts.filter((p) => p.id !== featuredPost?.id);
-
   return (
-    <div className="bg-[#f8f5ef] text-black selection:bg-[#c9a063] selection:text-white font-sans overflow-hidden pt-20 relative">
-      {/* Decorative blurred gold orbs */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-[#B9935A]/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-40 right-10 w-96 h-96 bg-[#B9935A]/8 rounded-full blur-3xl pointer-events-none" />
+    <div className="bg-[#FAF7F2] text-[#1F1E1C] font-body min-h-screen overflow-x-hidden">
 
-      {/* =========================================================================
-          SECTION 1 — HERO HEADER
-         ========================================================================= */}
-      <section className="py-20 lg:py-28 bg-[#f8f5ef] relative">
-        <div className="container-custom">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <motion.span
-              className="text-xs font-bold uppercase tracking-[3px] text-[#c9a063] mb-3 block font-sans"
-              {...magicalInViewProps}
-            >
-              OUR BLOG
-            </motion.span>
+      {/* Hero & Header Section */}
+      <section className="pt-36 sm:pt-44 pb-14 sm:pb-20 border-b border-[#B9935A]/20 bg-[#FAF7F2]">
+        <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
+          <span className="font-body text-[11px] sm:text-xs font-semibold uppercase tracking-[0.3em] text-[#B9935A] block mb-4 sm:mb-5">
+            Journal &amp; Perspectives
+          </span>
 
-            <motion.h1
-              className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-black leading-tight mb-5 font-heading"
-              {...magicalInViewProps}
-            >
-              Insights & <span className="gold-gradient-text">Inspiration</span>
-            </motion.h1>
+          <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-normal text-[#1F1E1C] tracking-tight leading-[1.08] mb-6 sm:mb-8">
+            Insights &amp; <span className="italic font-light text-[#8F6E3B]">Inspirations.</span>
+          </h1>
 
-            <motion.p
-              className="text-base text-gray-700 font-light leading-relaxed mb-10"
-              {...magicalInViewProps}
-            >
-              Expert guidance on real estate trends, infrastructure developments, market comparisons, and RERA compliance — curated by the Devprath Constructions team.
-            </motion.p>
+          <p className="font-body text-base sm:text-lg text-[#6D675E] font-light max-w-3xl leading-relaxed mb-10 sm:mb-12">
+            Expert guidance on real estate trends, infrastructure developments, market comparisons, and RERA compliance &mdash; curated by the Devprath Constructions team.
+          </p>
 
-            {/* Search Bar */}
-            <motion.div
-              className="max-w-xl mx-auto relative"
-              {...magicalInViewProps}
-            >
-              <div className="relative">
-                <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search real estate articles..."
-                  className="w-full bg-white/90 backdrop-blur-md border border-[#c9a063]/20 focus:border-[#B9935A] focus:ring-2 focus:ring-[#B9935A]/20 rounded-full pl-14 pr-6 py-4 text-sm text-black placeholder:text-gray-400 focus:outline-none transition-all duration-300 shadow-lg"
-                />
-              </div>
-            </motion.div>
+          {/* Search & Category Filters */}
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pt-6 border-t border-[#B9935A]/20">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+              {CATEGORIES.map((cat) => {
+                const isActive = activeCategory === cat;
+                return (
+                  <button
+                    key={cat}
+                    type="button"
+                    onClick={() => setActiveCategory(cat)}
+                    className={`font-body text-xs uppercase tracking-[0.18em] px-4 py-2 transition-all duration-300 cursor-pointer border ${isActive
+                        ? "bg-[#B9935A] text-[#FAF7F2] border-[#B9935A] font-semibold shadow-sm"
+                        : "bg-transparent text-[#6D675E] border-[#1F1E1C]/15 hover:border-[#B9935A] hover:text-[#1F1E1C]"
+                      }`}
+                  >
+                    {cat}
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="relative w-full lg:w-80 shrink-0">
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8F6E3B]" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search articles..."
+                className="w-full bg-[#F2EDE4] border border-[#B9935A]/30 focus:border-[#B9935A] focus:outline-none pl-10 pr-4 py-2 text-sm font-body text-[#1F1E1C] placeholder:text-[#6D675E]/70 transition-colors"
+              />
+            </div>
           </div>
+        </div>
+      </section>
 
-          {/* Category Filter Pills */}
-          <motion.div
-            className="flex flex-wrap items-center justify-center gap-3 mb-16"
-            {...magicalInViewProps}
-          >
-            {CATEGORIES.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-[1.5px] transition-all duration-300 border cursor-pointer ${activeCategory === cat
-                    ? "bg-[#B9935A] text-white border-[#B9935A] shadow-lg"
-                    : "bg-white/80 text-black border-[#c9a063]/25 hover:border-[#c9a063] hover:bg-white hover:shadow-md"
-                  }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </motion.div>
-
-          {/* =========================================================================
-              FEATURED POST (Full-width hero card)
-             ========================================================================= */}
-          {activeCategory === "All" && !searchQuery && featuredPost && (
-            <motion.div {...magicalInViewProps} className="mb-16">
-              <BlogCard post={featuredPost} isFeatured={true} />
-            </motion.div>
-          )}
-
-          {/* =========================================================================
-              BLOG GRID
-             ========================================================================= */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {(activeCategory === "All" && !searchQuery
-              ? regularPosts
-              : filteredPosts
-            ).map((post) => (
-              <motion.div key={post.id} {...magicalInViewProps}>
-                <BlogCard post={post} />
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Empty State */}
-          {filteredPosts.length === 0 && (
-            <motion.div
-              className="text-center py-20"
-              {...magicalInViewProps}
-            >
-              <div className="w-20 h-20 rounded-full bg-[#c9a063]/10 flex items-center justify-center mx-auto mb-6">
-                <Search className="w-8 h-8 text-[#c9a063]" />
-              </div>
-              <h3 className="text-xl font-bold text-black font-heading mb-2">
+      {/* Blog Post Entries */}
+      <section className="py-20 sm:py-28 lg:py-36 bg-[#FAF7F2]">
+        <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
+          {filteredPosts.length > 0 ? (
+            <div className="space-y-24 sm:space-y-32 lg:space-y-40">
+              {filteredPosts.map((post, idx) => (
+                <BlogCard key={post.id} post={post} index={idx} />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-20 sm:py-28 border border-[#B9935A]/20 bg-[#F2EDE4]/60 p-8 sm:p-12">
+              <p className="font-display text-2xl sm:text-3xl text-[#1F1E1C] mb-2">
                 No Articles Found
-              </h3>
-              <p className="text-sm text-gray-600 font-light">
-                Try adjusting your search or category filter to find what you're looking for.
               </p>
-            </motion.div>
+              <p className="font-body text-sm text-[#6D675E] font-light">
+                Try adjusting your search terms or selecting another category.
+              </p>
+            </div>
           )}
         </div>
       </section>

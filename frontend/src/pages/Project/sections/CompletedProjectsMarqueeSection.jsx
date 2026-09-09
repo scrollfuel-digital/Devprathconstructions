@@ -25,7 +25,7 @@ export default function LegacySection() {
           variants={smoothEmergenceVariant(shouldReduceMotion, 0.1)}
           className="font-label-caps text-xs font-semibold text-[#785926] bg-[#B9935A]/10 px-3 py-1 rounded-full border border-[#B9935A]/30 uppercase tracking-widest inline-block"
         >
-          Building Trust &amp; Heritage
+          Building Trust & Heritage
         </motion.span>
         <motion.h2
           initial="hidden"

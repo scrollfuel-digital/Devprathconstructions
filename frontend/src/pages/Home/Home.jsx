@@ -1,57 +1,73 @@
 import React, { useState } from "react";
 import HeroSection from "./sections/HeroSection";
-import StatsBar from "../../components/common/StatsBar";
-import CompanyLegacySection from "./sections/CompanyVisionSection";
-import DevprathAdvantageSection from "./sections/CoreAdvantagesSection";
 import FeaturedProjectSection from "./sections/FeaturedResidenceSection";
-import HubOfExcellenceSection from "../../components/HubOfExcellence";
-import ClientVoicesSection from "../../components/ClientVoices";
-import ContactSection from "../../components/ContactSection";
-import ConsultationModal from "../../components/ConsultationModal";
-
+import LifestyleSection from "./sections/LifestyleSection";
+import HubOfExcellence from "../../components/HubOfExcellence";
+import { FinalContactSection } from "../../components/common/FinalContactSection";
+import DevprathAbout from "./sections/DevprathAbout";
+import CompletedProjectsSection from "./sections/CompletedProjectsSection"
+import VideoCard from "./sections/VideoCard";
 /**
- * Home Page Component
- * Feature-based architectural view assembling isolated home sections.
+ * =============================================================================
+ * PAGE MANIFEST: HOME PAGE (Home.jsx) — EDITORIAL LUXURY REDESIGN
+ * =============================================================================
+ * Route: "/"
+ * 
+ * Order of Sections:
+ * 1. HERO — Fullscreen architectural entrance with video/imagery & minimal CTA
+ * 2. BRAND / CREDIBILITY STATEMENT — Editorial typographic statistics & thin dividers
+ * 3. WHO WE ARE / DEVPRATH ETHOS — Asymmetric narrative & founder partnership
+ * 4. WHAT DEFINES DEVPRATH — Numbered architectural principles (01-04)
+ * 5. FEATURED PROJECT — MANGALMURTI RESIDENCY — Asymmetric centerpiece showcase
+ * 6. DESIGNED AROUND LIFE — Photography-led lifestyle visual storytelling
+ * 7. LOCATION & CONNECTIVITY — Editorial numbered schedule with Leaflet map
+ * 8. LEGACY ACROSS NAGPUR — Proven track record teaser of 4 landmark projects
+ * 9. FINAL CTA — Dark charcoal architectural closing ("Enquire Now")
+ * 10. MODALS — Interactive ConsultationModal
+ * =============================================================================
  */
+
 export const Home = () => {
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
 
   return (
-    <div className="bg-[#F8F5EF] text-gray-900 font-sans antialiased min-h-screen selection:bg-[#C9A063] selection:text-white">
+    <div className="bg-[#FAF7F2] text-[#1F1E1C] font-body antialiased min-h-screen selection:bg-[#B9935A] selection:text-white">
       <main className="relative">
-        {/* Full-Bleed Hero Banner */}
+
+        {/* 1. HERO */}
         <HeroSection />
 
-        {/* Metric Statistics Bar */}
-        <StatsBar isSection={true} />
+        {/* 2. BRAND / CREDIBILITY STATEMENT */}
+        <DevprathAbout />
 
-        {/* Company Legacy & Vision */}
-        <CompanyLegacySection />
+        {/* 5. FEATURED PROJECT — MANGALMURTI RESIDENCY */}
+        <FeaturedProjectSection />
 
-        {/* Core Advantages */}
-        <DevprathAdvantageSection />
+        <CompletedProjectsSection />
 
-        {/* Featured Residence Showcase */}
-        <FeaturedProjectSection onBookConsultation={() => setIsConsultationOpen(true)} />
+        {/* 6. DESIGNED AROUND LIFE / LIFESTYLE */}
+        <LifestyleSection />/
 
-        {/* Unit Floor Plans & Layout Selector */}
-        {/* <FloorPlansSection onBookConsultation={() => setIsConsultationOpen(true)} /> */}
+        {/* 7. LOCATION & CONNECTIVITY */}
+        <HubOfExcellence />
 
-        {/* Location & Connectivity Timeline (Leaflet Map) */}
-        <HubOfExcellenceSection />
+        <VideoCard/>
 
-        {/* Testimonials */}
-        <ClientVoicesSection />
+        {/* 9. FINAL CTA */}
+        {/* Home.jsx — usage */}
+        <FinalContactSection
+          eyebrow="Ready to Discover"
+          headingLead="Find your place in"
+          headingAccent="what we're building."
+          description="Whether you are looking for a new home at Mangalmurti Residency or want to plan a personal site visit, our founding partners are ready to help you."
+          buttons={[
+            { to: "/contact", label: "ENQUIRE NOW", variant: "primary" },
+            { to: "/projects", label: "EXPLORE PROJECTS", variant: "ghost" },
+          ]}
+          footer="Devprath Construction LLP · Nagpur, Maharashtra"
+        />
 
-        {/* Contact Form & Corporate HQ */}
-        {/* <ContactSection /> */}
       </main>
-
-      {/* Interactive Modals */}
-      <ConsultationModal
-        isOpen={isConsultationOpen}
-        onClose={() => setIsConsultationOpen(false)}
-      />
     </div>
   );
 };

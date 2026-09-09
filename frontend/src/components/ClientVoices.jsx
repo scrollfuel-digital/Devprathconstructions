@@ -265,3 +265,29 @@ export const ClientVoices = memo(() => {
 });
 
 export default ClientVoices;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+2. https://stitch.withgoogle.com/preview/1257975008169474696?node-id=64bb8f072edf4ec585913d2e660cac71
+5. https://stitch.withgoogle.com/preview/15438743487664372731?node-id=6abd72bcc5ad4ec2bc43b3a53a3164d5
+1. https://stitch.withgoogle.com/preview/14065720107832882504?node-id=5d06ca127e9940d4856d0091721f9ad6
+
+*/

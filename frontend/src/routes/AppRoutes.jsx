@@ -7,7 +7,7 @@ import Blog from "../pages/Blog/Blog";
 import BlogDetail from "../pages/Blog/BlogDetail";
 import Contact from "../pages/Contact/Contact";
 import Project from "../pages/Project/Project";
-import Gallery from "../pages/Gallery/Gallery";
+import CompletedProjects from "../pages/CompletedProjects/CompletedProjects";
 import { getBlogBySlug } from "../constants/blogData";
 
 /**
@@ -33,11 +33,15 @@ const AppRoutes = () => {
     <Routes>
       <Route path="/" element={<Home />} />
 
+      <Route path="/about" element={<Navigate to="/about-us" replace />} />
       <Route path="/about-us" element={<AboutUs />} />
       <Route path="/aboutus" element={<AboutUs />} />
 
       <Route path="/project" element={<Project />} />
       <Route path="/projects" element={<Project />} />
+
+      <Route path="/completed-projects" element={<CompletedProjects />} />
+      <Route path="/completed-project" element={<CompletedProjects />} />
 
       {/* Temporarily commented gallery route */}
       {/* <Route path="/gallery" element={<Gallery />} /> */}

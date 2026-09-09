@@ -15,7 +15,7 @@ export default {
         "cream": "#F8F5EF",
         "cream-light": "#FCF9F4",
         "dark-surface": "#172235",
-        "rich-black": "#F8F5EF",
+        "rich-black": "#F8F5EF", // Note: Usually rich-black is a dark hex, but leaving as you defined it
         "surface": "#FFFFFF",
         "on-surface": "#172235",
         "on-surface-variant": "#666666",
@@ -43,6 +43,16 @@ export default {
         "label-caps": ["Poppins", "sans-serif"],
         "body-lg": ["Poppins", "sans-serif"],
         "body-md": ["Poppins", "sans-serif"]
+      },
+      // MERGED KEYFRAMES AND ANIMATIONS HERE
+      keyframes: {
+        'fade-in-up': {
+          '0%': { opacity: '0', transform: 'translateY(20px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        }
+      },
+      animation: {
+        'fade-in-up': 'fade-in-up 1s ease-out forwards',
       }
     },
   },
