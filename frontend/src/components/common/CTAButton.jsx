@@ -1,10 +1,17 @@
+
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 const itemAnimation = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
+    hidden: {
+        opacity: 0,
+        y: 16,
+    },
+    visible: {
+        opacity: 1,
+        y: 0,
+    },
 };
 
 export default function CTAButton({
@@ -16,84 +23,109 @@ export default function CTAButton({
 }) {
     const content = (
         <>
+            {/* Burgundy hover background */}
             <span
                 className="
                     absolute
                     inset-0
                     z-0
-                    translate-x-1
-                    translate-y-1
-                    border
-                    border-brand-primary
-                    bg-transparent
-                    transition-colors
-                    duration-500
+                    origin-left
+                    scale-x-0
+                    bg-brand-primary
+                    transition-transform
+                    duration-700
                     ease-[cubic-bezier(0.22,1,0.36,1)]
-                    group-hover:border-brand-maroon
+                    group-hover:scale-x-100
                 "
             />
 
+            {/* Main button */}
             <span
                 className="
-                    absolute
-                    inset-0
+                    relative
                     z-10
                     flex
+                    h-full
+                    w-full
                     items-center
-                    justify-center
-                    gap-2
-                    overflow-hidden
+                    justify-between
                     border
                     border-brand-primary
-                    bg-white
-                    font-semibold
-                    tracking-[0.04em]
-                    text-brand-primary
+                    bg-brand-black1
+                    px-6
+                    transition-all
+                    duration-500
+                    ease-[cubic-bezier(0.22,1,0.36,1)]
+                    group-hover:border-brand-primary
                 "
             >
-                <span
-                    className="
-                        absolute
-                        inset-0
-                        -z-10
-                        -translate-x-full
-                        bg-brand-primary
-                        transition-transform
-                        duration-500
-                        ease-[cubic-bezier(0.22,1,0.36,1)]
-                        group-hover:translate-x-0
-                    "
-                />
-
+                {/* Label */}
                 <span
                     className="
                         relative
+                        overflow-hidden
+                        font-sans
+                        text-[13px]
+                        font-bold
+                        uppercase
+                        tracking-[0.08em]
+                        text-brand-primary
                         transition-colors
                         duration-500
-                        ease-[cubic-bezier(0.22,1,0.36,1)]
                         group-hover:text-white
                     "
                 >
                     {label}
                 </span>
 
-                <ArrowRight
+                {/* Arrow */}
+                <span
                     className="
-                        relative
-                        w-0
-                        -translate-x-2
-                        text-white
-                        opacity-0
+                        flex
+                        h-8
+                        w-8
+                        items-center
+                        justify-center
+                        overflow-hidden
+                        border
+                        border-brand-primary
                         transition-all
                         duration-500
-                        ease-[cubic-bezier(0.22,1,0.36,1)]
-                        group-hover:w-[18px]
-                        group-hover:translate-x-0
-                        group-hover:opacity-100
+                        group-hover:border-white/40
+                        group-hover:bg-white/10
                     "
-                    strokeWidth={2}
-                />
+                >
+                    <ArrowUpRight
+                        size={17}
+                        strokeWidth={1.4}
+                        className="
+                            text-brand-champagne
+                            transition-all
+                            duration-500
+                            ease-[cubic-bezier(0.22,1,0.36,1)]
+                            group-hover:translate-x-[2px]
+                            group-hover:-translate-y-[2px]
+                            group-hover:text-white
+                        "
+                    />
+                </span>
             </span>
+
+            {/* Burgundy architectural accent */}
+            <span
+                className="
+                    absolute
+                    bottom-[-5px]
+                    left-0
+                    h-[1px]
+                    w-1/2
+                    bg-brand-primary
+                    transition-all
+                    duration-700
+                    ease-[cubic-bezier(0.22,1,0.36,1)]
+                    group-hover:w-full
+                "
+            />
         </>
     );
 
@@ -101,8 +133,8 @@ export default function CTAButton({
         group
         relative
         inline-flex
-        h-[52px]
-        w-[250px]
+        h-[56px]
+        w-[230px]
         items-center
         justify-center
         overflow-visible
@@ -113,7 +145,7 @@ export default function CTAButton({
         <motion.div
             variants={itemAnimation}
             transition={{
-                duration: 2,
+                duration: 1.2,
                 ease: [0.22, 1, 0.36, 1],
             }}
         >

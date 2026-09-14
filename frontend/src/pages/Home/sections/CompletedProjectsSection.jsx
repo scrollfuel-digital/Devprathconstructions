@@ -48,11 +48,11 @@ const CompletedProjectsSection = () => {
     <section className="relative w-full overflow-hidden py-20 md:py-28">
       <ScrollReveal distance={80}>
         <div className="mx-auto max-w-3xl px-4 text-center">
-          <span className="text-xs font-semibold uppercase tracking-[0.25em] text-gold">
+          <span className="text-sm font-bold uppercase tracking-[0.25em] text-gold">
             Our Work
           </span>
-          <h2 className="cp-heading mt-3">Completed Projects</h2>
-          <p className="mx-auto mt-4 max-w-xl text-sm text-[var(--color-muted)] sm:text-base">
+          <h2 className=" !font-bold mt-3 text-2xl !sm:text-7xl">Completed Projects</h2>
+          <p className="mx-auto !font-bold max-w-5xl text-lg text-[var(--color-muted)] sm:text-base">
             A legacy built one address at a time — homes delivered with
             craftsmanship, trust, and an unwavering eye for detail.
           </p>
@@ -64,8 +64,8 @@ const CompletedProjectsSection = () => {
           <li key={`${project.id}-${i}`} className="cp-card">
             <img src={project.image} alt={project.title} className="cp-card-img" />
             <div className="cp-card-caption">
-              <h3 className="cp-card-title">{project.title}</h3>
-              <p className="mt-1 text-xs font-semibold uppercase tracking-[0.15em] text-gold sm:text-sm">
+              <h4 className="mt-1 text-sm !font-bold uppercase tracking-[0.15em] text-gold !sm:text-xs">{project.title}</h4>
+              <p className="mt-1 text-sm !font-bold uppercase tracking-[0.15em] text-gold !sm:text-xl">
                 {project.location}
               </p>
             </div>

@@ -3,10 +3,10 @@ import HeroSection from "./sections/HeroSection";
 import FeaturedProjectSection from "./sections/FeaturedResidenceSection";
 import LifestyleSection from "./sections/LifestyleSection";
 import HubOfExcellence from "../../components/HubOfExcellence";
-import { FinalContactSection } from "../../components/common/FinalContactSection";
 import DevprathAbout from "./sections/DevprathAbout";
 import CompletedProjectsSection from "./sections/CompletedProjectsSection"
 import VideoCard from "./sections/VideoCard";
+import FinalCtaSection from "./sections/FinalCtaSection";
 /**
  * =============================================================================
  * PAGE MANIFEST: HOME PAGE (Home.jsx) — EDITORIAL LUXURY REDESIGN
@@ -51,21 +51,10 @@ export const Home = () => {
         {/* 7. LOCATION & CONNECTIVITY */}
         <HubOfExcellence />
 
-        <VideoCard/>
+        <VideoCard />
 
         {/* 9. FINAL CTA */}
-        {/* Home.jsx — usage */}
-        <FinalContactSection
-          eyebrow="Ready to Discover"
-          headingLead="Find your place in"
-          headingAccent="what we're building."
-          description="Whether you are looking for a new home at Mangalmurti Residency or want to plan a personal site visit, our founding partners are ready to help you."
-          buttons={[
-            { to: "/contact", label: "ENQUIRE NOW", variant: "primary" },
-            { to: "/projects", label: "EXPLORE PROJECTS", variant: "ghost" },
-          ]}
-          footer="Devprath Construction LLP · Nagpur, Maharashtra"
-        />
+        <FinalCtaSection />
 
       </main>
     </div>
