@@ -67,15 +67,14 @@ export default function DevprathAbout() {
         {/* Heading + Description */}
         <ScrollReveal>
           <div className="max-w-3xl">
-            <h2 className="font-display text-3xl font-semibold leading-tight tracking-tight text-text-dark sm:text-4xl md:text-5xl">
+            <h2 className="mb-5">
               Welcome to
-              <br />
-              <span className="font-semibold italic text-gold">
+              <span className="block font-bold text-gold">
                 Devprath Construction LLP
               </span>
             </h2>
 
-            <p className="mx-auto mt-5 max-w-2xl font-body text-sm font-light leading-relaxed text-text-light sm:mt-6 sm:text-base">
+            <p className="lead-body mx-auto mt-5 max-w-5xl sm:text-center text-justify sm:mt-10">
               Located in central Nagpur, we combine modern architecture with everyday comfort. Our homes are carefully designed to provide a quality lifestyle. We bring together years of professional experience and a strong promise to build projects that families are truly proud to live in.
             </p>
           </div>
@@ -83,27 +82,20 @@ export default function DevprathAbout() {
 
         {/* Statistics */}
         <ScrollReveal>
-          <div className="my-10 grid w-full max-w-4xl grid-cols-2 gap-y-8 sm:my-14 lg:grid-cols-4">
+          <div className="my-5 grid w-full max-w-4xl grid-cols-2 gap-y-5 sm:my-10 lg:grid-cols-4">
             {stats.map((stat, idx) => (
               <div
                 key={stat.label}
-                className={`relative flex flex-col items-center px-3 text-center sm:px-5 ${idx !== 0 ? "lg:border-l lg:border-text-dark/15" : ""
-                  } ${idx % 2 === 1
-                    ? "border-l border-text-dark/15 lg:border-l-0"
-                    : ""
-                  }`}
+                className={`relative flex flex-col items-center px-3 text-center sm:px-5 `}
               >
                 <div className="mb-2 font-display text-3xl font-semibold leading-none tracking-tight text-text-dark sm:text-4xl lg:text-[42px]">
                   {stat.number}
                 </div>
 
-                <span className="mb-1.5 font-body text-xs font-semibold uppercase tracking-[0.18em] text-gold sm:text-sm">
+                <span className="mb-1.5 font-body text-xs font-bold uppercase tracking-[0.18em] text-gold sm:text-sm">
                   {stat.label}
                 </span>
 
-                <p className="max-w-[190px] font-body text-xs font-light leading-snug text-text-light">
-                  {stat.detail}
-                </p>
               </div>
             ))}
           </div>

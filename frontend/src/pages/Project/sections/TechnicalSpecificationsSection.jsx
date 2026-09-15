@@ -154,7 +154,7 @@ export default function TechnicalSpecificationsSection() {
               Engineering Rigor
             </span>
             <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl font-normal text-[#1F1E1C] tracking-tight leading-tight">
-              Technical <span className="italic font-light text-[#8F6E3B]">Specifications.</span>
+              Technical <span className="font-bold text-brand-primary">Specifications.</span>
             </h2>
           </div>
           <div className="text-left md:text-right">

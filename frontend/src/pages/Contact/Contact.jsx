@@ -38,13 +38,13 @@ export default function Contact() {
       <section className="pt-36 sm:pt-44 pb-14 sm:pb-20 border-b border-[#B9935A]/20 bg-[#FAF7F2]">
         <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
           <div className="max-w-3xl mx-auto text-center">
-            <span className="font-body text-[11px] sm:text-xs font-semibold uppercase tracking-[0.3em] text-[#B9935A] block mb-4">
+            <span className="arch-eyebrow text-center mb-4">
               Contact Devprath
             </span>
-            <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-normal text-[#1F1E1C] tracking-tight leading-[1.08] mb-6">
-              We Build <span className="italic font-light text-[#8F6E3B]">For You.</span>
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl tracking-tight leading-[1.08] mb-6">
+              We Build <span className="font-bold text-brand-primary">For You.</span>
             </h1>
-            <p className="font-body text-base sm:text-lg text-[#6D675E] font-light leading-relaxed">
+            <p className="text-base sm:text-lg text-muted font-light leading-relaxed">
               Whether you are exploring residential properties at Mangalmurti Residency or planning a private site consultation, our leadership and sales team are here to guide you.
             </p>
           </div>
@@ -112,7 +112,7 @@ export default function Contact() {
                   Social Channels
                 </span>
                 <p className="font-body text-xs sm:text-sm text-[#6D675E] font-light leading-relaxed mb-5">
-                   Follow Devprath Constructions on social media for regular construction updates and project milestones.
+                   Follow Devprath Constructions on social media for regular construction updates.
                 </p>
                 <SocialConnectBar
                   containerClassName="flex items-center justify-between w-full pt-1"
@@ -124,108 +124,7 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* SECTION 3 — EXPERIENCE CENTERS (NAGPUR) */}
-      <section className="py-12 sm:py-16 border-t border-[#B9935A]/20 bg-[#F2EDE4]/40">
-        <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
-          {/* Section Header */}
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 sm:mb-8 border-b border-[#B9935A]/25 pb-4 sm:pb-6">
-            <div>
-              <span className="font-body text-[11px] sm:text-xs font-semibold uppercase tracking-[0.25em] text-[#B9935A] block mb-1.5">
-                Experience Centers
-              </span>
-              <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-normal text-[#1F1E1C] tracking-tight">
-                Nagpur
-              </h2>
-            </div>
-            <p className="font-body text-xs sm:text-sm text-[#6D675E] font-light max-w-sm leading-relaxed">
-              Visit our landmark offices in Nagpur for confidential consultations, masterplans, and architectural dossiers.
-            </p>
-          </div>
-
-          {/* Two Responsive Editorial Columns */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-14">
-            {/* Office 01: Operations Office */}
-            <div className="border-t border-[#B9935A]/30 pt-4 sm:pt-5">
-              <span className="font-display text-sm font-light text-[#B9935A] uppercase tracking-widest block mb-2">
-                Location 01
-              </span>
-              <h3 className="font-display text-2xl sm:text-3xl font-normal text-[#1F1E1C] mb-2">
-                {OFFICES.operations.label}
-              </h3>
-              <p className="font-body text-xs sm:text-sm text-[#6D675E] font-light leading-relaxed mb-4">
-                {OFFICES.operations.address}
-              </p>
-
-              <div className="space-y-2.5 font-body text-xs sm:text-sm text-[#1F1E1C] pt-3.5 border-t border-[#1F1E1C]/10">
-                <div className="flex items-start gap-2.5">
-                  <Phone className="w-4 h-4 text-[#B9935A] shrink-0 mt-0.5" />
-                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-                    {OFFICES.operations.phoneNumbers.map((phone) => (
-                      <a
-                        key={phone}
-                        href={`tel:${phone.replace(/\s+/g, "")}`}
-                        className="hover:text-[#B9935A] transition-colors"
-                      >
-                        {phone}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-                <div className="flex items-center gap-2.5">
-                  <Mail className="w-4 h-4 text-[#B9935A] shrink-0" />
-                  <a
-                    href={`mailto:${OFFICES.operations.email}`}
-                    className="hover:text-[#B9935A] transition-colors"
-                  >
-                    {OFFICES.operations.email}
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Office 02: Registered Office */}
-            <div className="border-t border-[#B9935A]/30 pt-4 sm:pt-5">
-              <span className="font-display text-sm font-light text-[#B9935A] uppercase tracking-widest block mb-2">
-                Location 02
-              </span>
-              <h3 className="font-display text-2xl sm:text-3xl font-normal text-[#1F1E1C] mb-2">
-                {OFFICES.registered.label}
-              </h3>
-              <p className="font-body text-xs sm:text-sm text-[#6D675E] font-light leading-relaxed mb-4">
-                {OFFICES.registered.address}
-              </p>
-
-              <div className="space-y-2.5 font-body text-xs sm:text-sm text-[#1F1E1C] pt-3.5 border-t border-[#1F1E1C]/10">
-                <div className="flex items-start gap-2.5">
-                  <Phone className="w-4 h-4 text-[#B9935A] shrink-0 mt-0.5" />
-                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-                    {OFFICES.registered.phoneNumbers.map((phone) => (
-                      <a
-                        key={phone}
-                        href={`tel:${phone.replace(/\s+/g, "")}`}
-                        className="hover:text-[#B9935A] transition-colors"
-                      >
-                        {phone}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-                <div className="flex items-center gap-2.5">
-                  <Mail className="w-4 h-4 text-[#B9935A] shrink-0" />
-                  <a
-                    href={`mailto:${OFFICES.registered.email}`}
-                    className="hover:text-[#B9935A] transition-colors"
-                  >
-                    {OFFICES.registered.email}
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 4 — INTERACTIVE ARCHITECTURAL MAP */}
+      {/* SECTION 3 — INTERACTIVE ARCHITECTURAL MAP */}
       <section id="contact-map" className="py-16 sm:py-24 border-t border-[#B9935A]/20 bg-[#FAF7F2]">
         <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
           <ContactMap />

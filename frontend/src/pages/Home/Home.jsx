@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import HeroSection from "./sections/HeroSection";
 import FeaturedProjectSection from "./sections/FeaturedResidenceSection";
-import LifestyleSection from "./sections/LifestyleSection";
 import HubOfExcellence from "../../components/HubOfExcellence";
-import { FinalContactSection } from "../../components/common/FinalContactSection";
 import DevprathAbout from "./sections/DevprathAbout";
 import CompletedProjectsSection from "./sections/CompletedProjectsSection"
 import VideoCard from "./sections/VideoCard";
+import FinalCtaSection from "./sections/FinalCtaSection";
 /**
  * =============================================================================
  * PAGE MANIFEST: HOME PAGE (Home.jsx) — EDITORIAL LUXURY REDESIGN
@@ -19,11 +18,10 @@ import VideoCard from "./sections/VideoCard";
  * 3. WHO WE ARE / DEVPRATH ETHOS — Asymmetric narrative & founder partnership
  * 4. WHAT DEFINES DEVPRATH — Numbered architectural principles (01-04)
  * 5. FEATURED PROJECT — MANGALMURTI RESIDENCY — Asymmetric centerpiece showcase
- * 6. DESIGNED AROUND LIFE — Photography-led lifestyle visual storytelling
- * 7. LOCATION & CONNECTIVITY — Editorial numbered schedule with Leaflet map
- * 8. LEGACY ACROSS NAGPUR — Proven track record teaser of 4 landmark projects
- * 9. FINAL CTA — Dark charcoal architectural closing ("Enquire Now")
- * 10. MODALS — Interactive ConsultationModal
+ * 6. LOCATION & CONNECTIVITY — Editorial numbered schedule with Leaflet map
+ * 7. LEGACY ACROSS NAGPUR — Proven track record teaser of 4 landmark projects
+ * 8. FINAL CTA — Dark charcoal architectural closing ("Enquire Now")
+ * 9. MODALS — Interactive ConsultationModal
  * =============================================================================
  */
 
@@ -45,27 +43,13 @@ export const Home = () => {
 
         <CompletedProjectsSection />
 
-        {/* 6. DESIGNED AROUND LIFE / LIFESTYLE */}
-        <LifestyleSection />/
-
-        {/* 7. LOCATION & CONNECTIVITY */}
+        {/* 6. LOCATION & CONNECTIVITY */}
         <HubOfExcellence />
 
-        <VideoCard/>
+        <VideoCard />
 
         {/* 9. FINAL CTA */}
-        {/* Home.jsx — usage */}
-        <FinalContactSection
-          eyebrow="Ready to Discover"
-          headingLead="Find your place in"
-          headingAccent="what we're building."
-          description="Whether you are looking for a new home at Mangalmurti Residency or want to plan a personal site visit, our founding partners are ready to help you."
-          buttons={[
-            { to: "/contact", label: "ENQUIRE NOW", variant: "primary" },
-            { to: "/projects", label: "EXPLORE PROJECTS", variant: "ghost" },
-          ]}
-          footer="Devprath Construction LLP · Nagpur, Maharashtra"
-        />
+        <FinalCtaSection />
 
       </main>
     </div>

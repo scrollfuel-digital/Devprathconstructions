@@ -44,9 +44,8 @@ function VideoCard({ src, label }) {
         type="button"
         onClick={togglePlay}
         aria-label={playing ? `Pause ${label}` : `Play ${label}`}
-        className={`absolute inset-0 flex items-center justify-center bg-text-dark/10 transition-opacity duration-300 ${
-          playing ? "opacity-0 group-hover:opacity-100" : "opacity-100"
-        }`}
+        className={`absolute inset-0 flex items-center justify-center bg-text-dark/10 transition-opacity duration-300 ${playing ? "opacity-0 group-hover:opacity-100" : "opacity-100"
+          }`}
       >
         <span className="flex h-14 w-14 items-center justify-center rounded-full border border-white/80 text-white sm:h-16 sm:w-16">
           {playing ? (
@@ -94,11 +93,11 @@ export default function DiscoverLifeSection() {
 
       <div className="relative z-10 mx-auto max-w-6xl">
         <ScrollReveal>
-          <h2 className="mx-auto max-w-2xl text-center font-display text-3xl font-semibold leading-tight tracking-tight text-text-dark sm:text-4xl md:text-5xl">
-            Discover Life at
+          <h2 className="mx-auto max-w-3xl text-center font-display text-5xl !font-bold leading-tight tracking-tight text-text-dark sm:text-6xl md:text-8xl">
+            Built on Trust.
             <br />
-            <span className="font-semibold italic text-gold">
-              Mangalmurti Residency
+            <span className="font-bold text-brand-primary">
+              Remembered for Life.
             </span>
           </h2>
         </ScrollReveal>
@@ -121,9 +120,8 @@ export default function DiscoverLifeSection() {
                 type="button"
                 aria-label={`Show ${item.label}`}
                 onClick={() => scrollToVideo(index)}
-                className={`h-1.5 rounded-full transition-all ${
-                  index === activeIndex ? "w-5 bg-gold" : "w-1.5 bg-gold/30"
-                }`}
+                className={`h-1.5 rounded-full transition-all ${index === activeIndex ? "w-5 bg-gold" : "w-1.5 bg-gold/30"
+                  }`}
               />
             ))}
           </div>

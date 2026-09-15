@@ -46,19 +46,19 @@ export const HeroSection = () => {
           className="font-display font-serif tracking-tight leading-none"
           style={{
             fontSize: "clamp(1rem, 3.8vw, 2rem)",
-            textShadow: "0 1px 2px rgba(0,0,0,0.55), 0 0 1px rgba(0,0,0,0.4)",
+            // textShadow: "0 1px 2px rgba(0,0,0,0.55), 0 0 1px rgba(0,0,0,0.4)",
           }}
         >
-          <div className="inline-block overflow-hidden whitespace-nowrap text-[#D1B481] hero-showup">
-            <span className="inline-block italic font-black tracking-wide">
+          <div className="inline-block overflow-hidden  text-white hero-showup">
+            <h1 className="inline-block italic font-black tracking-wide">
               Thoughtfully Planned Residences.
-            </span>
+            </h1>
           </div>
           <br />
-          <div className="inline-block overflow-hidden whitespace-nowrap text-[#D1B481] hero-reveal">
-            <span className="inline-block italic font-black hero-slidein tracking-wide">
+          <div className="inline-block overflow-hidden text-white hero-reveal">
+            <h1 className="inline-block italic font-black hero-slidein tracking-wide">
               Crafted for Modern Living.
-            </span>
+            </h1>
           </div>
         </h1>
       </div>

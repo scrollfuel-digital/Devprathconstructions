@@ -76,12 +76,12 @@ export default function CompletedProjects() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="max-w-3xl"
           >
-            <span className="font-body text-[11px] sm:text-xs font-semibold uppercase tracking-[0.3em] text-[#B9935A] block mb-4 sm:mb-5">
+            <span className="arch-eyebrow mb-4 sm:mb-5">
               OUR LEGACY
             </span>
 
-            <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-normal text-[#FAF7F2] tracking-tight leading-[1.08]">
-              Completed <span className="italic font-light text-[#D1B481]">Projects.</span>
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl text-[#FAF7F2] tracking-tight leading-[1.08]">
+              Completed <span className="font-bold text-[#D1B481]">Projects.</span>
             </h1>
 
             {/* Mobile-only social icons anchored cleanly under title */}
@@ -169,7 +169,7 @@ export default function CompletedProjects() {
                       </span>
 
                       {/* Confirmed Project Title */}
-                      <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-normal text-[#1F1E1C] tracking-tight leading-tight">
+                      <h2 className="text-3xl sm:text-4xl lg:text-5xl tracking-tight leading-tight">
                         {project.title}
                       </h2>
 
@@ -234,7 +234,7 @@ export default function CompletedProjects() {
           </span>
 
           <h3 className="font-display text-3xl sm:text-5xl lg:text-6xl font-normal text-[#1F1E1C] tracking-tight mb-8">
-            Looking for Your <span className="italic font-light text-[#8F6E3B]">Dream Home?</span>
+            Looking for Your <span className="font-bold text-brand-primary">Dream Home?</span>
           </h3>
 
           <div className="inline-block">

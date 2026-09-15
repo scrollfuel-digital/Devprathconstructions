@@ -201,18 +201,18 @@ export const HubOfExcellence = () => {
         {/* Section Header */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16 sm:mb-20">
           <div>
-            <span className="font-body text-[11px] sm:text-xs font-semibold uppercase tracking-[0.25em] text-[#B9935A] block mb-3">
+            <span className="arch-eyebrow mb-3">
               Connectivity
             </span>
-            <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl font-normal text-[#1F1E1C] tracking-tight leading-tight">
-              Where Life <span className="italic font-light text-[#8F6E3B]">Connects.</span>
+            <h2 className="text-4xl sm:text-6xl lg:text-7xl text-[#1F1E1C] tracking-tight leading-tight">
+              Where Life <span className="font-bold text-[#8F6E3B]">Connects</span>
             </h2>
           </div>
           <div className="text-left lg:text-right">
             <span className="font-body text-xs sm:text-sm text-[#1F1E1C] font-semibold tracking-wider uppercase block">
-              Parsodi · Wardha Road · Nagpur
+              Parsodi,Wardha Road,Nagpur
             </span>
-            <span className="text-xs text-[#6D675E] font-light block mt-1">
+            <span className="text-xs text-black/60 font-bold block mt-1">
               Adjacent to MIHAN SEZ &amp; Metro Corridor
             </span>
           </div>
@@ -221,10 +221,6 @@ export const HubOfExcellence = () => {
         {/* Two-Column Interactive Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
           
-          {/* =====================================================================
-              LEFT COLUMN: INTERACTIVE CONNECTIVITY LIST
-              Ultra-thin 1px borders in --accent-gold-matte, no bulky boxes
-              ===================================================================== */}
           <div className="lg:col-span-6 space-y-1">
             <div className="border-t border-[#B9935A]/25">
               {LOCATIONS_DATA.map((item, idx) => {
@@ -240,21 +236,21 @@ export const HubOfExcellence = () => {
                     } py-4 sm:py-5 flex items-center justify-between cursor-pointer`}
                   >
                     <div className="flex items-baseline gap-4 sm:gap-6 min-w-0 pr-4">
-                      <span className="connectivity-num font-display text-lg sm:text-xl font-light text-[#B9935A] shrink-0 transition-colors">
+                      <span className="connectivity-num font-display text-lg sm:text-2xl font-bold text-brand-primary shrink-0 transition-colors">
                         {num}
                       </span>
                       <div className="min-w-0 truncate">
-                        <span className="connectivity-title font-body text-sm sm:text-base font-medium uppercase tracking-[0.1em] block truncate text-[#1F1E1C] transition-colors">
+                        <span className="connectivity-title font-body text-sm sm:text-base font-bold   uppercase tracking-[0.1em] block truncate text-[#1F1E1C] transition-colors">
                           {item.title}
                         </span>
-                        <span className="text-[11px] text-[#6D675E] font-light block mt-0.5">
+                        <span className="text-[11px] text-black/45 font-bold block mt-0.5">
                           {item.category}
                         </span>
                       </div>
                     </div>
 
                     <div className="shrink-0 text-right">
-                      <span className="font-display text-base sm:text-lg font-normal tracking-wider text-[#8F6E3B]">
+                      <span className="font-display text-base sm:text-lg font-bold tracking-wider text-brand-primary">
                         {isActive ? routeMeta.duration : "VIEW ROUTE"}
                       </span>
                     </div>
@@ -365,7 +361,7 @@ export const HubOfExcellence = () => {
 
               {/* Status Overlay Info Pill */}
               <div className="absolute top-4 left-4 bg-[#FAF7F2]/95 backdrop-blur-md px-4 py-2.5 text-[#1F1E1C] border-l-2 border-[#B9935A] shadow-sm pointer-events-none z-[500]">
-                <span className="text-[9px] uppercase tracking-[0.2em] text-[#B9935A] font-semibold block">
+                <span className="text-[9px] uppercase tracking-[0.2em] text-brand-maroon font-bold block">
                   Driving Route · Wardha Road
                 </span>
                 <span className="text-xs font-medium text-[#1F1E1C]">

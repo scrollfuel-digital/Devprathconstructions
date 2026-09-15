@@ -27,19 +27,19 @@ export const FeaturedProjectSection = () => {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16 border-b border-[#1F1E1C]/15 pb-8">
           <div>
-            <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.25em] text-[#B9935A] block mb-2">
+            <span className="arch-eyebrow mb-2">
               Featured Development
             </span>
-            <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl font-normal text-[#1F1E1C] tracking-tight leading-tight">
-              Mangalmurti <span className="italic font-light text-[#8F6E3B]">Residency.</span>
+            <h2 className="text-4xl sm:text-6xl lg:text-7xl">
+              Mangalmurti <span className="font-bold text-brand-maroon">Residency</span>
             </h2>
           </div>
           <div className="text-left md:text-right">
-            <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-[#6D675E] block">
+            <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-gold block">
               RERA P50500045698
             </span>
-            <span className="font-body text-xs sm:text-sm text-[#1F1E1C] font-medium block mt-1">
-              PARSODI · WARDHA ROAD · NAGPUR
+            <span className="font-body text-xs sm:text-sm text-black font-medium block mt-1">
+              PARSODI,WARDHA ROAD,NAGPUR
             </span>
           </div>
         </div>
@@ -76,7 +76,7 @@ export const FeaturedProjectSection = () => {
               {/* <h3 className="font-display text-2xl sm:text-3xl font-normal text-[#1F1E1C]">
                 Where residential comfort meets commercial opportunity.
               </h3> */}
-              <p className="font-body text-sm sm:text-base text-[#6D675E] font-light leading-relaxed">
+              <p className="font-body text-sm text-justify text-[#6D675E] font-light leading-relaxed">
                 Mangalmurti Residency is a premium residential project by Devprath Constructions LLP offering thoughtfully designed homes for modern families. Crafted with contemporary architecture and efficient layouts, every apartment provides spacious living areas, excellent natural light, ventilation, and premium finishes.
               </p>
             </motion.div>
@@ -112,13 +112,13 @@ export const FeaturedProjectSection = () => {
             </div>
 
             {/* Editorial Metadata List */}
-            <div className="space-y-2.5 pt-2 border-t border-[#1F1E1C]/15">
+            <div className="space-y-2.5 pt-2 border-t border-black/15">
               {projectSpecs.map((spec, sIdx) => (
                 <div key={sIdx} className="flex justify-between items-baseline text-xs">
-                  <span className="font-semibold uppercase tracking-[0.15em] text-[#8F6E3B]">
+                  <span className="font-bold uppercase tracking-[0.15em] text-brand-maroon">
                     {spec.label}
                   </span>
-                  <span className="text-[#1F1E1C] font-light text-right">
+                  <span className="text-black/50 font-bold text-right">
                     {spec.value}
                   </span>
                 </div>
@@ -126,8 +126,8 @@ export const FeaturedProjectSection = () => {
             </div>
 
             {/* Secondary Ghost Button */}
-            <div className="pt-2">
-              <CTAButton to="/projects" label="EXPLORE PROJECT" />
+            <div className="pt-2 flex  justify-center">
+              <CTAButton to="/projects" label="EXPLORE PROJECT" className="text-nowrap"/>
             </div>
 
           </div>

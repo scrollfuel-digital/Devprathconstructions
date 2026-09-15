@@ -34,16 +34,16 @@ function VisionaryCard({ leader, motionProps }) {
                     loading="lazy"
                 />
                 <div>
-                    <h3 className="font-display text-2xl sm:text-3xl font-normal text-[#1F1E1C] tracking-tight mb-1">
+                    <h3 className="text-2xl sm:text-3xl tracking-tight mb-1">
                         {leader.name}
                     </h3>
-                    <p className="font-body text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-[#B9935A]">
+                    <span className="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-gold block mb-1">
                         {leader.role}
-                    </p>
+                    </span>
                 </div>
             </div>
 
-            <p className="font-body text-sm sm:text-base text-[#6D675E] font-light leading-relaxed mb-6">
+            <p className="text-sm sm:text-base text-muted font-light leading-relaxed mb-6">
                 {leader.bio}
             </p>
 
@@ -71,10 +71,10 @@ export default function VisionarySection() {
             <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
                 <motion.h2
                     {...motionProps}
-                    className="font-display text-3xl sm:text-5xl lg:text-6xl font-normal tracking-[0.1em] uppercase text-center mb-16 sm:mb-20"
+                    className="text-3xl sm:text-5xl lg:text-6xl tracking-[0.1em] uppercase text-center mb-16 sm:mb-20"
                 >
-                    <span className="text-[#B9935A]">Our</span>{" "}
-                    <span className="text-[#1F1E1C]">Visionaries</span>
+                    <span className="font-bold text-gold">Our</span>{" "}
+                    <span>Visionaries</span>
                 </motion.h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24">

@@ -53,13 +53,13 @@ export default function FloorPlanExplorerSection() {
           {/* Editorial Opener Block with Balanced Vertical Rhythm */}
           <ScrollReveal>
             <div className="max-w-3xl">
-              <span className="font-body text-[11px] sm:text-xs font-semibold uppercase tracking-[0.3em] text-[#B9935A] block mb-3 sm:mb-4">
+              <span className="arch-eyebrow mb-3 sm:mb-4">
                 Carefully Planned Micro-Township
               </span>
-              <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl font-normal text-[#1F1E1C] tracking-tight leading-[1.08] mb-5 sm:mb-6">
-                Phases &amp; <span className="italic font-light text-[#8F6E3B]">Living Spaces.</span>
+              <h2 className="text-4xl sm:text-6xl lg:text-7xl tracking-tight leading-[1.08] mb-5 sm:mb-6">
+                Phases &amp; <span className="font-bold text-brand-primary">Living Spaces.</span>
               </h2>
-              <p className="font-body text-base sm:text-lg text-[#6D675E] font-light leading-relaxed">
+              <p className="text-base sm:text-lg text-muted font-light leading-relaxed">
                 {PROJECT_OVERVIEW.description}
               </p>
             </div>
@@ -131,11 +131,6 @@ export default function FloorPlanExplorerSection() {
                       className="revealing-image w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.03]"
                       loading="lazy"
                     />
-                    {/* <div className="absolute top-4 left-4 bg-[#1F1E1C]/85 backdrop-blur-md px-3.5 py-1.5 border border-[#B9935A]/40 text-[#FAF7F2]">
-                      <span className="font-body text-[10px] uppercase tracking-[0.2em] font-semibold text-[#D1B481]">
-                        Architectural Rendering
-                      </span>
-                    </div> */}
                   </div>
 
                   {/* Action CTA Buttons directly below the image */}
@@ -155,29 +150,9 @@ export default function FloorPlanExplorerSection() {
                 </div>
               </div>
 
-              {/* Right Column: Verified Metrics, Highlights & Infrastructure Notes (Text Content with ScrollReveal) */}
+              {/* Right Column: Highlights & Infrastructure Notes (Text Content with ScrollReveal) */}
               <div className="lg:col-span-6 flex flex-col justify-between h-full">
                 <div>
-                  {/* Verified Metric Callout */}
-                  <ScrollReveal>
-                    <div className="mb-6 pb-6 border-b border-[#1F1E1C]/15">
-                      <span className="font-body text-[10px] sm:text-xs uppercase tracking-[0.25em] text-[#6D675E] block mb-2 font-semibold">
-                        Verified Phase Scope
-                      </span>
-                      <div className="flex items-baseline gap-4">
-                        <span className="font-display text-5xl sm:text-6xl lg:text-7xl font-normal text-[#1F1E1C] leading-none">
-                          {activePhase.stat}
-                        </span>
-                        <span className="font-display text-xl sm:text-2xl text-[#8F6E3B] font-light">
-                          {activePhase.statLabel}
-                        </span>
-                      </div>
-                      <p className="font-body text-xs text-[#6D675E] mt-2">
-                        Typology: <span className="text-[#1F1E1C] font-semibold">{activePhase.subtitleTag}</span>
-                      </p>
-                    </div>
-                  </ScrollReveal>
-
                   {/* Title & Description */}
                   <ScrollReveal>
                     <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-normal text-[#1F1E1C] leading-snug mb-3">
@@ -208,10 +183,10 @@ export default function FloorPlanExplorerSection() {
                   {/* Infrastructure / Quality Assurance Note Box */}
                   <ScrollReveal>
                     <div className="p-4 bg-[#F2EDE4] border border-[#B9935A]/25 mb-6">
-                      <span className="font-body text-[10px] uppercase tracking-[0.2em] text-[#8F6E3B] font-semibold block mb-1">
+                      <span className="font-body text-xs uppercase tracking-[0.2em] text-[#8F6E3B] font-semibold block mb-1">
                         Quality Assurance
                       </span>
-                      <p className="font-body text-xs text-[#1F1E1C] font-light leading-relaxed">
+                      <p className="font-body text-xs sm:text-sm text-[#1F1E1C] font-light leading-relaxed">
                         MahaRERA Approved Project · Continuous Quality Checks. For certified floor plans and exact unit sizes, please ask for the official MahaRERA documents.
                       </p>
                     </div>

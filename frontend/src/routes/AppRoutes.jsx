@@ -10,11 +10,6 @@ import Project from "../pages/Project/Project";
 import CompletedProjects from "../pages/CompletedProjects/CompletedProjects";
 import { getBlogBySlug } from "../constants/blogData";
 
-/**
- * RootSlugResolver Component
- * Resolves root-level URLs like /the-impact-of-nagpur-metro-on-real-estate-prices
- * If the slug matches a blog article, renders BlogDetail; otherwise redirects to home.
- */
 function RootSlugResolver() {
   const { slug } = useParams();
   const blog = getBlogBySlug(slug);

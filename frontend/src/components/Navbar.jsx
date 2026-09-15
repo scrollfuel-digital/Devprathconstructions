@@ -79,8 +79,8 @@ export default function Navbar() {
                 to={item.path}
                 onClick={() => setMobileMenuOpen(false)}
                 className={`border-b border-text-dark/10 py-4 font-body text-xs uppercase tracking-[0.2em] transition-colors ${isLinkActive(item.path)
-                    ? "font-semibold text-gold"
-                    : "text-text-dark hover:text-gold"
+                  ? "font-semibold text-gold"
+                  : "text-text-dark hover:text-gold"
                   }`}
               >
                 {item.title}
@@ -105,8 +105,8 @@ function NavItem({ item, isActive }) {
       <Link
         to={item.path}
         className={`relative pb-1 font-body text-xs font-medium uppercase tracking-[0.2em] transition-colors after:absolute after:bottom-0 after:left-0 after:h-px after:bg-gold after:content-[''] after:transition-all after:duration-300 ${isActive
-            ? "font-semibold text-gold after:w-full"
-            : "text-text-dark hover:text-gold after:w-0 hover:after:w-full"
+          ? "font-semibold text-gold after:w-full"
+          : "text-text-dark hover:text-gold after:w-0 hover:after:w-full"
           }`}
       >
         {item.title}
