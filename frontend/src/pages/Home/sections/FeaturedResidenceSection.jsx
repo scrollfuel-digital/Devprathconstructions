@@ -21,11 +21,11 @@ export const FeaturedProjectSection = () => {
   ];
 
   return (
-    <section id="projects" className="pt-12 pb-24 sm:pt-16 sm:pb-32 bg-[#F2EDE4] text-[#1F1E1C] border-t border-[#B9935A]/20">
+    <section id="projects" className="pt-12 pb-10 sm:pt-16  !bg-cream !text-black ">
       <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
 
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16 border-b border-[#1F1E1C]/15 pb-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16 border-b border-black/15 pb-8">
           <div>
             <span className="text-[11px] sm:text-xs font-bold uppercase tracking-[0.25em] text-brand-primary block mb-2">
               Featured Development
@@ -45,7 +45,7 @@ export const FeaturedProjectSection = () => {
         </div>
 
         {/* Asymmetric Composition */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
 
           {/* Large Cinematic Hero Elevation (7 cols) */}
           <div className="lg:col-span-7 relative group overflow-clip">
@@ -53,7 +53,7 @@ export const FeaturedProjectSection = () => {
               <img
                 src={mangalmurtiElevation}
                 alt="Mangalmurti Residency Exterior Elevation"
-                className="revealing-image w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                className=" w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.02]"
               />
             </div>
             <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 bg-[#FAF7F2]/95 backdrop-blur-md px-4 py-2 text-[#1F1E1C] border-l-2 border-[#B9935A]">
@@ -76,7 +76,7 @@ export const FeaturedProjectSection = () => {
               {/* <h3 className="font-display text-2xl sm:text-3xl font-normal text-[#1F1E1C]">
                 Where residential comfort meets commercial opportunity.
               </h3> */}
-              <p className="font-body text-sm text-justify text-[#6D675E] font-light leading-relaxed">
+              <p className="font-body text-sm text-justify !text-text-light !font-semibold leading-relaxed">
                 Mangalmurti Residency is a premium residential project by Devprath Constructions LLP offering thoughtfully designed homes for modern families. Crafted with contemporary architecture and efficient layouts, every apartment provides spacious living areas, excellent natural light, ventilation, and premium finishes.
               </p>
             </motion.div>
