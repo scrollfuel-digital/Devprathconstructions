@@ -72,8 +72,8 @@ public class SecurityConfig {
         configuration.setAllowedOriginPatterns(List.of(
                 "http://localhost:5173",
                 "http://127.0.0.1:5500",
-                "https://devprathconstructions.vercel.app",
-                "https://*.vercel.app"
+                "https://devprathconstructions.vercel.app"
+                // "https://*.vercel.app"
         ));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
@@ -98,8 +98,8 @@ public class SecurityConfig {
                         .securityContextRepository(securityContextRepository())
                 )
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/contact/create-contact", "/api/auth/login").permitAll()
-                        .requestMatchers("/api/contact/**").hasRole("ADMIN")
+                        .requestMatchers("/api/contact/create-contact", "/api/auth/login","/api/blogs/fetch-all-blogs").permitAll()
+                        .requestMatchers("/api/auth/logout","/api/contact/**","/api/blogs/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .exceptionHandling(ex -> ex

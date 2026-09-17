@@ -67,14 +67,12 @@ export default function DevprathAbout() {
         {/* Heading + Description */}
         <ScrollReveal>
           <div className="max-w-3xl">
-            <h1 className="mb-5">
+            <h2 className="mb-5">
               Welcome to
-              <br />
-              <h2 className="!font-bold !text-gold">
+              <span className="block font-bold text-gold">
                 Devprath Construction LLP
-              </h2>
-            </h1>
-
+              </span>
+            </h2>
             <p className="mx-auto mt-5 max-w-7xl font-sans text-sm sm:text-justify text-justify !font-bold leading-relaxed text-text-light sm:mt-10 ">
               Located in central Nagpur, we combine modern architecture with everyday comfort. Our homes are carefully designed to provide a quality lifestyle. We bring together years of professional experience and a strong promise to build projects that families are truly proud to live in.
             </p>

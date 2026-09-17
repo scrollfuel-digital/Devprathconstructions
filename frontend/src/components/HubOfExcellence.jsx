@@ -201,7 +201,7 @@ export const HubOfExcellence = () => {
         {/* Section Header */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16 sm:mb-20">
           <div>
-            <span className="font-body text-[11px] sm:text-xs !font-bold uppercase tracking-[0.25em] text-[#B9935A] block mb-3">
+            <span className="arch-eyebrow mb-3">
               Connectivity
             </span>
             <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl !font-bold text-black tracking-tight leading-tight">

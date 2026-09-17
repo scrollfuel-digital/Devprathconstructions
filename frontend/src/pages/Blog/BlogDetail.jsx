@@ -104,7 +104,7 @@ export default function BlogDetail() {
             )}
           </div>
 
-          <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-normal text-[#1F1E1C] tracking-tight leading-tight mb-8">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl tracking-tight leading-tight mb-8">
             {blog.title}
           </h1>
 
@@ -121,7 +121,7 @@ export default function BlogDetail() {
               if (sec.type === "heading") {
                 return (
                   <div key={idx} className="pt-6">
-                    <h2 className="font-display text-2xl sm:text-3xl font-normal text-[#1F1E1C] mb-3 flex items-center gap-3">
+                    <h2 className="text-2xl sm:text-3xl mb-3 flex items-center gap-3">
                       <span className="w-1.5 h-6 bg-[#B9935A] inline-block" />
                       {sec.title}
                     </h2>
@@ -143,7 +143,7 @@ export default function BlogDetail() {
               if (sec.type === "headingWithPoints") {
                 return (
                   <div key={idx} className="pt-6 space-y-4">
-                    {sec.title && <h2 className="font-display text-2xl sm:text-3xl font-normal text-[#1F1E1C]">{sec.title}</h2>}
+                    {sec.title && <h2 className="text-2xl sm:text-3xl">{sec.title}</h2>}
                     {sec.intro && <p className="text-[#1F1E1C]/80 leading-relaxed font-light">{sec.intro}</p>}
                     {sec.points && (
                       <ul className="space-y-3 pt-2">
@@ -219,7 +219,7 @@ export default function BlogDetail() {
                   Continue Reading
                 </span>
                 <h2 className="font-display text-3xl sm:text-4xl font-normal text-[#1F1E1C]">
-                  Read Our Next <span className="italic font-light text-[#8F6E3B]">Articles.</span>
+                  Read Our Next <span className="font-bold text-brand-primary">Articles.</span>
                 </h2>
               </div>
 

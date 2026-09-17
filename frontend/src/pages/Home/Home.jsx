@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import HeroSection from "./sections/HeroSection";
 import FeaturedProjectSection from "./sections/FeaturedResidenceSection";
-import LifestyleSection from "./sections/LifestyleSection";
 import HubOfExcellence from "../../components/HubOfExcellence";
 import DevprathAbout from "./sections/DevprathAbout";
 import CompletedProjectsSection from "./sections/CompletedProjectsSection"
@@ -19,11 +18,10 @@ import FinalCtaSection from "./sections/FinalCtaSection";
  * 3. WHO WE ARE / DEVPRATH ETHOS — Asymmetric narrative & founder partnership
  * 4. WHAT DEFINES DEVPRATH — Numbered architectural principles (01-04)
  * 5. FEATURED PROJECT — MANGALMURTI RESIDENCY — Asymmetric centerpiece showcase
- * 6. DESIGNED AROUND LIFE — Photography-led lifestyle visual storytelling
- * 7. LOCATION & CONNECTIVITY — Editorial numbered schedule with Leaflet map
- * 8. LEGACY ACROSS NAGPUR — Proven track record teaser of 4 landmark projects
- * 9. FINAL CTA — Dark charcoal architectural closing ("Enquire Now")
- * 10. MODALS — Interactive ConsultationModal
+ * 6. LOCATION & CONNECTIVITY — Editorial numbered schedule with Leaflet map
+ * 7. LEGACY ACROSS NAGPUR — Proven track record teaser of 4 landmark projects
+ * 8. FINAL CTA — Dark charcoal architectural closing ("Enquire Now")
+ * 9. MODALS — Interactive ConsultationModal
  * =============================================================================
  */
 
@@ -45,10 +43,7 @@ export const Home = () => {
 
         <CompletedProjectsSection />
 
-        {/* 6. DESIGNED AROUND LIFE / LIFESTYLE */}
-        <LifestyleSection />/
-
-        {/* 7. LOCATION & CONNECTIVITY */}
+        {/* 6. LOCATION & CONNECTIVITY */}
         <HubOfExcellence />
 
         <VideoCard />

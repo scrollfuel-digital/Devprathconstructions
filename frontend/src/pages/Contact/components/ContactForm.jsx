@@ -35,13 +35,13 @@ export default function ContactForm() {
 
       <div>
         <div className="mb-8 space-y-2">
-          <span className="text-[10px] font-bold uppercase tracking-[3px] text-[#B9935A] block">
+          <span className="arch-eyebrow mb-1">
             Send a Message
           </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1B1C1C] font-heading leading-tight">
+          <h2 className="text-2xl sm:text-3xl leading-tight">
             Start a Conversation
           </h2>
-          <p className="text-xs sm:text-sm text-[#4E453A] font-light">
+          <p className="text-xs sm:text-sm text-muted font-light">
             Fill out the form below and our engineering &amp; sales team will reach out within 24 hours.
           </p>
         </div>

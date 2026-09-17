@@ -10,7 +10,10 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
+import org.springframework.web.multipart.support.MissingServletRequestPartException;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,7 +28,7 @@ public class GlobalExceptionHandler {
                 .body(new ErrorResponseDto(HttpStatus.NOT_FOUND.value(), ex.getMessage()));
     }
 
-// security creadentials fails
+// security credentials fails
     @ExceptionHandler(AuthenticationException.class)
     public ResponseEntity<ErrorResponseDto> handleAuthenticationException(AuthenticationException ex) {
         return ResponseEntity
@@ -73,7 +76,77 @@ public class GlobalExceptionHandler {
                 ));
     }
 
+    // if blogs not found
+    @ExceptionHandler(BlogNotFoundException.class)
+    public ResponseEntity<ErrorResponseDto> handleBlogNotFound(BlogNotFoundException blogNotFoundException){
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(
+                        new ErrorResponseDto(HttpStatus.NOT_FOUND.value(),
+                                blogNotFoundException.getMessage()
+                        )
+                );
+    }
 
+
+    // of multipart file goes beyond configure size limit that set in application.properties
+    // then throw this image
+
+    @ExceptionHandler(MaxUploadSizeExceededException.class)
+    public ResponseEntity<ErrorResponseDto> handleMaxUploadSize(
+            MaxUploadSizeExceededException ex) {
+
+        return ResponseEntity
+                .status(HttpStatus.PAYLOAD_TOO_LARGE)
+                .body(
+                        new ErrorResponseDto(
+                                HttpStatus.PAYLOAD_TOO_LARGE.value(),
+                                ex.getMessage()
+                        )
+                );
+    }
+
+    // image upload exception
+    @ExceptionHandler(ImageUploadException.class)
+    public ResponseEntity<ErrorResponseDto> handleImageUploadException(
+            ImageUploadException ex) {
+
+        return ResponseEntity
+                .status(HttpStatus.BAD_GATEWAY)
+                .body(
+                        new ErrorResponseDto(
+                                HttpStatus.BAD_GATEWAY.value(),
+                                "Unable to upload image\n"+ex.getMessage()
+                        )
+                );
+    }
+
+    // image validation failed in image upload service then
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ErrorResponseDto> handleIllegalArgument(
+            IllegalArgumentException ex
+    ) {
+        return ResponseEntity
+                .badRequest()
+                .body(new ErrorResponseDto(
+                        HttpStatus.BAD_REQUEST.value(),
+                        ex.getMessage()
+                ));
+    }
+
+
+    // if image is missing
+    @ExceptionHandler(MissingServletRequestPartException.class)
+    public ResponseEntity<ErrorResponseDto>handleMissingServletRequestPartException(MissingServletRequestPartException ex){
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(
+                        new ErrorResponseDto(
+                                HttpStatus.BAD_REQUEST.value(),
+                                ex.getMessage()
+                        )
+                );
+    }
 // any exception occure
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponseDto> handleException(Exception ex) {
@@ -81,4 +154,5 @@ public class GlobalExceptionHandler {
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(new ErrorResponseDto(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Something went wrong"));
     }
+
 }

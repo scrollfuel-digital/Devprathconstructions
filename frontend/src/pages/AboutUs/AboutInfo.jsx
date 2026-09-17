@@ -26,7 +26,7 @@ function BulletList({ points }) {
             {points.map((point, idx) => (
                 <li key={idx} className="flex items-start gap-3">
                     <span className="w-3 h-px bg-[#B9935A] mt-3 flex-shrink-0" />
-                    <span className="font-body text-sm sm:text-base text-[#6D675E] font-light leading-relaxed">{point}</span>
+                    <span className="text-sm sm:text-base text-muted font-light leading-relaxed">{point}</span>
                 </li>
             ))}
         </ul>
@@ -43,7 +43,7 @@ function ValueBlock({ title, points, bordered, motionProps }) {
                     : "space-y-5"
             }
         >
-            <h3 className="font-display text-2xl sm:text-3xl font-normal text-[#1F1E1C] uppercase tracking-[0.15em] w-fit border-b border-[#B9935A]/30 pb-3">
+            <h3 className="text-2xl sm:text-3xl uppercase tracking-[0.15em] w-fit border-b border-[#B9935A]/30 pb-3">
                 {title}
             </h3>
             <BulletList points={points} />
@@ -67,7 +67,7 @@ export default function AboutInfo() {
                 {/* Intro copy */}
                 <motion.h2
                     {...motionProps}
-                    className="font-display text-3xl sm:text-5xl lg:text-6xl font-normal text-[#1F1E1C] tracking-tight text-center mb-10 sm:mb-12"
+                    className="text-3xl sm:text-5xl lg:text-6xl tracking-tight text-center mb-10 sm:mb-12"
                 >
                     Creating Communities. Building Legacies.
                 </motion.h2>
@@ -81,7 +81,7 @@ export default function AboutInfo() {
                             viewport={{ once: true, amount: 0.1 }}
                             variants={variants}
                             transition={{ delay: idx * 0.08 }}
-                            className="font-body text-sm sm:text-base text-[#6D675E] font-light leading-relaxed"
+                            className="text-sm sm:text-base text-muted font-light leading-relaxed"
                         >
                             {paragraph}
                         </motion.p>
@@ -92,9 +92,9 @@ export default function AboutInfo() {
                 <div className="mt-16 sm:mt-20 pt-16 sm:pt-20 border-t border-[#B9935A]/20">
                     <motion.h2
                         {...motionProps}
-                        className="font-display text-3xl sm:text-5xl lg:text-6xl font-normal text-[#1F1E1C] tracking-[0.05em] uppercase text-center mb-12 sm:mb-16"
+                        className="text-3xl sm:text-5xl lg:text-6xl tracking-[0.05em] uppercase text-center mb-12 sm:mb-16"
                     >
-                        Mission &amp; <span className="text-[#B9935A]">Vision</span>
+                        Mission &amp; <span className="font-bold text-gold">Vision</span>
                     </motion.h2>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">

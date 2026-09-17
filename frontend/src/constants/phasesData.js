@@ -15,7 +15,6 @@ export const PHASES_DATA = [
   {
     id: 'phase1',
     wing: 'Wing A',
-    subtitleTag: 'Residential Units',
     title: 'Wing A – Residential Units',
     icon: 'home_work',
     stat: '64+',
@@ -35,7 +34,6 @@ export const PHASES_DATA = [
   {
     id: 'phase2_3',
     wing: 'Wings B & C',
-    subtitleTag: 'Small Family Living',
     title: 'Wings B & C – Small Family Living',
     icon: 'apartment',
     stat: '168',

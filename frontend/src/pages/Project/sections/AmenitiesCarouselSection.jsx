@@ -86,11 +86,11 @@ export default function AmenitiesCarouselSection() {
         {/* Section Header */}
         <div className="flex items-end justify-between gap-6 mb-8 sm:mb-10">
           <div>
-            <span className="font-body text-[11px] sm:text-xs font-semibold uppercase tracking-[0.3em] text-[#B9935A] block mb-3">
+            <span className="arch-eyebrow mb-3">
               Township Lifestyle
             </span>
-            <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl font-normal italic text-[#8F6E3B] tracking-tight leading-tight">
-              Amenities<span className="text-[#B9935A] not-italic">.</span>
+            <h2 className="text-4xl sm:text-6xl lg:text-7xl tracking-tight leading-tight">
+              Township <span className="font-bold text-brand-primary">Amenities.</span>
             </h2>
           </div>
 
@@ -136,7 +136,7 @@ export default function AmenitiesCarouselSection() {
               </div>
 
               <div className="bg-[#F2EDE4] border-x border-b border-[#B9935A]/20 py-4 px-5 sm:px-6">
-                <h3 className="font-display text-xl sm:text-2xl font-normal text-[#1F1E1C] tracking-tight">
+                <h3 className="text-xl sm:text-2xl tracking-tight">
                   {amenity.label}
                 </h3>
               </div>

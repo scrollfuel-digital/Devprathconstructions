@@ -38,17 +38,17 @@ export default function Project() {
       {/* 4. MINIMALIST 2-COLUMN TECHNICAL SPECIFICATIONS GRID */}
       {/* <TechnicalSpecificationsSection /> */}
 
-      {/* 5. ARCHITECTURAL CONSULTATION ADVISORY BANNER */}
+      {/* 5. SITE VISIT & CONSULTATION BANNER */}
       <FinalContactSection
-        eyebrow="Direct Advisory"
-        headingLead="Schedule a private site visit"
-        headingAccent="ask for the floor plans."
+        headingLead="Plan Your Visit to"
+        headingAccent="Mangalmurti Residency."
         headingBreak
-        description="Our founding partners are available for private meetings about current options at Mangalmurti Residency or detailed technical information on our completed projects."
+        description="Visit the site to explore available 2 & 3 BHK residences, review floor layouts in detail, and experience the construction quality firsthand. Our team is here to assist you."
         buttons={[
-          { to: "/contact", label: "Arrange Consultation", variant: "primary" },
-          { to: "/contact#location", label: "Visit Nagpur Office", variant: "ghost" },
+          { to: "/contact", label: "BOOK A SITE VISIT" },
+          { to: "/contact#location", label: "VISIT NAGPUR OFFICE" },
         ]}
+        footer="MahaRERA Registration No. P50500045698 · Devprath Construction LLP"
       />
     </div>
   );

@@ -10,18 +10,18 @@ export const FinalCtaSection = ({ onBookConsultation }) => {
       <div className="relative z-10 mx-auto w-full max-w-[1400px] px-5 text-center sm:px-10 lg:px-16">
         <div className="mx-auto max-w-3xl">
           <ScrollReveal>
-            <span className="block text-[10px] !font-bold uppercase tracking-[0.25em] text-brand-primary sm:text-sm sm:tracking-[0.3em]">
+            <span className="arch-eyebrow text-center">
               Ready to Discover
             </span>
 
-            <h2 className="mt-5 font-display text-4xl !font-bold leading-[1.1] tracking-tight text-black sm:mt-6 sm:text-6xl lg:text-7xl">
+            <h2 className="mt-5 text-4xl leading-[1.1] tracking-tight sm:mt-6 sm:text-6xl lg:text-7xl">
               Find your place in{" "}
-              <span className="!font-semibold  text-brand-maroon">
+              <span className="font-semibold text-brand-maroon">
                 what we're building.
               </span>
             </h2>
 
-            <p className="mx-auto !mt-5 max-w-5xl font-body text-sm !font-bold leading-relaxed text-muted sm:mt-6 sm:text-base lg:text-lg">
+            <p className="lead-body mx-auto !mt-5 max-w-5xl sm:mt-6 sm:text-base lg:text-lg">
               Whether you are exploring residential homes at Mangalmurti
               Residency or planning a personal site walkthrough, our founding
               principals are here to guide you.

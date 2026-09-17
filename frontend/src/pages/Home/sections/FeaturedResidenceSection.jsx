@@ -27,11 +27,11 @@ export const FeaturedProjectSection = () => {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16 border-b border-black/15 pb-8">
           <div>
-            <span className="text-[11px] sm:text-xs font-bold uppercase tracking-[0.25em] text-brand-primary block mb-2">
+            <span className="arch-eyebrow mb-2">
               Featured Development
             </span>
-            <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl !font-bold">
-              Mangalmurti <span className=" font-bold text-brand-maroon">Residency</span>
+            <h2 className="text-4xl sm:text-6xl lg:text-7xl">
+              Mangalmurti <span className="font-bold text-brand-maroon">Residency</span>
             </h2>
           </div>
           <div className="text-left md:text-right">

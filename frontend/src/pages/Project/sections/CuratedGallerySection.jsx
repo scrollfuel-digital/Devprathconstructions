@@ -61,8 +61,8 @@ export default function CuratedGallerySection() {
         
         {/* Section Header */}
         <div className="mb-8 sm:mb-10">
-          <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl font-normal text-[#1F1E1C] tracking-tight leading-tight">
-            Curated <span className="italic font-light text-[#8F6E3B]">Gallery.</span>
+          <h2 className="text-4xl sm:text-6xl lg:text-7xl tracking-tight leading-tight">
+            Curated <span className="font-bold text-brand-primary">Gallery.</span>
           </h2>
         </div>
 

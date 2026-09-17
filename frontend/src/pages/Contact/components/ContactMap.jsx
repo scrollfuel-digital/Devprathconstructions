@@ -28,13 +28,14 @@ export default function ContactMap() {
       {/* Header Row: Office Title/Address + Google Maps CTA */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#B9935A]/25">
         <div className="text-xs sm:text-sm font-body text-[#6D675E]">
-          <span className="font-semibold text-[#1F1E1C] uppercase tracking-wider block text-xs">
+          <span className="font-bold text-[#1F1E1C] uppercase tracking-wider block text-base sm:text-lg">
             {OPERATIONS_OFFICE.label}
           </span>
           <p className="font-light mt-0.5 max-w-2xl leading-relaxed">
             {OPERATIONS_OFFICE.address}
           </p>
         </div>
+
 
         <div className="shrink-0">
           <CTAButton

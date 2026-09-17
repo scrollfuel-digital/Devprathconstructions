@@ -41,7 +41,7 @@ export default function BlogCard({ post, index = 0, variant = "editorial" }) {
               {post.author && <span>{post.author}</span>}
             </div>
 
-            <h3 className="font-display text-xl sm:text-2xl font-normal text-[#1F1E1C] leading-snug group-hover:text-[#8F6E3B] transition-colors duration-300 line-clamp-2 mb-4">
+            <h3 className="text-xl sm:text-2xl leading-snug group-hover:text-[#8F6E3B] transition-colors duration-300 line-clamp-2 mb-4">
               <Link to={`/blog/${post.slug}`}>{post.title}</Link>
             </h3>
 
@@ -67,7 +67,7 @@ export default function BlogCard({ post, index = 0, variant = "editorial" }) {
   }
 
   // 2. EDITORIAL VARIANT
-  const isRight = index % 2 === 0;
+  const isLeft = index % 2 === 0;
 
   const fadeUpVariant = {
     hidden: shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 },
@@ -75,12 +75,12 @@ export default function BlogCard({ post, index = 0, variant = "editorial" }) {
   };
 
   const excerptVariant = {
-    hidden: shouldReduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: isRight ? 60 : -60 },
+    hidden: shouldReduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: isLeft ? -60 : 60 },
     visible: { opacity: 1, x: 0, transition: { duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] } },
   };
 
   return (
-    <article className="relative w-full max-w-5xl mx-auto pb-20 sm:pb-28 lg:pb-36">
+    <article className="relative w-full max-w-5xl mx-auto pb-8 sm:pb-10 lg:pb-12">
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -106,7 +106,7 @@ export default function BlogCard({ post, index = 0, variant = "editorial" }) {
           )}
         </div>
 
-        <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-normal text-[#1F1E1C] tracking-tight leading-snug transition-colors duration-300 hover:text-[#8F6E3B]">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl tracking-tight leading-snug transition-colors duration-300 hover:text-[#8F6E3B]">
           <Link to={`/blog/${post.slug}`}>{post.title}</Link>
         </h2>
       </motion.div>
@@ -137,10 +137,10 @@ export default function BlogCard({ post, index = 0, variant = "editorial" }) {
           variants={excerptVariant}
           className={`
             mt-4 sm:mt-6 mx-4 sm:mx-6 relative z-20
-            lg:mt-0 lg:mx-0 lg:absolute lg:top-[calc(100%-2.5rem)] lg:w-[440px] xl:w-[480px]
-            ${isRight ? "lg:right-6 xl:right-8" : "lg:left-6 xl:left-8"}
-            bg-[#F2EDE4] border border-[#B9935A]/30 border-l-4 border-l-[#B9935A]
-            p-5 sm:p-7 lg:p-8 shadow-md
+            lg:mt-0 lg:mx-0 lg:absolute lg:bottom-[-2.5rem] lg:w-[440px] xl:w-[480px]
+            ${isLeft ? "lg:left-6 xl:left-8 border-l-4 border-l-[#B9935A]" : "lg:right-6 xl:right-8 border-r-4 border-r-[#B9935A]"}
+            bg-[#F2EDE4]/95 backdrop-blur-xs border border-[#B9935A]/30
+            p-5 sm:p-7 lg:p-8 shadow-lg
           `}
         >
           <p className="font-body text-xs sm:text-sm text-[#1F1E1C]/85 font-light leading-relaxed mb-5">
