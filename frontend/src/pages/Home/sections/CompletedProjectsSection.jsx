@@ -1,74 +1,78 @@
-import React, { useLayoutEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowUpRight } from "lucide-react";
+
+import React, { useEffect, useState } from "react";
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 
 import { COMPLETED_PROJECTS } from "../../../constants/completedProjects";
 import ScrollReveal from "../../../components/common/ScrollReveal";
 
-gsap.registerPlugin(ScrollTrigger);
-
 const CompletedProjectsSection = () => {
-  const sectionRef = useRef(null);
-  const trackRef = useRef(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  useLayoutEffect(() => {
-    const section = sectionRef.current;
-    const track = trackRef.current;
+  /*
+    ---------------------------------------------------------
+    SHOW 3 PROJECTS AT A TIME
+    ---------------------------------------------------------
+  */
+  const visibleProjects = 3;
 
-    if (!section || !track) return;
+  const maxIndex = Math.max(
+    0,
+    COMPLETED_PROJECTS.length - visibleProjects
+  );
 
-    const mm = gsap.matchMedia();
+  /*
+    ---------------------------------------------------------
+    NEXT
+    ---------------------------------------------------------
+  */
+  const handleNext = () => {
+    setCurrentIndex((prev) =>
+      prev >= maxIndex ? 0 : prev + 1
+    );
+  };
 
-    mm.add("(min-width: 768px)", () => {
-      const getScrollAmount = () => {
-        return Math.max(
-          0,
-          track.scrollWidth - window.innerWidth
-        );
-      };
+  /*
+    ---------------------------------------------------------
+    PREVIOUS
+    ---------------------------------------------------------
+  */
+  const handlePrev = () => {
+    setCurrentIndex((prev) =>
+      prev <= 0 ? maxIndex : prev - 1
+    );
+  };
 
-      const tween = gsap.to(track, {
-        x: () => -getScrollAmount(),
+  /*
+    ---------------------------------------------------------
+    KEYBOARD SUPPORT
+    ---------------------------------------------------------
+  */
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "ArrowRight") {
+        handleNext();
+      }
 
-        ease: "none",
+      if (event.key === "ArrowLeft") {
+        handlePrev();
+      }
+    };
 
-        scrollTrigger: {
-          trigger: section,
-
-          start: "top top",
-
-          end: () => `+=${getScrollAmount()}`,
-
-          scrub: 1,
-
-          pin: true,
-
-          anticipatePin: 1,
-
-          invalidateOnRefresh: true,
-        },
-      });
-
-      return () => {
-        tween.kill();
-      };
-    });
+    window.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      mm.revert();
+      window.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [maxIndex]);
 
   return (
     <section
-      ref={sectionRef}
       className="
         relative
         w-full
         overflow-hidden
-        bg-[#080808]
-        text-white
+        bg-white
+        text-black
       "
     >
       {/* =====================================================
@@ -100,8 +104,12 @@ const CompletedProjectsSection = () => {
           <div
             className="
               flex
-              items-end
-              justify-between
+              flex-col
+              gap-8
+
+              md:flex-row
+              md:items-end
+              md:justify-between
             "
           >
             {/* =================================================
@@ -113,13 +121,11 @@ const CompletedProjectsSection = () => {
                 <span
                   className="
                     block
-
                     font-sans
                     text-[10px]
                     font-semibold
                     uppercase
                     tracking-[0.35em]
-
                     text-[#C9A874]
                   "
                 >
@@ -129,19 +135,15 @@ const CompletedProjectsSection = () => {
                 <h2
                   className="
                     mt-4
-
                     font-display
                     text-[44px]
                     font-medium
                     leading-[0.9]
                     tracking-[-0.02em]
-
                     text-[#F7F3EC]
 
                     sm:text-[52px]
-
                     md:text-[64px]
-
                     lg:text-[72px]
                   "
                 >
@@ -154,11 +156,9 @@ const CompletedProjectsSection = () => {
                   className="
                     mt-6
                     max-w-[520px]
-
                     font-sans
                     text-[13px]
                     leading-[1.8]
-
                     text-white/50
 
                     sm:text-sm
@@ -171,460 +171,632 @@ const CompletedProjectsSection = () => {
               </div>
             </ScrollReveal>
 
+            {/* =================================================
+                DESKTOP CONTROLS
+            ================================================= */}
+
+            <div
+              className="
+                hidden
+                items-center
+                gap-3
+
+                md:flex
+              "
+            >
+              {/* COUNTER */}
+
+              <div
+                className="
+                  mr-5
+                  flex
+                  items-baseline
+                  gap-1
+                  font-sans
+                "
+              >
+                <span
+                  className="
+                    text-sm
+                    font-medium
+                    text-[#C9A874]
+                  "
+                >
+                  {String(currentIndex + 1).padStart(2, "0")}
+                </span>
+
+                <span
+                  className="
+                    text-[10px]
+                    text-white/25
+                  "
+                >
+                  /
+                </span>
+
+                <span
+                  className="
+                    text-[10px]
+                    text-white/30
+                  "
+                >
+                  {String(
+                    Math.max(
+                      1,
+                      COMPLETED_PROJECTS.length - 2
+                    )
+                  ).padStart(2, "0")}
+                </span>
+              </div>
+
+              {/* PREV */}
+
+              <button
+                type="button"
+                onClick={handlePrev}
+                aria-label="Previous projects"
+                className="
+                  group
+                  flex
+                  h-12
+                  w-12
+                  items-center
+                  justify-center
+
+                  rounded-full
+
+                  border
+                  border-white/15
+
+                  bg-transparent
+                  text-white/60
+
+                  transition-all
+                  duration-500
+
+                  hover:border-[#C9A874]
+                  hover:bg-[#C9A874]
+                  hover:text-[#151412]
+
+                  active:scale-95
+                "
+              >
+                <ArrowLeft
+                  size={17}
+                  strokeWidth={1.2}
+                  className="
+                    transition-transform
+                    duration-500
+                    group-hover:-translate-x-0.5
+                  "
+                />
+              </button>
+
+              {/* NEXT */}
+
+              <button
+                type="button"
+                onClick={handleNext}
+                aria-label="Next projects"
+                className="
+                  group
+                  flex
+                  h-12
+                  w-12
+                  items-center
+                  justify-center
+
+                  rounded-full
+
+                  border
+                  border-[#C9A874]/50
+
+                  bg-[#C9A874]
+                  text-[#151412]
+
+                  transition-all
+                  duration-500
+
+                  hover:bg-[#D8BE8E]
+                  hover:border-[#D8BE8E]
+
+                  active:scale-95
+                "
+              >
+                <ArrowRight
+                  size={17}
+                  strokeWidth={1.2}
+                  className="
+                    transition-transform
+                    duration-500
+                    group-hover:translate-x-0.5
+                  "
+                />
+              </button>
+            </div>
           </div>
         </div>
       </div>
 
       {/* =====================================================
-          DESKTOP HORIZONTAL GALLERY
+          DESKTOP 3 COLUMN CAROUSEL
       ===================================================== */}
 
       <div
         className="
           hidden
-          w-full
-          overflow-hidden
+          px-6
           pb-24
 
           md:block
+
+          lg:px-16
         "
       >
         <div
-          ref={trackRef}
           className="
-            flex
-            w-max
-            gap-5
-
-            pl-[6vw]
-            pr-[6vw]
-
-            will-change-transform
+            mx-auto
+            max-w-[1500px]
+            overflow-hidden
           "
         >
-          {COMPLETED_PROJECTS.map((project, index) => (
-            <article
-              key={project.id || index}
-              className="
-                group
-                relative
+          <div
+            className="
+              grid
+              grid-cols-3
+              gap-5
+            "
+          >
+            {COMPLETED_PROJECTS
+              .slice(
+                currentIndex,
+                currentIndex + visibleProjects
+              )
+              .map((project, visibleIndex) => {
+                const actualIndex =
+                  currentIndex + visibleIndex;
 
-                flex
-                h-[440px]
-                w-[29vw]
-                max-w-[420px]
-                min-w-[280px]
-                shrink-0
-                flex-col
-
-                overflow-hidden
-
-                bg-[#111111]
-
-                transition-transform
-                duration-700
-
-                hover:-translate-y-1
-              "
-            >
-              {/* =================================================
-                  IMAGE AREA
-              ================================================= */}
-
-              <div
-                className="
-                  relative
-                  flex-1
-
-                  overflow-hidden
-
-                  bg-[#151515]
-                "
-              >
-                {/* FULL IMAGE */}
-
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  loading={
-                    index < 3
-                      ? "eager"
-                      : "lazy"
-                  }
-                  className="
-                    h-full
-                    w-full
-
-                    object-contain
-
-                    p-3
-
-                    transition-transform
-                    duration-1000
-                    ease-out
-
-                    group-hover:scale-[1.025]
-                  "
-                />
-
-                {/* Subtle image gradient */}
-
-                <div
-                  className="
-                    pointer-events-none
-                    absolute
-                    inset-0
-
-                    bg-gradient-to-t
-                    from-black/20
-                    via-transparent
-                    to-transparent
-                  "
-                />
-
-                {/* Border */}
-
-                <div
-                  className="
-                    pointer-events-none
-                    absolute
-                    inset-0
-
-                    border
-                    border-white/10
-
-                    transition-colors
-                    duration-500
-
-                    group-hover:border-[#C9A874]/40
-                  "
-                />
-
-                {/* =================================================
-                    PROJECT NUMBER
-                ================================================= */}
-
-                <span
-                  className="
-                    absolute
-                    left-5
-                    top-5
-
-                    font-sans
-                    text-[9px]
-                    font-medium
-                    tracking-[0.25em]
-
-                    text-white/60
-                  "
-                >
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-
-                {/* =================================================
-                    ARROW
-                ================================================= */}
-
-                <div
-                  className="
-                    absolute
-                    right-5
-                    top-5
-
-                    flex
-                    h-9
-                    w-9
-                    items-center
-                    justify-center
-                    rounded-full
-
-                    border
-                    border-white/30
-
-                    text-white
-
-                    opacity-0
-
-                    translate-x-2
-                    -translate-y-2
-
-                    transition-all
-                    duration-500
-
-                    group-hover:translate-x-0
-                    group-hover:translate-y-0
-                    group-hover:opacity-100
-                  "
-                >
-                  <ArrowUpRight
-                    size={16}
-                    strokeWidth={1.3}
-                  />
-                </div>
-              </div>
-
-              {/* =================================================
-                  PROJECT INFORMATION
-              ================================================= */}
-
-              <div
-                className="
-                  flex
-                  shrink-0
-                  items-center
-                  justify-between
-
-                  border-t
-                  border-white/10
-
-                  bg-[#0d0d0d]
-
-                  px-5
-                  py-5
-                "
-              >
-                <div>
-                  <h3
+                return (
+                  <article
+                    key={project.id || actualIndex}
                     className="
-                      font-display
-                      text-[22px]
-                      font-medium
-                      leading-none
+                      group
+                      relative
+                      flex
+                      min-w-0
+                      flex-col
+                      overflow-hidden
 
-                      text-[#F7F3EC]
+                      bg-[#F7F3EC]
+
+                      transition-all
+                      duration-700
+
+                      hover:-translate-y-1
                     "
                   >
-                    {project.title}
-                  </h3>
+                    {/* =================================================
+                        IMAGE
+                    ================================================= */}
 
-                  <p
-                    className="
-                      mt-2
+                    <div
+                      className="
+                        relative
+                        h-[390px]
+                        w-full
 
-                      font-sans
-                      text-[8px]
-                      font-semibold
-                      uppercase
-                      tracking-[0.2em]
+                        overflow-hidden
 
-                      text-[#C9A874]
-                    "
-                  >
-                    {project.location}
-                  </p>
-                </div>
+                        bg-cream
+                      "
+                    >
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        loading={
+                          actualIndex < 3
+                            ? "eager"
+                            : "lazy"
+                        }
+                        className="
+                          h-full
+                          w-full
 
-                <span
-                  className="
-                    font-sans
-                    text-[8px]
-                    uppercase
-                    tracking-[0.2em]
+                          object-contain
 
-                    text-white/30
-                  "
-                >
-                  Project
-                </span>
-              </div>
-            </article>
-          ))}
+                          p-4
+
+                          transition-transform
+                          duration-1000
+                          ease-out
+
+                          group-hover:scale-[1.025]
+                        "
+                      />
+
+                      {/* IMAGE BORDER */}
+
+                      <div
+                        className="
+                          pointer-events-none
+                          absolute
+                          inset-0
+
+                          border
+                          border-white/10
+
+                          transition-colors
+                          duration-500
+
+                          group-hover:border-[#C9A874]/50
+                        "
+                      />
+
+                      {/* NUMBER */}
+
+                      <span
+                        className="
+                          absolute
+                          left-5
+                          top-5
+
+                          font-sans
+                          text-[9px]
+                          font-medium
+                          tracking-[0.25em]
+
+                          text-white/55
+                        "
+                      >
+                        {String(
+                          actualIndex + 1
+                        ).padStart(2, "0")}
+                      </span>
+
+                      {/* ARROW */}
+
+                      <div
+                        className="
+                          absolute
+                          right-5
+                          top-5
+
+                          flex
+                          h-10
+                          w-10
+                          items-center
+                          justify-center
+
+                          rounded-full
+
+                          border
+                          border-white/25
+
+                          text-white
+
+                          opacity-0
+
+                          translate-x-2
+                          -translate-y-2
+
+                          transition-all
+                          duration-500
+
+                          group-hover:translate-x-0
+                          group-hover:translate-y-0
+                          group-hover:opacity-100
+                        "
+                      >
+                        <ArrowUpRight
+                          size={16}
+                          strokeWidth={1.2}
+                        />
+                      </div>
+                    </div>
+
+                    {/* =================================================
+                        PROJECT INFO
+                    ================================================= */}
+
+                    <div
+                      className="
+                        flex
+                        min-h-[105px]
+                        items-center
+                        justify-between
+
+                        border-t
+                        border-black/10
+
+                        bg-[#F7F3EC]
+
+                        px-6
+                        py-5
+                      "
+                    >
+                      <div>
+                        <h3
+                          className="
+                            font-display
+                            text-[25px]
+                            font-medium
+                            leading-none
+
+                            text-[#1F1E1C]
+                          "
+                        >
+                          {project.title}
+                        </h3>
+
+                        <p
+                          className="
+                            mt-3
+
+                            font-sans
+                            text-[8px]
+                            font-semibold
+                            uppercase
+                            tracking-[0.2em]
+
+                            text-[#A17B45]
+                          "
+                        >
+                          {project.location}
+                        </p>
+                      </div>
+
+                      <span
+                        className="
+                          font-sans
+                          text-[8px]
+                          uppercase
+                          tracking-[0.2em]
+
+                          text-black/25
+                        "
+                      >
+                        Project
+                      </span>
+                    </div>
+                  </article>
+                );
+              })}
+          </div>
         </div>
       </div>
 
       {/* =====================================================
-          MOBILE
+          MOBILE CAROUSEL
       ===================================================== */}
 
       <div
         className="
           block
           w-full
-          overflow-hidden
-          pl-5
+          px-5
+          pb-16
 
           md:hidden
         "
       >
         <div
           className="
-            flex
-            w-max
-            gap-4
-
-            overflow-x-auto
-            pr-8
-
-            [scrollbar-width:none]
-            [-ms-overflow-style:none]
-
-            [&::-webkit-scrollbar]:hidden
+            relative
+            overflow-hidden
           "
         >
-          {COMPLETED_PROJECTS.map((project, index) => (
-            <article
-              key={project.id || index}
-              className="
-                relative
-                w-[72vw]
-                max-w-[310px]
-                shrink-0
-
-                overflow-hidden
-
-                bg-[#111111]
-              "
-            >
-              {/* IMAGE */}
-
-              <div
-                className="
-                  relative
-
-                  flex
-                  h-[390px]
-                  w-full
-
-                  items-center
-                  justify-center
-
-                  overflow-hidden
-
-                  bg-[#151515]
-                "
-              >
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  loading={
-                    index < 2
-                      ? "eager"
-                      : "lazy"
-                  }
+          <div
+            className="
+              flex
+              gap-4
+            "
+          >
+            {COMPLETED_PROJECTS.map(
+              (project, index) => (
+                <article
+                  key={project.id || index}
                   className="
-                    h-full
-                    w-full
+                    w-[82vw]
+                    max-w-[340px]
+                    shrink-0
+                    overflow-hidden
 
-                    object-contain
-
-                    p-3
-                  "
-                />
-
-                {/* Number */}
-
-                <span
-                  className="
-                    absolute
-                    left-4
-                    top-4
-
-                    font-sans
-                    text-[8px]
-                    tracking-[0.25em]
-
-                    text-white/60
+                    bg-[#F7F3EC]
                   "
                 >
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-              </div>
+                  {/* IMAGE */}
 
-              {/* INFORMATION */}
+                  <div
+                    className="
+                      relative
+                      flex
+                      h-[390px]
+                      w-full
 
-              <div
-                className="
-                  border-t
-                  border-white/10
+                      items-center
+                      justify-center
 
-                  bg-[#0d0d0d]
+                      overflow-hidden
 
-                  px-5
-                  py-5
-                "
-              >
-                <h3
-                  className="
-                    font-display
-                    text-[23px]
-                    font-medium
-                    leading-none
+                      bg-[#1C1B19]
+                    "
+                  >
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      loading={
+                        index < 2
+                          ? "eager"
+                          : "lazy"
+                      }
+                      className="
+                        h-full
+                        w-full
 
-                    text-white
-                  "
-                >
-                  {project.title}
-                </h3>
+                        object-contain
 
-                <p
-                  className="
-                    mt-2
+                        p-3
+                      "
+                    />
 
-                    font-sans
-                    text-[8px]
-                    font-semibold
-                    uppercase
-                    tracking-[0.2em]
+                    <span
+                      className="
+                        absolute
+                        left-4
+                        top-4
 
-                    text-[#C9A874]
-                  "
-                >
-                  {project.location}
-                </p>
-              </div>
-            </article>
-          ))}
+                        font-sans
+                        text-[8px]
+                        tracking-[0.25em]
+
+                        text-white/60
+                      "
+                    >
+                      {String(index + 1).padStart(
+                        2,
+                        "0"
+                      )}
+                    </span>
+                  </div>
+
+                  {/* INFO */}
+
+                  <div
+                    className="
+                      border-t
+                      border-black/10
+
+                      bg-[#F7F3EC]
+
+                      px-5
+                      py-5
+                    "
+                  >
+                    <h3
+                      className="
+                        font-display
+                        text-[23px]
+                        font-medium
+                        leading-none
+
+                        text-[#1F1E1C]
+                      "
+                    >
+                      {project.title}
+                    </h3>
+
+                    <p
+                      className="
+                        mt-3
+
+                        font-sans
+                        text-[8px]
+                        font-semibold
+                        uppercase
+                        tracking-[0.2em]
+
+                        text-[#A17B45]
+                      "
+                    >
+                      {project.location}
+                    </p>
+                  </div>
+                </article>
+              )
+            )}
+          </div>
         </div>
-      </div>
 
-      {/* =====================================================
-          MOBILE VIEW ALL
-      ===================================================== */}
+        {/* MOBILE CONTROLS */}
 
-      <div
-        className="
-          px-6
-          pb-16
-          pt-10
-
-          md:hidden
-        "
-      >
-        <button
-          type="button"
+        <div
           className="
+            mt-8
             flex
-            w-full
             items-center
             justify-between
-
-            border-0
-            border-b
-            border-white/15
-
-            bg-transparent
-
-            py-4
-
-            font-sans
-            text-[9px]
-            font-semibold
-            uppercase
-            tracking-[0.25em]
-
-            text-white/70
           "
         >
-          <span>
-            View All Projects
+          <span
+            className="
+              font-sans
+              text-[9px]
+              uppercase
+              tracking-[0.3em]
+              text-white/35
+            "
+          >
+            {String(currentIndex + 1).padStart(
+              2,
+              "0"
+            )}{" "}
+            /{" "}
+            {String(
+              COMPLETED_PROJECTS.length
+            ).padStart(2, "0")}
           </span>
 
-          <ArrowUpRight
-            size={15}
-            strokeWidth={1.3}
-            className="text-[#C9A874]"
-          />
-        </button>
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={handlePrev}
+              aria-label="Previous projects"
+              className="
+                flex
+                h-11
+                w-11
+                items-center
+                justify-center
+
+                rounded-full
+
+                border
+                border-white/15
+
+                text-white/70
+
+                transition-all
+                duration-300
+
+                active:scale-95
+              "
+            >
+              <ArrowLeft
+                size={16}
+                strokeWidth={1.2}
+              />
+            </button>
+
+            <button
+              type="button"
+              onClick={handleNext}
+              aria-label="Next projects"
+              className="
+                flex
+                h-11
+                w-11
+                items-center
+                justify-center
+
+                rounded-full
+
+                bg-[#C9A874]
+
+                text-[#151412]
+
+                transition-all
+                duration-300
+
+                active:scale-95
+              "
+            >
+              <ArrowRight
+                size={16}
+                strokeWidth={1.2}
+              />
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* =====================================================
