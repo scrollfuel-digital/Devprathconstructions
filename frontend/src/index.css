@@ -502,21 +502,27 @@ html.lenis body {
   }
 }
 
-.hero-showup {
+.hero-showup,
+.hero-reveal {
   opacity: 0;
   animation: showup 8.5s ease-in-out 1.5s forwards;
   font-family: "Cormorant Garamond", Georgia, serif !important;
 }
 
-.hero-reveal {
-  opacity: 0;
-  max-width: 0;
-  animation: reveal 8.5s ease-in-out 1.5s forwards;
-  font-family: "Cormorant Garamond", Georgia, serif !important;
-}
-
 .hero-slidein {
   animation: slidein 8.5s ease-in-out 1.5s forwards;
+}
+
+@media (min-width: 768px) {
+  .hero-showup,
+  .hero-reveal {
+    white-space: nowrap;
+  }
+
+  .hero-reveal {
+    max-width: 0;
+    animation-name: reveal;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

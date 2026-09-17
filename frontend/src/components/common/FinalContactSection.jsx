@@ -30,7 +30,7 @@ export const FinalContactSection = ({
               <span className="font-bold text-brand-primary">{headingAccent}</span>
             </h2>
 
-            <p className="lead-body mx-auto !mt-5 max-w-2xl text-center sm:mt-6 sm:text-base lg:text-lg">
+            <p className="lead-body !mx-auto !mt-5 max-w-2xl text-center sm:mt-6 sm:text-base lg:text-lg">
               {description}
             </p>
 

@@ -113,12 +113,9 @@ export default function FloorPlanExplorerSection() {
                 <div>
                   {/* Wing Identification Line */}
                   <ScrollReveal>
-                    <div className="flex items-center justify-between border-b border-[#1F1E1C]/15 pb-4 mb-6">
+                    <div className="border-b border-[#1F1E1C]/15 pb-4 mb-6">
                       <span className="font-body text-xs font-semibold uppercase tracking-[0.2em] text-[#B9935A]">
                         {activePhase.wing}
-                      </span>
-                      <span className="font-body text-xs text-[#6D675E] uppercase tracking-[0.15em]">
-                        {activePhase.subtitleTag}
                       </span>
                     </div>
                   </ScrollReveal>
@@ -163,12 +160,9 @@ export default function FloorPlanExplorerSection() {
                     </p>
                   </ScrollReveal>
 
-                  {/* Verified Highlights List (Unboxed Minimal En-Dash List) */}
+                  {/* Highlights List (Unboxed Minimal En-Dash List) */}
                   <ScrollReveal>
                     <div className="mb-8">
-                      <h4 className="font-body text-xs font-semibold uppercase tracking-[0.2em] text-[#B9935A] mb-4 pb-2 border-b border-[#B9935A]/30">
-                        Verified Highlights &amp; Inclusions
-                      </h4>
                       <ul className="space-y-3.5">
                         {activePhase.highlights.map((hl, hIdx) => (
                           <li key={hIdx} className="flex items-start gap-3 text-xs sm:text-sm text-[#1F1E1C] font-light leading-relaxed font-body">
