@@ -194,7 +194,7 @@ export const HubOfExcellence = () => {
   return (
     <section
       id="location"
-      className="py-24 sm:py-32 bg-[#FAF7F2] border-t border-[#B9935A]/20 overflow-hidden"
+      className="py-24 sm:py-32 bg-cream  overflow-hidden"
     >
       <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
         
@@ -204,12 +204,12 @@ export const HubOfExcellence = () => {
             <span className="arch-eyebrow mb-3">
               Connectivity
             </span>
-            <h2 className="text-4xl sm:text-6xl lg:text-7xl text-[#1F1E1C] tracking-tight leading-tight">
-              Where Life <span className="font-bold text-[#8F6E3B]">Connects</span>
+            <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl !font-bold text-black tracking-tight leading-tight">
+              Where Life <span className=" font-bold text-[#8F6E3B]">Connects</span>
             </h2>
           </div>
           <div className="text-left lg:text-right">
-            <span className="font-body text-xs sm:text-sm text-[#1F1E1C] font-semibold tracking-wider uppercase block">
+            <span className="font-body text-xs sm:text-sm text-black font-semibold tracking-wider uppercase block">
               Parsodi,Wardha Road,Nagpur
             </span>
             <span className="text-xs text-black/60 font-bold block mt-1">

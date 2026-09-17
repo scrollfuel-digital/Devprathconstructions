@@ -1,441 +1,827 @@
-// import { COMPLETED_PROJECTS } from "../../../constants/completedProjects";
-// import React, { useEffect, useRef } from "react";
-// import ScrollReveal from "../../../components/common/ScrollReveal";
 
-// const LOOPED_PROJECTS = [...COMPLETED_PROJECTS, ...COMPLETED_PROJECTS, ...COMPLETED_PROJECTS];
+import React, { useEffect, useState } from "react";
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 
-// const CompletedProjectsSection = () => {
-//   const trackRef = useRef(null);
-//   const timerRef = useRef(null);
-//   const setWidthRef = useRef(0);
-
-//   useEffect(() => {
-//     const el = trackRef.current;
-//     if (el) {
-//       const setWidth = el.children[9]
-//         ? el.children[9].offsetLeft - el.children[0].offsetLeft
-//         : el.scrollWidth / 3;
-//       setWidthRef.current = setWidth;
-//       el.scrollTo({ left: setWidth, behavior: "instant" });
-//     }
-
-//     const handleResize = () => {
-//       const el = trackRef.current;
-//       if (el && el.children[9]) {
-//         setWidthRef.current = el.children[9].offsetLeft - el.children[0].offsetLeft;
-//       }
-//     };
-
-//     window.addEventListener("resize", handleResize, { passive: true });
-//     return () => {
-//       clearTimeout(timerRef.current);
-//       window.removeEventListener("resize", handleResize);
-//     };
-//   }, []);
-
-//   const handleScroll = () => {
-//     const el = trackRef.current;
-//     if (!el) return;
-//     const setWidth = setWidthRef.current || (el.scrollWidth / 3);
-
-//     // Safety edge wrap during continuous swipe
-//     if (el.scrollLeft >= setWidth * 2.2) {
-//       el.scrollTo({ left: el.scrollLeft - setWidth, behavior: "instant" });
-//     } else if (el.scrollLeft <= setWidth * 0.1) {
-//       el.scrollTo({ left: el.scrollLeft + setWidth, behavior: "instant" });
-//     }
-
-//     // When scrolling pauses, silently return the scroller to center without moving the active image
-//     clearTimeout(timerRef.current);
-//     timerRef.current = setTimeout(() => {
-//       if (el.scrollLeft >= setWidth * 1.5) {
-//         el.scrollTo({ left: el.scrollLeft - setWidth, behavior: "instant" });
-//       } else if (el.scrollLeft < setWidth * 0.5) {
-//         el.scrollTo({ left: el.scrollLeft + setWidth, behavior: "instant" });
-//       }
-//     }, 120);
-//   };
-
-//   return (
-//     <section className="relative w-full overflow-hidden py-20 md:py-28">
-//       <ScrollReveal distance={80}>
-//         <div className="mx-auto max-w-3xl px-4 text-center">
-//           <span className="arch-eyebrow text-center">
-//             Our Work
-//           </span>
-//           <h2 className="mt-3 text-2xl sm:text-7xl">Completed Projects</h2>
-//           <p className="lead-body mx-auto max-w-5xl text-lg sm:text-base">
-//             A legacy built one address at a time — homes delivered with
-//             craftsmanship, trust, and an unwavering eye for detail.
-//           </p>
-//         </div>
-//       </ScrollReveal>
-
-//       <ul ref={trackRef} onScroll={handleScroll} className="cp-cards mt-14 md:mt-16">
-//         {LOOPED_PROJECTS.map((project, i) => (
-//           <li key={`${project.id}-${i}`} className="cp-card">
-//             <img
-//               src={project.image}
-//               alt={project.title}
-//               className="cp-card-img"
-//               loading="lazy"
-//               decoding="async"
-//             />
-//             <div className="cp-card-caption">
-//               <h4 className="mt-1 text-sm !font-bold uppercase tracking-[0.15em] text-gold !sm:text-xs">{project.title}</h4>
-//               <p className="mt-1 text-sm !font-bold uppercase tracking-[0.15em] text-gold !sm:text-xl">
-//                 {project.location}
-//               </p>
-//             </div>
-//           </li>
-//         ))}
-//       </ul>
-//     </section>
-//   );
-// };
-
-// export default CompletedProjectsSection;
-
-
-"use client";
-
-import React, { useState, useEffect, useRef, useCallback } from "react";
-import ScrollReveal from "../../../components/common/ScrollReveal";
 import { COMPLETED_PROJECTS } from "../../../constants/completedProjects";
+import ScrollReveal from "../../../components/common/ScrollReveal";
 
-// --- GSAP SVG Animated Image Component ---
-function GalleryImage({ url, title, open, inPlace, id, onInPlace, total }) {
-  const [firstLoad, setLoaded] = useState(true);
-  const clip = useRef(null);
-
-  // Animation Constants
-  const gap = 10;
-  const circleRadius = 7;
-  const defaults = { transformOrigin: "center center" };
-  const duration = 0.4;
-  const width = 400;
-  const height = 400;
-  const scale = 700;
-
-  const bigSize = circleRadius * scale;
-  const overlap = 0;
-
-  // Position Calculation Functions
-  const getPosSmall = () => ({
-    cx: width / 2 - (total * (circleRadius * 2 + gap) - gap) / 2 + id * (circleRadius * 2 + gap),
-    cy: height - 30,
-    r: circleRadius,
-  });
-  const getPosSmallAbove = () => ({
-    cx: width / 2 - (total * (circleRadius * 2 + gap) - gap) / 2 + id * (circleRadius * 2 + gap),
-    cy: height / 2,
-    r: circleRadius * 2,
-  });
-  const getPosCenter = () => ({ cx: width / 2, cy: height / 2, r: circleRadius * 7 });
-  const getPosEnd = () => ({ cx: width / 2 - bigSize + overlap, cy: height / 2, r: bigSize });
-  const getPosStart = () => ({ cx: width / 2 + bigSize - overlap, cy: height / 2, r: bigSize });
-
-  // Animation Logic using GSAP
-  useEffect(() => {
-    const gsap = window.gsap;
-    if (!gsap) return;
-
-    setLoaded(false);
-    if (clip.current) {
-      const flipDuration = firstLoad ? 0 : duration;
-      const upDuration = firstLoad ? 0 : 0.2;
-      const bounceDuration = firstLoad ? 0.01 : 1;
-      const delay = firstLoad ? 0 : flipDuration + upDuration;
-
-      if (open) {
-        gsap
-          .timeline()
-          .set(clip.current, { ...defaults, ...getPosSmall() })
-          .to(clip.current, {
-            ...defaults,
-            ...getPosCenter(),
-            duration: upDuration,
-            ease: "power3.inOut",
-          })
-          .to(clip.current, {
-            ...defaults,
-            ...getPosEnd(),
-            duration: flipDuration,
-            ease: "power4.in",
-            onComplete: () => onInPlace(id),
-          });
-      } else {
-        gsap
-          .timeline({ overwrite: true })
-          .set(clip.current, { ...defaults, ...getPosStart() })
-          .to(clip.current, {
-            ...defaults,
-            ...getPosCenter(),
-            delay: delay,
-            duration: flipDuration,
-            ease: "power4.out",
-          })
-          .to(clip.current, {
-            ...defaults,
-            motionPath: {
-              path: [getPosSmallAbove(), getPosSmall()],
-              curviness: 1,
-            },
-            duration: bounceDuration,
-            ease: "bounce.out",
-          });
-      }
-    }
-  }, [open, firstLoad, id, total, onInPlace]); // added dependencies
-
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink"
-      viewBox={`0 0 ${width} ${height}`}
-      preserveAspectRatio="xMidYMid slice"
-      className="h-full w-full"
-    >
-      <defs>
-        <clipPath id={`${id}_circleClip`}>
-          <circle className="clip" cx="0" cy="0" r={circleRadius} ref={clip}></circle>
-        </clipPath>
-        <clipPath id={`${id}_squareClip`}>
-          <rect className="clip" width={width} height={height}></rect>
-        </clipPath>
-      </defs>
-      <g clipPath={`url(#${id}${inPlace ? "_squareClip" : "_circleClip"})`}>
-        <image width={width} height={height} href={url} className="pointer-events-none"></image>
-      </g>
-    </svg>
-  );
-}
-
-// --- Interactive SVG Thumbnail Tabs ---
-function Tabs({ projects, onSelect }) {
-  const gap = 10;
-  const circleRadius = 7;
-  const width = 400;
-  const height = 400;
-
-  const getPosX = (i) =>
-    width / 2 - (projects.length * (circleRadius * 2 + gap) - gap) / 2 + i * (circleRadius * 2 + gap);
-  const getPosY = () => height - 30;
-
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink"
-      viewBox={`0 0 ${width} ${height}`}
-      preserveAspectRatio="xMidYMid slice"
-      className="h-full w-full"
-    >
-      {projects.map((project, i) => (
-        <g key={project.id || i} className="pointer-events-auto">
-          <defs>
-            <clipPath id={`tab_${i}_clip`}>
-              <circle cx={getPosX(i)} cy={getPosY()} r={circleRadius} />
-            </clipPath>
-          </defs>
-          <image
-            x={getPosX(i) - circleRadius}
-            y={getPosY() - circleRadius}
-            width={circleRadius * 2}
-            height={circleRadius * 2}
-            href={project.image}
-            clipPath={`url(#tab_${i}_clip)`}
-            className="pointer-events-none"
-            preserveAspectRatio="xMidYMid slice"
-          />
-          <circle
-            onClick={() => onSelect(i)}
-            className="cursor-pointer fill-transparent stroke-white/70 hover:stroke-white transition-all"
-            strokeWidth="2"
-            cx={getPosX(i)}
-            cy={getPosY()}
-            r={circleRadius + 2}
-          />
-        </g>
-      ))}
-    </svg>
-  );
-}
-
-// --- Main Layout Component ---
 const CompletedProjectsSection = () => {
-  const [opened, setOpened] = useState(0);
-  const [inPlace, setInPlace] = useState(0);
-  const [disabled, setDisabled] = useState(false);
-  const [gsapReady, setGsapReady] = useState(false);
-  const autoplayTimer = useRef(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Load GSAP dynamically
-  useEffect(() => {
-    const loadScripts = () => {
-      if (window.gsap && window.MotionPathPlugin) {
-        window.gsap.registerPlugin(window.MotionPathPlugin);
-        setGsapReady(true);
-        return;
-      }
+  /*
+    ---------------------------------------------------------
+    SHOW 3 PROJECTS AT A TIME
+    ---------------------------------------------------------
+  */
+  const visibleProjects = 3;
 
-      const gsapScript = document.createElement("script");
-      gsapScript.src = "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js";
-      gsapScript.onload = () => {
-        const motionPathScript = document.createElement("script");
-        motionPathScript.src = "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js";
-        motionPathScript.onload = () => {
-          if (window.gsap && window.MotionPathPlugin) {
-            window.gsap.registerPlugin(window.MotionPathPlugin);
-            setGsapReady(true);
-          }
-        };
-        document.body.appendChild(motionPathScript);
-      };
-      document.body.appendChild(gsapScript);
-    };
+  const maxIndex = Math.max(
+    0,
+    COMPLETED_PROJECTS.length - visibleProjects
+  );
 
-    loadScripts();
-  }, []);
-
-  const onClick = (index) => {
-    if (!disabled) setOpened(index);
+  /*
+    ---------------------------------------------------------
+    NEXT
+    ---------------------------------------------------------
+  */
+  const handleNext = () => {
+    setCurrentIndex((prev) =>
+      prev >= maxIndex ? 0 : prev + 1
+    );
   };
 
-  const onInPlace = (index) => setInPlace(index);
+  /*
+    ---------------------------------------------------------
+    PREVIOUS
+    ---------------------------------------------------------
+  */
+  const handlePrev = () => {
+    setCurrentIndex((prev) =>
+      prev <= 0 ? maxIndex : prev - 1
+    );
+  };
 
-  const next = useCallback(() => {
-    setOpened((currentOpened) => {
-      let nextIndex = currentOpened + 1;
-      if (nextIndex >= COMPLETED_PROJECTS.length) nextIndex = 0;
-      return nextIndex;
-    });
-  }, []);
-
-  const prev = useCallback(() => {
-    setOpened((currentOpened) => {
-      let prevIndex = currentOpened - 1;
-      if (prevIndex < 0) prevIndex = COMPLETED_PROJECTS.length - 1;
-      return prevIndex;
-    });
-  }, []);
-
-  // Disable clicks during animation transitions
-  useEffect(() => setDisabled(true), [opened]);
-  useEffect(() => setDisabled(false), [inPlace]);
-
-  // Autoplay functionality
+  /*
+    ---------------------------------------------------------
+    KEYBOARD SUPPORT
+    ---------------------------------------------------------
+  */
   useEffect(() => {
-    if (!gsapReady) return;
+    const handleKeyDown = (event) => {
+      if (event.key === "ArrowRight") {
+        handleNext();
+      }
 
-    if (autoplayTimer.current) {
-      clearInterval(autoplayTimer.current);
-    }
-
-    autoplayTimer.current = window.setInterval(next, 4500);
-
-    return () => {
-      if (autoplayTimer.current) {
-        clearInterval(autoplayTimer.current);
+      if (event.key === "ArrowLeft") {
+        handlePrev();
       }
     };
-  }, [opened, gsapReady, next]);
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [maxIndex]);
 
   return (
-    <section className="relative w-full overflow-hidden py-20 md:py-28 font-sans">
-      <ScrollReveal distance={80}>
-        <div className="mx-auto max-w-3xl px-4 text-center">
-          <span className="arch-eyebrow text-center">Our Work</span>
-          <h2 className="mt-3 text-2xl sm:text-7xl">Completed Projects</h2>
-          <p className="lead-body mx-auto max-w-5xl text-lg sm:text-base">
-            A legacy built one address at a time — homes delivered with
-            craftsmanship, trust, and an unwavering eye for detail.
-          </p>
-        </div>
-      </ScrollReveal>
+    <section
+      className="
+        relative
+        w-full
+        overflow-hidden
+        bg-white
+        text-black
+      "
+    >
+      {/* =====================================================
+          HEADER
+      ===================================================== */}
 
-      <div className="mt-14 md:mt-16 w-full flex flex-col items-center justify-center relative">
-        <div className="relative w-full flex items-center justify-center">
-          {/* Main GSAP Animated Gallery Container */}
-          <div className="relative h-[80vmin] w-[80vmin] max-h-[600px] max-w-[600px] overflow-hidden rounded-[20px] shadow-[0_2.8px_2.2px_rgba(0,0,0,0.02),0_6.7px_5.3px_rgba(0,0,0,0.028),0_12.5px_10px_rgba(0,0,0,0.035),0_22.3px_17.9px_rgba(0,0,0,0.042),0_41.8px_33.4px_rgba(0,0,0,0.05),0_100px_80px_rgba(0,0,0,0.07)] bg-primary">
-            {gsapReady &&
-              COMPLETED_PROJECTS.map((project, i) => (
-                <div
-                  key={`${project.id || i}-${project.image}`}
-                  className="absolute left-0 top-0 h-full w-full"
-                  style={{ zIndex: inPlace === i ? i : COMPLETED_PROJECTS.length + 1 }}
+      <div
+        className="
+          px-6
+          pb-12
+          pt-24
+
+          sm:px-8
+
+          md:px-12
+          md:pb-14
+          md:pt-28
+
+          lg:px-16
+          lg:pt-32
+        "
+      >
+        <div
+          className="
+            mx-auto
+            max-w-[1500px]
+          "
+        >
+          <div
+            className="
+              flex
+              flex-col
+              gap-8
+
+              md:flex-row
+              md:items-end
+              md:justify-between
+            "
+          >
+            {/* =================================================
+                HEADING
+            ================================================= */}
+
+            <ScrollReveal distance={60}>
+              <div>
+                <span
+                  className="
+                    block
+                    font-sans
+                    text-[10px]
+                    font-semibold
+                    uppercase
+                    tracking-[0.35em]
+                    text-[#C9A874]
+                  "
                 >
-                  <GalleryImage
-                    total={COMPLETED_PROJECTS.length}
-                    id={i}
-                    url={project.image}
-                    title={project.title}
-                    open={opened === i}
-                    inPlace={inPlace === i}
-                    onInPlace={onInPlace}
-                  />
-                </div>
-              ))}
-            <div className="absolute left-0 top-0 z-[100] h-full w-full pointer-events-none">
-              <Tabs projects={COMPLETED_PROJECTS} onSelect={onClick} />
+                  Our Work
+                </span>
+
+                <h2
+                  className="
+                    mt-4
+                    font-display
+                    text-[44px]
+                    font-medium
+                    leading-[0.9]
+                    tracking-[-0.02em]
+                    text-[#F7F3EC]
+
+                    sm:text-[52px]
+                    md:text-[64px]
+                    lg:text-[72px]
+                  "
+                >
+                  Completed
+                  <br />
+                  Projects
+                </h2>
+
+                <p
+                  className="
+                    mt-6
+                    max-w-[520px]
+                    font-sans
+                    text-[13px]
+                    leading-[1.8]
+                    text-white/50
+
+                    sm:text-sm
+                  "
+                >
+                  A legacy built one address at a time — homes
+                  delivered with craftsmanship, trust, and an
+                  unwavering eye for detail.
+                </p>
+              </div>
+            </ScrollReveal>
+
+            {/* =================================================
+                DESKTOP CONTROLS
+            ================================================= */}
+
+            <div
+              className="
+                hidden
+                items-center
+                gap-3
+
+                md:flex
+              "
+            >
+              {/* COUNTER */}
+
+              <div
+                className="
+                  mr-5
+                  flex
+                  items-baseline
+                  gap-1
+                  font-sans
+                "
+              >
+                <span
+                  className="
+                    text-sm
+                    font-medium
+                    text-[#C9A874]
+                  "
+                >
+                  {String(currentIndex + 1).padStart(2, "0")}
+                </span>
+
+                <span
+                  className="
+                    text-[10px]
+                    text-white/25
+                  "
+                >
+                  /
+                </span>
+
+                <span
+                  className="
+                    text-[10px]
+                    text-white/30
+                  "
+                >
+                  {String(
+                    Math.max(
+                      1,
+                      COMPLETED_PROJECTS.length - 2
+                    )
+                  ).padStart(2, "0")}
+                </span>
+              </div>
+
+              {/* PREV */}
+
+              <button
+                type="button"
+                onClick={handlePrev}
+                aria-label="Previous projects"
+                className="
+                  group
+                  flex
+                  h-12
+                  w-12
+                  items-center
+                  justify-center
+
+                  rounded-full
+
+                  border
+                  border-white/15
+
+                  bg-transparent
+                  text-white/60
+
+                  transition-all
+                  duration-500
+
+                  hover:border-[#C9A874]
+                  hover:bg-[#C9A874]
+                  hover:text-[#151412]
+
+                  active:scale-95
+                "
+              >
+                <ArrowLeft
+                  size={17}
+                  strokeWidth={1.2}
+                  className="
+                    transition-transform
+                    duration-500
+                    group-hover:-translate-x-0.5
+                  "
+                />
+              </button>
+
+              {/* NEXT */}
+
+              <button
+                type="button"
+                onClick={handleNext}
+                aria-label="Next projects"
+                className="
+                  group
+                  flex
+                  h-12
+                  w-12
+                  items-center
+                  justify-center
+
+                  rounded-full
+
+                  border
+                  border-[#C9A874]/50
+
+                  bg-[#C9A874]
+                  text-[#151412]
+
+                  transition-all
+                  duration-500
+
+                  hover:bg-[#D8BE8E]
+                  hover:border-[#D8BE8E]
+
+                  active:scale-95
+                "
+              >
+                <ArrowRight
+                  size={17}
+                  strokeWidth={1.2}
+                  className="
+                    transition-transform
+                    duration-500
+                    group-hover:translate-x-0.5
+                  "
+                />
+              </button>
             </div>
           </div>
+        </div>
+      </div>
 
-          {/* Previous Button */}
-          <button
-            className="absolute left-[calc(50%-40vmin-40px)] sm:left-[calc(50%-300px-50px)] top-1/2 z-[101] flex h-14 w-14 sm:h-16 sm:w-16 -translate-y-1/2 -translate-x-1/2 cursor-pointer items-center justify-center rounded-full border-2 border-white/20 bg-white/95 backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.12)] outline-none transition-all duration-300 ease-out hover:scale-110 hover:bg-white hover:border-white/40 hover:shadow-[0_12px_48px_rgba(0,0,0,0.18)] active:scale-95 focus-visible:ring-4 focus-visible:ring-white/50 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
-            onClick={prev}
-            disabled={disabled}
-            aria-label="Previous Image"
-          >
-            <svg
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="text-gray-800 transition-transform duration-300 group-hover:-translate-x-0.5"
-            >
-              <path d="M15 18l-6-6 6-6" />
-            </svg>
-          </button>
+      {/* =====================================================
+          DESKTOP 3 COLUMN CAROUSEL
+      ===================================================== */}
 
-          {/* Next Button */}
-          <button
-            className="absolute right-[calc(50%-40vmin-40px)] sm:right-[calc(50%-300px-50px)] top-1/2 z-[101] flex h-14 w-14 sm:h-16 sm:w-16 -translate-y-1/2 translate-x-1/2 cursor-pointer items-center justify-center rounded-full border-2 border-white/20 bg-white/95 backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.12)] outline-none transition-all duration-300 ease-out hover:scale-110 hover:bg-white hover:border-white/40 hover:shadow-[0_12px_48px_rgba(0,0,0,0.18)] active:scale-95 focus-visible:ring-4 focus-visible:ring-white/50 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
-            onClick={next}
-            disabled={disabled}
-            aria-label="Next Image"
+      <div
+        className="
+          hidden
+          px-6
+          pb-24
+
+          md:block
+
+          lg:px-16
+        "
+      >
+        <div
+          className="
+            mx-auto
+            max-w-[1500px]
+            overflow-hidden
+          "
+        >
+          <div
+            className="
+              grid
+              grid-cols-3
+              gap-5
+            "
           >
-            <svg
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="text-gray-800 transition-transform duration-300 group-hover:translate-x-0.5"
-            >
-              <path d="M9 18l6-6-6-6" />
-            </svg>
-          </button>
+            {COMPLETED_PROJECTS
+              .slice(
+                currentIndex,
+                currentIndex + visibleProjects
+              )
+              .map((project, visibleIndex) => {
+                const actualIndex =
+                  currentIndex + visibleIndex;
+
+                return (
+                  <article
+                    key={project.id || actualIndex}
+                    className="
+                      group
+                      relative
+                      flex
+                      min-w-0
+                      flex-col
+                      overflow-hidden
+
+                      bg-[#F7F3EC]
+
+                      transition-all
+                      duration-700
+
+                      hover:-translate-y-1
+                    "
+                  >
+                    {/* =================================================
+                        IMAGE
+                    ================================================= */}
+
+                    <div
+                      className="
+                        relative
+                        h-[390px]
+                        w-full
+
+                        overflow-hidden
+
+                        bg-cream
+                      "
+                    >
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        loading={
+                          actualIndex < 3
+                            ? "eager"
+                            : "lazy"
+                        }
+                        className="
+                          h-full
+                          w-full
+
+                          object-contain
+
+                          p-4
+
+                          transition-transform
+                          duration-1000
+                          ease-out
+
+                          group-hover:scale-[1.025]
+                        "
+                      />
+
+                      {/* IMAGE BORDER */}
+
+                      <div
+                        className="
+                          pointer-events-none
+                          absolute
+                          inset-0
+
+                          border
+                          border-white/10
+
+                          transition-colors
+                          duration-500
+
+                          group-hover:border-[#C9A874]/50
+                        "
+                      />
+
+                      {/* NUMBER */}
+
+                      <span
+                        className="
+                          absolute
+                          left-5
+                          top-5
+
+                          font-sans
+                          text-[9px]
+                          font-medium
+                          tracking-[0.25em]
+
+                          text-white/55
+                        "
+                      >
+                        {String(
+                          actualIndex + 1
+                        ).padStart(2, "0")}
+                      </span>
+
+                      {/* ARROW */}
+
+                      <div
+                        className="
+                          absolute
+                          right-5
+                          top-5
+
+                          flex
+                          h-10
+                          w-10
+                          items-center
+                          justify-center
+
+                          rounded-full
+
+                          border
+                          border-white/25
+
+                          text-white
+
+                          opacity-0
+
+                          translate-x-2
+                          -translate-y-2
+
+                          transition-all
+                          duration-500
+
+                          group-hover:translate-x-0
+                          group-hover:translate-y-0
+                          group-hover:opacity-100
+                        "
+                      >
+                        <ArrowUpRight
+                          size={16}
+                          strokeWidth={1.2}
+                        />
+                      </div>
+                    </div>
+
+                    {/* =================================================
+                        PROJECT INFO
+                    ================================================= */}
+
+                    <div
+                      className="
+                        flex
+                        min-h-[105px]
+                        items-center
+                        justify-between
+
+                        border-t
+                        border-black/10
+
+                        bg-[#F7F3EC]
+
+                        px-6
+                        py-5
+                      "
+                    >
+                      <div>
+                        <h3
+                          className="
+                            font-display
+                            text-[25px]
+                            font-medium
+                            leading-none
+
+                            text-[#1F1E1C]
+                          "
+                        >
+                          {project.title}
+                        </h3>
+
+                        <p
+                          className="
+                            mt-3
+
+                            font-sans
+                            text-[8px]
+                            font-semibold
+                            uppercase
+                            tracking-[0.2em]
+
+                            text-[#A17B45]
+                          "
+                        >
+                          {project.location}
+                        </p>
+                      </div>
+
+                      <span
+                        className="
+                          font-sans
+                          text-[8px]
+                          uppercase
+                          tracking-[0.2em]
+
+                          text-black/25
+                        "
+                      >
+                        Project
+                      </span>
+                    </div>
+                  </article>
+                );
+              })}
+          </div>
+        </div>
+      </div>
+
+      {/* =====================================================
+          MOBILE CAROUSEL
+      ===================================================== */}
+
+      <div
+        className="
+          block
+          w-full
+          px-5
+          pb-16
+
+          md:hidden
+        "
+      >
+        <div
+          className="
+            relative
+            overflow-hidden
+          "
+        >
+          <div
+            className="
+              flex
+              gap-4
+            "
+          >
+            {COMPLETED_PROJECTS.map(
+              (project, index) => (
+                <article
+                  key={project.id || index}
+                  className="
+                    w-[82vw]
+                    max-w-[340px]
+                    shrink-0
+                    overflow-hidden
+
+                    bg-[#F7F3EC]
+                  "
+                >
+                  {/* IMAGE */}
+
+                  <div
+                    className="
+                      relative
+                      flex
+                      h-[390px]
+                      w-full
+
+                      items-center
+                      justify-center
+
+                      overflow-hidden
+
+                      bg-[#1C1B19]
+                    "
+                  >
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      loading={
+                        index < 2
+                          ? "eager"
+                          : "lazy"
+                      }
+                      className="
+                        h-full
+                        w-full
+
+                        object-contain
+
+                        p-3
+                      "
+                    />
+
+                    <span
+                      className="
+                        absolute
+                        left-4
+                        top-4
+
+                        font-sans
+                        text-[8px]
+                        tracking-[0.25em]
+
+                        text-white/60
+                      "
+                    >
+                      {String(index + 1).padStart(
+                        2,
+                        "0"
+                      )}
+                    </span>
+                  </div>
+
+                  {/* INFO */}
+
+                  <div
+                    className="
+                      border-t
+                      border-black/10
+
+                      bg-[#F7F3EC]
+
+                      px-5
+                      py-5
+                    "
+                  >
+                    <h3
+                      className="
+                        font-display
+                        text-[23px]
+                        font-medium
+                        leading-none
+
+                        text-[#1F1E1C]
+                      "
+                    >
+                      {project.title}
+                    </h3>
+
+                    <p
+                      className="
+                        mt-3
+
+                        font-sans
+                        text-[8px]
+                        font-semibold
+                        uppercase
+                        tracking-[0.2em]
+
+                        text-[#A17B45]
+                      "
+                    >
+                      {project.location}
+                    </p>
+                  </div>
+                </article>
+              )
+            )}
+          </div>
         </div>
 
-        {/* Dynamic Project Caption Overlay */}
-        {COMPLETED_PROJECTS[opened] && (
-          <div className="mt-8 text-center cp-card-caption">
-            <h4 className="mt-1 text-sm !font-bold uppercase tracking-[0.15em] text-gold !sm:text-xs">
-              {COMPLETED_PROJECTS[opened].title}
-            </h4>
-            <p className="mt-1 text-sm !font-bold uppercase tracking-[0.15em] text-gold !sm:text-xl">
-              {COMPLETED_PROJECTS[opened].location}
-            </p>
+        {/* MOBILE CONTROLS */}
+
+        <div
+          className="
+            mt-8
+            flex
+            items-center
+            justify-between
+          "
+        >
+          <span
+            className="
+              font-sans
+              text-[9px]
+              uppercase
+              tracking-[0.3em]
+              text-white/35
+            "
+          >
+            {String(currentIndex + 1).padStart(
+              2,
+              "0"
+            )}{" "}
+            /{" "}
+            {String(
+              COMPLETED_PROJECTS.length
+            ).padStart(2, "0")}
+          </span>
+
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={handlePrev}
+              aria-label="Previous projects"
+              className="
+                flex
+                h-11
+                w-11
+                items-center
+                justify-center
+
+                rounded-full
+
+                border
+                border-white/15
+
+                text-white/70
+
+                transition-all
+                duration-300
+
+                active:scale-95
+              "
+            >
+              <ArrowLeft
+                size={16}
+                strokeWidth={1.2}
+              />
+            </button>
+
+            <button
+              type="button"
+              onClick={handleNext}
+              aria-label="Next projects"
+              className="
+                flex
+                h-11
+                w-11
+                items-center
+                justify-center
+
+                rounded-full
+
+                bg-[#C9A874]
+
+                text-[#151412]
+
+                transition-all
+                duration-300
+
+                active:scale-95
+              "
+            >
+              <ArrowRight
+                size={16}
+                strokeWidth={1.2}
+              />
+            </button>
           </div>
-        )}
+        </div>
+      </div>
+
+      {/* =====================================================
+          BOTTOM LABEL
+      ===================================================== */}
+
+      <div
+        className="
+          pb-8
+          text-center
+        "
+      >
+        <span
+          className="
+            font-sans
+            text-[8px]
+            font-medium
+            uppercase
+            tracking-[0.4em]
+
+            text-white/25
+          "
+        >
+          Crafted for generations
+        </span>
       </div>
     </section>
   );
