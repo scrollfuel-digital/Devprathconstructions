@@ -21,7 +21,6 @@ export const Footer = () => {
     <footer className="bg-[#F2EDE4] text-[#1F1E1C] font-body pt-8 sm:pt-10 pb-5 border-t border-[#B9935A]/30">
       <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
         
-        {/* Top Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 pb-6 border-b border-[#1F1E1C]/10 items-start">
           
           {/* Brand Info (4 cols) */}
