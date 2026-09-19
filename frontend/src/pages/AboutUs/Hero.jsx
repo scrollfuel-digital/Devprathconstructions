@@ -1,25 +1,40 @@
 import React from "react";
-import aboutus1 from "../../assets/Project/mangalmurti_2.png";
-import SocialConnectBar from "../../components/SocialConnectBar";
+import aboutHeroVideo from "../../assets/videos/about_hero_animation_.mp4";
+import heroTextImg from "../../assets/AboutUsImg/home_page_text.png";
+import { SocialLinks } from "@/components/ui/social-links";
+
+const ABOUT_SOCIAL_LINKS = [
+    { platform: "facebook", href: "https://www.facebook.com/devprathconstructions/" },
+    { platform: "instagram", href: "https://www.instagram.com/devprathconstructions/" },
+    { platform: "whatsapp", href: "https://wa.me/919923203281?text=Hi%20Devprath%20Team,%20I%20am%20interested%20in%20Mangalmurti%20Residency." },
+    { platform: "mail", href: "mailto:devprathconstructions@gmail.com" },
+    { platform: "phone", href: "tel:+919923203281" },
+];
 
 export default function Hero() {
     return (
-        <section className="relative h-screen flex items-end overflow-hidden">
-            <img
-                src={aboutus1}
-                alt="Devprath Constructions"
-                className="absolute inset-0 w-full h-full object-cover object-center"
-                loading="eager"
+        <section className="relative w-full h-[100dvh] overflow-hidden">
+            <video
+                src={aboutHeroVideo}
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="auto"
+                className="absolute inset-0 w-full h-full object-cover pointer-events-none z-0"
             />
 
-            <div className="flex flex-col items-center gap-4 sm:gap-6 absolute left-4 sm:left-8 lg:left-16 bottom-8 sm:bottom-20 z-20">
-                <div className="w-[1px] h-8 sm:h-14 bg-black/100" />
-                <SocialConnectBar
-                    containerClassName="flex flex-col items-center gap-4 sm:gap-6"
-                    iconSizeClass="w-5 h-5 sm:w-7 sm:h-7"
-                    iconColorClass="text-black/100"
-                />
-            </div>
+            {/* Subtle low-opacity overlay over video */}
+            <div className="absolute inset-0 bg-black/25 pointer-events-none z-[1]" />
+
+            <img
+                src={heroTextImg}
+                alt="Devprath Constructions"
+                style={{ filter: "drop-shadow(0 0 1.5px #000) drop-shadow(0 2px 8px rgba(0,0,0,0.9))" }}
+                className="absolute bottom-16 right-4 sm:bottom-8 sm:right-10 md:bottom-12 md:right-14 w-40 sm:w-60 md:w-72 lg:w-80 object-contain z-10 pointer-events-none brightness-125 select-none"
+            />
+
+            <SocialLinks links={ABOUT_SOCIAL_LINKS} />
         </section>
     );
 }

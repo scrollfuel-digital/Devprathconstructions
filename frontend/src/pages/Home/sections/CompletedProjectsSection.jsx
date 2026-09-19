@@ -1,830 +1,185 @@
+"use client";
 
-import React, { useEffect, useState } from "react";
-import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
-
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import CTAButton from "../../../components/common/CTAButton";
 import { COMPLETED_PROJECTS } from "../../../constants/completedProjects";
-import ScrollReveal from "../../../components/common/ScrollReveal";
 
-const CompletedProjectsSection = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+const StickyProjectCard = ({
+  i,
+  total,
+  title,
+  location,
+  image,
+  progress,
+  range,
+  targetScale,
+}) => {
+  const scale = useTransform(progress, range, [1, targetScale]);
 
-  /*
-    ---------------------------------------------------------
-    SHOW 3 PROJECTS AT A TIME
-    ---------------------------------------------------------
-  */
-  const visibleProjects = 3;
+  const start = i / total;
+  const end = i === total - 1 ? 1 : (i + 1) / total;
+  const fade = Math.min(0.01, (end - start) / 4);
 
-  const maxIndex = Math.max(
-    0,
-    COMPLETED_PROJECTS.length - visibleProjects
+  const cornerInput =
+    i === 0
+      ? [start, end - fade, end]
+      : i === total - 1
+        ? [start - fade, start, end]
+        : [start - fade, start, end - fade, end];
+
+  const cornerOutput =
+    i === 0
+      ? [1, 1, 0]
+      : i === total - 1
+        ? [0, 1, 1]
+        : [0, 1, 1, 0];
+
+  const cornerOpacity = useTransform(
+    progress,
+    cornerInput,
+    cornerOutput
   );
 
-  /*
-    ---------------------------------------------------------
-    NEXT
-    ---------------------------------------------------------
-  */
-  const handleNext = () => {
-    setCurrentIndex((prev) =>
-      prev >= maxIndex ? 0 : prev + 1
-    );
-  };
+  return (
+    <div
+      className="sticky top-0 flex h-screen w-full items-center justify-center px-4 sm:px-6 lg:px-8"
+      style={{ zIndex: i + 1 }}
+    >
+      <motion.div
+        style={{ scale }}
+        className="relative aspect-square w-full max-w-[92vw] sm:max-w-[420px] md:max-w-[460px] lg:max-w-[520px]"
+      >
+        <div className="relative h-full w-full overflow-hidden">
+          <img
+            src={image || "/placeholder.svg"}
+            alt={title}
+            className="block h-full w-full object-cover"
+            loading={i === 0 ? "eager" : "lazy"}
+            decoding="async"
+          />
 
-  /*
-    ---------------------------------------------------------
-    PREVIOUS
-    ---------------------------------------------------------
-  */
-  const handlePrev = () => {
-    setCurrentIndex((prev) =>
-      prev <= 0 ? maxIndex : prev - 1
-    );
-  };
+          {/* Bottom information overlay */}
+          <div
+            className="absolute inset-x-0 bottom-0 px-5 pb-5 pt-16 sm:px-6 sm:pb-6 sm:pt-20"
+            style={{
+              background:
+                "linear-gradient(to top, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.96) 30%, rgba(255,255,255,0.78) 52%, rgba(255,255,255,0.25) 76%, rgba(255,255,255,0) 100%)",
+            }}
+          >
+            <h4
+              className="text-sm !font-black uppercase tracking-[0.15em]"
+              style={{ color: "#1F1E1C" }}
+            >
+              {title}
+            </h4>
 
-  /*
-    ---------------------------------------------------------
-    KEYBOARD SUPPORT
-    ---------------------------------------------------------
-  */
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.key === "ArrowRight") {
-        handleNext();
-      }
+            <p
+              className="mt-1 text-xs !font-black uppercase tracking-[0.15em] sm:text-sm"
+              style={{ color: "#B9935A" }}
+            >
+              {location}
+            </p>
+          </div>
+        </div>
 
-      if (event.key === "ArrowLeft") {
-        handlePrev();
-      }
-    };
+        {/* Art Deco corners */}
+        <motion.div
+          style={{ opacity: cornerOpacity }}
+          className="art-deco-corners"
+        >
+          <div className="corner top left" />
+          <div className="corner top right" />
+          <div className="corner bottom left" />
+          <div className="corner bottom right" />
+        </motion.div>
+      </motion.div>
+    </div>
+  );
+};
 
-    window.addEventListener("keydown", handleKeyDown);
+const CompletedProjectsSection = () => {
+  const container = useRef(null);
 
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [maxIndex]);
+  const projects = COMPLETED_PROJECTS;
+  const total = projects.length;
+
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ["start start", "end end"],
+  });
 
   return (
-    <section
-      className="
-        relative
-        w-full
-        overflow-hidden
-        bg-white
-        text-black
-      "
-    >
-      {/* =====================================================
-          HEADER
-      ===================================================== */}
-
+    <section className="relative w-full py-16 sm:py-20 lg:py-28">
       <div
-        className="
-          px-6
-          pb-12
-          pt-24
-
-          sm:px-8
-
-          md:px-12
-          md:pb-14
-          md:pt-28
-
-          lg:px-16
-          lg:pt-32
-        "
+        ref={container}
+        className="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2 lg:gap-x-12 xl:gap-x-20"
       >
-        <div
-          className="
-            mx-auto
-            max-w-[1500px]
-          "
-        >
-          <div
-            className="
-              flex
-              flex-col
-              gap-8
-
-              md:flex-row
-              md:items-end
-              md:justify-between
-            "
+        {/* Left content */}
+        <div className="px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="text-center lg:sticky lg:top-0 lg:flex lg:h-screen lg:flex-col lg:justify-center lg:text-left"
           >
-            {/* =================================================
-                HEADING
-            ================================================= */}
+            <span className="arch-eyebrow text-center lg:text-left">
+              Our Work
+            </span>
 
-            <ScrollReveal distance={60}>
-              <div>
-                <span
-                  className="
-                    block
-                    font-sans
-                    text-[10px]
-                    font-semibold
-                    uppercase
-                    tracking-[0.35em]
-                    text-[#C9A874]
-                  "
-                >
-                  Our Work
-                </span>
+            <h2 className="mt-3 text-3xl leading-tight sm:text-5xl lg:text-7xl">
+              Completed Projects
+            </h2>
 
-                <h2
-                  className="
-                    mt-4
-                    font-display
-                    text-[44px]
-                    font-medium
-                    leading-[0.9]
-                    tracking-[-0.02em]
-                    text-[#F7F3EC]
+            <div className="mx-auto mt-6 max-w-md space-y-4 text-sm sm:text-base text-[#6D675E] leading-relaxed text-justify hyphens-auto lg:mx-0 lg:max-w-lg">
+              <p>
+                Over the years, Devprath Constructions has delivered residential apartment projects across established neighborhoods of Nagpur, including Dharampeth, Ramdaspeth, Laxmi Nagar, and Shivaji Nagar. Every building is planned with practical floor layouts, ample natural light, and durable materials suited for comfortable family living.
+              </p>
 
-                    sm:text-[52px]
-                    md:text-[64px]
-                    lg:text-[72px]
-                  "
-                >
-                  Completed
-                  <br />
-                  Projects
-                </h2>
-
-                <p
-                  className="
-                    mt-6
-                    max-w-[520px]
-                    font-sans
-                    text-[13px]
-                    leading-[1.8]
-                    text-white/50
-
-                    sm:text-sm
-                  "
-                >
-                  A legacy built one address at a time — homes
-                  delivered with craftsmanship, trust, and an
-                  unwavering eye for detail.
-                </p>
-              </div>
-            </ScrollReveal>
-
-            {/* =================================================
-                DESKTOP CONTROLS
-            ================================================= */}
-
-            <div
-              className="
-                hidden
-                items-center
-                gap-3
-
-                md:flex
-              "
-            >
-              {/* COUNTER */}
-
-              <div
-                className="
-                  mr-5
-                  flex
-                  items-baseline
-                  gap-1
-                  font-sans
-                "
-              >
-                <span
-                  className="
-                    text-sm
-                    font-medium
-                    text-[#C9A874]
-                  "
-                >
-                  {String(currentIndex + 1).padStart(2, "0")}
-                </span>
-
-                <span
-                  className="
-                    text-[10px]
-                    text-white/25
-                  "
-                >
-                  /
-                </span>
-
-                <span
-                  className="
-                    text-[10px]
-                    text-white/30
-                  "
-                >
-                  {String(
-                    Math.max(
-                      1,
-                      COMPLETED_PROJECTS.length - 2
-                    )
-                  ).padStart(2, "0")}
-                </span>
-              </div>
-
-              {/* PREV */}
-
-              <button
-                type="button"
-                onClick={handlePrev}
-                aria-label="Previous projects"
-                className="
-                  group
-                  flex
-                  h-12
-                  w-12
-                  items-center
-                  justify-center
-
-                  rounded-full
-
-                  border
-                  border-white/15
-
-                  bg-transparent
-                  text-white/60
-
-                  transition-all
-                  duration-500
-
-                  hover:border-[#C9A874]
-                  hover:bg-[#C9A874]
-                  hover:text-[#151412]
-
-                  active:scale-95
-                "
-              >
-                <ArrowLeft
-                  size={17}
-                  strokeWidth={1.2}
-                  className="
-                    transition-transform
-                    duration-500
-                    group-hover:-translate-x-0.5
-                  "
-                />
-              </button>
-
-              {/* NEXT */}
-
-              <button
-                type="button"
-                onClick={handleNext}
-                aria-label="Next projects"
-                className="
-                  group
-                  flex
-                  h-12
-                  w-12
-                  items-center
-                  justify-center
-
-                  rounded-full
-
-                  border
-                  border-[#C9A874]/50
-
-                  bg-[#C9A874]
-                  text-[#151412]
-
-                  transition-all
-                  duration-500
-
-                  hover:bg-[#D8BE8E]
-                  hover:border-[#D8BE8E]
-
-                  active:scale-95
-                "
-              >
-                <ArrowRight
-                  size={17}
-                  strokeWidth={1.2}
-                  className="
-                    transition-transform
-                    duration-500
-                    group-hover:translate-x-0.5
-                  "
-                />
-              </button>
+              <p>
+                We focus on honest construction practices, clear communication, and timely handover for every homeowner. With nine completed developments and over 160 happy families, our finished homes reflect our steady commitment to reliable quality and long-term peace of mind.
+              </p>
             </div>
-          </div>
-        </div>
-      </div>
 
-      {/* =====================================================
-          DESKTOP 3 COLUMN CAROUSEL
-      ===================================================== */}
-
-      <div
-        className="
-          hidden
-          px-6
-          pb-24
-
-          md:block
-
-          lg:px-16
-        "
-      >
-        <div
-          className="
-            mx-auto
-            max-w-[1500px]
-            overflow-hidden
-          "
-        >
-          <div
-            className="
-              grid
-              grid-cols-3
-              gap-5
-            "
-          >
-            {COMPLETED_PROJECTS
-              .slice(
-                currentIndex,
-                currentIndex + visibleProjects
-              )
-              .map((project, visibleIndex) => {
-                const actualIndex =
-                  currentIndex + visibleIndex;
-
-                return (
-                  <article
-                    key={project.id || actualIndex}
-                    className="
-                      group
-                      relative
-                      flex
-                      min-w-0
-                      flex-col
-                      overflow-hidden
-
-                      bg-[#F7F3EC]
-
-                      transition-all
-                      duration-700
-
-                      hover:-translate-y-1
-                    "
-                  >
-                    {/* =================================================
-                        IMAGE
-                    ================================================= */}
-
-                    <div
-                      className="
-                        relative
-                        h-[390px]
-                        w-full
-
-                        overflow-hidden
-
-                        bg-cream
-                      "
-                    >
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        loading={
-                          actualIndex < 3
-                            ? "eager"
-                            : "lazy"
-                        }
-                        className="
-                          h-full
-                          w-full
-
-                          object-contain
-
-                          p-4
-
-                          transition-transform
-                          duration-1000
-                          ease-out
-
-                          group-hover:scale-[1.025]
-                        "
-                      />
-
-                      {/* IMAGE BORDER */}
-
-                      <div
-                        className="
-                          pointer-events-none
-                          absolute
-                          inset-0
-
-                          border
-                          border-white/10
-
-                          transition-colors
-                          duration-500
-
-                          group-hover:border-[#C9A874]/50
-                        "
-                      />
-
-                      {/* NUMBER */}
-
-                      <span
-                        className="
-                          absolute
-                          left-5
-                          top-5
-
-                          font-sans
-                          text-[9px]
-                          font-medium
-                          tracking-[0.25em]
-
-                          text-white/55
-                        "
-                      >
-                        {String(
-                          actualIndex + 1
-                        ).padStart(2, "0")}
-                      </span>
-
-                      {/* ARROW */}
-
-                      <div
-                        className="
-                          absolute
-                          right-5
-                          top-5
-
-                          flex
-                          h-10
-                          w-10
-                          items-center
-                          justify-center
-
-                          rounded-full
-
-                          border
-                          border-white/25
-
-                          text-white
-
-                          opacity-0
-
-                          translate-x-2
-                          -translate-y-2
-
-                          transition-all
-                          duration-500
-
-                          group-hover:translate-x-0
-                          group-hover:translate-y-0
-                          group-hover:opacity-100
-                        "
-                      >
-                        <ArrowUpRight
-                          size={16}
-                          strokeWidth={1.2}
-                        />
-                      </div>
-                    </div>
-
-                    {/* =================================================
-                        PROJECT INFO
-                    ================================================= */}
-
-                    <div
-                      className="
-                        flex
-                        min-h-[105px]
-                        items-center
-                        justify-between
-
-                        border-t
-                        border-black/10
-
-                        bg-[#F7F3EC]
-
-                        px-6
-                        py-5
-                      "
-                    >
-                      <div>
-                        <h3
-                          className="
-                            font-display
-                            text-[25px]
-                            font-medium
-                            leading-none
-
-                            text-[#1F1E1C]
-                          "
-                        >
-                          {project.title}
-                        </h3>
-
-                        <p
-                          className="
-                            mt-3
-
-                            font-sans
-                            text-[8px]
-                            font-semibold
-                            uppercase
-                            tracking-[0.2em]
-
-                            text-[#A17B45]
-                          "
-                        >
-                          {project.location}
-                        </p>
-                      </div>
-
-                      <span
-                        className="
-                          font-sans
-                          text-[8px]
-                          uppercase
-                          tracking-[0.2em]
-
-                          text-black/25
-                        "
-                      >
-                        Project
-                      </span>
-                    </div>
-                  </article>
-                );
-              })}
-          </div>
-        </div>
-      </div>
-
-      {/* =====================================================
-          MOBILE CAROUSEL
-      ===================================================== */}
-
-      <div
-        className="
-          block
-          w-full
-          px-5
-          pb-16
-
-          md:hidden
-        "
-      >
-        <div
-          className="
-            relative
-            overflow-hidden
-          "
-        >
-          <div
-            className="
-              flex
-              gap-4
-            "
-          >
-            {COMPLETED_PROJECTS.map(
-              (project, index) => (
-                <article
-                  key={project.id || index}
-                  className="
-                    w-[82vw]
-                    max-w-[340px]
-                    shrink-0
-                    overflow-hidden
-
-                    bg-[#F7F3EC]
-                  "
-                >
-                  {/* IMAGE */}
-
-                  <div
-                    className="
-                      relative
-                      flex
-                      h-[390px]
-                      w-full
-
-                      items-center
-                      justify-center
-
-                      overflow-hidden
-
-                      bg-[#1C1B19]
-                    "
-                  >
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      loading={
-                        index < 2
-                          ? "eager"
-                          : "lazy"
-                      }
-                      className="
-                        h-full
-                        w-full
-
-                        object-contain
-
-                        p-3
-                      "
-                    />
-
-                    <span
-                      className="
-                        absolute
-                        left-4
-                        top-4
-
-                        font-sans
-                        text-[8px]
-                        tracking-[0.25em]
-
-                        text-white/60
-                      "
-                    >
-                      {String(index + 1).padStart(
-                        2,
-                        "0"
-                      )}
-                    </span>
-                  </div>
-
-                  {/* INFO */}
-
-                  <div
-                    className="
-                      border-t
-                      border-black/10
-
-                      bg-[#F7F3EC]
-
-                      px-5
-                      py-5
-                    "
-                  >
-                    <h3
-                      className="
-                        font-display
-                        text-[23px]
-                        font-medium
-                        leading-none
-
-                        text-[#1F1E1C]
-                      "
-                    >
-                      {project.title}
-                    </h3>
-
-                    <p
-                      className="
-                        mt-3
-
-                        font-sans
-                        text-[8px]
-                        font-semibold
-                        uppercase
-                        tracking-[0.2em]
-
-                        text-[#A17B45]
-                      "
-                    >
-                      {project.location}
-                    </p>
-                  </div>
-                </article>
-              )
-            )}
-          </div>
-        </div>
-
-        {/* MOBILE CONTROLS */}
-
-        <div
-          className="
-            mt-8
-            flex
-            items-center
-            justify-between
-          "
-        >
-          <span
-            className="
-              font-sans
-              text-[9px]
-              uppercase
-              tracking-[0.3em]
-              text-white/35
-            "
-          >
-            {String(currentIndex + 1).padStart(
-              2,
-              "0"
-            )}{" "}
-            /{" "}
-            {String(
-              COMPLETED_PROJECTS.length
-            ).padStart(2, "0")}
-          </span>
-
-          <div className="flex gap-2">
-            <button
-              type="button"
-              onClick={handlePrev}
-              aria-label="Previous projects"
-              className="
-                flex
-                h-11
-                w-11
-                items-center
-                justify-center
-
-                rounded-full
-
-                border
-                border-white/15
-
-                text-white/70
-
-                transition-all
-                duration-300
-
-                active:scale-95
-              "
-            >
-              <ArrowLeft
-                size={16}
-                strokeWidth={1.2}
+            <div className="mt-8 flex justify-center lg:justify-start">
+              <CTAButton
+                to="/projects"
+                label="VIEW CURRENT PROJECT"
+                className="!w-auto min-w-[250px] text-nowrap"
               />
-            </button>
-
-            <button
-              type="button"
-              onClick={handleNext}
-              aria-label="Next projects"
-              className="
-                flex
-                h-11
-                w-11
-                items-center
-                justify-center
-
-                rounded-full
-
-                bg-[#C9A874]
-
-                text-[#151412]
-
-                transition-all
-                duration-300
-
-                active:scale-95
-              "
-            >
-              <ArrowRight
-                size={16}
-                strokeWidth={1.2}
-              />
-            </button>
-          </div>
+            </div>
+          </motion.div>
         </div>
-      </div>
 
-      {/* =====================================================
-          BOTTOM LABEL
-      ===================================================== */}
+        {/* Project stack */}
+        <div className="relative mt-10 flex flex-col sm:mt-12 lg:mt-0">
+          {projects.map((project, i) => {
+            const targetScale = Math.max(
+              0.85,
+              1 - (total - i - 1) * 0.05
+            );
 
-      <div
-        className="
-          pb-8
-          text-center
-        "
-      >
-        <span
-          className="
-            font-sans
-            text-[8px]
-            font-medium
-            uppercase
-            tracking-[0.4em]
-
-            text-white/25
-          "
-        >
-          Crafted for generations
-        </span>
+            return (
+              <StickyProjectCard
+                key={project.id ?? `${project.title}-${i}`}
+                i={i}
+                total={total}
+                title={project.title}
+                location={project.location}
+                image={project.image}
+                progress={scrollYProgress}
+                range={[i / total, 1]}
+                targetScale={targetScale}
+              />
+            );
+          })}
+        </div>
       </div>
     </section>
   );
 };
 
 export default CompletedProjectsSection;
+
+export { CompletedProjectsSection, StickyProjectCard };

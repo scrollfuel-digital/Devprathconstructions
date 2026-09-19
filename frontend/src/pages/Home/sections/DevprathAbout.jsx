@@ -73,8 +73,8 @@ export default function DevprathAbout() {
                 Devprath Construction LLP
               </span>
             </h2>
-            <p className="mx-auto mt-5 max-w-7xl font-sans text-sm sm:text-justify text-justify !font-bold leading-relaxed text-text-light sm:mt-10 ">
-              Located in central Nagpur, we combine modern architecture with everyday comfort. Our homes are carefully designed to provide a quality lifestyle. We bring together years of professional experience and a strong promise to build projects that families are truly proud to live in.
+            <p className="mx-auto mt-5 font-sans text-sm text-justify font-bold leading-relaxed text-text-light sm:mt-10 text-pretty">
+              Located in central Nagpur, we combine modern architecture with everyday comfort. Our homes are carefully designed to provide a quality lifestyle. We bring together years of professional experience and a strong promise to build projects that families are truly proud to live&nbsp;in.
             </p>
           </div>
         </ScrollReveal>
@@ -82,10 +82,10 @@ export default function DevprathAbout() {
         {/* Statistics */}
         <ScrollReveal>
           <div className="my-5 grid w-full max-w-4xl grid-cols-2 gap-y-5 sm:my-10 lg:grid-cols-4">
-            {stats.map((stat, idx) => (
+            {stats.map((stat) => (
               <div
                 key={stat.label}
-                className={`relative flex flex-col items-center px-3 text-center sm:px-5 `}
+                className="relative flex flex-col items-center px-3 text-center sm:px-5"
               >
                 <div className="mb-2 font-display text-3xl font-semibold leading-none tracking-tight text-text-dark sm:text-4xl lg:text-[42px]">
                   {stat.number}
