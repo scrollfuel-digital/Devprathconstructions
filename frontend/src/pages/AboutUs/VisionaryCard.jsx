@@ -9,17 +9,15 @@ const leaders = [
         name: "Dr. Sunil N. Patil",
         role: "Director & Co-Founder",
         image: leaderSunil,
-        // bio: "Dr. Sunil N. Patil brings his experience in construction and development with a focus on structural strength, material standards, and the long-term quality of residential projects.",
-        bio:'Championing structural strength, material standards, and strategic growth. Committed to delivering homes that stand the test of time.',
-        quote: "Excellence is never an accident; it is always the result of high intention.",
+        bio: "Championing structural strength, material standards, and strategic growth. Committed to delivering homes that stand the test of time.",
+        quote: "Excellence is never an accident; it is always the result of high\u00A0intention.",
     },
     {
         name: "Mr. Hemal H. Nadiyana",
         role: "Director & Co-Founder",
         image: leaderHemal,
-        // bio: "With a background in real estate development and experience associated with Devang Developers and V4 Developers, Mr. Hemal H. Nadiyana contributes to architectural vision, customer-focused development, and the creation of thoughtfully designed residential spaces.",
-        bio: 'Fostering architectural creativity, customer-first service, and modern living space design across all our premier residential developments.',
-        quote: "We don't just build apartments; we craft spaces where families thrive.",
+        bio: "Fostering architectural creativity, customer-first service, and modern living space design across all our premier residential developments.",
+        quote: "We don't just build apartments; we craft spaces where families\u00A0thrive.",
     },
 ];
 
@@ -34,7 +32,7 @@ function VisionaryCard({ leader, motionProps }) {
                     loading="lazy"
                 />
                 <div>
-                    <h3 className="text-2xl sm:text-3xl tracking-tight mb-1">
+                    <h3 className="text-2xl sm:text-3xl tracking-tight mb-1 text-balance">
                         {leader.name}
                     </h3>
                     <span className="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-gold block mb-1">
@@ -43,12 +41,12 @@ function VisionaryCard({ leader, motionProps }) {
                 </div>
             </div>
 
-            <p className="text-sm sm:text-base text-muted font-light leading-relaxed mb-6">
+            <p className="text-sm sm:text-base text-muted font-light leading-relaxed mb-6 text-pretty">
                 {leader.bio}
             </p>
 
             <blockquote className="pt-5 border-t border-[#B9935A]/25">
-                <p className="font-display text-lg sm:text-xl text-[#1F1E1C] italic font-normal leading-relaxed">
+                <p className="font-display text-lg sm:text-xl text-[#1F1E1C] italic font-normal leading-relaxed text-balance">
                     &ldquo;{leader.quote}&rdquo;
                 </p>
             </blockquote>
@@ -71,7 +69,7 @@ export default function VisionarySection() {
             <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
                 <motion.h2
                     {...motionProps}
-                    className="text-3xl sm:text-5xl lg:text-6xl tracking-[0.1em] uppercase text-center mb-16 sm:mb-20"
+                    className="text-3xl sm:text-5xl lg:text-6xl tracking-[0.1em] uppercase text-center mb-16 sm:mb-20 text-balance"
                 >
                     <span className="font-bold text-gold">Our</span>{" "}
                     <span>Visionaries</span>

@@ -41,12 +41,13 @@ export const Home = () => {
         {/* 5. FEATURED PROJECT — MANGALMURTI RESIDENCY */}
         <FeaturedProjectSection />
 
+        <VideoCard />
+        
+        <HubOfExcellence />
+
         <CompletedProjectsSection />
 
         {/* 6. LOCATION & CONNECTIVITY */}
-        <HubOfExcellence />
-
-        <VideoCard />
 
         {/* 9. FINAL CTA */}
         <FinalCtaSection />

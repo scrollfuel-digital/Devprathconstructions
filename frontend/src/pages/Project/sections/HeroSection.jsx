@@ -1,11 +1,16 @@
 import React from "react";
-import heroBgImg from "../../../assets/Project/hero.jpeg";
+import projectHeroVideo from "../../../assets/videos/project_hero.mp4";
+
 const HeroSection = () => {
   return (
     <section className="relative w-full h-screen min-h-[500px] overflow-hidden">
-      <img
-        src={heroBgImg}
-        alt="Mangalmurti Residency"
+      <video
+        src={projectHeroVideo}
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
         className="absolute inset-0 h-full w-full object-cover"
       />
     </section>

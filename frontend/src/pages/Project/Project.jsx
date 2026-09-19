@@ -4,7 +4,7 @@ import FloorPlanExplorerSection from './sections/FloorPlanExplorerSection';
 import AmenitiesCarouselSection from './sections/AmenitiesCarouselSection';
 import CuratedGallerySection from './sections/CuratedGallerySection';
 import { FinalContactSection } from '../../components/common/FinalContactSection';
-
+import Rera from "./sections/Rera"
 /**
  * =============================================================================
  * PROJECT PAGE (Project.jsx) — DEVPRATH CONSTRUCTION LLP
@@ -38,6 +38,8 @@ export default function Project() {
       {/* 4. MINIMALIST 2-COLUMN TECHNICAL SPECIFICATIONS GRID */}
       {/* <TechnicalSpecificationsSection /> */}
 
+      <Rera/>
+      
       {/* 5. SITE VISIT & CONSULTATION BANNER */}
       <FinalContactSection
         headingLead="Plan Your Visit to"
