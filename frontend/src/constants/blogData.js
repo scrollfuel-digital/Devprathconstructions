@@ -1,5 +1,5 @@
 import metroImg from '../assets/Blogs/Metro.jpeg'
-import residentImg from '../assets/Blogs/aprtment.jpeg'
+import residentImg from '../assets/Blogs/map.png'
 import articalImg from '../assets/Blogs/finance_trends.jpeg'
 import investmentImg from '../assets/Blogs/expert_profile.jpeg'
 import investGrpImg from '../assets/Blogs/market_trends.jpeg'

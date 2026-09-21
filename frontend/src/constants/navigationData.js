@@ -32,7 +32,3 @@ export const FOOTER_LANDMARK_PROJECTS = [
   { id: "p-3", title: "Luxury 2BHK Homes", path: "/projects#phases" },
 ];
 
-export const FOOTER_LEGAL_LINKS = [
-  { id: "l-1", title: "Privacy Policy", path: "/privacy" },
-  { id: "l-2", title: "Terms of Service", path: "/terms" },
-];

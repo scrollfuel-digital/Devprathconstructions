@@ -100,11 +100,13 @@ export default function Contact() {
                 <p className="font-body text-xs sm:text-sm text-[#6D675E] font-light leading-relaxed mb-6">
                   For urgent site visits, checking documents, or asking for project details, you can reach our partners directly on WhatsApp.
                 </p>
-                <CTAButton
+                <div className="pt-5">
+                  <CTAButton
                   href={CONTACT_CHANNELS.whatsappUrl}
                   label="CHAT ON WHATSAPP"
                   className="!w-full !h-11 text-xs"
                 />
+                </div>
               </div>
 
               <div className="border border-[#B9935A]/25 bg-[#F2EDE4]/60 p-6 sm:p-8">
@@ -115,7 +117,7 @@ export default function Contact() {
                    Follow Devprath Constructions on social media for regular construction updates.
                 </p>
                 <SocialConnectBar
-                  containerClassName="flex items-center justify-between w-full pt-1"
+                  containerClassName="flex items-center justify-between w-full pt-5"
                   iconSizeClass="w-5 h-5"
                 />
               </div>

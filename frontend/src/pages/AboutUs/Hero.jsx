@@ -25,7 +25,7 @@ export default function Hero() {
             />
 
             {/* Subtle low-opacity overlay over video */}
-            <div className="absolute inset-0 bg-black/25 pointer-events-none z-[1]" />
+            <div className="absolute inset-0 bg-black/20 pointer-events-none z-[1]" />
 
             <img
                 src={heroTextImg}

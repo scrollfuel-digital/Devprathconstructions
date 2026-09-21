@@ -3,7 +3,7 @@ import regaQr from "../../../assets/logo/qr.png"
 
 function Rera() {
     return (
-        <section className="bg-white py-12 font-sans sm:py-16 lg:py-20">
+        <section className="bg-[#F2EDE4] border-t border-[#B9935A]/20 relative py-12 font-sans sm:py-16 lg:py-20">
 
             {/* =========================================================
           MAIN RERA INFORMATION
@@ -172,29 +172,30 @@ function Rera() {
         ======================================================= */}
                 <div
                     className="
-            flex
-            w-full
-            items-center
-            lg:w-1/2
-            lg:pl-10
-            sm:pb-0
-            pb-10
-          "
+      flex
+      w-full
+      items-center
+      lg:w-1/2
+      lg:pl-10
+      sm:pb-0
+      pb-10
+    "
                 >
                     <ul
                         className="
-              w-full
-              space-y-3
-              text-[14px]
-              leading-6
-              text-[#333]
-              sm:text-[15px]
-              sm:leading-7
-              lg:text-[15px]
-            "
+          w-full
+          space-y-3
+          text-[15px]
+          leading-6
+          font-semibold
+          text-[#333]
+          sm:text-[16px]
+          sm:leading-7
+          lg:text-[16px]
+        "
                     >
                         <li className="flex items-start gap-3">
-                            <span className="mt-1 shrink-0 text-brand-primary">
+                            <span className="mt-0 shrink-0 text-brand-primary">
                                 •
                             </span>
 
@@ -204,7 +205,7 @@ function Rera() {
                         </li>
 
                         <li className="flex items-start gap-3">
-                            <span className="mt-1 shrink-0 text-brand-primary">
+                            <span className="mt-0 shrink-0 text-brand-primary">
                                 •
                             </span>
 
@@ -214,7 +215,6 @@ function Rera() {
                         </li>
                     </ul>
                 </div>
-
             </div>
 
             {/* =========================================================
@@ -245,7 +245,7 @@ function Rera() {
             lg:leading-7
           "
                 >
-                    <span className="font-bold text-[#555]">
+                    <span className="font-bold text-[#555] text-justify">
                         Disclaimer:
                     </span>{" "}
                     This content is for informational purposes only and does not

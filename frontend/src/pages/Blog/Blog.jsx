@@ -22,10 +22,6 @@ export default function Blog() {
       {/* Hero & Header Section */}
       <section className="pt-36 sm:pt-44 pb-14 sm:pb-20 border-b border-[#B9935A]/20 bg-[#FAF7F2]">
         <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
-          <span className="arch-eyebrow mb-4 sm:mb-5">
-            Journal &amp; Perspectives
-          </span>
-
           <h1 className="text-4xl sm:text-6xl lg:text-7xl tracking-tight leading-[1.08] mb-6 sm:mb-8">
             Insights &amp; <span className="font-bold text-brand-primary">Inspirations.</span>
           </h1>
