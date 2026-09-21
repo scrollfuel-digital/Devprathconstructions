@@ -1,5 +1,5 @@
 import React from "react";
-import projectHeroVideo from "../../../assets/videos/project_hero.mp4";
+import projectHeroVideo from "../../../assets/videos/Reception_Devprath.mp4";
 
 const HeroSection = () => {
   return (
