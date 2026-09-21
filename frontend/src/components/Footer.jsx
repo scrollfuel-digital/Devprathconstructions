@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { MapPin, Clock, Phone, Mail } from "lucide-react";
 import logo from "../assets/logo/logo.png";
 import SocialConnectBar from "./SocialConnectBar";
-import { FOOTER_QUICK_LINKS, FOOTER_LEGAL_LINKS } from "../constants/navigationData";
+import { FOOTER_QUICK_LINKS } from "../constants/navigationData";
 
 const OFFICE = {
   address:
@@ -114,23 +114,11 @@ export const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-medium text-[#554F47] tracking-wide text-center sm:text-left">
-          <p className="order-2 sm:order-1 text-[11px] sm:text-xs">
+        <div className="pt-4 flex items-center justify-center text-xs font-medium text-[#554F47] tracking-wide text-center">
+          <p className="text-[11px] sm:text-xs">
             © {new Date().getFullYear()} DEVPRATH CONSTRUCTIONS LLP. ALL RIGHTS RESERVED.
           </p>
-          <div className="order-1 sm:order-2 flex flex-wrap items-center justify-center sm:justify-end gap-4 sm:gap-6 uppercase tracking-wider text-[11px]">
-            {FOOTER_LEGAL_LINKS.map((legal) => (
-              <Link
-                key={legal.id}
-                to={legal.path}
-                className="text-[#554F47] hover:text-[#B9935A] transition-colors duration-200 whitespace-nowrap"
-              >
-                {legal.title}
-              </Link>
-            ))}
-          </div>
         </div>
-
       </div>
     </footer>
   );

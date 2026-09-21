@@ -45,7 +45,7 @@ export default function Project() {
         headingLead="Plan Your Visit to"
         headingAccent="Mangalmurti Residency."
         headingBreak
-        description="Visit the site to explore available 2 & 3 BHK residences, review floor layouts in detail, and experience the construction quality firsthand. Our team is here to assist you."
+        description="Visit the site to explore 2 & 3 BHK residences, review floor layouts in detail, and experience the construction quality firsthand. Our team is here to assist you."
         buttons={[
           { to: "/contact", label: "BOOK A SITE VISIT" },
           { to: "/contact#location", label: "VISIT NAGPUR OFFICE" },
