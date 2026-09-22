@@ -41,12 +41,12 @@ public class AuthController {
                                                   HttpServletRequest httpRequest,
                                                   HttpServletResponse httpResponse) {
 
-//        String clientIp = turnstileValidationService.getClientIpAddress(httpRequest);
-//        boolean isHuman = turnstileValidationService.validateTurnstileResponse(request.getTurnstileToken());
-//
-//        if(!isHuman){
-//            throw new CaptchaException("Invalid captcha token");
-//        }
+        String clientIp = turnstileValidationService.getClientIpAddress(httpRequest);
+        boolean isHuman = turnstileValidationService.validateTurnstileResponse(request.getTurnstileToken());
+
+        if(!isHuman){
+            throw new CaptchaException("Invalid captcha token");
+        }
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
