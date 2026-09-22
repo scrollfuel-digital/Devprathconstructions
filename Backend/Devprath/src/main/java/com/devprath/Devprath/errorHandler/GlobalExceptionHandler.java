@@ -152,7 +152,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponseDto> handleException(Exception ex) {
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(new ErrorResponseDto(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Something went wrong"));
+                .body(new ErrorResponseDto(HttpStatus.INTERNAL_SERVER_ERROR.value(), ex.getMessage()));
     }
 
 }

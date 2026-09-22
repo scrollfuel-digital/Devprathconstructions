@@ -2,6 +2,7 @@ package com.devprath.Devprath.controller;
 
 import com.devprath.Devprath.dtos.BlogRequestDto;
 import com.devprath.Devprath.dtos.BlogResponseDto;
+import com.devprath.Devprath.dtos.PageResponse;
 import com.devprath.Devprath.service.BlogService;
 import jakarta.validation.Valid;
 import org.springframework.http.MediaType;
@@ -24,9 +25,18 @@ public class BlogController {
     }
 
     @GetMapping("/fetch-all-blogs")
-    public ResponseEntity<List<BlogResponseDto>> getAllBlogs(){
+    public ResponseEntity<PageResponse<BlogResponseDto>> getAllBlogs(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size) {
+
+        if (page < 0) {
+            page = 0;
+        }
+
+        size = Math.min(Math.max(size, 5), 10);
+
         return ResponseEntity.ok(
-                blogService.getAllBlogs()
+                blogService.getAllBlogs(page, size)
         );
     }
 
