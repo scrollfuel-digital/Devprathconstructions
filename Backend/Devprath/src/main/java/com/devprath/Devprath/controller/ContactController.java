@@ -4,7 +4,10 @@ import com.devprath.Devprath.dtos.ContactCreateResponseDto;
 import com.devprath.Devprath.dtos.ContactRequestDto;
 import com.devprath.Devprath.dtos.ContactResponseDto;
 import com.devprath.Devprath.dtos.PageResponse;
+import com.devprath.Devprath.errorHandler.CaptchaException;
 import com.devprath.Devprath.service.ContactService;
+import com.digitalsanctuary.cf.turnstile.service.TurnstileValidationService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,13 +20,30 @@ import java.util.UUID;
 public class ContactController {
 
     private final ContactService contactService;
+    private final TurnstileValidationService turnstileValidationService;
 
-    public ContactController(ContactService contactService) {
+    public ContactController(ContactService contactService, TurnstileValidationService turnstileValidationService) {
         this.contactService = contactService;
+        this.turnstileValidationService = turnstileValidationService;
     }
 
     @PostMapping("/create-contact")
-    public ResponseEntity<ContactCreateResponseDto> addContact(@Valid @RequestBody ContactRequestDto contactRequestDto){
+    public ResponseEntity<ContactCreateResponseDto> addContact(
+            @Valid @RequestBody ContactRequestDto contactRequestDto,
+            HttpServletRequest request){
+
+        String clientIp = turnstileValidationService
+                .getClientIpAddress(request);
+
+        boolean isHuman = turnstileValidationService
+                .validateTurnstileResponse(
+                        contactRequestDto.getTurnstileToken(),
+                        clientIp);
+
+        if(!isHuman){
+            throw new CaptchaException("Invalid captcha token!");
+        }
+
         ContactCreateResponseDto responseDto = contactService.addContact(contactRequestDto);
         return new ResponseEntity<>(responseDto, HttpStatus.CREATED);
     }

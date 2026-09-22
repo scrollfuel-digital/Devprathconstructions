@@ -23,6 +23,17 @@ public class ContactRequestDto {
     @Size(max = 500, message = "Message must not exceed 500 characters")
     private String message;
 
+    @NotBlank(message = "Captcha verification token is missing")
+    private String turnstileToken;
+
+    public String getTurnstileToken() {
+        return turnstileToken;
+    }
+
+    public void setTurnstileToken(String turnstileToken) {
+        this.turnstileToken = turnstileToken;
+    }
+
     public String getName() {
         return name;
     }
