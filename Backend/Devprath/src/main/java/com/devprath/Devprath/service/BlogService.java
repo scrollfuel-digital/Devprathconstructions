@@ -3,14 +3,9 @@ package com.devprath.Devprath.service;
 import com.devprath.Devprath.dtos.BlogRequestDto;
 import com.devprath.Devprath.dtos.BlogResponseDto;
 import com.devprath.Devprath.dtos.CloudinaryUploadResponse;
-import com.devprath.Devprath.dtos.PageResponse;
 import com.devprath.Devprath.entity.Blog;
 import com.devprath.Devprath.errorHandler.BlogNotFoundException;
 import com.devprath.Devprath.repository.BlogRepository;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -37,20 +32,10 @@ public class BlogService {
         return toBlogResponseDto(blog);
     }
 
-    public PageResponse<BlogResponseDto> getAllBlogs(int page, int size) {
-
-        Pageable pageable = PageRequest.of(
-                page,
-                size,
-                Sort.by(Sort.Direction.DESC, "id")
-        );
-
-        Page<Blog> blogs = blogRepository.findAll(pageable);
-
-        Page<BlogResponseDto>blogResponseDtoPage = blogs
-                .map(this::toBlogResponseDto);
-
-        return PageResponse.from(blogResponseDtoPage);
+    public List<BlogResponseDto> getAllBlogs() {
+        List<Blog> allBlogs = blogRepository.findAll();
+        return allBlogs.stream()
+                .map(this::toBlogResponseDto).toList();
     }
 
     @Transactional

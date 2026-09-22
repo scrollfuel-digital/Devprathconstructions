@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.support.MissingServletRequestPartException;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -147,6 +148,20 @@ public class GlobalExceptionHandler {
                         )
                 );
     }
+    //  handle captcha exception
+
+    @ExceptionHandler(CaptchaException.class)
+    public ResponseEntity<ErrorResponseDto> handleCaptchaException(CaptchaException ex){
+        ErrorResponseDto dto = new ErrorResponseDto(
+                HttpStatus.BAD_REQUEST.value(),
+                ex.getMessage()
+        );
+
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(dto);
+    }
+
 // any exception occure
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponseDto> handleException(Exception ex) {

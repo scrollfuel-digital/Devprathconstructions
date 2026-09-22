@@ -13,7 +13,7 @@ public class BlogRequestDto {
     @Size(max = 300, message = "Title cannot exceed 300 characters")
     private String title;
 
-    @Size(max = 50, message = "Slug should not exceed 50 characters")
+    @Size(max = 100, message = "Slug should not exceed 100 characters")
     private String slug;
 
     @NotBlank(message = "Content is required")

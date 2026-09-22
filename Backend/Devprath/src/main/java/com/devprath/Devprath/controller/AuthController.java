@@ -2,6 +2,8 @@ package com.devprath.Devprath.controller;
 
 import com.devprath.Devprath.dtos.LoginRequestDto;
 import com.devprath.Devprath.dtos.LoginResponseDto;
+import com.devprath.Devprath.errorHandler.CaptchaException;
+import com.digitalsanctuary.cf.turnstile.service.TurnstileValidationService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.ResponseEntity;
@@ -25,17 +27,26 @@ public class AuthController {
     private final SecurityContextRepository securityContextRepository;
     private final SecurityContextHolderStrategy securityContextHolderStrategy =
             SecurityContextHolder.getContextHolderStrategy();
+    private final TurnstileValidationService turnstileValidationService;
 
     public AuthController(AuthenticationManager authenticationManager,
-                          SecurityContextRepository securityContextRepository) {
+                          SecurityContextRepository securityContextRepository, TurnstileValidationService turnstileValidationService) {
         this.authenticationManager = authenticationManager;
         this.securityContextRepository = securityContextRepository;
+        this.turnstileValidationService = turnstileValidationService;
     }
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponseDto> login(@RequestBody LoginRequestDto request,
                                                   HttpServletRequest httpRequest,
                                                   HttpServletResponse httpResponse) {
+
+//        String clientIp = turnstileValidationService.getClientIpAddress(httpRequest);
+//        boolean isHuman = turnstileValidationService.validateTurnstileResponse(request.getTurnstileToken());
+//
+//        if(!isHuman){
+//            throw new CaptchaException("Invalid captcha token");
+//        }
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
