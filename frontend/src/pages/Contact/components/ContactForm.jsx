@@ -11,8 +11,8 @@ import {
 import axios from "axios";
 
 const API_URL =
-  // "https://devprathconstructions.onrender.com/api/contact/create-contact";
-  "https://devprath-native.onrender.com/api/contact/create-contact";
+  "https://devprath-backend-latest.onrender.com/api/contact/create-contact";
+  // "https://devprath-native.onrender.com/api/contact/create-contact";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
