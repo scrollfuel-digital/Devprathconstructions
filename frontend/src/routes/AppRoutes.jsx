@@ -8,6 +8,7 @@ import BlogDetail from "../pages/Blog/BlogDetail";
 import Contact from "../pages/Contact/Contact";
 import Project from "../pages/Project/Project";
 import CompletedProjects from "../pages/CompletedProjects/CompletedProjects";
+import AdminPortal from "../pages/Admin/AdminPortal";
 import { getBlogBySlug } from "../constants/blogData";
 
 function RootSlugResolver() {
@@ -44,6 +45,13 @@ const AppRoutes = () => {
       <Route path="/blog" element={<Blog />} />
       <Route path="/blog/:slug" element={<BlogDetail />} />
       <Route path="/contact" element={<Contact />} />
+
+      {/* Admin Portal Routes */}
+      <Route path="/resource/admin" element={<AdminPortal />} />
+      <Route path="/admin" element={<Navigate to="/resource/admin" replace />} />
+      <Route path="/admin/dashboard" element={<Navigate to="/resource/admin?tab=dashboard" replace />} />
+      <Route path="/admin/blogs" element={<Navigate to="/resource/admin?tab=blogs" replace />} />
+      <Route path="/admin/contacts" element={<Navigate to="/resource/admin?tab=contacts" replace />} />
 
       {/* Dynamic route matching blog titles at root level */}
       <Route path="/:slug" element={<RootSlugResolver />} />

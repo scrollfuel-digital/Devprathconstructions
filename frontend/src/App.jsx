@@ -24,6 +24,20 @@ function ScrollToTop({ lenisRef }) {
   return null;
 }
 
+function AppLayout({ lenisRef }) {
+  const { pathname } = useLocation();
+  const isAdminRoute = pathname.startsWith('/resource/admin') || pathname.startsWith('/admin');
+
+  return (
+    <>
+      <ScrollToTop lenisRef={lenisRef} />
+      {!isAdminRoute && <Navbar />}
+      <AppRoutes />
+      {!isAdminRoute && <Footer />}
+    </>
+  );
+}
+
 /**
  * Main App Component
  * Initializes Lenis smooth scrolling engine and renders pages via React Router.
@@ -42,6 +56,7 @@ export function App() {
       wheelMultiplier: 1,
       smoothTouch: false,
       touchMultiplier: 2,
+      prevent: (node) => !!node?.closest?.('[data-lenis-prevent]'),
     });
 
     lenisRef.current = lenis;
@@ -63,10 +78,7 @@ export function App() {
 
   return (
     <BrowserRouter>
-      <ScrollToTop lenisRef={lenisRef} />
-      <Navbar />
-      <AppRoutes />
-      <Footer />
+      <AppLayout lenisRef={lenisRef} />
     </BrowserRouter>
   );
 }
