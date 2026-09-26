@@ -9,17 +9,17 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import axios from "axios";
+import { Turnstile } from "@marsidev/react-turnstile";
 
 const API_URL =
-  // "https://devprathconstructions.onrender.com/api/contact/create-contact";
-  "https://devprath-native.onrender.com/api/contact/create-contact";
-
+  "https://devprath-backend-latest.onrender.com/api/contact/create-contact";
 export default function ContactForm() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     message: "",
+    turnstileToken: "",
   });
 
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -47,6 +47,12 @@ export default function ContactForm() {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
+    // Make sure Turnstile has generated a token
+    if (!formData.turnstileToken) {
+      setErrorMessage("Please complete the security verification.");
+      return;
+    }
+
     setLoading(true);
     setErrorMessage("");
     setFieldErrors({});
@@ -57,6 +63,7 @@ export default function ContactForm() {
         email: formData.email,
         phoneNo: formData.phone,
         message: formData.message,
+        turnstileToken: formData.turnstileToken,
       });
 
       if (response.status === 201) {
@@ -67,6 +74,7 @@ export default function ContactForm() {
           email: "",
           phone: "",
           message: "",
+          turnstileToken: "",
         });
 
         setTimeout(() => {
@@ -268,6 +276,35 @@ export default function ContactForm() {
                   </p>
                 )}
               </div>
+
+              {/* Cloudflare Turnstile */}
+              <Turnstile
+                siteKey="0x4AAAAAAE32Pw9QivldjMWo"
+                options={{
+                  theme: "light",
+                }}
+                onSuccess={(token) => {
+                  setFormData((prev) => ({
+                    ...prev,
+                    turnstileToken: token,
+                  }));
+                  setErrorMessage("");
+                }}
+                onError={() => {
+                  setFormData((prev) => ({
+                    ...prev,
+                    turnstileToken: "",
+                  }));
+                  setErrorMessage("Security verification failed. Please try again.");
+                }}
+                onExpire={() => {
+                  setFormData((prev) => ({
+                    ...prev,
+                    turnstileToken: "",
+                  }));
+                  setErrorMessage("Security verification expired. Please verify again.");
+                }}
+              />
 
               {/* General Error */}
               {errorMessage && (

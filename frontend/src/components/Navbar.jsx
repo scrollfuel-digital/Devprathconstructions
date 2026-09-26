@@ -29,12 +29,12 @@ export default function Navbar() {
 
   return (
     <header className="fixed top-0 left-0 z-[9999] w-full border-b border-gold/20 bg-cream/95 backdrop-blur-md">
-      <div className="mx-auto flex h-20 w-full max-w-[1400px] items-center justify-between px-5 sm:px-8 lg:px-12 xl:px-16">
+      <div className="mx-auto flex h-16 sm:h-18 w-full max-w-[1400px] items-center justify-between px-5 sm:px-8 lg:px-12 xl:px-16">
         <Link to="/" className="flex shrink-0 items-center">
           <img
             src={logo}
             alt="Devprath Constructions LLP"
-            className="h-16 w-auto object-contain sm:h-[68px] lg:h-[72px]"
+            className="h-18 sm:h-20 lg:h-22 w-auto object-contain shrink-0 -my-2 sm:-my-3"
           />
         </Link>
 

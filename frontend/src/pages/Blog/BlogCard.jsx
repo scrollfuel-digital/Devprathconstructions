@@ -29,9 +29,11 @@ export default function BlogCard({ post, index = 0, variant = "editorial" }) {
                 loading="lazy"
               />
             </Link>
-            <span className="absolute top-3 left-3 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] bg-[#FAF7F2]/95 text-[#8F6E3B] border border-[#B9935A]/30 z-10">
-              {post.category}
-            </span>
+            {post.category && (
+              <span className="absolute top-3 left-3 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] bg-[#FAF7F2]/95 text-[#8F6E3B] border border-[#B9935A]/30 z-10">
+                {post.category}
+              </span>
+            )}
           </div>
 
           <div className="p-5 pb-3">
@@ -41,12 +43,12 @@ export default function BlogCard({ post, index = 0, variant = "editorial" }) {
               {post.author && <span>{post.author}</span>}
             </div>
 
-            <h3 className="text-xl sm:text-2xl leading-snug group-hover:text-[#8F6E3B] transition-colors duration-300 line-clamp-2 mb-4">
+            <h3 className="text-base sm:text-lg font-serif font-medium leading-snug group-hover:text-[#8F6E3B] transition-colors duration-300 line-clamp-2 mb-3">
               <Link to={`/blog/${post.slug}`}>{post.title}</Link>
             </h3>
 
             <div className="bg-[#F2EDE4] border border-[#B9935A]/30 border-l-2 border-l-[#B9935A] p-3.5 mb-4">
-              <p className="font-body text-xs text-[#1F1E1C]/85 font-light leading-relaxed line-clamp-3">
+              <p className="font-body text-xs text-[#1F1E1C]/85 font-light leading-relaxed line-clamp-3 text-justify">
                 {post.excerpt}
               </p>
             </div>
@@ -89,26 +91,30 @@ export default function BlogCard({ post, index = 0, variant = "editorial" }) {
         className="mb-5 sm:mb-6"
       >
         <div className="flex items-center gap-3 mb-2.5">
-          <span className="font-body text-[11px] sm:text-xs font-semibold uppercase tracking-[0.25em] text-[#B9935A]">
-            {post.category}
-          </span>
+          {post.category && (
+            <>
+              <span className="font-body text-[11px] sm:text-xs font-semibold uppercase tracking-[0.25em] text-[#B9935A]">
+                {post.category}
+              </span>
+              {(post.date || post.author) && (
+                <span className="text-[#B9935A]/40 select-none">&bull;</span>
+              )}
+            </>
+          )}
           {post.date && (
             <>
-              <span className="text-[#B9935A]/40 select-none">&bull;</span>
               <span className="font-body text-xs text-[#6D675E] tracking-wider uppercase">{post.date}</span>
+              {post.author && <span className="text-[#B9935A]/40 select-none">&bull;</span>}
             </>
           )}
           {post.author && (
-            <>
-              <span className="text-[#B9935A]/40 select-none">&bull;</span>
-              <span className="font-body text-xs text-[#6D675E] tracking-wider">{post.author}</span>
-            </>
+            <span className="font-body text-xs text-[#6D675E] tracking-wider">{post.author}</span>
           )}
         </div>
 
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl tracking-tight leading-snug transition-colors duration-300 hover:text-[#8F6E3B]">
+        <h3 className="text-lg sm:text-xl lg:text-2xl font-serif font-medium tracking-tight leading-snug transition-colors duration-300 hover:text-[#8F6E3B]">
           <Link to={`/blog/${post.slug}`}>{post.title}</Link>
-        </h2>
+        </h3>
       </motion.div>
 
       <div className="relative">
@@ -143,7 +149,7 @@ export default function BlogCard({ post, index = 0, variant = "editorial" }) {
             p-5 sm:p-7 lg:p-8 shadow-lg
           `}
         >
-          <p className="font-body text-xs sm:text-sm text-[#1F1E1C]/85 font-light leading-relaxed mb-5">
+          <p className="font-body text-xs sm:text-sm text-[#1F1E1C]/85 font-light leading-relaxed mb-5 line-clamp-3 text-justify">
             {post.excerpt}
           </p>
 
