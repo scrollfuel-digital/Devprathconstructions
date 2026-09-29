@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Search, RefreshCw, Clock, ArrowUpDown, ChevronLeft, ChevronRight, Inbox } from 'lucide-react';
-import { fetchAllContacts, fetchContactById, updateContactViewed, updateCachedContactViewed } from '../../utils/adminApi';
+import { fetchAllContacts, updateContactViewed, updateCachedContactViewed } from '../../utils/adminApi';
 import AdminContactItem from './components/AdminContactItem';
 import ContactDetailModal from './components/ContactDetailModal';
 

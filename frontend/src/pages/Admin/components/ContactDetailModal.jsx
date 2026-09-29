@@ -1,7 +1,7 @@
 import React from 'react';
 import { X, Clock } from 'lucide-react';
 
-export default function ContactDetailModal({ contact, onClose, onToggleViewed, onNavigateToContacts }) {
+export default function ContactDetailModal({ contact, onClose, onNavigateToContacts }) {
   if (!contact) return null;
 
   return (
