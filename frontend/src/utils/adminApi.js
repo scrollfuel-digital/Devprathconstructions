@@ -1,3 +1,10 @@
+import {
+  getStoredBlogs,
+  setStoredBlogs,
+  upsertStoredBlog,
+  deleteStoredBlog,
+} from '../constants/blogData';
+
 /**
  * Centralized Admin API Client
  * Configured with global backend URL and session preservation.
@@ -88,23 +95,18 @@ export const logoutAdmin = async () => {
 
 export const checkAdminSession = async () => ({ isAuthenticated: getAdminAuthStatus() });
 
-// Session Storage Caching Helpers
-const getCache = (k) => { try { const v = sessionStorage.getItem(k); return v ? JSON.parse(v) : null; } catch { return null; } };
-const setCache = (k, v) => { try { sessionStorage.setItem(k, JSON.stringify(v)); } catch {} };
-const delCache = (prefix) => { try { Object.keys(sessionStorage).forEach((k) => k.startsWith(prefix) && sessionStorage.removeItem(k)); } catch {} };
+// In-Memory Contact Caching (replacing legacy sessionStorage)
+const contactCache = new Map();
 
-export const clearBlogsCache = () => delCache('devprath_blogs');
-export const clearContactsCache = () => delCache('devprath_contacts');
+export const clearBlogsCache = () => setStoredBlogs([]);
+export const clearContactsCache = () => contactCache.clear();
 
 export const updateCachedContactViewed = (id, viewed = true) => {
   try {
-    Object.keys(sessionStorage).forEach((k) => {
-      if (!k.startsWith('devprath_contacts')) return;
-      const data = getCache(k);
+    contactCache.forEach((data) => {
       const list = Array.isArray(data) ? data : data?.content;
       if (Array.isArray(list)) {
         list.forEach((c) => { if (c.referenceId === id) c.viewed = viewed; });
-        setCache(k, data);
       }
     });
   } catch {}
@@ -114,25 +116,26 @@ export const updateCachedContactViewed = (id, viewed = true) => {
 export const fetchAllContacts = async ({ page = 0, size = 10, sortBy = 'isViewed', ascending = true, force = false } = {}) => {
   const k = `devprath_contacts_p${page}_s${size}_${sortBy}_${ascending}`;
   if (!force) {
-    const cached = getCache(k);
+    const cached = contactCache.get(k);
     if (cached) return { ok: true, status: 200, data: cached, error: null };
   }
   const res = await adminFetch(`/api/contact/get-all?page=${page}&size=${size}&sortBy=${sortBy}&ascending=${ascending}`);
-  if (res.ok && res.data) setCache(k, res.data);
+  if (res.ok && res.data) contactCache.set(k, res.data);
   return res;
 };
 
 export const fetchContactById = (id) => adminFetch(`/api/contact/get-by-id/${encodeURIComponent(id)}`);
 export const updateContactViewed = (id) => adminFetch(`/api/contact/view-update/${encodeURIComponent(id)}`, { method: 'PATCH' });
 
-// Blog APIs
+// Blog APIs - Unified with localStorage devprath_blogs
 export const fetchAllBlogs = async (force = false) => {
-  if (!force) {
-    const cached = getCache('devprath_blogs');
-    if (cached) return { ok: true, status: 200, data: cached, error: null };
+  const cached = getStoredBlogs();
+  if (!force && cached.length) {
+    adminFetch('/api/blogs/fetch-all-blogs').then((r) => r.ok && r.data && setStoredBlogs(r.data)).catch(() => {});
+    return { ok: true, status: 200, data: cached, error: null };
   }
   const res = await adminFetch('/api/blogs/fetch-all-blogs');
-  if (res.ok && res.data) setCache('devprath_blogs', res.data);
+  if (res.ok && res.data) setStoredBlogs(res.data);
   return res;
 };
 
@@ -140,18 +143,18 @@ export const fetchBlogById = (id) => adminFetch(`/api/blogs/fetch-blog/${encodeU
 
 export const createBlog = async (body) => {
   const res = await adminFetch('/api/blogs/create-blog', { method: 'POST', body });
-  if (res.ok) clearBlogsCache();
+  if (res.ok && res.data) upsertStoredBlog(res.data);
   return res;
 };
 
 export const updateBlog = async (id, body) => {
   const res = await adminFetch(`/api/blogs/update-blog/${encodeURIComponent(id)}`, { method: 'PATCH', body });
-  if (res.ok) clearBlogsCache();
+  if (res.ok && res.data) upsertStoredBlog(res.data);
   return res;
 };
 
 export const deleteBlog = async (id) => {
   const res = await adminFetch(`/api/blogs/remove-blog/${encodeURIComponent(id)}`, { method: 'DELETE' });
-  if (res.ok) clearBlogsCache();
+  if (res.ok) deleteStoredBlog(id);
   return res;
 };

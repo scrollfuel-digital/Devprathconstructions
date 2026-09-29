@@ -18,7 +18,7 @@ export default function BlogDetail() {
       setBlog(current);
       setLoading(false);
     } else {
-      fetchAllBlogs().then(() => {
+      fetchAllBlogs(true).then(() => {
         setBlog(getBlogBySlug(slug));
         setLoading(false);
       });
