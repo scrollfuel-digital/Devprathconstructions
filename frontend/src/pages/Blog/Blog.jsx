@@ -63,18 +63,18 @@ export default function Blog() {
   return (
     <div className="bg-[#FAF7F2] text-[#1F1E1C] font-body min-h-screen overflow-x-hidden">
       {/* Hero & Header Section */}
-      <section className="pt-36 sm:pt-44 pb-14 sm:pb-20 border-b border-[#B9935A]/20 bg-[#FAF7F2]">
+      <section className="pt-28 sm:pt-36 pb-5 sm:pb-6 border-b border-[#B9935A]/20 bg-[#FAF7F2]">
         <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl tracking-tight leading-[1.08] mb-6 sm:mb-8">
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl tracking-tight leading-[1.08] mb-3 sm:mb-4">
             Insights &amp; <span className="font-bold text-brand-primary">Inspirations.</span>
           </h1>
 
-          <p className="text-base sm:text-lg text-muted font-light max-w-3xl leading-relaxed mb-10 sm:mb-12">
+          <p className="text-base sm:text-lg text-muted font-light max-w-3xl leading-relaxed mb-5 sm:mb-6">
             Expert guidance on real estate trends, infrastructure developments, market comparisons, and RERA compliance &mdash; curated by the Devprath Constructions team.
           </p>
 
           {/* Search & Articles Count */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-6 border-t border-[#B9935A]/20">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 border-t border-[#B9935A]/20">
             <p className="text-xs uppercase tracking-[0.2em] text-[#8F6E3B] font-semibold">
               All Articles ({totalCount})
             </p>
@@ -94,7 +94,7 @@ export default function Blog() {
       </section>
 
       {/* Blog Post Entries */}
-      <section ref={articlesTopRef} className="py-12 sm:py-16 lg:py-20 bg-[#FAF7F2]">
+      <section ref={articlesTopRef} className="pt-8 sm:pt-10 pb-16 sm:pb-20 bg-[#FAF7F2]">
         <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
           {currentPosts.length > 0 ? (
             <>

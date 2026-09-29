@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import HeroSection from "./sections/HeroSection";
 import FeaturedProjectSection from "./sections/FeaturedResidenceSection";
 import HubOfExcellence from "../../components/HubOfExcellence";
@@ -21,13 +21,10 @@ import FinalCtaSection from "./sections/FinalCtaSection";
  * 6. LOCATION & CONNECTIVITY — Editorial numbered schedule with Leaflet map
  * 7. LEGACY ACROSS NAGPUR — Proven track record teaser of 4 landmark projects
  * 8. FINAL CTA — Dark charcoal architectural closing ("Enquire Now")
- * 9. MODALS — Interactive ConsultationModal
  * =============================================================================
  */
 
 export const Home = () => {
-  const [isConsultationOpen, setIsConsultationOpen] = useState(false);
-
   return (
     <div className="bg-[#FAF7F2] text-[#1F1E1C] font-body antialiased min-h-screen selection:bg-[#B9935A] selection:text-white">
       <main className="relative">

@@ -1,13 +1,4 @@
-// Completed Projects Data with local asset imports
-import vakratundImg from '../assets/Project/Vakratund-Heights.jpg';
-import vignahartaImg from '../assets/Project/Vignaharta-Enclave.png';
-import manomayImg from '../assets/Project/Manomay-Plaza.png';
-import shreyasImg from '../assets/Project/Shreyas-Apartment.jpg';
-import kirtiKalyaniImg from '../assets/Project/Kirti-Kalyani-Apartment.png';
-import avneeshImg from '../assets/Project/Avneesh-Apartment.jpg';
-import gaurisutImg from '../assets/Project/Gaurisut-Apartment.png';
-import mangalImg from '../assets/Project/mangalmurti.png';
-import riddhiSiddhiImg from '../assets/Project/Riddhi-Siddhi-Heights.png';
+// Completed Projects Data
 
 export const COMPLETED_PROJECTS = [
   {

@@ -2,7 +2,7 @@ import React from "react";
 import CTAButton from "../../../components/common/CTAButton";
 import ScrollReveal from "../../../components/common/ScrollReveal";
 
-export const FinalCtaSection = ({ onBookConsultation }) => {
+export const FinalCtaSection = () => {
   return (
     <section className="relative overflow-hidden border-t border-brand-primary/25 bg-cream py-10 text-black sm:py-28 lg:py-36">
       <div className="pointer-events-none absolute left-1/2 top-1/2 h-[220px] w-[360px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-primary/5 blur-3xl sm:h-[300px] sm:w-[500px] lg:h-[350px] lg:w-[600px]" />
