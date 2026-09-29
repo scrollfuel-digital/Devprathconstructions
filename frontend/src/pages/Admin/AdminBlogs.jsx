@@ -1,19 +1,21 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Search, RefreshCw, Plus, Newspaper, AlertTriangle } from 'lucide-react';
-import { fetchAllBlogs, deleteBlog, clearBlogsCache } from '../../utils/adminApi';
+import { fetchAllBlogs, deleteBlog } from '../../utils/adminApi';
+import { getStoredBlogs, upsertStoredBlog, deleteStoredBlog, chunkBlogsIntoPages } from '../../constants/blogData';
 import BlogEditorModal from './BlogEditorModal';
 import AdminBlogItem from './components/AdminBlogItem';
 
 export default function AdminBlogs({ defaultCreate = false }) {
-  const [blogs, setBlogs] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [blogs, setBlogs] = useState(() => getStoredBlogs());
+  const [loading, setLoading] = useState(() => getStoredBlogs().length === 0);
   const [search, setSearch] = useState('');
+  const [currentPage, setCurrentPage] = useState(0);
   const [editingBlog, setEditingBlog] = useState(defaultCreate ? 'new' : null);
   const [deletingId, setDeletingId] = useState(null);
   const [deleteLoading, setDeleteLoading] = useState(false);
 
   const load = useCallback(async (force = false) => {
-    setLoading(true);
+    if (force) setLoading(true);
     const res = await fetchAllBlogs(force);
     setLoading(false);
     if (res.ok && res.data) {
@@ -29,7 +31,7 @@ export default function AdminBlogs({ defaultCreate = false }) {
     const res = await deleteBlog(deletingId);
     setDeleteLoading(false);
     if (res.ok) {
-      clearBlogsCache();
+      deleteStoredBlog(deletingId);
       setBlogs((prev) => prev.filter((b) => b.id !== deletingId));
       setDeletingId(null);
     } else {
@@ -38,7 +40,7 @@ export default function AdminBlogs({ defaultCreate = false }) {
   };
 
   const handleSaved = (savedBlog) => {
-    clearBlogsCache();
+    upsertStoredBlog(savedBlog);
     setBlogs((prev) => {
       const idx = prev.findIndex((b) => b.id === savedBlog.id);
       if (idx >= 0) {
@@ -50,6 +52,8 @@ export default function AdminBlogs({ defaultCreate = false }) {
     });
   };
 
+  useEffect(() => setCurrentPage(0), [search]);
+
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
     if (!q) return blogs;
@@ -57,6 +61,10 @@ export default function AdminBlogs({ defaultCreate = false }) {
       [b.title, b.slug, ...(b.keywords || [])].some((v) => (v || '').toLowerCase().includes(q))
     );
   }, [blogs, search]);
+
+  const pages = useMemo(() => chunkBlogsIntoPages(filtered, 5), [filtered]);
+  const totalPages = pages.length;
+  const currentBlogs = pages[currentPage] || [];
 
   return (
     <div className="space-y-4 font-sans text-sm">
@@ -140,17 +148,60 @@ export default function AdminBlogs({ defaultCreate = false }) {
             <p className="text-xs text-[#948C81] mt-1">Click "Create Article" to compose and publish your first blog.</p>
           </div>
         ) : (
-          <div className="p-3 sm:p-4 space-y-2">
-            {filtered.map((b) => (
-              <AdminBlogItem
-                key={b.id}
-                blog={b}
-                onEdit={setEditingBlog}
-                onDelete={setDeletingId}
-                isDeleting={deletingId === b.id}
-              />
-            ))}
-          </div>
+          <>
+            <div className="p-3 sm:p-4 space-y-2">
+              {currentBlogs.map((b) => (
+                <AdminBlogItem
+                  key={b.id}
+                  blog={b}
+                  onEdit={setEditingBlog}
+                  onDelete={setDeletingId}
+                  isDeleting={deletingId === b.id}
+                />
+              ))}
+            </div>
+
+            {/* Admin Pagination */}
+            {totalPages > 1 && (
+              <div className="p-3 sm:px-4 border-t border-[#E5E0D8] bg-[#FAF7F2] flex items-center justify-between gap-2">
+                <span className="text-xs text-[#6D675E] font-medium">
+                  Page {currentPage + 1} of {totalPages}
+                </span>
+                <div className="flex items-center gap-1.5">
+                  <button
+                    type="button"
+                    onClick={() => setCurrentPage((p) => Math.max(0, p - 1))}
+                    disabled={currentPage === 0}
+                    className="px-2.5 py-1 text-xs font-semibold rounded-md border border-[#E5E0D8] bg-white hover:bg-[#FAF7F2] text-[#1F1E1C] disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+                  >
+                    Prev
+                  </button>
+                  {pages.map((_, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      onClick={() => setCurrentPage(i)}
+                      className={`w-7 h-7 text-xs font-semibold rounded-md cursor-pointer transition-colors ${
+                        currentPage === i
+                          ? 'bg-[#B9935A] text-white'
+                          : 'border border-[#E5E0D8] bg-white hover:bg-[#FAF7F2] text-[#1F1E1C]'
+                      }`}
+                    >
+                      {i + 1}
+                    </button>
+                  ))}
+                  <button
+                    type="button"
+                    onClick={() => setCurrentPage((p) => Math.min(totalPages - 1, p + 1))}
+                    disabled={currentPage >= totalPages - 1}
+                    className="px-2.5 py-1 text-xs font-semibold rounded-md border border-[#E5E0D8] bg-white hover:bg-[#FAF7F2] text-[#1F1E1C] disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+                  >
+                    Next
+                  </button>
+                </div>
+              </div>
+            )}
+          </>
         )}
       </div>
 
