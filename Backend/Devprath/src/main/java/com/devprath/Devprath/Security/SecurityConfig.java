@@ -96,7 +96,7 @@ public class SecurityConfig {
                         .securityContextRepository(securityContextRepository())
                 )
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/contact/create-contact", "/api/auth/login","/api/blogs/fetch-all-blogs").permitAll()
+                        .requestMatchers("/api/contact/create-contact", "/api/auth/login","/api/blogs/fetch-all-blogs","/test.html").permitAll()
                         .requestMatchers("/api/auth/logout","/api/contact/**","/api/blogs/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
