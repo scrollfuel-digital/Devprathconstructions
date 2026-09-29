@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import Button from "./common/Button";
 import CTAButton from "./common/CTAButton";
-
+import ScrollReveal from "./common/ScrollReveal";
 // =============================================================================
 // STRICT DATA SOURCE OF TRUTH (AS REQUESTED)
 // =============================================================================
@@ -200,7 +199,8 @@ export const HubOfExcellence = () => {
         
         {/* Section Header */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16 sm:mb-20">
-          <div>
+          <ScrollReveal>
+            <div>
             <span className="arch-eyebrow mb-3">
               Connectivity
             </span>
@@ -208,13 +208,16 @@ export const HubOfExcellence = () => {
               Where Life <span className=" font-bold text-[#8F6E3B]">Connects</span>
             </h2>
           </div>
+          </ScrollReveal>
           <div className="text-left lg:text-right">
-            <span className="font-body text-xs sm:text-sm text-black font-semibold tracking-wider uppercase block">
+           <ScrollReveal>
+             <span className="font-body text-xs sm:text-sm text-black font-semibold tracking-wider uppercase block">
               Parsodi,Wardha Road,Nagpur
             </span>
             <span className="text-xs text-black/60 font-bold block mt-1">
               Adjacent to MIHAN SEZ &amp; Metro Corridor
             </span>
+           </ScrollReveal>
           </div>
         </div>
 
@@ -236,7 +239,8 @@ export const HubOfExcellence = () => {
                     } py-4 sm:py-5 flex items-center justify-between cursor-pointer`}
                   >
                     <div className="flex items-baseline gap-4 sm:gap-6 min-w-0 pr-4">
-                      <span className="connectivity-num font-display text-lg sm:text-2xl font-bold text-brand-primary shrink-0 transition-colors">
+                      <ScrollReveal>
+                        <span className="connectivity-num font-display text-lg sm:text-2xl font-bold text-brand-primary shrink-0 transition-colors">
                         {num}
                       </span>
                       <div className="min-w-0 truncate">
@@ -247,12 +251,15 @@ export const HubOfExcellence = () => {
                           {item.category}
                         </span>
                       </div>
+                      </ScrollReveal>
                     </div>
 
                     <div className="shrink-0 text-right">
+                      <ScrollReveal>
                       <span className="font-display text-base sm:text-lg font-bold tracking-wider text-brand-primary">
                         {isActive ? routeMeta.duration : "VIEW ROUTE"}
                       </span>
+                      </ScrollReveal>
                     </div>
                   </div>
                 );
@@ -261,17 +268,19 @@ export const HubOfExcellence = () => {
 
             {/* External Directions CTA */}
             <div className="pt-6">
-              <CTAButton
+              <ScrollReveal>
+                <CTAButton
                 to={externalMapUrl}
                 label="VIEW ON GOOGLE MAPS"
               >
                 
               </CTAButton>
+              </ScrollReveal>
             </div>
           </div>
 
           {/* =====================================================================
-              RIGHT COLUMN: REACT-LEAFLET ARCHITECTURAL MAP
+              RIGHT COLUMNS: REACT-LEAFLET ARCHITECTURAL MAP
               CartoDB Positron tiles, OSRM gold polyline, locked bounds
               ===================================================================== */}
           <div className="lg:col-span-6 relative">
@@ -330,7 +339,7 @@ export const HubOfExcellence = () => {
                     </div>
                   </Popup>
                 </Marker>
-
+                
                 {/* Active Destination: Precise Exact Marker Placement from LOCATIONS_DATA */}
                 <Marker
                   position={[activePoint.lat, activePoint.lng]}

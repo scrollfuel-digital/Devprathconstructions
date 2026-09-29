@@ -1,7 +1,7 @@
 import React from "react";
 import SocialConnectBar from "../../components/SocialConnectBar";
-import { Mail, Phone, PhoneCall, CalendarClock } from "lucide-react";
-import { OFFICES, CONTACT_CHANNELS } from "../../constants/contactData";
+import { Mail, PhoneCall, CalendarClock } from "lucide-react";
+import { CONTACT_CHANNELS } from "../../constants/contactData";
 import ContactMap from "./components/ContactMap";
 import ContactForm from "./components/ContactForm";
 import CTAButton from "../../components/common/CTAButton";

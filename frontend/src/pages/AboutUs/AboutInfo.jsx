@@ -21,24 +21,38 @@ const motionProps = {
     viewport: { once: true, amount: 0.1 },
 };
 
-const ValueBlock = ({ title, points, bordered }) => (
-    <motion.div
-        {...motionProps}
-        className={`space-y-5 ${bordered ? "md:border-l md:pl-12 lg:pl-16 border-t md:border-t-0 pt-8 md:pt-0 border-[#B9935A]/30" : ""}`}
-    >
-        <h3 className="text-2xl sm:text-3xl uppercase tracking-[0.15em] w-fit border-b border-[#B9935A]/30 pb-3 text-balance">
-            {title}
-        </h3>
-        <ul className="space-y-4">
-            {points.map((point, idx) => (
-                <li key={idx} className="flex items-start gap-3">
-                    <span className="w-3 h-px bg-[#B9935A] mt-3 shrink-0" />
-                    <span className="text-sm sm:text-base text-muted font-light leading-relaxed">{point}</span>
-                </li>
-            ))}
-        </ul>
-    </motion.div>
-);
+const ValueBlock = ({ title, points, bordered }) => {
+    const shouldReduce = useReducedMotion();
+    const variants = magicalBehindVariant(shouldReduce);
+
+    return (
+        <motion.div
+            {...motionProps}
+            variants={variants}
+            className={`space-y-5 ${
+                bordered
+                    ? "md:border-l md:pl-12 lg:pl-16 border-t md:border-t-0 pt-8 md:pt-0 border-[#B9935A]/30"
+                    : ""
+            }`}
+        >
+            <h3 className="text-2xl sm:text-3xl uppercase tracking-[0.15em] w-fit border-b border-[#B9935A]/30 pb-3 text-balance">
+                {title}
+            </h3>
+
+            <ul className="space-y-4">
+                {points.map((point, idx) => (
+                    <li key={idx} className="flex items-start gap-3">
+                        <span className="w-3 h-px bg-[#B9935A] mt-3 shrink-0" />
+
+                        <span className="text-sm sm:text-base text-muted font-light leading-relaxed">
+                            {point}
+                        </span>
+                    </li>
+                ))}
+            </ul>
+        </motion.div>
+    );
+};
 
 export function AboutIntro() {
     const shouldReduce = useReducedMotion();
@@ -48,6 +62,7 @@ export function AboutIntro() {
         <section className="pt-12 sm:pt-16 md:pt-20 lg:pt-24 pb-10 sm:pb-14 md:pb-16 lg:pb-20 bg-[#FAF7F2]">
             <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 xl:gap-16 items-center">
+
                     {/* Left Column: Portrait Image with Light Glassmorphic Overlay Caption */}
                     <motion.div
                         {...motionProps}
@@ -61,11 +76,13 @@ export function AboutIntro() {
                                 className="w-full h-full object-cover"
                                 loading="lazy"
                             />
+
                             {/* Light Glassmorphic Caption Card */}
                             <div className="absolute inset-x-2.5 bottom-2.5 sm:inset-x-3.5 sm:bottom-3.5 bg-[#FAF7F2]/95 backdrop-blur-md border border-[#B9935A]/35 rounded-lg sm:rounded-xl px-3 py-2 sm:px-4 sm:py-2.5 shadow-sm text-center">
                                 <span className="block text-xs sm:text-sm md:text-base font-semibold text-[#1F1E1C] leading-snug tracking-tight text-balance">
                                     Grand Launch of Flat at Mangalmurti&nbsp;Residency
                                 </span>
+
                                 <span className="block text-[11px] sm:text-xs md:text-sm font-medium text-[#8F6E3B] leading-snug tracking-tight mt-0.5 sm:mt-1 text-balance">
                                     Mr. Sunil Duddalwar &amp; Mr. Harikishan&nbsp;Nadiyana
                                 </span>
@@ -86,19 +103,24 @@ export function AboutIntro() {
 
                         <h2 className="leading-tight text-balance mb-3 sm:mb-4">
                             <span className="block font-display whitespace-nowrap text-2xl sm:text-3xl md:text-4xl lg:text-[40px] xl:text-[46px] tracking-wide uppercase font-bold text-[#1F1E1C] leading-tight">
-                                Your Trusted Partner 
+                                Your Trusted Partner
                             </span>
+
                             <span className="flex items-baseline gap-2 sm:gap-3 mt-1 sm:mt-1.5 whitespace-nowrap">
                                 <span className="block font-display whitespace-nowrap text-2xl sm:text-3xl md:text-4xl lg:text-[40px] xl:text-[46px] tracking-wide uppercase font-bold text-[#1F1E1C] leading-tight">
                                     in
                                 </span>
-                                <span className=" font-sans text-4xl sm:text-4xl lg:text-4xl tracking-[0.12em] uppercase font-bold text-gold leading-tight">
+
+                                <span className="font-sans text-4xl sm:text-4xl lg:text-4xl tracking-[0.12em] uppercase font-bold text-gold leading-tight">
                                     Building&nbsp;Dreams
                                 </span>
                             </span>
                         </h2>
 
-                        <div lang="en" className="space-y-3.5 sm:space-y-4 text-justify text-sm sm:text-[15px] text-muted leading-relaxed [&_strong]:font-semibold [&_strong]:text-[#1F1E1C]">
+                        <div
+                            lang="en"
+                            className="space-y-3.5 sm:space-y-4 text-justify text-sm sm:text-[15px] text-muted leading-relaxed [&_strong]:font-semibold [&_strong]:text-[#1F1E1C]"
+                        >
                             {/* Paragraph 1: Editorial Lead */}
                             <p className="text-[15px] sm:text-base text-[#1F1E1C]/90">
                                 <strong>Devprath Constructions LLP</strong> is a partnership firm led by <strong>Mr. Hemal Nadiyana</strong> and <strong>Mr. Sunil Patil</strong> — friends and professional partners for over 20 years, bringing 15 years of construction industry expertise to every&nbsp;project.
@@ -128,19 +150,32 @@ export function AboutIntro() {
 }
 
 export function MissionVisionSection() {
+    const shouldReduce = useReducedMotion();
+    const variants = magicalBehindVariant(shouldReduce);
+
     return (
         <section className="pt-8 sm:pt-12 pb-16 sm:pb-24 bg-[#FAF7F2]">
             <div className="w-full max-w-[1200px] mx-auto px-6 sm:px-10 lg:px-16 border-t border-[#B9935A]/20 pt-16 sm:pt-20">
+
                 <motion.h2
                     {...motionProps}
+                    variants={variants}
                     className="text-3xl sm:text-5xl lg:text-6xl tracking-[0.05em] uppercase text-center mb-12 sm:mb-16"
                 >
                     Mission &amp; <span className="font-bold text-gold">Vision</span>
                 </motion.h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
-                    <ValueBlock title="Our Vision" points={visionPoints} />
-                    <ValueBlock title="Our Mission" points={missionPoints} bordered />
+                    <ValueBlock
+                        title="Our Vision"
+                        points={visionPoints}
+                    />
+
+                    <ValueBlock
+                        title="Our Mission"
+                        points={missionPoints}
+                        bordered
+                    />
                 </div>
             </div>
         </section>

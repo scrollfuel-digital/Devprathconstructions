@@ -1,15 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft, CheckCircle2, BookOpen, ChevronLeft, ChevronRight } from "lucide-react";
-import { getBlogBySlug, getRelatedBlogs } from "../../constants/blogData";
+import { ArrowLeft, BookOpen, ChevronLeft, ChevronRight } from "lucide-react";
+import { getBlogBySlug, getRelatedBlogs, fetchAllBlogs, cleanHtmlContent } from "../../constants/blogData";
 import BlogCard from "./BlogCard";
 
 export default function BlogDetail() {
   const { slug } = useParams();
   const navigate = useNavigate();
 
-  const blog = getBlogBySlug(slug);
+  const [blog, setBlog] = useState(() => getBlogBySlug(slug));
+  const [loading, setLoading] = useState(!blog);
   const [slideIndex, setSlideIndex] = useState(0);
+
+  useEffect(() => {
+    const current = getBlogBySlug(slug);
+    if (current) {
+      setBlog(current);
+      setLoading(false);
+    } else {
+      fetchAllBlogs(true).then(() => {
+        setBlog(getBlogBySlug(slug));
+        setLoading(false);
+      });
+    }
+  }, [slug]);
+
+  if (loading) {
+    return (
+      <div className="bg-[#FAF7F2] min-h-screen flex items-center justify-center pt-32 pb-20 px-6 font-body">
+        <div className="text-center max-w-md animate-pulse space-y-4">
+          <div className="h-8 bg-[#E8E3D9] w-48 mx-auto rounded" />
+          <div className="h-4 bg-[#E8E3D9] w-64 mx-auto rounded" />
+        </div>
+      </div>
+    );
+  }
 
   if (!blog) {
     return (
@@ -87,20 +112,24 @@ export default function BlogDetail() {
         {/* 2. TEXT CONTENT */}
         <div className="max-w-4xl mx-auto">
           <div className="flex flex-wrap items-center gap-3 mb-4">
-            <span className="font-body text-[11px] sm:text-xs font-semibold uppercase tracking-[0.25em] text-[#B9935A]">
-              {blog.category}
-            </span>
+            {blog.category && (
+              <>
+                <span className="font-body text-[11px] sm:text-xs font-semibold uppercase tracking-[0.25em] text-[#B9935A]">
+                  {blog.category}
+                </span>
+                {(blog.date || blog.author) && (
+                  <span className="text-[#B9935A]/50 select-none">&bull;</span>
+                )}
+              </>
+            )}
             {blog.date && (
               <>
-                <span className="text-[#B9935A]/50 select-none">&bull;</span>
                 <span className="font-body text-xs text-[#6D675E] tracking-wider uppercase">{blog.date}</span>
+                {blog.author && <span className="text-[#B9935A]/50 select-none">&bull;</span>}
               </>
             )}
             {blog.author && (
-              <>
-                <span className="text-[#B9935A]/50 select-none">&bull;</span>
-                <span className="font-body text-xs text-[#6D675E] tracking-wider">{blog.author}</span>
-              </>
+              <span className="font-body text-xs text-[#6D675E] tracking-wider">{blog.author}</span>
             )}
           </div>
 
@@ -108,105 +137,23 @@ export default function BlogDetail() {
             {blog.title}
           </h1>
 
-          <div className="space-y-8 text-base text-[#1F1E1C]/90 leading-relaxed font-body">
-            {blog.sections?.map((sec, idx) => {
-              if (sec.type === "paragraph") {
-                return (
-                  <p key={idx} className="text-base sm:text-lg text-[#1F1E1C]/85 leading-relaxed font-light">
-                    {sec.text}
-                  </p>
-                );
-              }
-
-              if (sec.type === "heading") {
-                return (
-                  <div key={idx} className="pt-6">
-                    <h2 className="text-2xl sm:text-3xl mb-3 flex items-center gap-3">
-                      <span className="w-1.5 h-6 bg-[#B9935A] inline-block" />
-                      {sec.title}
-                    </h2>
-                    <p className="text-[#1F1E1C]/80 leading-relaxed font-light">{sec.text}</p>
-                  </div>
-                );
-              }
-
-              if (sec.type === "highlightBox") {
-                return (
-                  <div key={idx} className="my-8 p-6 sm:p-8 bg-[#F2EDE4] border-l-4 border-[#B9935A] border-y border-r border-[#B9935A]/20 shadow-xs">
-                    <p className="font-body text-base sm:text-lg font-light text-[#1F1E1C] leading-relaxed italic">
-                      "{sec.text}"
-                    </p>
-                  </div>
-                );
-              }
-
-              if (sec.type === "headingWithPoints") {
-                return (
-                  <div key={idx} className="pt-6 space-y-4">
-                    {sec.title && <h2 className="text-2xl sm:text-3xl">{sec.title}</h2>}
-                    {sec.intro && <p className="text-[#1F1E1C]/80 leading-relaxed font-light">{sec.intro}</p>}
-                    {sec.points && (
-                      <ul className="space-y-3 pt-2">
-                        {sec.points.map((pt, pIdx) => {
-                          const isObject = typeof pt === "object" && pt !== null;
-                          const label = isObject ? pt.label : null;
-                          const detail = isObject ? (pt.detail || pt.desc || "") : String(pt);
-                          return (
-                            <li key={pIdx} className="flex items-start gap-3 text-sm sm:text-base font-light text-[#1F1E1C]/85">
-                              <CheckCircle2 className="w-5 h-5 text-[#B9935A] shrink-0 mt-0.5" />
-                              <span>
-                                {label && <strong className="font-semibold text-[#1F1E1C]">{label}: </strong>}
-                                {detail}
-                              </span>
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    )}
-                  </div>
-                );
-              }
-
-              if (sec.type === "quoteHeading") {
-                const quoteText = sec.quote || sec.text || "";
-                return (
-                  <div key={idx} className="my-8 pl-6 border-l-2 border-[#B9935A] italic text-lg sm:text-xl font-display text-[#1F1E1C]">
-                    {sec.title && <h3 className="font-display text-xl not-italic font-normal text-[#1F1E1C] mb-2">{sec.title}</h3>}
-                    <p className="mb-2 font-normal">"{quoteText}"</p>
-                    {sec.attribution && (
-                      <span className="font-body text-xs tracking-wider uppercase text-[#8F6E3B] not-italic block">
-                        &mdash; {sec.attribution}
-                      </span>
-                    )}
-                  </div>
-                );
-              }
-
-              if (sec.type === "conclusion") {
-                return (
-                  <div key={idx} className="mt-10 p-6 sm:p-8 bg-[#F2EDE4] border border-[#B9935A]/25">
-                    <h3 className="font-display text-xl sm:text-2xl font-normal text-[#1F1E1C] mb-3">
-                      {sec.title || "In Summary"}
-                    </h3>
-                    <p className="text-[#1F1E1C]/80 font-light leading-relaxed">{sec.text}</p>
-                  </div>
-                );
-              }
-
-              return null;
-            })}
-
-            {/* References Section */}
-            {blog.references?.length > 0 && (
-              <div className="pt-8 mt-12 border-t border-[#B9935A]/20 text-xs text-[#6D675E]">
-                <h4 className="font-body font-semibold uppercase tracking-[0.2em] text-[#8F6E3B] mb-3 text-[11px]">
-                  References &amp; Citations
-                </h4>
-                <ul className="list-disc list-inside space-y-1.5 font-light">
-                  {blog.references.map((ref, rIdx) => <li key={rIdx}>{ref}</li>)}
-                </ul>
-              </div>
-            )}
+          <div className="blog-content font-body text-base sm:text-lg text-[#1F1E1C]/90">
+            <style>{`
+              .blog-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; border: 1px solid #E5E0D8; }
+              .blog-content th, .blog-content td { border: 1px solid #E5E0D8; padding: 0.6rem 0.85rem; text-align: left; }
+              .blog-content th { background: #FAF7F2; font-weight: 600; }
+              .blog-content ul { list-style: disc outside; padding-left: 1.5rem; margin: 1rem 0; }
+              .blog-content ol { list-style: decimal outside; padding-left: 1.5rem; margin: 1rem 0; }
+              .blog-content li { margin: 0.35rem 0; }
+              .blog-content li p, .blog-content td p, .blog-content th p { display: inline; margin: 0; }
+              .blog-content blockquote { border-left: 4px solid #B9935A; background: #F2EDE4; padding: 0.75rem 1.25rem; margin: 1.5rem 0; font-style: italic; }
+              .blog-content a { color: #B9935A; text-decoration: underline; }
+              .blog-content h1 { font-family: var(--font-serif); font-size: 2rem; font-weight: 700; margin: 1.75rem 0 0.75rem; }
+              .blog-content h2 { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 700; margin: 1.5rem 0 0.75rem; border-left: 4px solid #B9935A; padding-left: 0.75rem; }
+              .blog-content h3 { font-family: var(--font-serif); font-size: 1.25rem; font-weight: 600; margin: 1.25rem 0 0.5rem; }
+              .blog-content p { margin-bottom: 1rem; line-height: 1.75; }
+            `}</style>
+            <div dangerouslySetInnerHTML={{ __html: cleanHtmlContent(blog.content) }} />
           </div>
         </div>
 
