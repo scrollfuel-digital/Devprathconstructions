@@ -27,18 +27,28 @@ export const FeaturedProjectSection = () => {
 
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16 border-b border-black/15 pb-8">
-            <ScrollReveal>
-              <div>
-              <span className="arch-eyebrow mb-2">
-                Featured Development
+          <ScrollReveal>
+            <span className="arch-eyebrow mb-2">
+              Featured Development
+            </span>
+            <h2 className="text-4xl sm:text-6xl lg:text-7xl">
+              Mangalmurti{" "}
+              <span className="font-bold text-brand-maroon">
+                Residency
               </span>
-              <h2 className="text-4xl sm:text-6xl lg:text-7xl">
-                Mangalmurti <span className="font-bold text-brand-maroon">Residency</span>
-              </h2>
+            </h2>
+            <div className="mt-4 flex flex-wrap items-center gap-2">
+              <span className="inline-flex items-center border border-brand-maroon/30 bg-brand-maroon/5 px-3 py-1.5 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.15em] text-brand-maroon">
+                Recently Handed Over
+              </span>
+
+              <span className="inline-flex items-center border border-green-700/25 bg-green-700/5 px-3 py-1.5 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.15em] text-green-800">
+                OC Received
+              </span>
             </div>
-            </ScrollReveal>
-            <ScrollReveal>
-              <div className="text-left md:text-right">
+          </ScrollReveal>
+          <ScrollReveal>
+            <div className="text-left md:text-right">
               <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-gold block">
                 RERA P50500045698
               </span>
@@ -46,7 +56,7 @@ export const FeaturedProjectSection = () => {
                 PARSODI,WARDHA ROAD,NAGPUR
               </span>
             </div>
-            </ScrollReveal>
+          </ScrollReveal>
         </div>
 
         {/* Asymmetric Composition */}
@@ -70,6 +80,22 @@ export const FeaturedProjectSection = () => {
                 </span>
               </div>
             </ScrollReveal>
+            <ScrollReveal>
+              <div className="mt-3 border-l-2 border-[#B9935A] bg-[#FAF7F2] px-4 py-3">
+                <h6 className="font-body text-[10px] sm:text-xs font-semibold uppercase tracking-[0.15em] text-brand-maroon mb-1">
+                  Make It Your Dream Home
+                </h6>
+
+                <span className="font-body text-[11px] sm:text-sm !font-semibold leading-relaxed text-text-light">
+                  Every home offers a personal canvas to create a space
+                  that reflects your unique style and vision. The interior
+                  photographs shown are of actual customer homes, shared
+                  for inspiration and reference. Interior design, furnishing,
+                  and execution are not part of the services offered by
+                  Devprath Constructions LLP.
+                </span>
+              </div>
+            </ScrollReveal>
           </div>
 
           {/* Right Vignette Grid + Project Details (5 cols) */}
@@ -87,7 +113,11 @@ export const FeaturedProjectSection = () => {
               </h3> */}
               <ScrollReveal>
                 <p className="font-body text-sm text-justify !text-text-light !font-semibold leading-relaxed">
-                  Mangalmurti Residency is a premium residential project by Devprath Constructions LLP offering thoughtfully designed homes for modern families. Crafted with contemporary architecture and efficient layouts, every apartment provides spacious living areas, excellent natural light, ventilation, and premium finishes.
+                  Mangalmurti Residency is a premium residential development by Devprath Constructions LLP, thoughtfully planned for modern families. Featuring contemporary architecture, efficient layouts, ample natural light, and excellent ventilation, the project offers comfortable living spaces designed for modern lifestyles.
+
+                  <b> Recently Handed Over | Occupancy Certificate (OC) Received. </b>
+
+                  Each home offers a blank canvas for homeowners to design and personalise their dream living space.
                 </p>
               </ScrollReveal>
             </motion.div>
@@ -157,8 +187,8 @@ export const FeaturedProjectSection = () => {
 
         </div>
 
-      </div>
-    </section>
+      </div >
+    </section >
   );
 };
 

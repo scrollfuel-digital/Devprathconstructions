@@ -272,6 +272,7 @@ export const HubOfExcellence = () => {
                 <CTAButton
                 to={externalMapUrl}
                 label="VIEW ON GOOGLE MAPS"
+                className="!w-auto min-w-[270px] text-nowrap"
               >
                 
               </CTAButton>

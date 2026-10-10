@@ -11,7 +11,7 @@ export const OPERATIONS_OFFICE = {
   lat: 21.1149348,
   lng: 79.0608019,
   googleMapsUrl: "https://www.google.com/maps/place/Devprath+Constructions+LLP/@21.1149348,79.0608019,773m/",
-  phoneNumbers: ["+91 9923203281", "+91 9921141299"],
+  phoneNumbers: ["+91 9921277699", "+91 9689096257"],
   email: "devprathconstructions@gmail.com",
 };
 
@@ -23,7 +23,7 @@ export const REGISTERED_OFFICE = {
   lat: 21.1149348,
   lng: 79.0608019,
   googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=21.1149348,79.0608019",
-  phoneNumbers: ["+91 9923203281"],
+  phoneNumbers: ["+91 9921277699", "+91 9689096257"],
   email: "devprathconstructions@gmail.com",
 };
 
@@ -34,13 +34,13 @@ export const OFFICES = {
 
 export const CONTACT_CHANNELS = {
   email: "devprathconstructions@gmail.com",
-  phonePrimary: "+91 9923203281",
-  phoneSecondary: "+91 9921141299",
+  phonePrimary: "+91 9921277699",
+  phoneSecondary: "+91 9689096257",
   workingHours: "Mon – Sat: 10 AM – 7 PM",
   whatsappUrl: "https://wa.me/919923203281?text=Hi%20Devprath%20Team,%20I%20am%20interested%20in%20learning%20more%20about%20your%20projects.",
 };
 
 export const CONTACT_STATS = [
-  { value: 160, suffix: "+", label: "Happy Families" },
+  { value: 500, suffix: "+", label: "Happy Families" },
   { value: 9, suffix: "+", label: "Expert Team Members" },
 ];
