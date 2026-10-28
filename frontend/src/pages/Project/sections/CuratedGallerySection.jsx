@@ -1,47 +1,23 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import grandLivingImg from '../../../assets/home page/grand_living_lounge.jpg';
-import kitchenImg from '../../../assets/home page/kitchen.JPG';
-import bedroomImg from '../../../assets/home page/bedroom.JPG';
 import lobbyImg from '../../../assets/Project/hero.jpeg';
 import poolDeckImg from '../../../assets/Township Features/Pool_deck (1).jpg';
 import clubhouseImg from '../../../assets/Township Features/Clubhouse_view.jpg';
 
 export const GALLERY_ITEMS = [
   {
-    id: 'living-lounge',
-    title: 'Grand Living Lounge',
-    category: 'Interior Architecture · Wing B Model Residence',
-    image: grandLivingImg,
-    aspect: 'col-span-12 md:col-span-8 h-[280px] sm:h-[380px] md:h-[460px] lg:h-[540px]',
-  },
-  {
     id: 'entrance-lobby',
     title: 'Double-Height Entrance Lobby',
     category: 'Common Arrival Sanctuary · Wing A & B Portico',
     image: lobbyImg,
-    aspect: 'col-span-12 md:col-span-4 h-[280px] sm:h-[380px] md:h-[460px] lg:h-[540px]',
-  },
-  {
-    id: 'modular-kitchen',
-    title: 'Designer Modular Kitchen',
-    category: 'Bespoke Finishes · Granite Platform & Utility Bay',
-    image: kitchenImg,
-    aspect: 'col-span-12 md:col-span-6 lg:col-span-4 h-[260px] sm:h-[340px] md:h-[400px] lg:h-[480px]',
-  },
-  {
-    id: 'master-bedroom',
-    title: 'Master Bedroom Sanctuary',
-    category: 'Private Living Quarters · Vastu-Aligned Layout',
-    image: bedroomImg,
-    aspect: 'col-span-12 md:col-span-6 lg:col-span-4 h-[260px] sm:h-[340px] md:h-[400px] lg:h-[480px]',
+    aspect: 'col-span-12 md:col-span-6 aspect-[16/9]',
   },
   {
     id: 'pool-deck',
     title: 'Landscaped Podium & Pool Deck',
     category: 'Township Amenities · Central Open Greens',
     image: poolDeckImg,
-    aspect: 'col-span-12 md:col-span-6 lg:col-span-4 h-[260px] sm:h-[340px] md:h-[400px] lg:h-[480px]',
+    aspect: 'col-span-12 md:col-span-6 aspect-[16/9]',
   },
   {
     id: 'clubhouse-deck',
@@ -58,7 +34,7 @@ export default function CuratedGallerySection() {
   return (
     <section id="gallery" className="py-10 sm:py-14 lg:py-16 bg-[#F2EDE4] border-t border-[#B9935A]/20 relative">
       <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
-        
+
         {/* Section Header */}
         <div className="mb-8 sm:mb-10">
           <h2 className="text-4xl sm:text-6xl lg:text-7xl tracking-tight leading-tight">
@@ -82,7 +58,7 @@ export default function CuratedGallerySection() {
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-[#1F1E1C]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-                
+
                 <div className="absolute bottom-4 right-4 bg-[#1F1E1C]/85 backdrop-blur-md px-3 py-1.5 border border-[#B9935A]/40 text-[#FAF7F2] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <span className="font-body text-[10px] uppercase tracking-[0.2em] font-semibold text-[#D1B481]">
                     Expand View +

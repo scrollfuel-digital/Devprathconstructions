@@ -4,6 +4,7 @@ import FloorPlanExplorerSection from './sections/FloorPlanExplorerSection';
 import AmenitiesCarouselSection from './sections/AmenitiesCarouselSection';
 import CuratedGallerySection from './sections/CuratedGallerySection';
 import { FinalContactSection } from '../../components/common/FinalContactSection';
+import CompletedProjectsSection from "./sections/CompletedProjectsSection"
 import Rera from "./sections/Rera"
 /**
  * =============================================================================
@@ -37,6 +38,8 @@ export default function Project() {
 
       {/* 4. MINIMALIST 2-COLUMN TECHNICAL SPECIFICATIONS GRID */}
       {/* <TechnicalSpecificationsSection /> */}
+
+      <CompletedProjectsSection />
 
       <Rera/>
       

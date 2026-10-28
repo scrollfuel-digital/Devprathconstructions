@@ -87,7 +87,7 @@ export const FeaturedProjectSection = () => {
               </h3> */}
               <ScrollReveal>
                 <p className="font-body text-sm text-justify !text-text-light !font-semibold leading-relaxed">
-                  Mangalmurti Residency is a premium residential project by Devprath Constructions LLP offering thoughtfully designed homes for modern families. Crafted with contemporary architecture and efficient layouts, every apartment provides spacious living areas, excellent natural light, ventilation, and premium finishes.
+                  Mangalmurti Residency is a residential project by Devprath Constructions LLP offering thoughtfully designed homes for modern families. Crafted with contemporary architecture and efficient layouts, every apartment provides spacious living areas, excellent natural light, ventilation, and premium finishes.
                 </p>
               </ScrollReveal>
             </motion.div>

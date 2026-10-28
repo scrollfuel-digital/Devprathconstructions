@@ -33,7 +33,7 @@ export default function FloorPlanExplorerSection() {
       className="py-10 sm:py-14 lg:py-16 bg-[#FAF7F2] border-t border-[#B9935A]/20 relative"
     >
       <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
-        
+
         {/* =========================================================================
             SECTION HEADER (EDITORIAL VERTICAL RHYTHM & DISTINCT META ROW)
             ========================================================================= */}
@@ -77,11 +77,10 @@ export default function FloorPlanExplorerSection() {
                   key={phase.id}
                   type="button"
                   onClick={() => setActivePhaseId(phase.id)}
-                  className={`font-body text-xs sm:text-sm uppercase tracking-[0.2em] transition-all duration-300 pb-4 relative cursor-pointer ${
-                    isActive
-                      ? 'text-[#1F1E1C] font-semibold'
-                      : 'text-[#6D675E] font-normal hover:text-[#1F1E1C]'
-                  }`}
+                  className={`font-body text-xs sm:text-sm uppercase tracking-[0.2em] transition-all duration-300 pb-4 relative cursor-pointer ${isActive
+                    ? 'text-[#1F1E1C] font-semibold'
+                    : 'text-[#6D675E] font-normal hover:text-[#1F1E1C]'
+                    }`}
                 >
                   {phase.tabLabel}
                   {isActive && (
@@ -109,41 +108,15 @@ export default function FloorPlanExplorerSection() {
               className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start"
             >
               {/* Left Column: Visual Perspective Frame & Action Buttons */}
-              <div className="lg:col-span-6 flex flex-col justify-between h-full">
-                <div>
-                  {/* Wing Identification Line */}
-                  <ScrollReveal>
-                    <div className="border-b border-[#1F1E1C]/15 pb-4 mb-6">
-                      <span className="font-body text-xs font-semibold uppercase tracking-[0.2em] text-[#B9935A]">
-                        {activePhase.wing}
-                      </span>
-                    </div>
-                  </ScrollReveal>
-
-                  {/* Architectural Image View (Curtain Reveal via index.css) */}
-                  <div className="relative overflow-clip w-full h-[320px] sm:h-[420px] lg:h-[480px] bg-[#F2EDE4] group">
-                    <img
-                      src={activePhase.image}
-                      alt={activePhase.title}
-                      className="revealing-image w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.03]"
-                      loading="lazy"
-                    />
-                  </div>
-
-                  {/* Action CTA Buttons directly below the image */}
-                  <div className="mt-8 flex flex-wrap items-center gap-4 sm:gap-6">
-                    <CTAButton
-                      to="/contact"
-                      label="BOOK SITE WALKTHROUGH"
-                      className="font-body text-xs uppercase tracking-[0.18em]"
-                    />
-                    <CTAButton
-                      href="/MANGALMURTI-BROCHURE.pdf"
-                      download="MANGALMURTI-BROCHURE.pdf"
-                      label="DOWNLOAD BROCHURE"
-                      className="font-body text-xs uppercase tracking-[0.18em]"
-                    />
-                  </div>
+              {/* Left Column: Architectural Image View */}
+              <div className="lg:col-span-6">
+                <div className="relative overflow-clip w-full h-[320px] sm:h-[420px] lg:h-[480px] bg-[#F2EDE4] group">
+                  <img
+                    src={activePhase.image}
+                    alt={activePhase.title}
+                    className="revealing-image w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.03]"
+                    loading="lazy"
+                  />
                 </div>
               </div>
 
@@ -162,11 +135,16 @@ export default function FloorPlanExplorerSection() {
 
                   {/* Highlights List (Unboxed Minimal En-Dash List) */}
                   <ScrollReveal>
-                    <div className="mb-8">
+                    <div className="pt-6 sm:pt-6 mb-8">
                       <ul className="space-y-3.5">
                         {activePhase.highlights.map((hl, hIdx) => (
-                          <li key={hIdx} className="flex items-start gap-3 text-xs sm:text-sm text-[#1F1E1C] font-light leading-relaxed font-body">
-                            <span className="text-[#B9935A] font-light text-base leading-none select-none">&ndash;</span>
+                          <li
+                            key={hIdx}
+                            className="flex items-start gap-3 font-body text-sm sm:text-base text-[#1F1E1C]/80 font-normal leading-relaxed"
+                          >
+                            <span className="shrink-0 text-[#B9935A] font-light text-base leading-none select-none mt-1">
+                              &ndash;
+                            </span>
                             <span>{hl}</span>
                           </li>
                         ))}
@@ -174,26 +152,32 @@ export default function FloorPlanExplorerSection() {
                     </div>
                   </ScrollReveal>
 
-                  {/* Infrastructure / Quality Assurance Note Box */}
+                  {/* Action CTA Buttons (Moved below Highlights) */}
                   <ScrollReveal>
-                    <div className="p-4 bg-[#F2EDE4] border border-[#B9935A]/25 mb-6">
-                      <span className="font-body text-xs uppercase tracking-[0.2em] text-[#8F6E3B] font-semibold block mb-1">
-                        Quality Assurance
-                      </span>
-                      <p className="font-body text-xs sm:text-sm text-[#1F1E1C] font-light leading-relaxed">
-                        MahaRERA Approved Project · Continuous Quality Checks. For certified floor plans and exact unit sizes, please ask for the official MahaRERA documents.
-                      </p>
+                    <div className="mb-6 flex flex-wrap items-center gap-4 sm:gap-6">
+                      <CTAButton
+                        to="/contact"
+                        label="BOOK SITE WALKTHROUGH"
+                        className="font-body text-xs uppercase tracking-[0.18em]"
+                      />
+                      <CTAButton
+                        href="/MANGALMURTI-BROCHURE.pdf"
+                        download="MANGALMURTI-BROCHURE.pdf"
+                        label="DOWNLOAD BROCHURE"
+                        className="font-body text-xs uppercase tracking-[0.18em]"
+                      />
                     </div>
                   </ScrollReveal>
-                </div>
 
-                {/* Fine Print Note */}
-                <ScrollReveal>
-                  <p className="text-[11px] text-[#6D675E] italic pt-4 border-t border-[#1F1E1C]/10 font-body">
-                    * All building specifications and unit details are followed as per the official MahaRERA registration (P50500045698).
-                  </p>
-                </ScrollReveal>
+                  {/* Fine Print Note (Directly below buttons) */}
+                  <ScrollReveal>
+                    <p className="text-[11px] text-[#6D675E] pt-4 border-t border-[#1F1E1C]/10 font-body">
+                      * All building specifications and unit details are followed as per the official MahaRERA registration (P50500045698).
+                    </p>
+                  </ScrollReveal>
+                </div>
               </div>
+
             </motion.div>
           </AnimatePresence>
         </div>
