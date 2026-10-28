@@ -44,7 +44,7 @@ const ValueBlock = ({ title, points, bordered }) => {
                     <li key={idx} className="flex items-start gap-3">
                         <span className="w-3 h-px bg-[#B9935A] mt-3 shrink-0" />
 
-                        <span className="text-sm sm:text-base text-muted font-light leading-relaxed">
+                        <span className="font-sans text-sm font-bold text-text-light leading-relaxed">
                             {point}
                         </span>
                     </li>
@@ -119,27 +119,27 @@ export function AboutIntro() {
 
                         <div
                             lang="en"
-                            className="space-y-3.5 sm:space-y-4 text-justify text-sm sm:text-[15px] text-muted leading-relaxed [&_strong]:font-semibold [&_strong]:text-[#1F1E1C]"
+                            className="space-y-3.5 sm:space-y-4"
                         >
                             {/* Paragraph 1: Editorial Lead */}
-                            <p className="text-[15px] sm:text-base text-[#1F1E1C]/90">
-                                <strong>Devprath Constructions LLP</strong> is a partnership firm led by <strong>Mr. Hemal Nadiyana</strong> and <strong>Mr. Sunil Patil</strong> — friends and professional partners for over 20 years, bringing 15 years of construction industry expertise to every&nbsp;project.
+                            <p className="font-sans text-sm text-justify leading-relaxed text-text-light font-semibold text-pretty">
+                                Devprath Constructions LLP is a partnership firm led by Mr. Hemal Nadiyana and Mr. Sunil Patil — friends and professional partners for over 20 years, bringing 15 years of construction industry expertise to every&nbsp;project.
                             </p>
 
                             {/* Paragraphs 2 & 3: Architectural Journey Block with Golden Vertical Line */}
                             <div className="border-l-2 border-[#B9935A]/35 pl-4 sm:pl-5 space-y-3 sm:space-y-3.5 my-1">
-                                <p>
-                                    <strong>Mr. Hemal Nadiyana</strong>, founder of Devang Developers, and <strong>Mr. Sunil Patil</strong> jointly founded <strong>V4 Developers in 2005</strong>, going on to deliver several landmark projects across Nagpur with strong customer trust and&nbsp;recognition.
+                                <p className="font-sans text-sm text-justify font-semibold leading-relaxed text-text-light text-pretty">
+                                    Mr. Hemal Nadiyana, founder of Devang Developers, and Mr. Sunil Patil jointly founded V4 Developers in 2005, going on to deliver several landmark projects across Nagpur with strong customer trust and&nbsp;recognition.
                                 </p>
 
-                                <p>
-                                    In 2018, the duo founded <strong>Devprath Constructions LLP</strong> (registered 28th November 2018) to focus on township developments, bringing innovative, high-quality communities to Nagpur&apos;s real estate&nbsp;market.
+                                <p className="font-sans text-sm text-justify font-semibold leading-relaxed text-text-light text-pretty">
+                                    In 2018, the duo founded Devprath Constructions LLP (registered 28th November 2018) to focus on township developments, bringing innovative, high-quality communities to Nagpur&apos;s real estate&nbsp;market.
                                 </p>
                             </div>
 
                             {/* Paragraph 4: Trust & Ethos */}
-                            <p className="pt-0.5">
-                                Built on integrity, commitment, and hard work, <strong>Devprath Constructions LLP</strong> has earned the trust of hundreds of homeowners across&nbsp;Nagpur.
+                            <p className="font-sans text-sm text-justify font-semibold leading-relaxed text-text-light text-pretty pt-0.5">
+                                Built on integrity, commitment, and hard work, Devprath Constructions LLP has earned the trust of hundreds of homeowners across&nbsp;Nagpur.
                             </p>
                         </div>
                     </motion.div>

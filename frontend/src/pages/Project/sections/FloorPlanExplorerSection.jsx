@@ -44,7 +44,7 @@ export default function FloorPlanExplorerSection() {
               <span className="font-body text-xs sm:text-sm font-semibold tracking-[0.2em] text-[#1F1E1C] uppercase">
                 {PROJECT_OVERVIEW.title}
               </span>
-              <span className="font-body text-xs sm:text-sm text-[#6D675E] font-light">
+              <span className="font-body text-xs sm:text-sm text-[#6D675E] font-bold">
                 {PROJECT_OVERVIEW.subtitle} · MahaRERA Reg: P50500045698
               </span>
             </div>
@@ -59,7 +59,9 @@ export default function FloorPlanExplorerSection() {
               <h2 className="text-4xl sm:text-6xl lg:text-7xl tracking-tight leading-[1.08] mb-5 sm:mb-6">
                 Phases &amp; <span className="font-bold text-brand-primary">Living Spaces.</span>
               </h2>
-              <p className="text-base sm:text-lg text-muted font-light leading-relaxed">
+              {/* <p className="text-base sm:text-lg text-muted font-light leading-relaxed"> */}
+              <p className="mx-auto mt-5 font-sans text-sm text-justify font-bold leading-relaxed text-text-light sm:mt-10 text-pretty">
+
                 {PROJECT_OVERVIEW.description}
               </p>
             </div>
@@ -78,8 +80,8 @@ export default function FloorPlanExplorerSection() {
                   type="button"
                   onClick={() => setActivePhaseId(phase.id)}
                   className={`font-body text-xs sm:text-sm uppercase tracking-[0.2em] transition-all duration-300 pb-4 relative cursor-pointer ${isActive
-                    ? 'text-[#1F1E1C] font-semibold'
-                    : 'text-[#6D675E] font-normal hover:text-[#1F1E1C]'
+                    ? 'text-text-dark font-bold'
+                    : 'text-text-light font-semibold hover:text-text-dark'
                     }`}
                 >
                   {phase.tabLabel}
@@ -128,7 +130,7 @@ export default function FloorPlanExplorerSection() {
                     <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-normal text-[#1F1E1C] leading-snug mb-3">
                       {activePhase.title}
                     </h3>
-                    <p className="font-body text-sm sm:text-base text-[#1F1E1C]/80 font-light leading-relaxed mb-6">
+                    <p className="mx-auto mt-5 font-sans text-sm text-justify font-bold leading-relaxed text-text-light sm:mt-10 text-pretty">
                       {activePhase.fullDescription}
                     </p>
                   </ScrollReveal>
@@ -140,12 +142,14 @@ export default function FloorPlanExplorerSection() {
                         {activePhase.highlights.map((hl, hIdx) => (
                           <li
                             key={hIdx}
-                            className="flex items-start gap-3 font-body text-sm sm:text-base text-[#1F1E1C]/80 font-normal leading-relaxed"
+                            className="flex items-start gap-3"
                           >
-                            <span className="shrink-0 text-[#B9935A] font-light text-base leading-none select-none mt-1">
+                            <span className="shrink-0 text-[#B9935A] font-bold text-base leading-none select-none mt-1">
                               &ndash;
                             </span>
-                            <span>{hl}</span>
+                            <p className="mx-auto mt-5 font-sans text-sm text-justify font-bold leading-relaxed text-text-light sm:mt-10 text-pretty">
+                              {hl}
+                            </p>
                           </li>
                         ))}
                       </ul>
@@ -167,13 +171,6 @@ export default function FloorPlanExplorerSection() {
                         className="font-body text-xs uppercase tracking-[0.18em]"
                       />
                     </div>
-                  </ScrollReveal>
-
-                  {/* Fine Print Note (Directly below buttons) */}
-                  <ScrollReveal>
-                    <p className="text-[11px] text-[#6D675E] pt-4 border-t border-[#1F1E1C]/10 font-body">
-                      * All building specifications and unit details are followed as per the official MahaRERA registration (P50500045698).
-                    </p>
                   </ScrollReveal>
                 </div>
               </div>

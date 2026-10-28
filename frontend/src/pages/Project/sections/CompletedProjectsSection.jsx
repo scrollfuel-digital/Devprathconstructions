@@ -2,7 +2,6 @@
 
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import CTAButton from "../../../components/common/CTAButton";
 import { COMPLETED_PROJECTS } from "../../../constants/completedProjects";
 
 const StickyProjectCard = ({
@@ -140,14 +139,6 @@ const CompletedProjectsSection = () => {
               <p className="!font-semibold">
                 With <b>9 completed developments</b> and over <b>500+</b> families having found their homes, these projects stand as a testament to a consistent commitment to construction excellence, timely handovers, and lasting value.
               </p>
-            </div>
-
-            <div className="mt-8 flex justify-center lg:justify-start">
-              <CTAButton
-                to="/projects"
-                label="EXPLORE OUR PROJECTS "
-                className="!w-auto min-w-[270px] text-nowrap"
-              />
             </div>
           </motion.div>
         </div>

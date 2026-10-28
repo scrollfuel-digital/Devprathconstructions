@@ -41,13 +41,12 @@ function VisionaryCard({ leader, motionProps }) {
                 </div>
             </div>
 
-            <p className="text-sm sm:text-base text-muted font-light leading-relaxed mb-6 text-pretty">
+            <p className="font-body text-[11px] sm:text-sm !font-semibold leading-relaxed text-text-light">
                 {leader.bio}
             </p>
 
-            <blockquote className="pt-5 border-t border-[#B9935A]/25">
-                <p className="font-display text-lg sm:text-xl text-[#1F1E1C] italic font-normal leading-relaxed text-balance">
-                    &ldquo;{leader.quote}&rdquo;
+            <blockquote className="pt-5 border-t border-[#B9935A]/25 ">
+                <p className="font-display text-base sm:text-base lg:text-[16px] xl:text-[17px] text-text-dark font-normal leading-relaxed xl:whitespace-nowrap">                    &ldquo;{leader.quote}&rdquo;
                 </p>
             </blockquote>
         </motion.div>

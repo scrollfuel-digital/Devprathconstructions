@@ -70,7 +70,7 @@ export default function CuratedGallerySection() {
                 <h3 className="font-body text-[11px] sm:text-xs uppercase tracking-[0.2em] text-[#1F1E1C] font-semibold transition-colors duration-300 group-hover:text-[#B9935A]">
                   {item.title}
                 </h3>
-                <span className="font-body text-[10px] sm:text-[11px] uppercase tracking-[0.15em] text-[#6D675E] font-light hidden sm:inline">
+                <span className="font-sans text-sm text-justify font-bold leading-relaxed text-text-light text-pretty hidden sm:inline">
                   {item.category}
                 </span>
               </div>
@@ -99,7 +99,7 @@ export default function CuratedGallerySection() {
                   <h4 className="font-display text-lg sm:text-2xl text-[#1F1E1C] font-normal">
                     {selectedPhoto.title}
                   </h4>
-                  <p className="font-body text-xs text-[#6D675E] uppercase tracking-[0.16em]">
+                  <p className="font-sans text-sm text-justify font-bold leading-relaxed text-text-light text-pretty">
                     {selectedPhoto.category}
                   </p>
                 </div>
@@ -110,7 +110,6 @@ export default function CuratedGallerySection() {
                   Close &times;
                 </button>
               </div>
-
               <div className="relative w-full h-[55vh] sm:h-[70vh] overflow-hidden bg-[#1F1E1C]">
                 <img
                   src={selectedPhoto.image}
