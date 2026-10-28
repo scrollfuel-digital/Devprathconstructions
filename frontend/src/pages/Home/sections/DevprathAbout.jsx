@@ -43,7 +43,7 @@ export default function DevprathAbout() {
     {
       number: (
         <CountUpNumber
-          value={160}
+          value={500}
           suffix="+"
           duration={2600}
         />

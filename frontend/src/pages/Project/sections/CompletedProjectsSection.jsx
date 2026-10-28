@@ -110,7 +110,7 @@ const CompletedProjectsSection = () => {
   });
 
   return (
-    <section className="relative w-full py-16 sm:py-20 lg:py-28">
+    <section className="relative w-full py-16 sm:py-20 lg:py-10">
       <div
         ref={container}
         className="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2 lg:gap-x-12 xl:gap-x-20"
@@ -133,20 +133,20 @@ const CompletedProjectsSection = () => {
             </h2>
 
             <div className="mx-auto mt-6 max-w-md space-y-4 text-sm sm:text-base text-[#6D675E] leading-relaxed text-justify hyphens-auto lg:mx-0 lg:max-w-lg">
-              <p>
-                Over the years, Devprath Constructions has delivered residential apartment projects across established neighborhoods of Nagpur, including Dharampeth, Ramdaspeth, Laxmi Nagar, and Shivaji Nagar. Every building is planned with practical floor layouts, ample natural light, and durable materials suited for comfortable family living.
+              <p className="!font-semibold">
+                Over the years, a portfolio of premium residential developments has taken shape across some of Nagpur’s most established neighbourhoods, including <b>Dharampeth, Ramdaspeth, Laxmi Nagar, Friend Colony, Jaiprakash Nagar ,Shivaji Nagar and Wardha Road</b>. Each project reflects a commitment to thoughtful planning, well-designed layouts, and comfortable living.
               </p>
 
-              <p>
-                We focus on honest construction practices, clear communication, and timely handover for every homeowner. With nine completed developments and over 160 happy families, our finished homes reflect our steady commitment to reliable quality and long-term peace of mind.
+              <p className="!font-semibold">
+                With <b>9 completed developments</b> and over <b>500+</b> families having found their homes, these projects stand as a testament to a consistent commitment to construction excellence, timely handovers, and lasting value.
               </p>
             </div>
 
             <div className="mt-8 flex justify-center lg:justify-start">
               <CTAButton
                 to="/projects"
-                label="VIEW CURRENT PROJECT"
-                className="!w-auto min-w-[250px] text-nowrap"
+                label="EXPLORE OUR PROJECTS "
+                className="!w-auto min-w-[270px] text-nowrap"
               />
             </div>
           </motion.div>

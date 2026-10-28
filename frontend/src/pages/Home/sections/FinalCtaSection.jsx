@@ -11,20 +11,18 @@ export const FinalCtaSection = () => {
         <div className="mx-auto max-w-3xl">
           <ScrollReveal>
             <span className="arch-eyebrow text-center">
-              Ready to Discover
+              LET'S CONNECT
             </span>
 
             <h2 className="mt-5 text-4xl leading-[1.1] tracking-tight sm:mt-6 sm:text-6xl lg:text-7xl">
-              Find your place in{" "}
+              Explore{" "}
               <span className="font-semibold text-brand-maroon">
-                what we're building.
+                Mangalmurti Residency
               </span>
             </h2>
 
             <p className="lead-body mx-auto !mt-5 max-w-5xl sm:mt-6 sm:text-base lg:text-lg">
-              Whether you are exploring residential homes at Mangalmurti
-              Residency or planning a personal site walkthrough, our founding
-              principals are here to guide you.
+              Interested in learning more about Mangalmurti Residency? Connect with us to enquire about the project, understand the available details, or schedule a personal site visit. Our team will be happy to guide you through the next steps.
             </p>
 
             <div className="mt-7 flex flex-col items-center justify-center gap-4 sm:mt-8 sm:flex-row sm:gap-5">
@@ -40,7 +38,7 @@ export const FinalCtaSection = () => {
             </div>
 
             <div className="mt-7 text-[9px] uppercase tracking-[0.16em] text-muted sm:mt-8 sm:text-[11px] sm:tracking-[0.2em]">
-              Devprath Construction LLP · Nagpur, Maharashtra
+              Devprath Construction LLP, Nagpur, Maharashtra
             </div>
           </ScrollReveal>
         </div>

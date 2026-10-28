@@ -8,7 +8,7 @@ const ABOUT_SOCIAL_LINKS = [
     { platform: "instagram", href: "https://www.instagram.com/devprathconstructions/" },
     { platform: "whatsapp", href: "https://wa.me/919923203281?text=Hi%20Devprath%20Team,%20I%20am%20interested%20in%20Mangalmurti%20Residency." },
     { platform: "mail", href: "mailto:devprathconstructions@gmail.com" },
-    { platform: "phone", href: "tel:+919923203281" },
+    { platform: "phone", href: "tel:+919921277699" },
 ];
 
 export default function Hero() {

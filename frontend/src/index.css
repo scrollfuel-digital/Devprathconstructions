@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap");
 
 @import "tailwindcss";
 
@@ -9,42 +9,46 @@
 
 :root {
   /* Strict Design Tokens */
-  --text-charcoal: #1F1E1C;
-  --accent-gold-matte: #B9935A;
+  --text-charcoal: #1f1e1c;
+  --accent-gold-matte: #b9935a;
 
   /* Surfaces & Backgrounds */
-  --color-bg: #FAF7F2;
+  --color-bg: #faf7f2;
   /* Warm Ivory Base */
-  --color-surface: #FFFFFF;
+  --color-surface: #ffffff;
   /* Crisp White */
-  --color-surface-alt: #F2EDE4;
+  --color-surface-alt: #f2ede4;
   /* Soft Architectural Cream */
 
   /* Typography Palette (Warm Non-Blue Charcoal & Warm Gray) */
   --color-text: var(--text-charcoal);
   /* Deep Architectural Charcoal */
-  --color-muted: #6D675E;
+  --color-muted: #6d675e;
   /* Muted Warm Gray */
-  --color-text-light: #948C81;
+  --color-text-light: #948c81;
   /* Light Warm Gray */
 
   /* Devprath Architectural Restrained Gold */
   --color-accent: var(--accent-gold-matte);
   /* Devprath Signature Architectural Gold */
-  --color-accent-light: #D1B481;
+  --color-accent-light: #d1b481;
   /* Light Architectural Gold */
-  --color-accent-dark: #8F6E3B;
+  --color-accent-dark: #8f6e3b;
   /* Deep Gold / Bronze */
 
   /* Hairline Architectural Dividers */
   --color-border: rgba(185, 147, 90, 0.22);
   --color-border-subtle: rgba(31, 30, 28, 0.08);
 
-  /* Typography Pairing */
-  --font-display: "Cormorant Garamond", Georgia, serif;
-  --font-body: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-sans: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-heading: "Cormorant Garamond", Georgia, serif;
+  /* Typography — Inter everywhere (simple, clean, easy to read) */
+  --font-display:
+    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-body:
+    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans:
+    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-heading:
+    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
   /* Dimensions & Spacing */
   --container-width: 1400px;
@@ -57,24 +61,29 @@
 }
 
 @theme {
-  --color-primary: #B9935A;
-  --color-gold: #B9935A;
-  --color-gold-light: #D1B481;
-  --color-gold-dark: #8F6E3B;
-  --color-cream: #FAF7F2;
-  --color-cream-alt: #F2EDE4;
-  --color-background: #FAF7F2;
-  --color-text-dark: #1F1E1C;
-  --color-text-light: #6D675E;
+  --color-primary: #b9935a;
+  --color-gold: #b9935a;
+  --color-gold-light: #d1b481;
+  --color-gold-dark: #8f6e3b;
+  --color-cream: #faf7f2;
+  --color-cream-alt: #f2ede4;
+  --color-background: #faf7f2;
+  --color-text-dark: #1f1e1c;
+  --color-text-light: #6d675e;
 
-  --color-brand-primary: #B9935A;
-  --color-brand-maroon: #8F6E3B;
+  --color-brand-primary: #b9935a;
+  --color-brand-maroon: #8f6e3b;
 
-  --font-display: "Cormorant Garamond", Georgia, serif;
-  --font-heading: "Cormorant Garamond", Georgia, serif;
-  --font-body: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-serif: "Cormorant Garamond", Georgia, serif;
-  --font-sans: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display:
+    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-heading:
+    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-body:
+    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-serif:
+    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans:
+    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
   --radius-card: 0.125rem;
   --radius-button: 0;
@@ -110,70 +119,88 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Elegant Architectural Headings with Fluid Typography (clamp-based) */
+/* ---- Headings: Inter ---- */
 h1,
 h2,
 h3,
-h4 {
+h4,
+h5,
+h6 {
   font-family: var(--font-display);
   color: inherit;
-  letter-spacing: -0.015em;
+  letter-spacing: 0;
 }
 
 h1 {
-  font-size: clamp(2.25rem, 5.5vw + 1.5rem, 4.5rem);
-  line-height: 1.08;
+  font-size: clamp(2rem, 4.5vw + 0.75rem, 3.75rem);
+  line-height: 1.2;
   font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
 h2 {
-  font-size: clamp(1.85rem, 3.8vw + 0.5rem, 3.5rem);
-  line-height: 1.15;
+  font-size: clamp(1.65rem, 3vw + 0.5rem, 2.75rem);
+  line-height: 1.25;
   font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
 h3 {
-  font-size: clamp(1.4rem, 2.4vw + 0.4rem, 2.25rem);
-  line-height: 1.25;
+  font-size: clamp(1.3rem, 2vw + 0.4rem, 1.875rem);
+  line-height: 1.35;
   font-weight: 600;
 }
 
 h4 {
-  font-size: clamp(1.2rem, 1.6vw + 0.3rem, 1.75rem);
-  line-height: 1.3;
+  font-size: clamp(1.125rem, 1.3vw + 0.4rem, 1.5rem);
+  line-height: 1.4;
   font-weight: 600;
 }
 
-/* Fluid Heading Utility Classes for Cormorant Garamond */
+h5 {
+  font-size: clamp(1rem, 0.8vw + 0.5rem, 1.25rem);
+  line-height: 1.5;
+  font-weight: 600;
+}
+
+h6 {
+  font-size: clamp(0.875rem, 0.5vw + 0.55rem, 1rem);
+  line-height: 1.5;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+/* Fluid Heading Utility Classes */
 .font-display.text-7xl,
 .font-display.text-6xl {
-  font-size: clamp(2.25rem, 6vw + 0.5rem, 4.5rem);
-  line-height: 1.08;
+  font-size: clamp(2rem, 5vw + 0.5rem, 3.75rem);
+  line-height: 1.2;
 }
 
 .font-display.text-5xl,
 .font-display.text-4xl {
-  font-size: clamp(1.85rem, 4vw + 0.5rem, 3.25rem);
-  line-height: 1.15;
+  font-size: clamp(1.65rem, 3.2vw + 0.5rem, 2.75rem);
+  line-height: 1.25;
 }
 
 .font-display.text-3xl {
-  font-size: clamp(1.45rem, 2.5vw + 0.4rem, 2.25rem);
-  line-height: 1.22;
+  font-size: clamp(1.3rem, 2vw + 0.4rem, 1.875rem);
+  line-height: 1.35;
 }
 
 .font-display.text-2xl {
-  font-size: clamp(1.25rem, 1.8vw + 0.3rem, 1.75rem);
-  line-height: 1.3;
+  font-size: clamp(1.125rem, 1.4vw + 0.3rem, 1.5rem);
+  line-height: 1.4;
 }
 
+/* ---- Paragraph: Inter ---- */
 p {
   margin: 0;
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: clamp(1rem, 0.25vw + 0.95rem, 1.125rem);
-  line-height: 1.8;
-  letter-spacing: 0.005em;
+  font-size: clamp(1rem, 0.2vw + 0.95rem, 1.125rem);
+  line-height: 1.75;
+  letter-spacing: 0;
   color: var(--color-muted);
 }
 
@@ -190,6 +217,7 @@ p.text-justify,
   widows: 2;
 }
 
+/* ---- Span & inline/UI elements: Inter ---- */
 span,
 div,
 li,
@@ -200,6 +228,31 @@ select,
 textarea,
 label {
   font-family: var(--font-body);
+}
+
+/* A span inside a heading keeps the heading font */
+h1 span,
+h2 span,
+h3 span,
+h4 span,
+h5 span,
+h6 span {
+  font-family: inherit;
+}
+
+/* ---- Bold / Semibold ----
+   Inter is a full-range font (100-900), so 600 and 700 are both real weights. */
+.font-bold {
+  font-weight: 700;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+strong,
+b {
+  font-weight: 700;
 }
 
 /* =============================================================================
@@ -221,7 +274,7 @@ label {
   font-size: clamp(0.6875rem, 0.2vw + 0.65rem, 0.8125rem);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.25em;
+  letter-spacing: 0.2em;
   color: var(--color-accent);
 }
 
@@ -229,8 +282,8 @@ label {
 .lead-body {
   font-family: var(--font-body);
   font-size: clamp(0.95rem, 0.25vw + 0.9rem, 1.125rem);
-  font-weight: 600;
-  line-height: 1.75;
+  font-weight: 500;
+  line-height: 1.7;
   color: var(--color-muted);
 }
 
@@ -296,9 +349,8 @@ label {
 /* Text Selection */
 ::selection {
   background: var(--color-accent);
-  color: #FFFFFF;
+  color: #ffffff;
 }
-
 
 /* Lenis smooth scroll */
 html.lenis,
@@ -312,7 +364,11 @@ html.lenis body {
 
 /* Material Symbols */
 .material-symbols-outlined {
-  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 300,
+    "GRAD" 0,
+    "opsz" 24;
 }
 
 /* Leaflet Map Neutral Theme & Stacking Hierarchy */
@@ -366,7 +422,9 @@ html.lenis body {
 .premium-map-tiles .leaflet-tile-pane img,
 .leaflet-container.premium-map-tiles .leaflet-tile-pane img {
   filter: grayscale(100%) sepia(20%) contrast(95%) opacity(80%);
-  transition: filter 0.4s ease, opacity 0.4s ease;
+  transition:
+    filter 0.4s ease,
+    opacity 0.4s ease;
 }
 
 .premium-map-tiles:hover .leaflet-tile-pane img {
@@ -405,7 +463,8 @@ html.lenis body {
   }
 
   25% {
-    filter: drop-shadow(0 0 7px rgba(209, 180, 129, 0.9)) drop-shadow(0 0 14px rgba(185, 147, 90, 0.6));
+    filter: drop-shadow(0 0 7px rgba(209, 180, 129, 0.9))
+      drop-shadow(0 0 14px rgba(185, 147, 90, 0.6));
   }
 
   50% {
@@ -413,7 +472,8 @@ html.lenis body {
   }
 
   75% {
-    filter: drop-shadow(0 0 9px rgba(209, 180, 129, 0.85)) drop-shadow(0 0 16px rgba(185, 147, 90, 0.5));
+    filter: drop-shadow(0 0 9px rgba(209, 180, 129, 0.85))
+      drop-shadow(0 0 16px rgba(185, 147, 90, 0.5));
   }
 
   100% {
@@ -425,7 +485,8 @@ html.lenis body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1),
+  transition:
+    transform 280ms cubic-bezier(0.16, 1, 0.3, 1),
     color 250ms ease,
     filter 220ms ease;
   will-change: transform, filter;
@@ -446,7 +507,9 @@ html.lenis body {
 
 @media (prefers-reduced-motion: reduce) {
   .social-icon-hover {
-    transition: color 150ms ease, opacity 150ms ease !important;
+    transition:
+      color 150ms ease,
+      opacity 150ms ease !important;
     will-change: auto !important;
   }
 
@@ -462,7 +525,6 @@ html.lenis body {
 
 /* Hero Text Animation (Slow & Compact) */
 @keyframes showup {
-
   0%,
   10% {
     opacity: 0;
@@ -479,7 +541,6 @@ html.lenis body {
 }
 
 @keyframes slidein {
-
   0%,
   10% {
     transform: translateX(-100%);
@@ -492,7 +553,6 @@ html.lenis body {
 }
 
 @keyframes reveal {
-
   0%,
   10% {
     max-width: 0;
@@ -519,7 +579,7 @@ html.lenis body {
 .hero-reveal {
   opacity: 0;
   animation: showup 8.5s ease-in-out 1.5s forwards;
-  font-family: "Cormorant Garamond", Georgia, serif !important;
+  font-family: var(--font-display) !important;
 }
 
 .hero-slidein {
@@ -539,7 +599,6 @@ html.lenis body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-
   .hero-showup,
   .hero-reveal,
   .hero-slidein {

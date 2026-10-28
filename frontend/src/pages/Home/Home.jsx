@@ -5,23 +5,7 @@ import HubOfExcellence from "../../components/HubOfExcellence";
 import DevprathAbout from "./sections/DevprathAbout";
 import VideoCard from "./sections/VideoCard";
 import FinalCtaSection from "./sections/FinalCtaSection";
-/**
- * =============================================================================
- * PAGE MANIFEST: HOME PAGE (Home.jsx) — EDITORIAL LUXURY REDESIGN
- * =============================================================================
- * Route: "/"
- * 
- * Order of Sections:
- * 1. HERO — Fullscreen architectural entrance with video/imagery & minimal CTA
- * 2. BRAND / CREDIBILITY STATEMENT — Editorial typographic statistics & thin dividers
- * 3. WHO WE ARE / DEVPRATH ETHOS — Asymmetric narrative & founder partnership
- * 4. WHAT DEFINES DEVPRATH — Numbered architectural principles (01-04)
- * 5. FEATURED PROJECT — MANGALMURTI RESIDENCY — Asymmetric centerpiece showcase
- * 6. LOCATION & CONNECTIVITY — Editorial numbered schedule with Leaflet map
- * 7. LEGACY ACROSS NAGPUR — Proven track record teaser of 4 landmark projects
- * 8. FINAL CTA — Dark charcoal architectural closing ("Enquire Now")
- * =============================================================================
- */
+
 
 export const Home = () => {
   return (

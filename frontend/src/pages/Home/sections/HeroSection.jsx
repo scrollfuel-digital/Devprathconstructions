@@ -23,7 +23,7 @@ export const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen w-full flex items-center justify-center text-center overflow-hidden bg-[#1F1E1C]">
+    <section className="relative min-h-screen w-full flex items-center justify-center text-center overflow-hidden">
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <video
           ref={videoRef}
@@ -42,25 +42,25 @@ export const HeroSection = () => {
         key={cycleKey}
         className="relative z-10 w-full max-w-5xl mx-auto px-6 sm:px-8 lg:px-10 flex flex-col items-center justify-center text-center"
       >
-        <h1
+        <h2
           className="font-display font-serif tracking-tight leading-none"
           style={{
-            fontSize: "clamp(1rem, 3.8vw, 2rem)",
+            fontSize: "clamp(1rem, 1.8vw, 1.5rem)",
             // textShadow: "0 1px 2px rgba(0,0,0,0.55), 0 0 1px rgba(0,0,0,0.4)",
           }}
         >
           <div className="inline-block overflow-hidden  text-white hero-showup">
-            <h1 className="inline-block italic font-black tracking-wide">
+            <h2 className="inline-block italic font-black tracking-wide">
               Thoughtfully Planned Residences.
-            </h1>
+            </h2>
           </div>
           <br />
           <div className="inline-block overflow-hidden text-white hero-reveal">
-            <h1 className="inline-block italic font-black hero-slidein tracking-wide">
+            <h2 className="inline-block  font-black hero-slidein tracking-wide">
               Crafted for Modern Living.
-            </h1>
+            </h2>
           </div>
-        </h1>
+        </h2>
       </div>
     </section>
   );
