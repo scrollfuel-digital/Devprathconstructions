@@ -3,7 +3,6 @@ import HeroSection from "./sections/HeroSection";
 import FeaturedProjectSection from "./sections/FeaturedResidenceSection";
 import HubOfExcellence from "../../components/HubOfExcellence";
 import DevprathAbout from "./sections/DevprathAbout";
-import CompletedProjectsSection from "./sections/CompletedProjectsSection"
 import VideoCard from "./sections/VideoCard";
 import FinalCtaSection from "./sections/FinalCtaSection";
 
@@ -25,8 +24,6 @@ export const Home = () => {
         <VideoCard />
         
         <HubOfExcellence />
-
-        <CompletedProjectsSection />
 
         {/* 6. LOCATION & CONNECTIVITY */}
 

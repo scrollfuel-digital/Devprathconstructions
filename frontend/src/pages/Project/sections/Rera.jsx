@@ -218,23 +218,23 @@ function Rera() {
             </div>
 
             {/* =========================================================
-          DISCLAIMER
-      ========================================================= */}
+    DISCLAIMER
+========================================================= */}
             <div
                 className="
-          mx-auto
-          max-w-[1440px]
-          px-5
-          sm:px-10
-          lg:px-12
-        "
+        mx-auto
+        max-w-[1440px]
+        px-5
+        sm:px-10
+        lg:px-12
+    "
             >
-
                 <div className="border-t border-[#D5D5D5]" />
 
                 <p
                     className="
             py-4
+            text-center
             text-[11px]
             leading-5
             text-[#777]
@@ -243,18 +243,13 @@ function Rera() {
             sm:leading-6
             lg:text-[18px]
             lg:leading-7
-          "
+        "
                 >
-                    <span className="font-bold text-[#555] text-justify">
+                    <span className="font-bold text-[#111]">
                         Disclaimer:
                     </span>{" "}
-                    This content is for informational purposes only and does not
-                    constitute an offer to avail of any service, Prices mentioned
-                    are subject to change without notice, and properties mentioned
-                    are subject to availability. Images are for representation
-                    purposes only.
+                    Properties mentioned are subject to availability. Images are for representation purposes only.
                 </p>
-
             </div>
 
         </section>
