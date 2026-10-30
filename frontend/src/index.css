@@ -412,12 +412,6 @@ html.lenis body {
   color: var(--accent-gold-matte);
 }
 
-/* =============================================================================
-   PREMIUM ARCHITECTURAL MAP TILE FILTER
-   Applies specifically to the background tiles (.leaflet-tile-pane img),
-   stripping default greens/blues into a warm sepia tone that blends with --bg-ivory,
-   WITHOUT muting or altering the gold route line or map markers.
-   ============================================================================= */
 
 .premium-map-tiles .leaflet-tile-pane img,
 .leaflet-container.premium-map-tiles .leaflet-tile-pane img {
