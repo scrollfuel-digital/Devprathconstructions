@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import heroVideo from "../../../assets/videos/home_page_hero.mp4";
-
+import heroposter from "../../../assets/home page/home_hero-poster.png";
 export const HeroSection = () => {
   const videoRef = useRef(null);
   const lastTimeRef = useRef(0);
@@ -28,6 +28,7 @@ export const HeroSection = () => {
         <video
           ref={videoRef}
           src={heroVideo}
+          poster={heroposter}
           autoPlay
           muted
           playsInline

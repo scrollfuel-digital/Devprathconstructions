@@ -160,7 +160,7 @@ export default function FloorPlanExplorerSection() {
                   <ScrollReveal>
                     <div className="mb-6 flex flex-wrap items-center gap-4 sm:gap-6">
                       <CTAButton
-                        to="/contact"
+                        to="/contact#site-walkthrough"
                         label="BOOK SITE WALKTHROUGH"
                         className="font-body text-xs uppercase tracking-[0.18em]"
                       />

@@ -13,12 +13,45 @@ function ScrollToTop({ lenisRef }) {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
+    // 1. If no hash, immediately scroll to top
     if (!hash) {
       window.scrollTo(0, 0);
       if (lenisRef.current) {
-        lenisRef.current.scrollTo(0, { immediate: true });
+        lenisRef.current.scrollTo(0, { immediate: true, force: true });
       }
+      return;
     }
+
+    // 2. If a hash exists (e.g. #site-walkthrough):
+    // Immediately snap the scroll to 0 so the incoming page starts fresh
+    window.scrollTo(0, 0);
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(0, { immediate: true, force: true });
+    }
+
+    // 3. Poll for the target element to mount, compute its absolute Y position, and smoothly scroll
+    let attempts = 0;
+    const interval = setInterval(() => {
+      attempts++;
+      const targetElement = document.querySelector(hash);
+
+      if (targetElement) {
+        clearInterval(interval);
+
+        // Absolute page offset from top (minus 90px breathing room for the navbar)
+        const targetY = targetElement.getBoundingClientRect().top + window.scrollY - 90;
+
+        if (lenisRef.current) {
+          lenisRef.current.scrollTo(targetY, { duration: 1.2, force: true });
+        } else {
+          window.scrollTo({ top: targetY, behavior: 'smooth' });
+        }
+      } else if (attempts >= 20) {
+        clearInterval(interval);
+      }
+    }, 50);
+
+    return () => clearInterval(interval);
   }, [pathname, hash, lenisRef]);
 
   return null;

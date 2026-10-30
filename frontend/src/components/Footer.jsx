@@ -7,7 +7,7 @@ import { FOOTER_QUICK_LINKS } from "../constants/navigationData";
 
 const OFFICE = {
   address:
-    "Arpitshrushti, Behind Ganpati Temple, Near Tatya Tope Hall, Surendra Nagar, Nagpur - 440015",
+    "32-A, Deep Apartment, Pande Layout, Khamla Road, Nagpur",
   hours: "Mon-sat, 11:00 AM - 07:00 PM",
   phones: [
     { label: "+91 99212 77699", href: "tel:+919921277699" },
