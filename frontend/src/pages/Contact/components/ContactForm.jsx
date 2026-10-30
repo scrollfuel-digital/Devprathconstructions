@@ -200,7 +200,7 @@ export default function ContactForm() {
 
       <div className="absolute bottom-0 left-0 w-40 h-1 bg-gradient-to-r from-[#B9935A] to-transparent" />
 
-      <div className="relative z-10">
+      <div id="site-walkthrough" className="relative z-10">
         {/* Heading */}
         <div className="mb-8 space-y-2">
           <span className="arch-eyebrow mb-1">

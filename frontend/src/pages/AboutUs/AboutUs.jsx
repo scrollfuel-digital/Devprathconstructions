@@ -1,5 +1,5 @@
 import React from "react";
-import Hero from "./Hero";
+import Hero from "./Hero1";
 import { AboutIntro, MissionVisionSection } from "./AboutInfo";
 import VisionarySection from "./VisionaryCard";
 

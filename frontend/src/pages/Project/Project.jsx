@@ -50,8 +50,8 @@ export default function Project() {
         headingBreak
         description="Visit the site to explore 2 & 3 BHK residences, review floor layouts in detail, and experience the construction quality firsthand. Our team is here to assist you."
         buttons={[
-          { to: "/contact", label: "BOOK A SITE VISIT" },
-          { to: "/contact#location", label: "VISIT NAGPUR OFFICE" },
+          { to: "/contact#site-walkthrough", label: "BOOK A SITE VISIT" },
+          { to: "/contact#contact-map", label: "VISIT OFFICE" },
         ]}
         footer="MahaRERA Registration No. P50500045698 · Devprath Construction LLP"
       />

@@ -9,7 +9,7 @@ const leaders = [
         name: "Dr. Sunil N. Patil",
         role: "Director & Co-Founder",
         image: leaderSunil,
-        bio: "Championing structural strength, material standards, and strategic growth. Committed to delivering homes that stand the test of time.",
+        bio: "Championing superior structural strength, high material standards, and strategic growth. Committed to consistently delivering quality homes that stand the test of time",
         quote: "Excellence is never an accident; it is always the result of high\u00A0intention.",
     },
     {
