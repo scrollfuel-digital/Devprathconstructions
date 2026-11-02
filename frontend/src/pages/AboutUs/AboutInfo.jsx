@@ -44,7 +44,7 @@ const ValueBlock = ({ title, points, bordered }) => {
                     <li key={idx} className="flex items-start gap-3">
                         <span className="w-3 h-px bg-[#B9935A] mt-3 shrink-0" />
 
-                        <span className="font-sans text-sm font-bold text-text-light leading-relaxed">
+                        <span className="font-sans text-lg font-bold text-text-light leading-relaxed">
                             {point}
                         </span>
                     </li>
@@ -127,7 +127,7 @@ export function AboutIntro() {
                             </p>
 
                             {/* Paragraphs 2 & 3: Architectural Journey Block with Golden Vertical Line */}
-                            <div className="border-l-2 border-[#B9935A]/35 pl-4 sm:pl-5 space-y-3 sm:space-y-3.5 my-1">
+                            {/* <div className="border-l-2 border-[#B9935A]/35 pl-4 sm:pl-5 space-y-3 sm:space-y-3.5 my-1"> */}
                                 <p className="font-sans text-sm text-justify font-semibold leading-relaxed text-text-light text-pretty">
                                     Mr. Hemal Nadiyana, founder of Devang Developers, and Mr. Sunil Patil jointly founded V4 Developers in 2005, going on to deliver several landmark projects across Nagpur with strong customer trust and&nbsp;recognition.
                                 </p>
@@ -135,7 +135,7 @@ export function AboutIntro() {
                                 <p className="font-sans text-sm text-justify font-semibold leading-relaxed text-text-light text-pretty">
                                     In 2018, the duo founded Devprath Constructions LLP (registered 28th November 2018) to focus on township developments, bringing innovative, high-quality communities to Nagpur&apos;s real estate&nbsp;market.
                                 </p>
-                            </div>
+                            {/* </div> */}
 
                             {/* Paragraph 4: Trust & Ethos */}
                             <p className="font-sans text-sm text-justify font-semibold leading-relaxed text-text-light text-pretty pt-0.5">
