@@ -8,7 +8,7 @@ export const GALLERY_ITEMS = [
   {
     id: 'entrance-lobby',
     title: 'Double-Height Entrance Lobby',
-    category: 'Common Arrival Sanctuary · Wing A & B Portico',
+    category: 'Common Arrival Sanctuary · Wing B & C Portico',
     image: lobbyImg,
     aspect: 'col-span-12 md:col-span-6 aspect-[16/9]',
   },
