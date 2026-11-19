@@ -196,201 +196,204 @@ export const HubOfExcellence = () => {
       className="py-24 sm:py-32 bg-cream  overflow-hidden"
     >
       <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
-        
+
         {/* Section Header */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16 sm:mb-20">
           <ScrollReveal>
             <div>
-            <span className="arch-eyebrow mb-3">
-              Connectivity
-            </span>
-            <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl !font-bold text-black tracking-tight leading-tight">
-              Where Life <span className=" font-bold text-[#8F6E3B]">Connects</span>
-            </h2>
-          </div>
+              <span className="arch-eyebrow mb-3">
+                Connectivity
+              </span>
+              <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl !font-bold text-black tracking-tight leading-tight">
+                Where Life <span className=" font-bold text-[#8F6E3B]">Connects</span>
+              </h2>
+            </div>
           </ScrollReveal>
           <div className="text-left lg:text-right">
-           <ScrollReveal>
-             <span className="font-body text-xs sm:text-sm text-black font-semibold tracking-wider uppercase block">
-              Parsodi,Wardha Road,Nagpur
-            </span>
-            <span className="text-xs text-black/60 font-bold block mt-1">
-              Adjacent to MIHAN SEZ &amp; Metro Corridor
-            </span>
-           </ScrollReveal>
+            <ScrollReveal>
+              <span className="font-body text-xs sm:text-sm text-black font-semibold tracking-wider uppercase block">
+                Parsodi,Wardha Road,Nagpur
+              </span>
+              <span className="text-xs text-black/60 font-bold block mt-1">
+                Adjacent to MIHAN SEZ &amp; Metro Corridor
+              </span>
+            </ScrollReveal>
           </div>
         </div>
 
         {/* Two-Column Interactive Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-          
-          <div className="lg:col-span-6 space-y-1">
-            <div className="border-t border-[#B9935A]/25">
-              {LOCATIONS_DATA.map((item, idx) => {
-                const isActive = item.id === activeId;
-                const num = `0${idx + 1}`;
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-14 items-start">
 
-                return (
-                  <div
-                    key={item.id}
-                    onClick={() => setActiveId(item.id)}
-                    className={`connectivity-item ${
-                      isActive ? "active" : ""
-                    } py-4 sm:py-5 flex items-center justify-between cursor-pointer`}
-                  >
-                    <div className="flex items-baseline gap-4 sm:gap-6 min-w-0 pr-4">
-                      <ScrollReveal>
-                        <span className="connectivity-num font-display text-lg sm:text-2xl font-bold text-brand-primary shrink-0 transition-colors">
-                        {num}
-                      </span>
-                      <div className="min-w-0 truncate">
-                        <span className="connectivity-title font-body text-sm sm:text-base font-bold   uppercase tracking-[0.1em] block truncate text-[#1F1E1C] transition-colors">
-                          {item.title}
+          {/* LEFT COLUMN: INTERACTIVE CONNECTIVITY LIST */}
+          <div className="lg:col-span-6 space-y-2">
+            <ScrollReveal>
+              <div className="border-t border-[#B9935A]/25">
+                {LOCATIONS_DATA.map((item, idx) => {
+                  const isActive = item.id === activeId;
+                  const num = `0${idx + 1}`;
+
+                  return (
+                    <div
+                      key={item.id}
+                      onClick={() => setActiveId(item.id)}
+                      className={`connectivity-item ${
+                        isActive ? "active" : ""
+                      } min-h-[76px] sm:min-h-[82px] md:min-h-[86px] py-2.5 sm:py-3 px-3 sm:px-4 flex items-center justify-between gap-3 sm:gap-6 cursor-pointer transition-all duration-300`}
+                    >
+                      {/* Left: Number + Landmark Title & Category (Full name displayed with natural line breaks, no "..." truncation) */}
+                      <div className="flex items-center gap-3 sm:gap-5 min-w-0 flex-1">
+                        <span className="connectivity-num font-display text-base sm:text-xl md:text-2xl font-bold text-brand-primary shrink-0 transition-colors">
+                          {num}
                         </span>
-                        <span className="text-[11px] text-black/45 font-bold block mt-0.5">
-                          {item.category}
+                        <div className="min-w-0 flex-1">
+                          <span className="connectivity-title font-body text-xs sm:text-sm md:text-base font-bold uppercase tracking-[0.04em] sm:tracking-[0.07em] block text-[#1F1E1C] transition-colors leading-snug break-normal">
+                            {item.title}
+                          </span>
+                          <span className="text-[10px] sm:text-[11px] text-black/55 font-medium block mt-0.5 leading-tight">
+                            {item.category}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Right: Duration or "VIEW ROUTE" (Symmetrical 2-line height maintained across all rows) */}
+                      <div className="shrink-0 text-right pl-2 sm:pl-4 flex flex-col justify-center items-end">
+                        <span className="font-display text-xs sm:text-sm md:text-base font-bold tracking-wider text-brand-primary whitespace-nowrap block leading-tight">
+                          {isActive ? routeMeta.duration : "VIEW ROUTE"}
+                        </span>
+                        <span
+                          className={`text-[9px] sm:text-[10px] font-medium block font-body tracking-normal whitespace-nowrap mt-1 leading-tight transition-opacity duration-300 ${
+                            isActive
+                              ? "text-black/50 opacity-100"
+                              : "opacity-0 select-none pointer-events-none"
+                          }`}
+                        >
+                          {isActive ? routeMeta.distance : "0.0 km"}
                         </span>
                       </div>
-                      </ScrollReveal>
                     </div>
-
-                    <div className="shrink-0 text-right">
-                      <ScrollReveal>
-                      <span className="font-display text-base sm:text-lg font-bold tracking-wider text-brand-primary">
-                        {isActive ? routeMeta.duration : "VIEW ROUTE"}
-                      </span>
-                      </ScrollReveal>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+                  );
+                })}
+              </div>
+            </ScrollReveal>
 
             {/* External Directions CTA */}
-            <div className="pt-6">
+            <div className="pt-4 sm:pt-6">
               <ScrollReveal>
                 <CTAButton
-                to={externalMapUrl}
-                label="VIEW ON GOOGLE MAPS"
-                className="!w-auto min-w-[270px] text-nowrap"
-              >
-                
-              </CTAButton>
+                  href={externalMapUrl}
+                  label="VIEW ON GOOGLE MAPS"
+                  className="!w-full sm:!w-auto min-w-0 sm:min-w-[270px] text-nowrap"
+                />
               </ScrollReveal>
             </div>
           </div>
 
-          {/* =====================================================================
-              RIGHT COLUMNS: REACT-LEAFLET ARCHITECTURAL MAP
-              CartoDB Positron tiles, OSRM gold polyline, locked bounds
-              ===================================================================== */}
+          {/* RIGHT COLUMN: REACT-LEAFLET ARCHITECTURAL MAP */}
           <div className="lg:col-span-6 relative">
-            <div 
-              onClick={() => setIsMapActive(true)}
-              onMouseLeave={() => setIsMapActive(false)}
-              className="relative w-full h-[320px] sm:h-[400px] lg:h-[480px] max-h-[400px] lg:max-h-none overflow-hidden border border-[#B9935A]/25 bg-[#F2EDE4]"
-            >
-              {/* Mobile Scroll-Trap Guard Overlay */}
-              {!isMapActive && (
-                <div 
-                  onClick={() => setIsMapActive(true)}
-                  className="absolute inset-0 z-[400] flex items-center justify-center bg-black/5 cursor-pointer lg:hidden"
-                >
-                  <div className="bg-[#FAF7F2]/95 backdrop-blur-md px-4 py-2 border border-[#B9935A]/40 text-[#1F1E1C] shadow-sm text-center">
-                    <span className="font-body text-[10px] uppercase tracking-[0.2em] font-semibold block text-[#8F6E3B]">
-                      Tap to interact with map
-                    </span>
-                  </div>
-                </div>
-              )}
-              
-              <MapContainer
-                center={[MANGALMURTI_LOCATION.lat, MANGALMURTI_LOCATION.lng]}
-                zoom={13}
-                minZoom={12}
-                maxZoom={17}
-                maxBounds={NAGPUR_BOUNDS}
-                maxBoundsViscosity={1.0}
-                scrollWheelZoom={false}
-                attributionControl={false}
-                className={`premium-map-tiles w-full h-full z-0 ${
-                  !isMapActive ? "pointer-events-none lg:pointer-events-auto" : "pointer-events-auto"
-                }`}
+            <ScrollReveal>
+              <div
+                onClick={() => setIsMapActive(true)}
+                onMouseLeave={() => setIsMapActive(false)}
+                className="relative w-full h-[320px] sm:h-[400px] lg:h-[480px] max-h-[400px] lg:max-h-none overflow-hidden border border-[#B9935A]/25 bg-[#F2EDE4]"
               >
-                {/* Standard OpenStreetMap Tiles styled with .premium-map-tiles CSS filter */}
-                <TileLayer
-                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                  maxZoom={19}
-                />
-
-                <MapViewController bounds={routeCoords} />
-
-                {/* Mangalmurti Residency: Precise Exact Marker Placement */}
-                <Marker
-                  position={[MANGALMURTI_LOCATION.lat, MANGALMURTI_LOCATION.lng]}
-                  icon={mangalmurtiIcon}
-                >
-                  <Popup>
-                    <div className="font-sans text-xs">
-                      <strong>Mangalmurti Residency</strong>
-                      <p className="text-[10px] text-gray-600 mt-0.5">
-                        Parsodi, Wardha Road, Nagpur
-                      </p>
+                {/* Mobile Scroll-Trap Guard Overlay */}
+                {!isMapActive && (
+                  <div
+                    onClick={() => setIsMapActive(true)}
+                    className="absolute inset-0 z-[400] flex items-center justify-center bg-black/5 cursor-pointer lg:hidden"
+                  >
+                    <div className="bg-[#FAF7F2]/95 backdrop-blur-md px-4 py-2 border border-[#B9935A]/40 text-[#1F1E1C] shadow-sm text-center">
+                      <span className="font-body text-[10px] uppercase tracking-[0.2em] font-semibold block text-[#8F6E3B]">
+                        Tap to interact with map
+                      </span>
                     </div>
-                  </Popup>
-                </Marker>
-                
-                {/* Active Destination: Precise Exact Marker Placement from LOCATIONS_DATA */}
-                <Marker
-                  position={[activePoint.lat, activePoint.lng]}
-                  icon={landmarkIcon}
+                  </div>
+                )}
+
+                <MapContainer
+                  center={[MANGALMURTI_LOCATION.lat, MANGALMURTI_LOCATION.lng]}
+                  zoom={13}
+                  minZoom={12}
+                  maxZoom={17}
+                  maxBounds={NAGPUR_BOUNDS}
+                  maxBoundsViscosity={1.0}
+                  scrollWheelZoom={false}
+                  attributionControl={false}
+                  className={`premium-map-tiles w-full h-full z-0 ${!isMapActive ? "pointer-events-none lg:pointer-events-auto" : "pointer-events-auto"
+                    }`}
                 >
-                  <Popup>
-                    <div className="font-sans text-xs">
-                      <strong>{activePoint.title}</strong>
-                      <p className="text-[10px] text-gray-600 mt-0.5">
-                        {activePoint.category} · {routeMeta.distance}
-                      </p>
-                    </div>
-                  </Popup>
-                </Marker>
+                  <TileLayer
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    maxZoom={19}
+                  />
 
-                {/* Real Driving Route Polyline Styled in Brand Matte Gold with Coordinate Bridging */}
-                <Polyline
-                  positions={routeCoords}
-                  pathOptions={{
-                    color: "#B89C72", // Brand matte gold (--accent-gold-matte)
-                    weight: 4,
-                    opacity: 0.9,
-                    dashArray: isFallback ? "6, 8" : undefined,
-                    lineJoin: "round",
-                  }}
-                />
-              </MapContainer>
+                  <MapViewController bounds={routeCoords} />
 
-              {/* Status Overlay Info Pill */}
-              <div className="absolute top-4 left-4 bg-[#FAF7F2]/95 backdrop-blur-md px-4 py-2.5 text-[#1F1E1C] border-l-2 border-[#B9935A] shadow-sm pointer-events-none z-[500]">
-                <span className="text-[9px] uppercase tracking-[0.2em] text-brand-maroon font-bold block">
-                  Driving Route · Wardha Road
-                </span>
-                <span className="text-xs font-medium text-[#1F1E1C]">
-                  {activePoint.title} · {routeMeta.duration} ({routeMeta.distance})
-                </span>
+                  {/* Mangalmurti Residency Marker */}
+                  <Marker
+                    position={[MANGALMURTI_LOCATION.lat, MANGALMURTI_LOCATION.lng]}
+                    icon={mangalmurtiIcon}
+                  >
+                    <Popup>
+                      <div className="font-sans text-xs">
+                        <strong>Mangalmurti Residency</strong>
+                        <p className="text-[10px] text-gray-600 mt-0.5">
+                          Parsodi, Wardha Road, Nagpur
+                        </p>
+                      </div>
+                    </Popup>
+                  </Marker>
+
+                  {/* Destination Marker */}
+                  <Marker
+                    position={[activePoint.lat, activePoint.lng]}
+                    icon={landmarkIcon}
+                  >
+                    <Popup>
+                      <div className="font-sans text-xs">
+                        <strong>{activePoint.title}</strong>
+                        <p className="text-[10px] text-gray-600 mt-0.5">
+                          {activePoint.category} · {routeMeta.distance}
+                        </p>
+                      </div>
+                    </Popup>
+                  </Marker>
+
+                  {/* Real Driving Route Polyline */}
+                  <Polyline
+                    positions={routeCoords}
+                    pathOptions={{
+                      color: "#B89C72",
+                      weight: 4,
+                      opacity: 0.9,
+                      dashArray: isFallback ? "6, 8" : undefined,
+                      lineJoin: "round",
+                    }}
+                  />
+                </MapContainer>
+
+                {/* Status Overlay Info Pill (Responsive max-width & truncate) */}
+                <div className="absolute top-3 sm:top-4 left-3 sm:left-4 bg-[#FAF7F2]/95 backdrop-blur-md px-3 sm:px-4 py-2 sm:py-2.5 text-[#1F1E1C] border-l-2 border-[#B9935A] shadow-sm pointer-events-none z-[500] max-w-[calc(100%-1.5rem)] sm:max-w-[calc(100%-2rem)]">
+                  <span className="text-[8px] sm:text-[9px] uppercase tracking-[0.2em] text-brand-maroon font-bold block">
+                    Driving Route · Wardha Road
+                  </span>
+                  <span className="text-[11px] sm:text-xs font-medium text-[#1F1E1C] block truncate">
+                    {activePoint.title} · {routeMeta.duration} ({routeMeta.distance})
+                  </span>
+                </div>
+
+                {/* Sector Tag Accent (Hidden on small mobile to keep map clean) */}
+                <div className="absolute bottom-3 sm:bottom-4 right-3 sm:right-4 bg-[#FAF7F2]/90 backdrop-blur-sm px-2.5 sm:px-3 py-1 text-[8px] sm:text-[9px] uppercase tracking-[0.2em] text-[#6D675E] font-semibold pointer-events-none z-[500] border border-[#B9935A]/20 hidden sm:block">
+                  Origin: Mangalmurti Residency
+                </div>
+
               </div>
-
-              {/* Sector Tag Accent */}
-              <div className="absolute bottom-4 right-4 bg-[#FAF7F2]/90 backdrop-blur-sm px-3 py-1 text-[9px] uppercase tracking-[0.2em] text-[#6D675E] font-semibold pointer-events-none z-[500] border border-[#B9935A]/20">
-                Origin: Mangalmurti Residency
-              </div>
-
-            </div>
+            </ScrollReveal>
           </div>
-
         </div>
-
       </div>
-    </section>
+    </section >
   );
 };
 
