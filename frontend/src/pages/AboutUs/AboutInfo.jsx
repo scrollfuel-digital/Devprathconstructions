@@ -29,22 +29,22 @@ const ValueBlock = ({ title, points, bordered }) => {
         <motion.div
             {...motionProps}
             variants={variants}
-            className={`space-y-5 ${
+            className={`space-y-5 min-w-0 ${
                 bordered
-                    ? "md:border-l md:pl-12 lg:pl-16 border-t md:border-t-0 pt-8 md:pt-0 border-[#B9935A]/30"
+                    ? "md:border-l md:pl-8 lg:pl-12 xl:pl-16 border-t md:border-t-0 pt-8 md:pt-0 border-[#B9935A]/30"
                     : ""
             }`}
         >
-            <h3 className="text-2xl sm:text-3xl uppercase tracking-[0.15em] w-fit border-b border-[#B9935A]/30 pb-3 text-balance">
+            <h3 className="text-xl sm:text-2xl md:text-3xl uppercase tracking-[0.12em] sm:tracking-[0.15em] w-fit border-b border-[#B9935A]/30 pb-2.5 sm:pb-3 text-balance">
                 {title}
             </h3>
 
-            <ul className="space-y-4">
+            <ul className="space-y-3.5 sm:space-y-4">
                 {points.map((point, idx) => (
                     <li key={idx} className="flex items-start gap-3">
-                        <span className="w-3 h-px bg-[#B9935A] mt-3 shrink-0" />
+                        <span className="w-3 h-px bg-[#B9935A] mt-2.5 sm:mt-3 shrink-0" />
 
-                        <span className="font-sans text-lg font-bold text-text-light leading-relaxed">
+                        <span className="font-sans text-sm sm:text-base md:text-lg font-semibold text-text-light leading-relaxed break-words">
                             {point}
                         </span>
                     </li>
@@ -59,7 +59,7 @@ export function AboutIntro() {
     const variants = magicalBehindVariant(shouldReduce);
 
     return (
-        <section className="pt-12 sm:pt-16 md:pt-20 lg:pt-24 pb-10 sm:pb-14 md:pb-16 lg:pb-20 bg-[#FAF7F2]">
+        <section className="pt-12 sm:pt-16 md:pt-20 lg:pt-24 pb-10 sm:pb-14 md:pb-16 lg:pb-20 bg-[#FAF7F2] overflow-x-hidden">
             <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 xl:gap-16 items-center">
 
@@ -67,7 +67,7 @@ export function AboutIntro() {
                     <motion.div
                         {...motionProps}
                         variants={variants}
-                        className="w-full lg:col-span-5 flex justify-center"
+                        className="w-full lg:col-span-5 flex justify-center min-w-0"
                     >
                         <div className="relative aspect-[400/559] w-full max-w-[360px] sm:max-w-[420px] lg:max-w-none rounded-xl sm:rounded-2xl overflow-hidden shadow-md sm:shadow-lg shadow-black/5 bg-[#F2EDE4]">
                             <img
@@ -95,24 +95,24 @@ export function AboutIntro() {
                         {...motionProps}
                         variants={variants}
                         transition={{ delay: 0.1 }}
-                        className="w-full lg:col-span-7 flex flex-col justify-center max-w-xl md:max-w-2xl lg:max-w-none mx-auto lg:mx-0"
+                        className="w-full lg:col-span-7 flex flex-col justify-center min-w-0 max-w-xl md:max-w-2xl lg:max-w-none mx-auto lg:mx-0"
                     >
                         <span className="block text-xs sm:text-[13px] font-bold uppercase tracking-[0.18em] text-gold mb-1.5 sm:mb-2">
                             Meet Devprath Constructions
                         </span>
 
-                        <h2 className="leading-tight text-balance mb-3 sm:mb-4">
-                            <span className="block font-display whitespace-nowrap text-2xl sm:text-3xl md:text-4xl lg:text-[40px] xl:text-[46px] tracking-wide uppercase font-bold text-[#1F1E1C] leading-tight">
+                        <h2 className="leading-tight mb-4 sm:mb-5">
+                            <span className="block font-display text-2xl sm:text-3xl md:text-4xl lg:text-[38px] xl:text-[44px] tracking-wide uppercase font-bold text-[#1F1E1C] leading-[1.15]">
                                 Your Trusted Partner
                             </span>
 
-                            <span className="flex items-baseline gap-2 sm:gap-3 mt-1 sm:mt-1.5 whitespace-nowrap">
-                                <span className="block font-display whitespace-nowrap text-2xl sm:text-3xl md:text-4xl lg:text-[40px] xl:text-[46px] tracking-wide uppercase font-bold text-[#1F1E1C] leading-tight">
+                            <span className="flex flex-wrap items-baseline gap-2 sm:gap-3 mt-1 sm:mt-1.5">
+                                <span className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-[38px] xl:text-[44px] tracking-wide uppercase font-bold text-[#1F1E1C] leading-[1.15]">
                                     in
                                 </span>
 
-                                <span className="font-sans text-4xl sm:text-4xl lg:text-4xl tracking-[0.12em] uppercase font-bold text-gold leading-tight">
-                                    Building&nbsp;Dreams
+                                <span className="font-sans text-2xl sm:text-3xl md:text-4xl lg:text-[38px] xl:text-[44px] tracking-[0.06em] sm:tracking-[0.08em] uppercase font-bold text-gold leading-[1.15]">
+                                    Building Dreams
                                 </span>
                             </span>
                         </h2>
@@ -122,24 +122,22 @@ export function AboutIntro() {
                             className="space-y-3.5 sm:space-y-4"
                         >
                             {/* Paragraph 1: Editorial Lead */}
-                            <p className="font-sans text-sm text-justify leading-relaxed text-text-light font-semibold text-pretty">
-                                Devprath Constructions LLP is a partnership firm led by Mr. Hemal Nadiyana and Mr. Sunil Patil — friends and professional partners for over 20 years, bringing 15 years of construction industry expertise to every&nbsp;project.
+                            <p className="font-sans text-sm sm:text-[15px] text-left sm:text-justify leading-relaxed text-text-light font-medium text-pretty break-words">
+                                Devprath Constructions LLP is a partnership firm led by Mr. Hemal Nadiyana and Mr. Sunil Patil — friends and professional partners for over 20 years, bringing 15 years of construction industry expertise to every project.
                             </p>
 
-                            {/* Paragraphs 2 & 3: Architectural Journey Block with Golden Vertical Line */}
-                            {/* <div className="border-l-2 border-[#B9935A]/35 pl-4 sm:pl-5 space-y-3 sm:space-y-3.5 my-1"> */}
-                                <p className="font-sans text-sm text-justify font-semibold leading-relaxed text-text-light text-pretty">
-                                    Mr. Hemal Nadiyana, founder of Devang Developers, and Mr. Sunil Patil jointly founded V4 Developers in 2005, going on to deliver several landmark projects across Nagpur with strong customer trust and&nbsp;recognition.
-                                </p>
+                            {/* Paragraphs 2 & 3: Architectural Journey Block */}
+                            <p className="font-sans text-sm sm:text-[15px] text-left sm:text-justify font-medium leading-relaxed text-text-light text-pretty break-words">
+                                Mr. Hemal Nadiyana, founder of Devang Developers, and Mr. Sunil Patil jointly founded V4 Developers in 2005, going on to deliver several landmark projects across Nagpur with strong customer trust and recognition.
+                            </p>
 
-                                <p className="font-sans text-sm text-justify font-semibold leading-relaxed text-text-light text-pretty">
-                                    In 2018, the duo founded Devprath Constructions LLP (registered 28th November 2018) to focus on township developments, bringing innovative, high-quality communities to Nagpur&apos;s real estate&nbsp;market.
-                                </p>
-                            {/* </div> */}
+                            <p className="font-sans text-sm sm:text-[15px] text-left sm:text-justify font-medium leading-relaxed text-text-light text-pretty break-words">
+                                In 2018, the duo founded Devprath Constructions LLP (registered 28th November 2018) to focus on township developments, bringing innovative, high-quality communities to Nagpur&apos;s real estate market.
+                            </p>
 
                             {/* Paragraph 4: Trust & Ethos */}
-                            <p className="font-sans text-sm text-justify font-semibold leading-relaxed text-text-light text-pretty pt-0.5">
-                                Built on integrity, commitment, and hard work, Devprath Constructions LLP has earned the trust of hundreds of homeowners across&nbsp;Nagpur.
+                            <p className="font-sans text-sm sm:text-[15px] text-left sm:text-justify font-medium leading-relaxed text-text-light text-pretty break-words pt-0.5">
+                                Built on integrity, commitment, and hard work, Devprath Constructions LLP has earned the trust of hundreds of homeowners across Nagpur.
                             </p>
                         </div>
                     </motion.div>
