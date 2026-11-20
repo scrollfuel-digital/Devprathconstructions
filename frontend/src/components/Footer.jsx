@@ -4,7 +4,7 @@ import { MapPin, Clock, Phone, Mail } from "lucide-react";
 import logo from "../assets/logo/logo.png";
 import SocialConnectBar from "./SocialConnectBar";
 import { FOOTER_QUICK_LINKS } from "../constants/navigationData";
-// bla bal
+// bla bal bla
 const OFFICE = {
   address:
     "32-A, Deep Apartment, Pande Layout, Khamla Road, Nagpur",
