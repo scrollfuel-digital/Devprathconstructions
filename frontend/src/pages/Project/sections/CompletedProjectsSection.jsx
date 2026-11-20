@@ -34,20 +34,16 @@ const StickyProjectCard = ({
         ? [0, 1, 1]
         : [0, 1, 1, 0];
 
-  const cornerOpacity = useTransform(
-    progress,
-    cornerInput,
-    cornerOutput
-  );
+  const cornerOpacity = useTransform(progress, cornerInput, cornerOutput);
 
   return (
     <div
-      className="sticky top-0 flex h-screen w-full items-center justify-center px-4 sm:px-6 lg:px-8"
+      className="sticky top-0 flex h-screen w-full flex-col justify-end items-center px-4 pb-4 sm:pb-6 lg:justify-center lg:pb-0 lg:px-8"
       style={{ zIndex: i + 1 }}
     >
       <motion.div
         style={{ scale }}
-        className="relative aspect-square w-full max-w-[92vw] sm:max-w-[420px] md:max-w-[460px] lg:max-w-[520px]"
+        className="relative h-[44vh] max-h-[320px] sm:max-h-[380px] aspect-square w-auto max-w-[88vw] sm:max-w-[380px] md:max-w-[440px] lg:h-auto lg:max-h-none lg:w-full lg:max-w-[500px]"
       >
         <div className="relative h-full w-full overflow-hidden">
           <img
@@ -60,21 +56,21 @@ const StickyProjectCard = ({
 
           {/* Bottom information overlay */}
           <div
-            className="absolute inset-x-0 bottom-0 px-5 pb-5 pt-16 sm:px-6 sm:pb-6 sm:pt-20"
+            className="absolute inset-x-0 bottom-0 px-4 py-2.5 sm:px-6 sm:pb-5 sm:pt-16"
             style={{
               background:
-                "linear-gradient(to top, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.96) 30%, rgba(255,255,255,0.78) 52%, rgba(255,255,255,0.25) 76%, rgba(255,255,255,0) 100%)",
+                "linear-gradient(to top, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.95) 40%, rgba(255,255,255,0.7) 65%, rgba(255,255,255,0) 100%)",
             }}
           >
             <h4
-              className="text-sm !font-black uppercase tracking-[0.15em]"
+              className="text-xs sm:text-sm font-black uppercase tracking-[0.15em] leading-snug"
               style={{ color: "#1F1E1C" }}
             >
               {title}
             </h4>
 
             <p
-              className="mt-1 text-xs !font-black uppercase tracking-[0.15em] sm:text-sm"
+              className="mt-0.5 text-[10px] sm:text-xs font-black uppercase tracking-[0.15em]"
               style={{ color: "#B9935A" }}
             >
               {location}
@@ -109,47 +105,70 @@ const CompletedProjectsSection = () => {
   });
 
   return (
-    <section className="relative w-full py-16 sm:py-20 lg:py-10">
+    <section className="relative w-full pt-4 pb-8 sm:py-12 lg:py-0 bg-[#FAF7F2]">
+      {/* Mobile-only Heading (scrolls naturally with page, does not stick) */}
+      <div className="w-full bg-[#FAF7F2] px-4 pt-4 pb-1 sm:px-6 text-center lg:hidden">
+        <span className="arch-eyebrow text-center text-xs sm:text-sm">
+          Our Work
+        </span>
+
+        <h2 className="mt-1 sm:mt-2 text-2xl sm:text-3xl leading-tight font-display uppercase tracking-tight text-[#1F1E1C]">
+          Completed Projects
+        </h2>
+      </div>
+
+      {/* 
+        Grid Layout:
+        - Desktop: 1 row, 2 columns (1*2) -> lg:grid-cols-2
+        - Mobile:  2 rows, 1 column (2*1) -> grid-cols-1
+      */}
       <div
         ref={container}
-        className="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2 lg:gap-x-12 xl:gap-x-20"
+        className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 lg:gap-x-12 xl:gap-x-20"
       >
-        {/* Left content */}
-        <div className="px-4 sm:px-6 lg:px-8">
+        {/* Row 1 on Mobile (Sticky Description only) / Column 1 on Desktop (Sticky Heading + Description) */}
+        <div className="sticky top-16 sm:top-18 z-20 w-full bg-[#FAF7F2] px-4 pt-2 pb-3 sm:px-6 lg:sticky lg:top-0 lg:h-screen lg:flex lg:flex-col lg:justify-center lg:bg-transparent lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-10%" }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-            className="text-center lg:sticky lg:top-0 lg:flex lg:h-screen lg:flex-col lg:justify-center lg:text-left"
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="text-center lg:text-left"
           >
-            <span className="arch-eyebrow text-center lg:text-left">
-              Our Work
-            </span>
+            {/* Desktop-only Heading */}
+            <div className="hidden lg:block">
+              <span className="arch-eyebrow text-left text-xs sm:text-sm">
+                Our Work
+              </span>
 
-            <h2 className="mt-3 text-3xl leading-tight sm:text-5xl lg:text-7xl">
-              Completed Projects
-            </h2>
+              <h2 className="mt-1 sm:mt-2 text-5xl lg:text-7xl leading-tight font-display uppercase tracking-tight text-[#1F1E1C]">
+                Completed Projects
+              </h2>
+            </div>
 
-            <div className="mx-auto mt-6 max-w-md space-y-4 text-sm sm:text-base text-[#6D675E] leading-relaxed text-justify hyphens-auto lg:mx-0 lg:max-w-lg">
-              <p className="!font-semibold">
-                Over the years, a portfolio of premium residential developments has taken shape across some of Nagpur’s most established neighbourhoods, including <b>Dharampeth, Ramdaspeth, Laxmi Nagar, Friend Colony, Jaiprakash Nagar ,Shivaji Nagar and Wardha Road</b>. Each project reflects a commitment to thoughtful planning, well-designed layouts, and comfortable living.
+            {/* Description (Sticky on mobile and desktop) */}
+            <div className="mx-auto mt-0 lg:mt-6 max-w-md lg:max-w-lg text-xs sm:text-sm lg:text-base text-[#6D675E] leading-relaxed text-justify hyphens-auto lg:mx-0 space-y-2 sm:space-y-3">
+              <p
+                style={{ textAlign: "justify", textJustify: "inter-word", hyphens: "auto" }}
+                className="!font-semibold break-words"
+              >
+                Over the years, a portfolio of premium residential developments has taken shape across some of Nagpur’s most established neighbourhoods, including <b>Dharampeth, Ramdaspeth, Laxmi Nagar, Friend Colony, Jaiprakash Nagar, Shivaji Nagar and Wardha Road</b>. Each project reflects a commitment to thoughtful planning, well-designed layouts, and comfortable living.
               </p>
 
-              <p className="!font-semibold">
+              <p
+                style={{ textAlign: "justify", textJustify: "inter-word", hyphens: "auto" }}
+                className="!font-semibold break-words"
+              >
                 With <b>9 completed developments</b> and over <b>500+</b> families having found their homes, these projects stand as a testament to a consistent commitment to construction excellence, timely handovers, and lasting value.
               </p>
             </div>
           </motion.div>
         </div>
 
-        {/* Project stack */}
-        <div className="relative mt-10 flex flex-col sm:mt-12 lg:mt-0">
+        {/* Row 2 on Mobile / Column 2 on Desktop: Sticky Image Stack */}
+        <div className="relative flex flex-col lg:mt-0">
           {projects.map((project, i) => {
-            const targetScale = Math.max(
-              0.85,
-              1 - (total - i - 1) * 0.05
-            );
+            const targetScale = Math.max(0.85, 1 - (total - i - 1) * 0.05);
 
             return (
               <StickyProjectCard
@@ -172,5 +191,4 @@ const CompletedProjectsSection = () => {
 };
 
 export default CompletedProjectsSection;
-
-export { CompletedProjectsSection, StickyProjectCard };
+export { StickyProjectCard };

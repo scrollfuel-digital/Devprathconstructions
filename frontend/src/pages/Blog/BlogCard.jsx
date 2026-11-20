@@ -37,10 +37,16 @@ export default function BlogCard({ post, index = 0, variant = "editorial" }) {
           </div>
 
           <div className="p-5 pb-3">
-            <div className="flex items-center gap-2 text-xs text-[#6D675E] mb-2.5">
-              {post.date && <span>{post.date}</span>}
-              {post.date && post.author && <span className="text-[#B9935A]/40">&bull;</span>}
-              {post.author && <span>{post.author}</span>}
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-[#6D675E] mb-2.5">
+              {post.date && <span className="shrink-0">{post.date}</span>}
+              {post.date && post.author && (
+                <span className="text-[#B9935A]/40 hidden sm:inline">&bull;</span>
+              )}
+              {post.author && (
+                <span className="w-full sm:w-auto text-[11px] sm:text-xs text-pretty">
+                  {post.author}
+                </span>
+              )}
             </div>
 
             <h3 className="text-base sm:text-lg font-serif font-medium leading-snug group-hover:text-[#8F6E3B] transition-colors duration-300 line-clamp-2 mb-3">
@@ -90,25 +96,27 @@ export default function BlogCard({ post, index = 0, variant = "editorial" }) {
         variants={fadeUpVariant}
         className="mb-5 sm:mb-6"
       >
-        <div className="flex items-center gap-3 mb-2.5">
+        <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 mb-2.5 text-[11px] sm:text-xs">
           {post.category && (
-            <>
-              <span className="font-body text-[11px] sm:text-xs font-semibold uppercase tracking-[0.25em] text-[#B9935A]">
-                {post.category}
-              </span>
-              {(post.date || post.author) && (
-                <span className="text-[#B9935A]/40 select-none">&bull;</span>
-              )}
-            </>
+            <span className="font-body font-semibold uppercase tracking-[0.2em] sm:tracking-[0.25em] text-[#B9935A] shrink-0">
+              {post.category}
+            </span>
+          )}
+          {post.category && post.date && (
+            <span className="text-[#B9935A]/40 select-none shrink-0">&bull;</span>
           )}
           {post.date && (
-            <>
-              <span className="font-body text-xs text-[#6D675E] tracking-wider uppercase">{post.date}</span>
-              {post.author && <span className="text-[#B9935A]/40 select-none">&bull;</span>}
-            </>
+            <span className="font-body text-[#6D675E] tracking-wider uppercase shrink-0">
+              {post.date}
+            </span>
+          )}
+          {(post.category || post.date) && post.author && (
+            <span className="text-[#B9935A]/40 select-none shrink-0 hidden sm:inline">&bull;</span>
           )}
           {post.author && (
-            <span className="font-body text-xs text-[#6D675E] tracking-wider">{post.author}</span>
+            <span className="font-body text-[#6D675E] tracking-wide w-full sm:w-auto text-pretty">
+              {post.author}
+            </span>
           )}
         </div>
 

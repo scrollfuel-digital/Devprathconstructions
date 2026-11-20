@@ -97,22 +97,25 @@ export function AboutIntro() {
                         transition={{ delay: 0.1 }}
                         className="w-full lg:col-span-7 flex flex-col justify-center min-w-0 max-w-xl md:max-w-2xl lg:max-w-none mx-auto lg:mx-0"
                     >
-                        <span className="block text-xs sm:text-[13px] font-bold uppercase tracking-[0.18em] text-gold mb-1.5 sm:mb-2">
+                        <span
+                            className="block font-sans text-xs sm:text-sm md:text-[15px] font-bold uppercase tracking-[0.2em] sm:tracking-[0.24em] text-gold mb-2 sm:mb-2.5"
+                            style={{ fontSize: "clamp(0.8125rem, 0.35vw + 0.72rem, 0.9375rem)" }}
+                        >
                             Meet Devprath Constructions
                         </span>
 
-                        <h2 className="leading-tight mb-4 sm:mb-5">
-                            <span className="block font-display text-2xl sm:text-3xl md:text-4xl lg:text-[38px] xl:text-[44px] tracking-wide uppercase font-bold text-[#1F1E1C] leading-[1.15]">
+                        <h2
+                            className="uppercase mb-4 sm:mb-5 text-[#1F1E1C]"
+                             style={{ fontSize: "clamp(1.5rem, 1.4vw + 1.15rem, 2.5rem)", lineHeight: 1.15 }}
+                        >
+                            <span className="block whitespace-normal lg:whitespace-nowrap">
                                 Your Trusted Partner
                             </span>
 
-                            <span className="flex flex-wrap items-baseline gap-2 sm:gap-3 mt-1 sm:mt-1.5">
-                                <span className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-[38px] xl:text-[44px] tracking-wide uppercase font-bold text-[#1F1E1C] leading-[1.15]">
-                                    in
-                                </span>
-
-                                <span className="font-sans text-2xl sm:text-3xl md:text-4xl lg:text-[38px] xl:text-[44px] tracking-[0.06em] sm:tracking-[0.08em] uppercase font-bold text-gold leading-[1.15]">
-                                    Building Dreams
+                            <span className="block mt-1 sm:mt-1.5 whitespace-normal lg:whitespace-nowrap">
+                                in{" "}
+                                <span className="font-sans text-gold tracking-[0.04em] sm:tracking-[0.06em]">
+                                    Building&nbsp;Dreams
                                 </span>
                             </span>
                         </h2>
@@ -122,21 +125,33 @@ export function AboutIntro() {
                             className="space-y-3.5 sm:space-y-4"
                         >
                             {/* Paragraph 1: Editorial Lead */}
-                            <p className="font-sans text-sm sm:text-[15px] text-left sm:text-justify leading-relaxed text-text-light font-medium text-pretty break-words">
+                            <p
+                                style={{ textAlign: "justify", textJustify: "inter-word", hyphens: "auto", WebkitHyphens: "auto" }}
+                                className="font-sans text-sm sm:text-[15px] text-justify leading-relaxed text-text-light font-medium text-pretty break-words hyphens-auto"
+                            >
                                 Devprath Constructions LLP is a partnership firm led by Mr. Hemal Nadiyana and Mr. Sunil Patil — friends and professional partners for over 20 years, bringing 15 years of construction industry expertise to every project.
                             </p>
 
                             {/* Paragraphs 2 & 3: Architectural Journey Block */}
-                            <p className="font-sans text-sm sm:text-[15px] text-left sm:text-justify font-medium leading-relaxed text-text-light text-pretty break-words">
+                            <p
+                                style={{ textAlign: "justify", textJustify: "inter-word", hyphens: "auto", WebkitHyphens: "auto" }}
+                                className="font-sans text-sm sm:text-[15px] text-justify font-medium leading-relaxed text-text-light text-pretty break-words hyphens-auto"
+                            >
                                 Mr. Hemal Nadiyana, founder of Devang Developers, and Mr. Sunil Patil jointly founded V4 Developers in 2005, going on to deliver several landmark projects across Nagpur with strong customer trust and recognition.
                             </p>
 
-                            <p className="font-sans text-sm sm:text-[15px] text-left sm:text-justify font-medium leading-relaxed text-text-light text-pretty break-words">
+                            <p
+                                style={{ textAlign: "justify", textJustify: "inter-word", hyphens: "auto", WebkitHyphens: "auto" }}
+                                className="font-sans text-sm sm:text-[15px] text-justify font-medium leading-relaxed text-text-light text-pretty break-words hyphens-auto"
+                            >
                                 In 2018, the duo founded Devprath Constructions LLP (registered 28th November 2018) to focus on township developments, bringing innovative, high-quality communities to Nagpur&apos;s real estate market.
                             </p>
 
                             {/* Paragraph 4: Trust & Ethos */}
-                            <p className="font-sans text-sm sm:text-[15px] text-left sm:text-justify font-medium leading-relaxed text-text-light text-pretty break-words pt-0.5">
+                            <p
+                                style={{ textAlign: "justify", textJustify: "inter-word", hyphens: "auto", WebkitHyphens: "auto" }}
+                                className="font-sans text-sm sm:text-[15px] text-justify font-medium leading-relaxed text-text-light text-pretty break-words pt-0.5 hyphens-auto"
+                            >
                                 Built on integrity, commitment, and hard work, Devprath Constructions LLP has earned the trust of hundreds of homeowners across Nagpur.
                             </p>
                         </div>
