@@ -111,25 +111,27 @@ export default function BlogDetail() {
 
         {/* 2. TEXT CONTENT */}
         <div className="max-w-4xl mx-auto">
-          <div className="flex flex-wrap items-center gap-3 mb-4">
+          <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 mb-4 text-[11px] sm:text-xs">
             {blog.category && (
-              <>
-                <span className="font-body text-[11px] sm:text-xs font-semibold uppercase tracking-[0.25em] text-[#B9935A]">
-                  {blog.category}
-                </span>
-                {(blog.date || blog.author) && (
-                  <span className="text-[#B9935A]/50 select-none">&bull;</span>
-                )}
-              </>
+              <span className="font-body font-semibold uppercase tracking-[0.2em] sm:tracking-[0.25em] text-[#B9935A] shrink-0">
+                {blog.category}
+              </span>
+            )}
+            {blog.category && blog.date && (
+              <span className="text-[#B9935A]/50 select-none shrink-0">&bull;</span>
             )}
             {blog.date && (
-              <>
-                <span className="font-body text-xs text-[#6D675E] tracking-wider uppercase">{blog.date}</span>
-                {blog.author && <span className="text-[#B9935A]/50 select-none">&bull;</span>}
-              </>
+              <span className="font-body text-[#6D675E] tracking-wider uppercase shrink-0">
+                {blog.date}
+              </span>
+            )}
+            {(blog.category || blog.date) && blog.author && (
+              <span className="text-[#B9935A]/50 select-none shrink-0 hidden sm:inline">&bull;</span>
             )}
             {blog.author && (
-              <span className="font-body text-xs text-[#6D675E] tracking-wider">{blog.author}</span>
+              <span className="font-body text-[#6D675E] tracking-wide w-full sm:w-auto text-pretty">
+                {blog.author}
+              </span>
             )}
           </div>
 
